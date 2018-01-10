@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: cae82fe06cb824a99ab426c8fc8b056a
+timeCreated: 1512988193
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - lastReachedGroundPiece: {instanceID: 0}
+  - AI: {instanceID: 0}
+  - snakeMeshContainer: {instanceID: 0}
+  - snakeMeshProprietes: {instanceID: 0}
+  - tailPieceSprite: {instanceID: 0}
+  - collectedPieceSprite: {instanceID: 0}
+  - snakeNameTextMesh: {instanceID: 0}
+  - Explosion: {fileID: 142844, guid: 8222536068aed094ca8df42331accd06, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

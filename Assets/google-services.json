@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "931749422625",
+    "project_id": "battle-xonix"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931749422625:android:a87a19fe1b29bd70",
+        "android_client_info": {
+          "package_name": "com.xonix.battlexonix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931749422625-1sklajc44vlufar7uq7mde7ufaf8q2jt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xonix.battlexonix",
+            "certificate_hash": "bbe904094b885ab8d1258f82994d4d15924e5eb9"
+          }
+        },
+        {
+          "client_id": "931749422625-lh84dbo0adnq18ht01qmm5mfjn88jdqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnkocaCJ7okK0oGAhkbipmh76BHh8vI4E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

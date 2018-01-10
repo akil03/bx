@@ -1,0 +1,484 @@
+fileFormatVersion: 2
+guid: 25773560ce23d7740a81dc5ff657887a
+timeCreated: 1490353611
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: GUISET6_0
+    21300002: GUISET6_1
+    21300004: GUISET6_2
+    21300006: GUISET6_3
+    21300008: GUISET6_4
+    21300010: GUISET6_5
+    21300012: GUISET6_6
+    21300014: GUISET6_7
+    21300016: GUISET6_8
+    21300018: GUISET6_9
+    21300020: GUISET6_10
+    21300022: GUISET6_11
+    21300024: GUISET6_12
+    21300026: GUISET6_13
+    21300028: GUISET6_14
+    21300030: GUISET6_15
+    21300032: GUISET6_16
+    21300034: GUISET6_17
+    21300036: GUISET6_18
+    21300038: GUISET6_19
+    21300040: GUISET6_20
+    21300042: GUISET6_21
+    21300044: GUISET6_22
+    21300046: GUISET6_23
+    21300048: GUISET6_24
+    21300050: GUISET6_25
+    21300052: GUISET6_26
+    21300054: GUISET6_27
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GUISET6_0
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1879
+        width: 270
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_1
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 1879
+        width: 270
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_2
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 1879
+        width: 270
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_3
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 1879
+        width: 271
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1550
+        width: 270
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 1550
+        width: 271
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_6
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 1550
+        width: 271
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1550
+        width: 271
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_8
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 1194
+        width: 271
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_9
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 1194
+        width: 271
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_10
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 1194
+        width: 271
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_11
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 1194
+        width: 270
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_12
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 822
+        width: 271
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_13
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 822
+        width: 269
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_14
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 822
+        width: 271
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_15
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 822
+        width: 270
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_16
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 759
+        width: 235
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_17
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 759
+        width: 235
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_18
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 759
+        width: 235
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_19
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 759
+        width: 235
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_20
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 460
+        width: 271
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_21
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 460
+        width: 269
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_22
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 460
+        width: 271
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_23
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 460
+        width: 270
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_24
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 52
+        width: 269
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_25
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 52
+        width: 271
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_26
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 52
+        width: 270
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GUISET6_27
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 52
+        width: 271
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

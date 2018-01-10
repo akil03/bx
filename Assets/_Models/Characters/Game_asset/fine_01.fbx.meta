@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: 9825a99c713bfd34e928b9ef197677a5
+timeCreated: 1512851133
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: belt
+    100002: body
+    100004: DOG_body01
+    100006: dog_mesh_grp
+    100008: eye_brow_grp
+    100010: eye_brow_l
+    100012: eye_brow_r
+    100014: eye_grp
+    100016: eye_grp_l
+    100018: eye_grp_r
+    100020: //RootNode
+    100022: grp_l_eye
+    100024: grp_r_eye1
+    100026: l_eye_ball
+    100028: l_eye_cornea
+    100030: l_eye_pupil
+    100032: lower_teeth
+    100034: r_eye_ball
+    100036: r_eye_cornea
+    100038: r_eye_pupil
+    100040: teeth_grp
+    100042: tongue
+    100044: upper_teeth
+    100046: body01
+    400000: belt
+    400002: body
+    400004: DOG_body01
+    400006: dog_mesh_grp
+    400008: eye_brow_grp
+    400010: eye_brow_l
+    400012: eye_brow_r
+    400014: eye_grp
+    400016: eye_grp_l
+    400018: eye_grp_r
+    400020: //RootNode
+    400022: grp_l_eye
+    400024: grp_r_eye1
+    400026: l_eye_ball
+    400028: l_eye_cornea
+    400030: l_eye_pupil
+    400032: lower_teeth
+    400034: r_eye_ball
+    400036: r_eye_cornea
+    400038: r_eye_pupil
+    400040: teeth_grp
+    400042: tongue
+    400044: upper_teeth
+    400046: body01
+    2300000: belt
+    2300002: body
+    2300004: DOG_body01
+    2300006: eye_brow_l
+    2300008: eye_brow_r
+    2300010: l_eye_ball
+    2300012: l_eye_cornea
+    2300014: l_eye_pupil
+    2300016: lower_teeth
+    2300018: r_eye_ball
+    2300020: r_eye_cornea
+    2300022: r_eye_pupil
+    2300024: tongue
+    2300026: upper_teeth
+    2300028: body01
+    3300000: belt
+    3300002: body
+    3300004: DOG_body01
+    3300006: eye_brow_l
+    3300008: eye_brow_r
+    3300010: l_eye_ball
+    3300012: l_eye_cornea
+    3300014: l_eye_pupil
+    3300016: lower_teeth
+    3300018: r_eye_ball
+    3300020: r_eye_cornea
+    3300022: r_eye_pupil
+    3300024: tongue
+    3300026: upper_teeth
+    3300028: body01
+    4300000: tongue
+    4300002: eye_brow_l
+    4300004: eye_brow_r
+    4300006: body
+    4300008: belt
+    4300010: lower_teeth
+    4300012: upper_teeth
+    4300014: l_eye_ball
+    4300016: l_eye_pupil
+    4300018: l_eye_cornea
+    4300020: r_eye_ball
+    4300022: r_eye_pupil
+    4300024: r_eye_cornea
+    4300026: DOG_body01
+    4300028: body01
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

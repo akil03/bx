@@ -16,7 +16,7 @@ public class ChallengeWindowGUI : Singleton<ChallengeWindowGUI> {
 	public UIElement element;
 	public UIElement matchLoading;
 	public string region;
-
+	public static bool isChallenged;
 	void Start()
 	{
 		challenge = null;
@@ -27,7 +27,16 @@ public class ChallengeWindowGUI : Singleton<ChallengeWindowGUI> {
 		challenge = data;
 		challengeMsg.text = data.challenge.challenger.name + " has challenged you for a game!";
 		element.gameObject.SetActive (true);
-		element.Show (false);			
+		element.Show (false);	
+		isChallenged = true;
+	}
+
+	void OnEnable(){
+		
+	}
+
+	void OnDisable(){
+		
 	}
 
 	public void DeclineChallenge()
@@ -35,6 +44,7 @@ public class ChallengeWindowGUI : Singleton<ChallengeWindowGUI> {
 		decline.Decline (challenge.challenge.challengeId);
 		Hide ();
 		challenge = null;
+		isChallenged = false;
 	}
 
 	void LapseChallenge()
@@ -56,30 +66,24 @@ public class ChallengeWindowGUI : Singleton<ChallengeWindowGUI> {
 		JoinGame (challenge.message);
 	}
 
-	public void Hide()
-	{
-		element.Hide (false);
-	}
 
-	public void JoinGame(string region)
-	{
-		PhotonNetwork.Disconnect ();
-		this.region = region;
+	public void OnConnectedToMaster()
+	{		
+
+		if (!InternetChecker.instance.reconnect && challenge!=null) {
+			print ("Connected to master!");
+			print (challenge.challenge.challenger.name);
+			PhotonNetwork.JoinRoom (challenge.challenge.challenged[0].id);
+		}
 	}
 
 	void OnDisconnectedFromPhoton()
 	{
-		if (!InternetChecker.instance.reconnect && challenge!=null) {
-			PhotonNetwork.ConnectToRegion (region.ToCloudRegionCode (), Application.version);
-		}
-	}
 
-	public void OnConnectedToMaster()
-	{		
 		if (!InternetChecker.instance.reconnect && challenge!=null) {
-			print ("Connected to master!");
-			print (challenge.challenge.challenger.name);
-			PhotonNetwork.JoinRoom (challenge.challenge.challenged[0].name);
+			//Invoke ("DelayedConnect",1);
+			PhotonNetwork.ConnectToRegion (region.ToCloudRegionCode (), Application.version);
+			//PhotonNetwork.JoinRoom (challenge.challenge.challenged[0].name);
 		}
 	}
 
@@ -92,8 +96,31 @@ public class ChallengeWindowGUI : Singleton<ChallengeWindowGUI> {
 			GUIManager.instance.ShowInGameGUI ();
 			accept.Accept (challenge.challenge.challengeId);
 			challenge = null;
+			isChallenged = false;
 		}
 	}
+
+	public void Hide()
+	{
+		element.Hide (false);
+	}
+
+	public void JoinGame(string region)
+	{
+		PhotonNetwork.Disconnect ();
+		PhotonManagerAdvanced.instance.selectedServer = region;
+
+
+		InternetChecker.instance.reconnect = false;
+
+		this.region = region;
+	}
+
+
+
+
+
+
 
 	void OnPhotonJoinRoomFailed(object[] codeAndMsg)
 	{

@@ -56,6 +56,7 @@ public class GSLogin : MonoBehaviour {
 			if (!response.HasErrors) {
 				playerData = JsonUtility.FromJson<GSLeaderboardData> (response.JSONString);
 				GUIManager.instance.mmrTxt.text = playerData.scriptData.AllData.scriptData.MMR.ToString ();
+				GUIManager.instance.playerID_TXT.text = "User ID : "+playerData.scriptData.AllData.id;
 				PlayerPrefs.SetInt ("MMR",playerData.scriptData.AllData.scriptData.MMR);
 				//print(playerData.scriptData.AllData.scriptData.MMR.ToString ());
 			}

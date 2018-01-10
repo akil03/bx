@@ -114,9 +114,10 @@ public class GoogleLoginController : Singleton<GoogleLoginController> {
 	{
 		print ("Gamesparks login failed!");
 		if(error.error!=GSErrorCodes.timeout)
-			gameSparksRegistration.Register (LCGoogleLoginBridge.GSIUserName (), LCGoogleLoginBridge.GSIEmail (), LCGoogleLoginBridge.GSIEmail ()); 
+			gameSparksRegistration.Register (LCGoogleLoginBridge.GSIUserName (), LCGoogleLoginBridge.GSIEmail (), LCGoogleLoginBridge.GSIEmail ());
+		else
+			GUIManager.instance.ShowLog (error.error);
 		google.ShowType2 ();
-		GUIManager.instance.ShowLog ("Login failed!");
 	}
 
 	void GSRegistrationSuccess()

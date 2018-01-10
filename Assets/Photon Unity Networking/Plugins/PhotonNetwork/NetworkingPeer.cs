@@ -693,6 +693,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
         this.IsUsingNameServer = true;
         this.CloudRegion = region;
 
+
         if (this.State == ClientState.ConnectedToNameServer)
         {
             return this.CallAuthenticate();

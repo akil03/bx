@@ -126,6 +126,7 @@ public class LeaderboardGUI : MonoBehaviour
 
 	}
 	public string SelectedRegion;
+	public List<PhotonRegion> resu;
 	public void CreateChallenge()
 	{
 		if (!PhotonNetwork.connected) {
@@ -145,8 +146,13 @@ public class LeaderboardGUI : MonoBehaviour
 			r.ping = regions[i].ping+myRegions[i].ping;
 			result.Add(r);
 		}
-		Connect (result.OrderBy (a=>a.ping).First ().region,leaderboardData);
-		PhotonManagerAdvanced.instance.selectedServer = result.OrderBy (a=>a.ping).First ().region;
+		result = result.OrderBy (a => a.ping).ToList ();
+		resu = result;
+//		Connect (result.OrderBy (a=>a.ping).First ().region,leaderboardData);
+//		PhotonManagerAdvanced.instance.selectedServer = result.OrderBy (a=>a.ping).First ().region;
+		Connect (result[0].region,leaderboardData);
+		PhotonManagerAdvanced.instance.selectedServer = result[0].region;
+
 		PhotonManagerAdvanced.instance.loading.Show (true);
 		ChallegeWaitGUI.instance.isBusy = true;
 	}
@@ -167,15 +173,17 @@ public class LeaderboardGUI : MonoBehaviour
 		if (LeaderboardGUI.l == this.leaderboardData && !InternetChecker.instance.reconnect) {
 			print ("Connected to master!");
 			print (leaderboardData.scriptData.AllData.displayName);
-			PhotonNetwork.CreateRoom (leaderboardData.scriptData.AllData.displayName,new RoomOptions(){MaxPlayers = (byte)2,IsVisible = false},TypedLobby.Default);
+			PhotonNetwork.CreateRoom (leaderboardData.scriptData.AllData.id,new RoomOptions(){MaxPlayers = (byte)2,IsVisible = false},TypedLobby.Default);
 		}
 	}
 
 	void OnDisconnectedFromPhoton()
 	{
+		print ("disconnected request");
 		if (LeaderboardGUI.l == this.leaderboardData && !InternetChecker.instance.reconnect) {
 //			PhotonNetwork.OverrideBestCloudServer (region.ToCloudRegionCode ());
 			PhotonNetwork.ConnectToRegion (region.ToCloudRegionCode (), Application.version);
+
 		}
 	}
 

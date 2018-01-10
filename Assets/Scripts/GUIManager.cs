@@ -28,7 +28,7 @@ public class GUIManager : MonoBehaviour
 	public UIElement InternetCheckPage,SettingsPage;
 	public GameObject BG;
 
-	public Text mmrTxt;
+	public Text mmrTxt,playerID_TXT;
 	public int currentPage;
     void Awake()
     {

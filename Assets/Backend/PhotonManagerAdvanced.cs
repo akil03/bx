@@ -131,10 +131,16 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	void OnDisconnectedFromPhoton()
 	{
+		print ("disconnected manager");
 		serverStatus = ConnectionStatus.disconnected;
 		PowerUpManager.instance.dontSpawn = true;
-		if (!InternetChecker.instance.reconnect) 
+
+//		if (ChallegeWaitGUI.instance.isBusy || ChallengeWindowGUI.isChallenged)
+//			return;
+		
+		if (!InternetChecker.instance.reconnect&&!ChallengeWindowGUI.isChallenged&&!ChallegeWaitGUI.instance.isBusy) 
 		{
+			print ("creating server");
 			PhotonNetwork.ConnectUsingSettings (Application.version);
 		}
 	}

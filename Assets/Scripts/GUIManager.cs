@@ -29,6 +29,7 @@ public class GUIManager : MonoBehaviour
 	public GameObject BG;
 
 	public Text mmrTxt,playerID_TXT;
+	public InputField playerNameTxt;
 	public int currentPage;
     void Awake()
     {

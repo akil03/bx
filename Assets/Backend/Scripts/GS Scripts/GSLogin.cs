@@ -30,7 +30,7 @@ public class GSLogin : MonoBehaviour {
 			} else {
 				print("GS login success!!");
 				EventManager.instance.OnGSLoginSuccess ();
-				#if !UNITY_EDITOR
+				#if UNITY_ANDROID
 				if(PlayerPrefs.GetInt ("isFB")==1)
 					FacebookLoginController.instance.Login ();
 				#endif
@@ -57,6 +57,7 @@ public class GSLogin : MonoBehaviour {
 				playerData = JsonUtility.FromJson<GSLeaderboardData> (response.JSONString);
 				GUIManager.instance.mmrTxt.text = playerData.scriptData.AllData.scriptData.MMR.ToString ();
 				GUIManager.instance.playerID_TXT.text = "User ID : "+playerData.scriptData.AllData.id;
+				GUIManager.instance.playerNameTxt.text = playerData.scriptData.AllData.displayName;
 				PlayerPrefs.SetInt ("MMR",playerData.scriptData.AllData.scriptData.MMR);
 				//print(playerData.scriptData.AllData.scriptData.MMR.ToString ());
 			}

@@ -11,7 +11,7 @@ public class CreateChallenge : MonoBehaviour {
 	{
 		new CreateChallengeRequest()			
 			.SetChallengeShortCode("play")
-			.SetEndTime(DateTime.Parse(DateTime.Now.AddMinutes (2).ToString("yyyy-MM-ddTHH:mmZ")))
+			.SetEndTime(DateTime.Parse(DateTime.UtcNow.AddMinutes (2).ToString("yyyy-MM-ddTHH:mmZ")))
 			.SetChallengeMessage (PhotonManagerAdvanced.instance.selectedServer)
 			.SetUsersToChallenge(new List<string>(){id})
 			.Send((response) => {

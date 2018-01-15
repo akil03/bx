@@ -435,7 +435,19 @@ MonoBehaviour:
   _networkSnake: {fileID: 0}
   isLocal: 0
   ReasonDeath: 
+  DeathShakeProperties:
+    angle: 30
+    strength: 0.2
+    maxSpeed: 5
+    minSpeed: 5
+    duration: 0.5
+    noisePercent: 0.384
+    dampingPercent: 0.486
+    rotationPercent: 0.321
+  isFrozen: 0
+  isGameStarted: 0
   isDead: 0
+  isHeadOn: 0
   isShielded: 0
   isSpeed: 0
 --- !u!114 &114532724047530652

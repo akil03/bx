@@ -54,6 +54,8 @@ public class Snake : MonoBehaviour
 	public PlayerInfo _networkSnake;
 	public bool isLocal;
 	public string ReasonDeath;
+
+	public CameraShake.Properties DeathShakeProperties;
 	void Awake ()
 	{
 		AI = GetComponent<SnakeAI> ();
@@ -752,6 +754,7 @@ public class Snake : MonoBehaviour
 
 		snakeMeshContainer.transform.DOScale (Vector3.zero, 0.4f).SetEase (Ease.Unset);
 
+		FindObjectOfType<CameraShake>().StartShake (DeathShakeProperties);
 
 		if (PhotonManagerAdvanced.instance.IsInGame ()) {
 			if (isLocal) {

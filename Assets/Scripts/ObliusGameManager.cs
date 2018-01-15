@@ -37,6 +37,7 @@ public class ObliusGameManager : MonoBehaviour
 	void Start ()
 	{
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+		//StartTutorial ();
 	}
 
 	// Update is called once per frame
@@ -74,6 +75,12 @@ public class ObliusGameManager : MonoBehaviour
 
 	public void StartGame ()
 	{
+	//	PlayerPrefs.DeleteAll ();
+		if(!PlayerPrefs.HasKey ("TutorialComplete")){
+			StartTutorial ();
+			return;
+		}
+
 		ResetGame ();
 		ScoreHandler.instance.incrementNumberOfGames ();
 		GUIManager.instance.ShowInGameGUI ();
@@ -106,6 +113,90 @@ public class ObliusGameManager : MonoBehaviour
 
 
 	}
+
+
+
+	public void StartTutorial(){
+		ResetGame ();
+		//SnakesSpawner.instance.SpawnPlayer ();
+		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
+		SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive (false);
+		gameState = GameState.game;
+		GUIManager.instance.BG.SetActive (false);
+		StartCoroutine (TutorialList ());
+	}
+
+	IEnumerator TutorialList(){
+		yield return new WaitForSeconds (1.3f);
+		GUIManager.instance.ShowTutorialLog ("Swipe right");
+		//yield return new WaitForSeconds (0.5f);
+		Time.timeScale = 0;
+		while (SwipeHandler.instance.lastSwipeDirection != SwipeHandler.SwipeDirection.right) {
+			yield return null;
+		}
+		Time.timeScale = 1;
+		GUIManager.instance.HideTutorialLog ();
+
+		yield return new WaitForSeconds (1f);
+		GUIManager.instance.ShowTutorialLog ("Swipe down");
+	//	yield return new WaitForSeconds (0.5f);
+		Time.timeScale = 0;
+		while (SwipeHandler.instance.lastSwipeDirection != SwipeHandler.SwipeDirection.down) {
+			yield return null;
+		}
+		Time.timeScale = 1;
+		GUIManager.instance.HideTutorialLog ();
+
+		yield return new WaitForSeconds (0.85f);
+		GUIManager.instance.ShowTutorialLog ("Swipe left");
+		//yield return new WaitForSeconds (0.5f);
+		Time.timeScale = 0;
+		while (SwipeHandler.instance.lastSwipeDirection != SwipeHandler.SwipeDirection.left) {
+			yield return null;
+		}
+		Time.timeScale = 1;
+		GUIManager.instance.HideTutorialLog ();
+
+		yield return new WaitForSeconds (0.8f);
+		GUIManager.instance.ShowTutorialLog ("Trail complete. Good Work !!");
+		yield return new WaitForSeconds (1f);
+		GUIManager.instance.HideTutorialLog ();
+
+		yield return new WaitForSeconds (2f);
+		GUIManager.instance.ShowTutorialLog ("Do not hit your own trail or the walls !!");
+		yield return new WaitForSeconds (4f);
+		GUIManager.instance.HideTutorialLog ();
+
+
+		yield return new WaitForSeconds (2f);
+		GUIManager.instance.ShowTutorialLog ("Now cover more than 50% of the area !!");
+		yield return new WaitForSeconds (4f);
+		GUIManager.instance.HideTutorialLog ();
+
+		GUIManager.instance.ShowInGameGUI ();
+		GUIManager.instance.inGameGUI.PlayerPanel [1].gameObject.SetActive (false);
+		GUIManager.instance.inGameGUI.totalGameTime = 9999;
+		GUIManager.instance.inGameGUI.PlayerPanel [0].RemainingLives.gameObject.SetActive (false);
+		GUIManager.instance.inGameGUI.TimerText.transform.parent.gameObject.SetActive (false);
+		while (GUIManager.instance.inGameGUI.PlayerPanel [0].fillamount<50) {
+			yield return null;
+		}
+
+		yield return new WaitForSeconds (1);
+		GUIManager.instance.inGameGUI.GetComponent <UIElement> ().Hide (false);
+		yield return new WaitForSeconds (1);
+		GUIManager.instance.ShowTutorialLog ("Great !! Now lets see your performance against a bot");
+		yield return new WaitForSeconds (4);
+		GUIManager.instance.HideTutorialLog ();
+		SnakesSpawner.instance.KillAllSnakes ();
+		GUIManager.instance.inGameGUI.PlayerPanel [1].gameObject.SetActive (true);
+		GroundSpawner.instance.ClearGround ();
+		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
+		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (false,1));
+		GUIManager.instance.ShowInGameGUI ();
+
+	}
+
 
 
 	public void _ShowFindingMatchScreen(int id)

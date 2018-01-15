@@ -15,7 +15,7 @@ public class InGameGUI : MonoBehaviour
 
 	public GameObject takenGUIDiamond;
 	public float TimeRemaining,startTime;
-	int totalGameTime=120;
+	public int totalGameTime=120;
 	public Snake userSnake,opponentSnake; 
 	public GameObject[] powerSlots;
 	public Sprite Shield, Speed, Freeze, Health, Minishots, Heatseeker;

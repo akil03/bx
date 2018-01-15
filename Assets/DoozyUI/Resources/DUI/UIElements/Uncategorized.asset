@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
   - ~Element Name~
+  - Example_4_Notification_1 (-294416)
   - GameOverHUD
   - InGameHUD
   - MainMenu

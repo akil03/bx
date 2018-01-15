@@ -73,12 +73,23 @@ public class GUIManager : MonoBehaviour
     public void ShowGameOverGUI()
     {
 	//	gameOverGUI.OnWin ();
+		if (!PlayerPrefs.HasKey ("TutorialComplete")) {
+			PlayerPrefs.SetInt ("TutorialComplete", 1);
+			ShowTutorialLog ("Congratulations !! You've successfully completed the tutorial !!");
+			inGameGUI.GetComponent <UIElement> ().Hide (false);
+			Invoke ("ReloadScene", 4);
+			return;
+		}
 
 
-		inGameGUI.GetComponent <UIElement> ().Hide (false);
+
         gameOverGUI.gameObject.SetActive(true);
 		gameOverGUI.GetComponent <UIElement> ().Show (false);
     }
+
+//	void ReloadScene(){
+//		Application.LoadLevel (0);
+//	}
 
     public void HideGameOverGUI()
     {
@@ -194,6 +205,18 @@ public class GUIManager : MonoBehaviour
 
 		Invoke ("EnableLog", time);
 	}
+
+	public Text NotificationTxt;
+	public void ShowTutorialLog(string log){
+		NotificationTxt.transform.parent.parent.gameObject.SetActive (true);
+		NotificationTxt.text = log;
+
+	}
+
+	public void HideTutorialLog(){
+		NotificationTxt.transform.parent.parent.gameObject.SetActive (false);
+	}
+
 
 	void EnableLog(){
 		isLogShown = false;

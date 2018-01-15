@@ -7,7 +7,7 @@ public class PlayerPanelUI : MonoBehaviour {
 	public RectTransform FillPanel,HealthPanel;
 	public Image ColorPanel,Shape;
 	public float lerpFillSpeed,lerpHPSpeed;
-	float fillamount,hpRatio;
+	public float fillamount,hpRatio;
 	public Snake SelectedSnake;
 
 	float lerpFill,lerpHP;

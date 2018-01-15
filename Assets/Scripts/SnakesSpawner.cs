@@ -76,7 +76,7 @@ public class SnakesSpawner : MonoBehaviour
 
 	public void SpawnPlayer ()
 	{
-		StartCoroutine (SpawnNewSnake (true));
+		StartCoroutine (SpawnNewSnake (true,playerLives));
 	}
 
 
@@ -86,7 +86,7 @@ public class SnakesSpawner : MonoBehaviour
 //		if(usableSnakeMeshes.Contains (snakeMeshAssignedToPlayer))
 //			usableSnakeMeshes.Remove (snakeMeshAssignedToPlayer);
 		
-		StartCoroutine (SpawnNewSnake (false));
+		StartCoroutine (SpawnNewSnake (false,playerLives));
 	}
 
 	public IEnumerator SpawnRoutine ()
@@ -95,7 +95,7 @@ public class SnakesSpawner : MonoBehaviour
 		while (true) {
 
 			if (spawnedEnemiesCount < maxEnemiesOnGround) {
-				yield return StartCoroutine (SpawnNewSnake (false));					
+				yield return StartCoroutine (SpawnNewSnake (false,playerLives));					
 			}
 			yield return new WaitForEndOfFrame ();
 		}
@@ -141,7 +141,7 @@ public class SnakesSpawner : MonoBehaviour
 	}
 
 
-	public IEnumerator SpawnNewSnake (bool isPlayer = false)
+	public IEnumerator SpawnNewSnake (bool isPlayer,int playerLives)
 	{
 		/*
 		if (!isPlayer) {

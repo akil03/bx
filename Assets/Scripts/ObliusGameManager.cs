@@ -117,6 +117,10 @@ public class ObliusGameManager : MonoBehaviour
 
 
 	public void StartTutorial(){
+		if (PlayerPrefs.HasKey ("TutorialComplete"))
+			return;
+
+
 		ResetGame ();
 		//SnakesSpawner.instance.SpawnPlayer ();
 		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));

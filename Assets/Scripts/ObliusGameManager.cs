@@ -115,22 +115,25 @@ public class ObliusGameManager : MonoBehaviour
 	}
 
 
-
+	bool tutStarted;
 	public void StartTutorial(){
-		if (PlayerPrefs.HasKey ("TutorialComplete"))
+		if (PlayerPrefs.HasKey ("TutorialComplete")||tutStarted)
 			return;
 
 
-		ResetGame ();
-		//SnakesSpawner.instance.SpawnPlayer ();
-		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
-		SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive (false);
-		gameState = GameState.game;
-		GUIManager.instance.BG.SetActive (false);
+		tutStarted = true;
 		StartCoroutine (TutorialList ());
 	}
 
 	IEnumerator TutorialList(){
+		
+		ResetGame ();
+		//SnakesSpawner.instance.SpawnPlayer ();
+		GUIManager.instance.mainMenuGUI.GetComponent <UIElement> ().Hide (false);
+		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
+		SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive (false);
+		gameState = GameState.game;
+		GUIManager.instance.BG.SetActive (false);
 		yield return new WaitForSeconds (1.3f);
 		GUIManager.instance.ShowTutorialLog ("Swipe right");
 		//yield return new WaitForSeconds (0.5f);

@@ -91,6 +91,7 @@ public class GoogleLoginController : Singleton<GoogleLoginController> {
 	{
 		print ("Google login failed!");
 		GUIManager.instance.ShowLog ("Google login failed!");
+		Application.LoadLevel (0);
 		change.ShowType2 ();
 	}
 
@@ -101,6 +102,7 @@ public class GoogleLoginController : Singleton<GoogleLoginController> {
 		FacebookLoginController.instance.GetGameSparksFriends ();
 		google.ShowType1 ();
 		change.ShowType1 ();
+		ObliusGameManager.instance.StartTutorial ();
 	}
 
 	void GSLogoutSuccess()

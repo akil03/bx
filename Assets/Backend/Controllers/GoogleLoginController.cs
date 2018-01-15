@@ -84,6 +84,7 @@ public class GoogleLoginController : Singleton<GoogleLoginController> {
 	void GoogleLoginSuccess()
 	{		
 		gameSparksLogin.Login (LCGoogleLoginBridge.GSIEmail (),LCGoogleLoginBridge.GSIEmail ());
+		ObliusGameManager.instance.StartTutorial ();
 		change.ShowType1 ();
 	}
 

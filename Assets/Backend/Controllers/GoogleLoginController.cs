@@ -18,7 +18,7 @@ public class GoogleLoginController : Singleton<GoogleLoginController> {
 	public GSLogin gameSparksLogin;
 	GSLogout gameSparksLogout;
 	GSRegister gameSparksRegistration;
-	ChangeTexture change;
+	[SerializeField]ChangeTexture gameSparks;
 	[SerializeField]ChangeTexture google;
 
 	void Awake()
@@ -28,7 +28,7 @@ public class GoogleLoginController : Singleton<GoogleLoginController> {
 		gameSparksLogin = GetComponent<GSLogin> ();
 		gameSparksLogout = GetComponent<GSLogout> ();
 		gameSparksRegistration = GetComponent<GSRegister> ();
-		change = GetComponent<ChangeTexture> ();
+		//gameSparks = GetComponent<ChangeTexture> ();
 	}
 
 
@@ -85,7 +85,7 @@ public class GoogleLoginController : Singleton<GoogleLoginController> {
 	{		
 		gameSparksLogin.Login (LCGoogleLoginBridge.GSIEmail (),LCGoogleLoginBridge.GSIEmail ());
 		ObliusGameManager.instance.StartTutorial ();
-		change.ShowType1 ();
+		google.ShowType1 ();
 	}
 
 	void GoogleLoginFailed()
@@ -93,24 +93,24 @@ public class GoogleLoginController : Singleton<GoogleLoginController> {
 		print ("Google login failed!");
 		GUIManager.instance.ShowLog ("Google login failed!");
 		Application.LoadLevel (0);
-		change.ShowType2 ();
+		google.ShowType2 ();
 	}
 
 	void GSLoginSuccess()
 	{
-		print ("Gamesparks login success!");
 		//GUIManager.instance.ShowLog ("Login Success !!");
 		FacebookLoginController.instance.GetGameSparksFriends ();
 		google.ShowType1 ();
-		change.ShowType1 ();
+		gameSparks.ShowType1 ();
 		ObliusGameManager.instance.StartTutorial ();
+		print ("Gamesparks login success!");
 	}
 
 	void GSLogoutSuccess()
 	{
 		print ("Gamesparks logout success!");
 		google.ShowType2 ();
-		change.ShowType2 ();
+		gameSparks.ShowType2 ();
 	}
 
 	void GSLoginFailed(GSErrorData error)
@@ -120,7 +120,7 @@ public class GoogleLoginController : Singleton<GoogleLoginController> {
 			gameSparksRegistration.Register (LCGoogleLoginBridge.GSIUserName (), LCGoogleLoginBridge.GSIEmail (), LCGoogleLoginBridge.GSIEmail ());
 		else
 			GUIManager.instance.ShowLog (error.error);
-		google.ShowType2 ();
+		gameSparks.ShowType2 ();
 	}
 
 	void GSRegistrationSuccess()

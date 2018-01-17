@@ -74,7 +74,7 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	IEnumerator GetPing()
 	{
-		while (!GS.Authenticated)
+		while (!PhotonNetwork.connected || !GS.Authenticated)
 			yield return null;
 		AccountDetails.instance.Get ();
 		while (string.IsNullOrEmpty (ping))
@@ -104,8 +104,17 @@ public class PhotonManagerAdvanced : MonoBehaviour
 	{
 		serverStatus = ConnectionStatus.connecting;
 		PhotonNetwork.ConnectUsingSettings (Application.version);
-		while (serverStatus == ConnectionStatus.connecting)
-			yield return null;
+		int i = 0;
+		while (serverStatus == ConnectionStatus.connecting && i < 5) 
+		{
+			yield return new WaitForSeconds (1);
+			i++;
+		}
+		if (serverStatus != ConnectionStatus.connected) 
+		{
+			serverStatus = ConnectionStatus.disconnected;
+			yield break;
+		}
 		if (serverStatus == ConnectionStatus.connected) {
 			print ("Connected to server!!!");
 			if(success!=null)

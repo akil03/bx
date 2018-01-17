@@ -75,7 +75,7 @@ public class ObliusGameManager : MonoBehaviour
 
 	public void StartGame ()
 	{
-	//	PlayerPrefs.DeleteAll ();
+		PlayerPrefs.DeleteAll ();
 		if(!PlayerPrefs.HasKey ("TutorialComplete")){
 			StartTutorial ();
 			return;
@@ -234,7 +234,8 @@ public class ObliusGameManager : MonoBehaviour
 		else
 		{
 			googleLoginPopup.gameObject.SetActive (true);
-			googleLoginPopup.Show (false);	
+			googleLoginPopup.Show (false);
+			GUIManager.instance.ShowLog ("Please login!");
 		}	
 	}
 

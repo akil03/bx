@@ -66,6 +66,8 @@ public class LeaderboardGUI : MonoBehaviour
 
 	IEnumerator LoadImage(string id)
 	{
+		if (string.IsNullOrEmpty (id))
+			yield break;
 		WWW www = new WWW ("http://graph.facebook.com/"+id+"/picture?width=100&height=100");
 		yield return www;
 		if(www.texture!=null)

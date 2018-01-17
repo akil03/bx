@@ -5,6 +5,13 @@ using GameSparks.Api.Requests;
 
 public class AccountDetails : Singleton<AccountDetails> {
 
+	public static AccountDetails instance;
+
+	void Awake()
+	{
+		instance = this;
+	}
+
 	public AccountDetailsData accountDetails;
 
 	public void Get()

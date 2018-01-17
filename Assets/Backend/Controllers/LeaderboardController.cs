@@ -12,7 +12,12 @@ public class LeaderboardController : Singleton<LeaderboardController>
 	public LeaderboardGUI player;
 	public List<LeaderboardGUI> players;
 	public List<LeaderboardGUI> comps;
+	public static LeaderboardController instance;
 
+	void Awake()
+	{
+		instance = this;
+	}
 
 	void OnEnable()
 	{

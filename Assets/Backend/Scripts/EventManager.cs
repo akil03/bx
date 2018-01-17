@@ -36,6 +36,12 @@ public class EventManager : Singleton<EventManager>
 	public event GSMessageDelegate acceptedChallenge;
 	public event GSMessageDelegate challengeStarted;
 	public event ParameterlessDelegate withdrawChallenge;
+	public static EventManager instance; 
+
+	void Awake()
+	{
+		instance = this;
+	}
 
 	public void OnGoogleLoginSuccess()
 	{

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70334f3253198444a8daace7bb4493a4, type: 3}
+  m_Name: challengeDataOther
+  m_EditorClassIdentifier: 
+  data:
+    challenge:
+      accepted:
+      - externalIds:
+          FB: 
+        id: 5a5706ddc5b51e363267ca36
+        name: kamal kannan
+      challengeId: 5a5e269b57203b04cbd91ab6
+      challengeName: Challenge
+      challenged:
+      - externalIds:
+          FB: 
+        id: 5a56109bcc302a04bd5a5c20
+        name: Akil
+      challenger:
+        externalIds:
+          FB: 
+        id: 5a5706ddc5b51e363267ca36
+        name: kamal kannan
+      endDate: 2018-01-16T16:23Z
+      shortCode: play
+      state: ISSUED
+      turnCount:
+        __invalid_name__5a439c6d2f481f04b6d7ac69: 0
+    message: in
+    messageId: 5a5e269b57203b04cbd91aba
+    notification: 1
+    playerId: 5a56109bcc302a04bd5a5c20
+    summary: kamal kannan just challenged you at Challenge.
+    who: kamal kannan

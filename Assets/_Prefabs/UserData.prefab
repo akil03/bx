@@ -248,6 +248,7 @@ MonoBehaviour:
   playerName: {fileID: 114316442293942632}
   mmr: {fileID: 114543313651734370}
   sprite: {fileID: 114674818691949598}
+  id: 
   challenge: {fileID: 114970129391909024}
   region: 
   OnlineImage: {fileID: 114767143583058808}
@@ -283,8 +284,10 @@ MonoBehaviour:
           FBID: 
           FriendsList: []
           MMR: 0
-  SelectedRegion: 
-  resu: []
+  userId: {fileID: 11400000, guid: 61c951cbb9d50c54bbe8f341dfbb7db7, type: 2}
+  opponentId: {fileID: 11400000, guid: 1f68b91cd85325e418334c6b97094ab9, type: 2}
+  server: {fileID: 11400000, guid: 408e334c55990984b84c77fef9d24cfb, type: 2}
+  challengeLoadingON: {fileID: 11400000, guid: 2220d665feec74b438eab56e25468fdd, type: 2}
 --- !u!114 &114543313651734370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -337,8 +340,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 7ed1238760b863f4aafde32ab3a6f28c, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -385,7 +388,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114500576082635822}
-        m_MethodName: CreateChallenge
+        m_MethodName: SetOpponentID
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

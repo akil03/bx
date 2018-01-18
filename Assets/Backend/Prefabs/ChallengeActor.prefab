@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1887797231304450}
+  m_IsPrefabParent: 1
+--- !u!1 &1887797231304450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4582991640513876}
+  - component: {fileID: 114161697125782404}
+  - component: {fileID: 114437393010456534}
+  - component: {fileID: 114113198657336962}
+  - component: {fileID: 114065935381095902}
+  - component: {fileID: 114733933736838864}
+  m_Layer: 0
+  m_Name: ChallengeActor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4582991640513876
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887797231304450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 141.5, y: 251.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114065935381095902
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887797231304450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 62ef9281381f7e94f8f49563f7f97466, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114161697125782404}
+        m_MethodName: CanAcceptChallenge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114113198657336962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887797231304450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 8831125c4d6fa274fa855ee1715553ae, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114161697125782404}
+        m_MethodName: Reconnect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114161697125782404}
+        m_MethodName: SetOccupiedStatus
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114161697125782404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887797231304450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d74271767077514ab07345c8c6b5e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  server: {fileID: 11400000, guid: 408e334c55990984b84c77fef9d24cfb, type: 2}
+  opponentId: {fileID: 11400000, guid: 1f68b91cd85325e418334c6b97094ab9, type: 2}
+  userId: {fileID: 11400000, guid: 61c951cbb9d50c54bbe8f341dfbb7db7, type: 2}
+  challenge: {fileID: 11400000, guid: ce9c77944451b334c82597f52d1aef1d, type: 2}
+  challengeOther: {fileID: 11400000, guid: 28d793069fa5a5b47ba4de4d54d86769, type: 2}
+  created: {fileID: 11400000, guid: f2dc80183da8e094bb4a4f4c38704882, type: 2}
+  withdrawn: {fileID: 11400000, guid: 8831125c4d6fa274fa855ee1715553ae, type: 2}
+  accepted: {fileID: 11400000, guid: 701962c08d72da249b65a0ac9b65883c, type: 2}
+  declined: {fileID: 11400000, guid: 80f17cc31c74acb4a839012a3077a7bb, type: 2}
+  occupied: {fileID: 11400000, guid: fa72d13a10314aa40a88d68128e370a2, type: 2}
+--- !u!114 &114437393010456534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887797231304450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 80f17cc31c74acb4a839012a3077a7bb, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114161697125782404}
+        m_MethodName: Reconnect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114161697125782404}
+        m_MethodName: SetOccupiedStatus
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114733933736838864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887797231304450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 2220d665feec74b438eab56e25468fdd, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114161697125782404}
+        m_MethodName: StartChallenge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114161697125782404}
+        m_MethodName: SetOccupiedStatus
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null

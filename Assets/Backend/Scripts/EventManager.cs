@@ -14,9 +14,9 @@ public class EventManager : Singleton<EventManager>
 	public event ParameterlessDelegate gamesparksLogoutSuccess;
 	public event ParameterlessDelegate gamesparksRegistrationSuccess;
 	public event GSErrorDataDelegate gamesparksRegistrationFailed;
-	public event FbLoginResultDelegate fbLogin;
+//	public event FbLoginResultDelegate fbLogin;
 	public event ParameterlessDelegate fbLogout;
-	public event FbFriendsListResultDelegate fbFriendsList;
+//	public event FbFriendsListResultDelegate fbFriendsList;
 	public event GSErrorDataDelegate updateMMRFailed;
 	public event ParameterlessDelegate listGameFriendsRequestSuccess; 
 	public event GSErrorDataDelegate listGameFriendsRequestFailed; 
@@ -27,19 +27,19 @@ public class EventManager : Singleton<EventManager>
 	public event ParameterlessDelegate getLeaderboardDataSuccess;
 	public event GSErrorDataDelegate getLeaderboardDataFailed;
 	public event ParameterlessDelegate fbLoginSuccess; 
-	public event GSFriendsDelegate socialLeaderboardSuccess;
+//	public event GSFriendsDelegate socialLeaderboardSuccess;
 	public event GSErrorDataDelegate socialLeaderboardFailed;
-	public event createChallengeDataDelegate createChallengeSuccess;
+//	public event createChallengeDataDelegate createChallengeSuccess;
 	public event GSErrorDataDelegate createChallengeFailed;
 	public event GSMessageDelegate recievedChallenge;
 	public event GSMessageDelegate declinedChallenge;
 	public event GSMessageDelegate acceptedChallenge;
 	public event GSMessageDelegate challengeStarted;
 	public event ParameterlessDelegate withdrawChallenge;
-	public static EventManager instance; 
+	public static EventManager instance;
 
 	void Awake()
-	{
+	{		
 		instance = this;
 	}
 
@@ -118,21 +118,21 @@ public class EventManager : Singleton<EventManager>
 		}
 	}
 
-	public void OnFbLogin(FbLoginData result)
-	{
-		if (fbLogin != null) {
-			fbLogin (result);
-			print ("FB logged in event fired!");
-		}
-	}
+//	public void OnFbLogin(FbLoginData result)
+//	{
+//		if (fbLogin != null) {
+//			fbLogin (result);
+//			print ("FB logged in event fired!");
+//		}
+//	}
 
-	public void OnFbFriendsList(FriendsListData result)
-	{
-		if (fbFriendsList != null) {
-			fbFriendsList (result);
-			print ("Got FB friends list event fired!");
-		}
-	}
+//	public void OnFbFriendsList(FriendsListData result)
+//	{
+//		if (fbFriendsList != null) {
+//			fbFriendsList (result);
+//			print ("Got FB friends list event fired!");
+//		}
+//	}
 
 	public void OnUpdateMMRFailed(GSErrorData error)
 	{
@@ -214,13 +214,13 @@ public class EventManager : Singleton<EventManager>
 		}
 	}
 
-	public void OnSocialLeaderboardSuccess(GSFriendsData data)
-	{
-		if (socialLeaderboardSuccess != null) {
-			socialLeaderboardSuccess (data);
-			print ("Social leaderboard success event fired!");
-		}
-	}
+//	public void OnSocialLeaderboardSuccess(GSFriendsData data)
+//	{
+//		if (socialLeaderboardSuccess != null) {
+//			socialLeaderboardSuccess (data);
+//			print ("Social leaderboard success event fired!");
+//		}
+//	}
 
 	public void OnSocialLeaderboardFailed(GSErrorData error)
 	{
@@ -230,13 +230,13 @@ public class EventManager : Singleton<EventManager>
 		}
 	}
 
-	public void OnCreateChallengeSuccess(CreateChallengeData msg)
-	{
-		if (createChallengeSuccess != null) {
-			createChallengeSuccess (msg);
-			print ("Create challenge success event fired!");
-		}
-	}
+//	public void OnCreateChallengeSuccess(CreateChallengeData msg)
+//	{
+//		if (createChallengeSuccess != null) {
+//			createChallengeSuccess (msg);
+//			print ("Create challenge success event fired!");
+//		}
+//	}
 
 	public void OnCreateChallengeFailed(GSErrorData error)
 	{
@@ -282,7 +282,7 @@ public class EventManager : Singleton<EventManager>
 	{
 		if (challengeStarted != null) {
 			challengeStarted (msg);
-			ChallegeWaitGUI.instance.isBusy = false;
+//			ChallegeWaitGUI.instance.isBusy = false;
 			print ("Accepted challenge event fired!");
 		}
 	}

@@ -1,0 +1,374 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1549678254057636}
+  m_IsPrefabParent: 1
+--- !u!1 &1549678254057636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4243027129367888}
+  - component: {fileID: 114822756531301218}
+  - component: {fileID: 114896965509124380}
+  - component: {fileID: 114318906892397464}
+  - component: {fileID: 114885294490816798}
+  - component: {fileID: 114350023981694412}
+  - component: {fileID: 114223796576957862}
+  - component: {fileID: 114920891309269080}
+  - component: {fileID: 114560300538277298}
+  - component: {fileID: 114234379546529010}
+  - component: {fileID: 114514551411900904}
+  - component: {fileID: 114672373822313574}
+  - component: {fileID: 114470389663368372}
+  - component: {fileID: 114632376605801276}
+  m_Layer: 0
+  m_Name: GameSparks Actor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4243027129367888
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 175.35289, y: 339.43848, z: 127.19885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114223796576957862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1390bc64bbdfc4a954c3dfa8d20406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+--- !u!114 &114234379546529010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 699be127c99d62a49b10f4a70355a0a6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: SetOnlineStatus
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114318906892397464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 96f2d68e96b9eac4e87a4af412027f9c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: AssignPlayerData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: SetOnlineStatus
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114350023981694412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: c73767920a1d1c54b8bf6bc629daa4f5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: Login
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114470389663368372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 567870c2e1f219240973bb7acdcd0b8b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: Login
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114514551411900904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 80f17cc31c74acb4a839012a3077a7bb, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: SetOnlineStatus
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114560300538277298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e5061127078c64692a4269a967cd19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114632376605801276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: d1a0825a40a1de64f84d639ae06777a7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: SetOnlineStatus
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114672373822313574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 8831125c4d6fa274fa855ee1715553ae, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: SetOnlineStatus
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114822756531301218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610499488e97a9a489dd2e2adfd147f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  email: {fileID: 11400000, guid: e499af80f0e98494699c0ecab6c1026f, type: 2}
+  userName: {fileID: 11400000, guid: ae3f2f0d8c5fdb94989f08a62a32f8e6, type: 2}
+  userId: {fileID: 11400000, guid: 61c951cbb9d50c54bbe8f341dfbb7db7, type: 2}
+  loginFailed: {fileID: 11400000, guid: 6fa6faf94faffd144993d5610e1e9523, type: 2}
+  loginSuccess: {fileID: 11400000, guid: 96f2d68e96b9eac4e87a4af412027f9c, type: 2}
+  logoutSuccess: {fileID: 11400000, guid: d1a0825a40a1de64f84d639ae06777a7, type: 2}
+  registrationSuccess: {fileID: 11400000, guid: c73767920a1d1c54b8bf6bc629daa4f5,
+    type: 2}
+  gotGSFriends: {fileID: 11400000, guid: 8b6f7e020373691478e3f45bc3d30dc7, type: 2}
+  leaderboardData: {fileID: 11400000, guid: d6c8368ef31b2e944876a35a9c446e12, type: 2}
+  fbFriends: {fileID: 11400000, guid: 3b27a298479e5ef42b270455e60d04ec, type: 2}
+  friendsAdded: 
+--- !u!114 &114885294490816798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: eea29e17faa98234eb2d723d05ab5f56, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: GetFriendsCallback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114896965509124380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 6fa6faf94faffd144993d5610e1e9523, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114822756531301218}
+        m_MethodName: Register
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114920891309269080
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549678254057636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ab2f59f8236424e8a2bc749233751a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

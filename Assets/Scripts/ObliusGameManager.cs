@@ -117,9 +117,10 @@ public class ObliusGameManager : MonoBehaviour
 
 	bool tutStarted;
 	public void StartTutorial(){
-		if (PlayerPrefs.HasKey ("TutorialComplete")||tutStarted)
+		if (PlayerPrefs.HasKey ("TutorialComplete") || tutStarted){
+			GUIManager.instance.OpenPage (3);	
 			return;
-
+		}
 
 		tutStarted = true;
 		StartCoroutine (TutorialList ());
@@ -138,6 +139,16 @@ public class ObliusGameManager : MonoBehaviour
 		GUIManager.instance.ShowTutorialLog ("Welcome to Battle Xonix !! \nI will be your trainer today, Just follow my instructions !!",5);
 
 		yield return new WaitForSeconds (1.3f);
+
+
+		PlayerPrefs.SetInt ("TutorialComplete", 1);
+		Application.LoadLevel (0);
+
+		//CloseTutorial ();//s		
+
+	//	yield break;
+
+
 		GUIManager.instance.ShowTutorialLog ("Swipe right");
 		//yield return new WaitForSeconds (0.5f);
 		Time.timeScale = 0;
@@ -168,11 +179,8 @@ public class ObliusGameManager : MonoBehaviour
 		GUIManager.instance.HideTutorialLog ();
 
 		yield return new WaitForSeconds (1f);
-		GUIManager.instance.ShowTutorialLog ("Trail complete. Good Work !!",3);
-	
+		GUIManager.instance.ShowTutorialLog ("Trail completed. Good Work !!",3);
 
-		yield return new WaitForSeconds (2f);
-		GUIManager.instance.ShowTutorialLog ("Do not hit your own trail or the walls !!",4);
 	
 
 		yield return new WaitForSeconds (2f);
@@ -191,19 +199,37 @@ public class ObliusGameManager : MonoBehaviour
 		yield return new WaitForSeconds (1);
 		GUIManager.instance.inGameGUI.GetComponent <UIElement> ().Hide (false);
 		yield return new WaitForSeconds (1);
-		GUIManager.instance.ShowTutorialLog ("Great !! Now lets see your performance against me",3);
-
+			
 		SnakesSpawner.instance.KillAllSnakes ();
 		GUIManager.instance.inGameGUI.PlayerPanel [1].gameObject.SetActive (true);
 		GroundSpawner.instance.ClearGround ();
-		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
 		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (false,1));
 		GUIManager.instance.ShowInGameGUI ();
+		yield return new WaitForSeconds (0.5f);
+		CameraHandler.instance.objectToFollow = SnakesSpawner.instance.enemySnake.gameObject;
+		SnakesSpawner.instance.enemySnake.speed = 0;
+		yield return new WaitForSeconds (0.5f);
+		GUIManager.instance.ShowTutorialLog ("Great !! Now lets see your performance against me");
+		yield return new WaitForSeconds (2f);
+		GUIManager.instance.HideTutorialLog ();
+		SnakesSpawner.instance.enemySnake.speed = SnakesSpawner.instance.enemySnake.normalSpeed;
+		yield return new WaitForSeconds (0.5f);
+		GUIManager.instance.ShowTutorialLog ("Hit my trail before I make a completion to kill me !! ");
+		yield return new WaitForSeconds (3f);
+		GUIManager.instance.HideTutorialLog ();
+		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
+		yield return new WaitForSeconds (0.5f);
+		CameraHandler.instance.objectToFollow = SnakesSpawner.instance.playerSnake.gameObject;
+	}
 
-
-		yield return new WaitForSeconds (4);
-		GUIManager.instance.ShowTutorialLog ("Hit my trail before I make a completion to kill me !! ",4);
-
+	public void CloseTutorial(){
+		GUIManager.instance.BG.SetActive (true);
+		SnakesSpawner.instance.KillAllSnakes ();
+		GroundSpawner.instance.ClearGround ();
+		GUIManager.instance.inGameGUI.TimerText.transform.parent.gameObject.SetActive (true);
+		GUIManager.instance.inGameGUI.PlayerPanel [0].gameObject.SetActive (true);
+		GUIManager.instance.inGameGUI.PlayerPanel [1].gameObject.SetActive (true);
+		GUIManager.instance.OpenPage (3);
 	}
 
 
@@ -244,6 +270,14 @@ public class ObliusGameManager : MonoBehaviour
 
 	IEnumerator _ShowFindingMatchScreen()
 	{
+		if (!PhotonNetwork.connected) {
+			GUIManager.instance.ShowLog ("Connecting to server. Please wait!");
+			yield break;
+		}
+		if (!GS.Authenticated) {
+			GUIManager.instance.ShowLog ("Please login!");
+			yield break;
+		}
 		if (PhotonManagerAdvanced.instance.serverStatus == ConnectionStatus.connected) {
 			GUIManager.instance.OpenPage (6);
 			GUIManager.instance.FillBar.GetComponent<FillTween> ().Fill ();

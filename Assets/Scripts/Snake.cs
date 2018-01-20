@@ -476,7 +476,7 @@ public class Snake : MonoBehaviour
 				ReasonDeath = name + " decided to hit the wall !!";
 
 				if(!PlayerPrefs.HasKey ("TutorialComplete")&&!isBot)
-					GUIManager.instance.ShowTutorialLog ("Do not hit the wall !!",3);
+					GUIManager.instance.ShowTutorialLog (1,"Do not hit the wall !!",3);
 				else
 					GUIManager.instance.ShowLog (name + " decided to hit the wall !!",3);
 
@@ -670,22 +670,30 @@ public class Snake : MonoBehaviour
 	}
 
 	bool isNetworkKill;
-
+	bool isLog;
 	public void KillSnake (Snake targetSnake)
 	{
 		if (targetSnake == this) {
 			ReasonDeath = name + " got confused and hit his own trail !!";
 
 			if(!PlayerPrefs.HasKey ("TutorialComplete")&&!isBot)
-				GUIManager.instance.ShowTutorialLog ("Do not hit your own trail !!",3);
+				GUIManager.instance.ShowTutorialLog (1,"Do not hit your own trail !!",3);
 			else
 				GUIManager.instance.ShowLog (name + " got confused and hit his own trail !!",3);
 
 
 		} else {
 			targetSnake.ReasonDeath = name + " ended " + targetSnake.name + "'s trail game !!";
-			if(!PlayerPrefs.HasKey ("TutorialComplete")&&!isBot)
-				GUIManager.instance.ShowTutorialLog ("Nice hit, Keep going !!",3);
+			if (!PlayerPrefs.HasKey ("TutorialComplete")&&!isLog) {
+				isLog = true;
+
+				if(!isBot)
+					GUIManager.instance.ShowTutorialLog ("Nicely done !!", 2);
+				else
+					GUIManager.instance.ShowTutorialLog ("Try completing shorter trails to play safe!!", 2);
+				
+				Invoke ("EnableLog", 2);
+			}
 			else
 				GUIManager.instance.ShowLog (name + " ended " + targetSnake.name + "'s trail game !!",3);
 		}
@@ -714,6 +722,10 @@ public class Snake : MonoBehaviour
 
 	void EnableNetworkKill(){
 		isNetworkKill = false;
+	}
+
+	void EnableLog(){
+		isLog = false;
 	}
 
 	public void ForceDie(){

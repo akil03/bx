@@ -36,6 +36,7 @@ public class GoogleActor : MonoBehaviour
 			else
 			{
 				print("Google Login Failed");
+				Application.Quit ();
 			}	
 		});
 		LCGoogleLoginBridge.LoginUser (logInCallBack, status);

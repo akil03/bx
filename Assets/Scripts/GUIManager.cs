@@ -77,7 +77,8 @@ public class GUIManager : MonoBehaviour
 			PlayerPrefs.SetInt ("TutorialComplete", 1);
 			ShowTutorialLog ("Congratulations !! You've successfully completed the tutorial !!");
 			inGameGUI.GetComponent <UIElement> ().Hide (false);
-			Invoke ("ReloadScene", 4);
+			Invoke ("ReloadScene", 3);
+		//	Invoke ("FinishTut", 3);
 			return;
 		}
 
@@ -87,9 +88,9 @@ public class GUIManager : MonoBehaviour
 		gameOverGUI.GetComponent <UIElement> ().Show (false);
     }
 
-//	void ReloadScene(){
-//		Application.LoadLevel (0);
-//	}
+	void FinishTut(){
+		ObliusGameManager.instance.CloseTutorial ();
+	}
 
     public void HideGameOverGUI()
     {
@@ -215,14 +216,24 @@ public class GUIManager : MonoBehaviour
 	public void ShowTutorialLog(string log, float ticks){
 		NotificationTxt.transform.parent.parent.gameObject.SetActive (true);
 		NotificationTxt.text = log;
-		StartCoroutine (HideTutorialLogRoutine (ticks));
+		StartCoroutine (HideTutorialLogRoutine (0,ticks));
 	}
 
-	IEnumerator HideTutorialLogRoutine(float ticks){
+	public void ShowTutorialLog(float delay,string log, float ticks){
+		NotificationTxt.transform.parent.parent.gameObject.SetActive (true);
+		NotificationTxt.text = log;
+		StartCoroutine (HideTutorialLogRoutine (delay,ticks));
+	}
+
+	IEnumerator HideTutorialLogRoutine(float delay,float ticks){
+
+		isLogShown = true;
+		yield return new WaitForSeconds (delay);
 		Time.timeScale = 0;
 		yield return new WaitForSecondsRealtime (ticks);
 		Time.timeScale = 1;
 		HideTutorialLog ();
+	
 	}
 
 	public void HideTutorialLog(){

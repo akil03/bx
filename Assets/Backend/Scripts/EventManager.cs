@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameSparks.Api.Messages;
 
-public class EventManager : Singleton<EventManager>
+public class EventManager : MonoBehaviour
 {
 		
 	public event ParameterlessDelegate googleLoginSuccess;

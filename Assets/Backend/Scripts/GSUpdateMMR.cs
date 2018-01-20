@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameSparks.Api.Requests;
 using GameSparks.Core;
+using DoozyUI;
 
-public class GSUpdateMMR : Singleton<GSUpdateMMR> {
+public class GSUpdateMMR : MonoBehaviour
+{
+	public static GSUpdateMMR instance;
+	public UIElement loading;
 
+	void Start()
+	{
+		instance = this;
+	}
 
 	public void UpdateMMR(int score)
 	{

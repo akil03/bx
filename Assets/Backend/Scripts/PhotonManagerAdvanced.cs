@@ -18,7 +18,6 @@ public class PhotonManagerAdvanced : MonoBehaviour
 	public bool delete;
 	public string selectedServer;
 	bool joining;
-	public UIElement loading;
 
 	void OnEnable()
 	{
@@ -41,15 +40,18 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	void Awake()
 	{
-		instance = this;	
+		if(instance==null)
+		instance = this;
+		if (instance != this)
+			Destroy (gameObject);
+		else
+			DontDestroyOnLoad (gameObject);
 	}
 
 	IEnumerator Start()
 	{
-		StartCoroutine (GetPing());
-		if(connectToMasterOnStart)
-			yield return _ConnectToMaster (Success,Failure);		
-		yield return null;
+		yield return _ConnectToMaster (Success, Failure);
+		yield return GetPing();
 	}
 
 //	void ChallengeAccepted(GSMessage msg)
@@ -282,7 +284,7 @@ public class PhotonManagerAdvanced : MonoBehaviour
 		if (PhotonNetwork.room.PlayerCount == maxplayers) 
 		{
 			PhotonNetwork.room.IsVisible = false;
-			loading.Hide (false);
+			GSUpdateMMR.instance.loading.Hide (false);
 			print ("Max players reached!");
 		}
 	}
@@ -292,7 +294,7 @@ public class PhotonManagerAdvanced : MonoBehaviour
 		joining = false;
 		if (PhotonNetwork.room.PlayerCount == maxplayers) 
 		{
-			loading.Hide (false);
+			GSUpdateMMR.instance.loading.Hide (false);
 			print ("Max players reached!");
 		}
 	}
@@ -324,8 +326,8 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	public void RebootConnection()
 	{
-		if (loading.isActiveAndEnabled)
-			loading.Hide (false);
+		if (GSUpdateMMR.instance.loading.isActiveAndEnabled)
+			GSUpdateMMR.instance.loading.Hide (false);
 		CloseUP ();
 		PhotonNetwork.LeaveRoom ();
 		PhotonNetwork.Disconnect ();

@@ -59,10 +59,9 @@ public class GameSparksActor : MonoBehaviour
 		GS.Disconnect ();
 		logoutSuccess.Fire ();
 		print("Game Sparks logged out!!");
-		ReloadScene ();
 	}
 
-	void ReloadScene()
+	public void ReloadScene()
 	{
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}

@@ -51,7 +51,7 @@ public class LeaderboardGUI : MonoBehaviour
 
 	public void SetOpponentID()
 	{
-		if (id == userId.value)
+		if (id == userId.value || !isOnline)
 			return;
 		if (!PhotonNetwork.connected)
 		{

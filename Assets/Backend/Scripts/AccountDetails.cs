@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameSparks.Api.Requests;
 
-public class AccountDetails : Singleton<AccountDetails> {
+public class AccountDetails : MonoBehaviour {
 
 	public AccountDetailsData accountDetails;
+
+	public static AccountDetails instance;
+
+	void Start()
+	{
+		instance = this;
+	}
 
 	public void Get()
 	{

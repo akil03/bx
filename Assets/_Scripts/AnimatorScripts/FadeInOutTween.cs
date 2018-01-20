@@ -9,7 +9,8 @@ public class FadeInOutTween : MonoBehaviour {
 	void Start () {
 		Fade ();
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -18,22 +19,22 @@ public class FadeInOutTween : MonoBehaviour {
 	void Fade(){
 
 		if(isText)
-			GetComponent<Text>().DOFade (0, 0.5f).OnComplete(()=>{
+			GetComponent<Text>().DOFade (0, 0.5f).SetUpdate (true).OnComplete(()=>{
 				Show();
 			});
 		else
-		GetComponent<Image> ().DOFade (0, 0.5f).OnComplete(()=>{
+			GetComponent<Image> ().DOFade (0, 0.5f).SetUpdate (true).OnComplete(()=>{
 			Show();
 		});
 	}
 
 	void Show(){
 		if(isText)
-			GetComponent<Text>().DOFade (1, 0.5f).OnComplete(()=>{
+			GetComponent<Text>().DOFade (1, 0.5f).SetUpdate (true).OnComplete(()=>{
 				Fade();
 			});
 		else
-			GetComponent<Image> ().DOFade (1, 0.5f).OnComplete(()=>{
+			GetComponent<Image> ().DOFade (1, 0.5f).SetUpdate (true).OnComplete(()=>{
 			Fade();
 		});
 	}

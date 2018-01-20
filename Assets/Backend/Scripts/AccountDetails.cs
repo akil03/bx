@@ -25,8 +25,15 @@ public class AccountDetails : MonoBehaviour {
 			{
 				print ("Getting account details success!");
 				accountDetails = JsonUtility.FromJson<AccountDetailsData>(response.JSONString);
+				GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
 			}
 			print (response.JSONString);
 		});
+	}
+
+	public void Set()
+	{
+//		GameSparkRequests req = new GameSparkRequests ();
+//		req.Request (
 	}
 }

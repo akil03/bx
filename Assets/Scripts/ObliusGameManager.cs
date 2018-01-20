@@ -75,11 +75,11 @@ public class ObliusGameManager : MonoBehaviour
 
 	public void StartGame ()
 	{
-		PlayerPrefs.DeleteAll ();
-		if(!PlayerPrefs.HasKey ("TutorialComplete")){
-			StartTutorial ();
-			return;
-		}
+//		PlayerPrefs.DeleteAll ();
+//		if(!PlayerPrefs.HasKey ("TutorialComplete")){
+//			StartTutorial ();
+//			return;
+//		}
 
 		ResetGame ();
 		ScoreHandler.instance.incrementNumberOfGames ();
@@ -125,6 +125,10 @@ public class ObliusGameManager : MonoBehaviour
 		tutStarted = true;
 		StartCoroutine (TutorialList ());
 	}
+	public void StartTutorialOverride(){
+		tutStarted = true;
+		StartCoroutine (TutorialList ());
+	}
 
 	IEnumerator TutorialList(){
 		
@@ -140,6 +144,10 @@ public class ObliusGameManager : MonoBehaviour
 
 		yield return new WaitForSeconds (1.3f);
 
+
+//		PlayerPrefs.SetInt ("TutorialComplete", 1);
+//		Application.LoadLevel (0);
+//		yield break; 
 		//CloseTutorial ();//s		
 
 	//	yield break;
@@ -211,7 +219,7 @@ public class ObliusGameManager : MonoBehaviour
 		SnakesSpawner.instance.enemySnake.speed = SnakesSpawner.instance.enemySnake.normalSpeed;
 		yield return new WaitForSeconds (0.5f);
 		GUIManager.instance.ShowTutorialLog ("Hit my trail before I make a completion to kill me !! ");
-		yield return new WaitForSeconds (3f);
+		yield return new WaitForSeconds (4f);
 		GUIManager.instance.HideTutorialLog ();
 		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
 		yield return new WaitForSeconds (0.5f);
@@ -219,6 +227,7 @@ public class ObliusGameManager : MonoBehaviour
 	}
 
 	public void CloseTutorial(){
+		Time.timeScale = 1;
 		GUIManager.instance.BG.SetActive (true);
 		SnakesSpawner.instance.KillAllSnakes ();
 		GroundSpawner.instance.ClearGround ();
@@ -289,10 +298,12 @@ public class ObliusGameManager : MonoBehaviour
 
 	void JoinRandomRoomFailed()
 	{
-		if(PhotonManagerAdvanced.instance.serverStatus==ConnectionStatus.connected)
-			StartCoroutine(PhotonManagerAdvanced.instance._CreateRoom (failed:CreateRoomFailed,playersFilled:CreateRoomSuccess,noPlayers:CreateRoomFailed));
-		else
+		if (PhotonManagerAdvanced.instance.serverStatus == ConnectionStatus.connected)
+			StartCoroutine (PhotonManagerAdvanced.instance._CreateRoom (failed: CreateRoomFailed, playersFilled: CreateRoomSuccess, noPlayers: CreateRoomFailed));
+		else {
 			GUIManager.instance.OpenPage (3);
+
+		}
 	}
 
 	void JoinRandomRoomSuccess()
@@ -305,10 +316,21 @@ public class ObliusGameManager : MonoBehaviour
 	{
 		_ShowFindingMatchScreen (PhotonNetwork.playerList.Where (a => a.IsLocal).First ().ID);
 	}
-
+	bool isGameSearchFail;
 	void CreateRoomFailed()
 	{
-		GUIManager.instance.OpenPage (3);
+		//GUIManager.instance.OpenPage (3);
+		PhotonNetwork.LeaveRoom ();
+		isGameSearchFail = true;
+		//StartGame ();
+	}
+
+	void OnLeftRoom()
+	{
+		if (isGameSearchFail) {
+			StartGame ();
+			isGameSearchFail = false;
+		}
 	}
 
 	void OnConnectionFail(DisconnectCause cause)

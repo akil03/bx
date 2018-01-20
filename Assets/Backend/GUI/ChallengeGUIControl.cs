@@ -13,6 +13,7 @@ public class ChallengeGUIControl : MonoBehaviour
 	public ChallengeDataObject challenge;
 	public StringObject userId;
 	public Text userIdText;
+	public InputField playerName;
 
 	public void ShowWaitingScreen()
 	{
@@ -58,5 +59,8 @@ public class ChallengeGUIControl : MonoBehaviour
 	public void SetPlayerDetails()
 	{
 		userIdText.text = userId.value;
+		playerName.text = AccountDetails.instance.accountDetails.displayName;
+		print ("this retarded function gets called");
+		print (AccountDetails.instance.accountDetails.displayName);
 	}
 }

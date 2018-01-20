@@ -40,6 +40,7 @@ public class GUIManager : MonoBehaviour
     void Start()
     {
 		mmrTxt.text = PlayerPrefs.GetInt ("MMR").ToString ();
+
     }
 
     // Update is called once per frame
@@ -90,7 +91,7 @@ public class GUIManager : MonoBehaviour
 		}
 
 
-
+		inGameGUI.GetComponent <UIElement> ().Hide (false);
         gameOverGUI.gameObject.SetActive(true);
 		gameOverGUI.GetComponent <UIElement> ().Show (false);
     }

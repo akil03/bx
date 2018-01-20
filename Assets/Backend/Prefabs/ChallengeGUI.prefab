@@ -217,6 +217,8 @@ MonoBehaviour:
   waitingScreen: {fileID: 0}
   challengeScreen: {fileID: 0}
   loading: {fileID: 0}
+  challengeText: {fileID: 0}
+  challenge: {fileID: 11400000, guid: ce9c77944451b334c82597f52d1aef1d, type: 2}
   userId: {fileID: 11400000, guid: 61c951cbb9d50c54bbe8f341dfbb7db7, type: 2}
   userIdText: {fileID: 0}
 --- !u!114 &114597866092599522

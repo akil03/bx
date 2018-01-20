@@ -9,6 +9,8 @@ public class ChallengeGUIControl : MonoBehaviour
 	public UIElement waitingScreen;
 	public UIElement challengeScreen;
 	public UIElement loading;
+	public Text challengeText;
+	public ChallengeDataObject challenge;
 	public StringObject userId;
 	public Text userIdText;
 
@@ -43,6 +45,7 @@ public class ChallengeGUIControl : MonoBehaviour
 
 	public void ShowChallengeScreen()
 	{
+		challengeText.text = challenge.data.challenge.challenged [0].name + " has invited you to a friendly battle!";
 		challengeScreen.gameObject.SetActive (true);
 		challengeScreen.Show (false);
 	}

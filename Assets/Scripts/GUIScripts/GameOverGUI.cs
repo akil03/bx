@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 using DoozyUI;
+using GameSparks.Api.Requests;
+
+
 #if UNITY_MOBILE
 using UnityEngine.Advertisements;
 #endif
@@ -157,6 +160,7 @@ public class GameOverGUI : MonoBehaviour {
     {
 		GUIManager.instance.ShowMainMenuGUI ();			
 		SnakesSpawner.instance.KillAllSnakes ();
+		new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 0).Send((response)=> {});
 		Deactivate ();
 	}
 

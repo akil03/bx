@@ -112,7 +112,8 @@ public class Snake : MonoBehaviour
 		SetName ();
 		ReasonDeath = "";
 
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+		if (PhotonNetwork.inRoom)
+		{
 			if (isLocal) {
 				CameraHandler.instance.objectToFollow = this.gameObject;
 

@@ -21,19 +21,19 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	void OnEnable()
 	{
-		EventManager.instance.withdrawChallenge += RebootConnection;
-		EventManager.instance.declinedChallenge += RebootConnection;
+//		EventManager.instance.withdrawChallenge += RebootConnection;
+//		EventManager.instance.declinedChallenge += RebootConnection;
 //		EventManager.instance.challengeStarted += ChallengeAccepted;
 	}
 
 
 	void OnDisable()
 	{
-		if (EventManager.instance != null) {
-			EventManager.instance.withdrawChallenge -= RebootConnection;
-			EventManager.instance.declinedChallenge -= RebootConnection;
-//			EventManager.instance.challengeStarted -= ChallengeAccepted;
-		}
+//		if (EventManager.instance != null) {
+//			EventManager.instance.withdrawChallenge -= RebootConnection;
+//			EventManager.instance.declinedChallenge -= RebootConnection;
+////			EventManager.instance.challengeStarted -= ChallengeAccepted;
+//		}
 		if (delete)
 			PlayerPrefs.DeleteAll ();
 	}

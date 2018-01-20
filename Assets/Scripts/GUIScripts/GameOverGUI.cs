@@ -155,9 +155,9 @@ public class GameOverGUI : MonoBehaviour {
 
     public void OnPlayButtonClick()
     {
-		Deactivate ();
 		GUIManager.instance.ShowMainMenuGUI ();			
 		SnakesSpawner.instance.KillAllSnakes ();
+		Deactivate ();
 	}
 
     public void Deactivate()

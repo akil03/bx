@@ -24,9 +24,6 @@ GameObject:
   - component: {fileID: 114318906892397464}
   - component: {fileID: 114885294490816798}
   - component: {fileID: 114350023981694412}
-  - component: {fileID: 114223796576957862}
-  - component: {fileID: 114920891309269080}
-  - component: {fileID: 114560300538277298}
   - component: {fileID: 114234379546529010}
   - component: {fileID: 114514551411900904}
   - component: {fileID: 114672373822313574}
@@ -52,18 +49,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114223796576957862
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1549678254057636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca1390bc64bbdfc4a954c3dfa8d20406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 0}
 --- !u!114 &114234379546529010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,17 +200,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
---- !u!114 &114560300538277298
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1549678254057636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8e5061127078c64692a4269a967cd19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114632376605801276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,14 +346,3 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
---- !u!114 &114920891309269080
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1549678254057636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ab2f59f8236424e8a2bc749233751a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

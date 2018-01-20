@@ -99,6 +99,7 @@ public class ShopGUI : MonoBehaviour {
     {
         SoundsManager.instance.PlayMenuButtonSound();
 		Application.LoadLevel (Application.loadedLevel);
+//		GUIManager.instance.HideInGameGUI()
         GUIManager.instance.ShowMainMenuGUI();
         ShopHandler.instance.Deactivate();
         ShopHandler.instance.SetShopItemToUse(ShopHandler.instance.selectedItem);

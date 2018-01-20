@@ -69,6 +69,13 @@ public class GUIManager : MonoBehaviour
 		BG.SetActive (false);
 	}
 
+	public void HideInGameGUI()
+	{
+		//HideAllPages ();
+		inGameGUI.gameObject.SetActive(false);
+		BG.SetActive (true);
+	}
+
 
     public void ShowGameOverGUI()
     {

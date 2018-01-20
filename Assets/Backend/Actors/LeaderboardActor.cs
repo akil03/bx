@@ -21,7 +21,7 @@ public class LeaderboardActor : MonoBehaviour
 				players.Add (player);
 			}
 		}
-		parent.GetComponent <RectTransform> ().sizeDelta = new Vector2 (0, parent.childCount*150);
+		parent.GetComponent <RectTransform> ().sizeDelta = new Vector2 (0, 10+parent.childCount*200);
 	}
 
 	bool Exists(string id)

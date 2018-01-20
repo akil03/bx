@@ -84,8 +84,8 @@ public class GUIManager : MonoBehaviour
 			PlayerPrefs.SetInt ("TutorialComplete", 1);
 			ShowTutorialLog ("Congratulations !! You've successfully completed the tutorial !!");
 			inGameGUI.GetComponent <UIElement> ().Hide (false);
-			Invoke ("ReloadScene", 3);
-		//	Invoke ("FinishTut", 3);
+		//	Invoke ("ReloadScene", 3);
+			Invoke ("FinishTut", 3);
 			return;
 		}
 

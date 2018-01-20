@@ -140,10 +140,6 @@ public class ObliusGameManager : MonoBehaviour
 
 		yield return new WaitForSeconds (1.3f);
 
-
-		PlayerPrefs.SetInt ("TutorialComplete", 1);
-		Application.LoadLevel (0);
-
 		//CloseTutorial ();//s		
 
 	//	yield break;

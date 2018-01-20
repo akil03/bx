@@ -18,7 +18,8 @@ public class SnakeMeshContainer : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		
 	}
 
@@ -31,23 +32,23 @@ public class SnakeMeshContainer : MonoBehaviour {
 			return;
 		if (snake.currentMoveDirection == snake.transform.up) {
 			newRot.z = 0;
-			transform.DORotate (newRot, 0.3f, RotateMode.Fast);
+			transform.DORotate (newRot, 0.15f, RotateMode.Fast);
 
 		}
 
 		if (snake.currentMoveDirection == -snake.transform.up) {
 			newRot.z = 180;
-			transform.DORotate (newRot, 0.3f, RotateMode.Fast);
+			transform.DORotate (newRot, 0.15f, RotateMode.Fast);
 		}
 
 		if (snake.currentMoveDirection == snake.transform.right) {
 			newRot.z = -90;
-			transform.DORotate (newRot, 0.3f, RotateMode.Fast);
+			transform.DORotate (newRot, 0.15f, RotateMode.Fast);
 		}
 
 		if (snake.currentMoveDirection == -snake.transform.right) {
 			newRot.z = 90;
-			transform.DORotate (newRot, 0.3f, RotateMode.Fast);
+			transform.DORotate (newRot, 0.15f, RotateMode.Fast);
 		}
 
 		//transform.eulerAngles = newRot;

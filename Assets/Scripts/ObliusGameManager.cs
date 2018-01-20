@@ -129,11 +129,14 @@ public class ObliusGameManager : MonoBehaviour
 		
 		ResetGame ();
 		//SnakesSpawner.instance.SpawnPlayer ();
+
 		GUIManager.instance.mainMenuGUI.GetComponent <UIElement> ().Hide (false);
 		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
 		SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive (false);
 		gameState = GameState.game;
 		GUIManager.instance.BG.SetActive (false);
+		GUIManager.instance.ShowTutorialLog ("Welcome to Battle Xonix !! \nI will be your trainer today, Just follow my instructions !!",5);
+
 		yield return new WaitForSeconds (1.3f);
 		GUIManager.instance.ShowTutorialLog ("Swipe right");
 		//yield return new WaitForSeconds (0.5f);
@@ -144,7 +147,7 @@ public class ObliusGameManager : MonoBehaviour
 		Time.timeScale = 1;
 		GUIManager.instance.HideTutorialLog ();
 
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (0.85f);
 		GUIManager.instance.ShowTutorialLog ("Swipe down");
 	//	yield return new WaitForSeconds (0.5f);
 		Time.timeScale = 0;
@@ -164,21 +167,17 @@ public class ObliusGameManager : MonoBehaviour
 		Time.timeScale = 1;
 		GUIManager.instance.HideTutorialLog ();
 
-		yield return new WaitForSeconds (0.8f);
-		GUIManager.instance.ShowTutorialLog ("Trail complete. Good Work !!");
 		yield return new WaitForSeconds (1f);
-		GUIManager.instance.HideTutorialLog ();
+		GUIManager.instance.ShowTutorialLog ("Trail complete. Good Work !!",3);
+	
 
 		yield return new WaitForSeconds (2f);
-		GUIManager.instance.ShowTutorialLog ("Do not hit your own trail or the walls !!");
-		yield return new WaitForSeconds (4f);
-		GUIManager.instance.HideTutorialLog ();
-
+		GUIManager.instance.ShowTutorialLog ("Do not hit your own trail or the walls !!",4);
+	
 
 		yield return new WaitForSeconds (2f);
-		GUIManager.instance.ShowTutorialLog ("Now cover more than 50% of the area !!");
-		yield return new WaitForSeconds (4f);
-		GUIManager.instance.HideTutorialLog ();
+		GUIManager.instance.ShowTutorialLog ("Now cover more than 50% of the area !!",2);
+
 
 		GUIManager.instance.ShowInGameGUI ();
 		GUIManager.instance.inGameGUI.PlayerPanel [1].gameObject.SetActive (false);
@@ -192,15 +191,18 @@ public class ObliusGameManager : MonoBehaviour
 		yield return new WaitForSeconds (1);
 		GUIManager.instance.inGameGUI.GetComponent <UIElement> ().Hide (false);
 		yield return new WaitForSeconds (1);
-		GUIManager.instance.ShowTutorialLog ("Great !! Now lets see your performance against a bot");
-		yield return new WaitForSeconds (4);
-		GUIManager.instance.HideTutorialLog ();
+		GUIManager.instance.ShowTutorialLog ("Great !! Now lets see your performance against me",3);
+
 		SnakesSpawner.instance.KillAllSnakes ();
 		GUIManager.instance.inGameGUI.PlayerPanel [1].gameObject.SetActive (true);
 		GroundSpawner.instance.ClearGround ();
 		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
 		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (false,1));
 		GUIManager.instance.ShowInGameGUI ();
+
+
+		yield return new WaitForSeconds (4);
+		GUIManager.instance.ShowTutorialLog ("Hit my trail before I make a completion to kill me !! ",4);
 
 	}
 

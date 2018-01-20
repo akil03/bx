@@ -9,10 +9,17 @@ public class FacebookActor : MonoBehaviour
 	[SerializeField]EventObject fbLogout;
 	[SerializeField]EventObject gotFBFriends;
 	[SerializeField]FbFriendsObject fbFriends;
+	string key="fbLoggedIn";
 
-	public void Login()
-	{		
-		FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" },LoginCallback);
+	public void Login(bool check)
+	{	
+		if (check) 
+		{
+			if(PlayerPrefs.GetInt (key)==1)	
+				FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" },LoginCallback);		
+		}
+		else
+			FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" },LoginCallback);
 	}
 
 	void LoginCallback(ILoginResult result)
@@ -20,8 +27,11 @@ public class FacebookActor : MonoBehaviour
 		if (string.IsNullOrEmpty (result.Error)) 
 		{
 			print (result.RawResult);
-			if(!result.RawResult.Contains("cancelled"))
-			fbLoginSuccess.Fire ();
+			if (!result.RawResult.Contains ("cancelled")) 
+			{
+				fbLoginSuccess.Fire ();
+				PlayerPrefs.SetInt (key,1);
+			}
 		}
 	}
 
@@ -29,6 +39,7 @@ public class FacebookActor : MonoBehaviour
 	{
 		FB.LogOut ();
 		fbLogout.Fire ();
+		PlayerPrefs.SetInt (key,0);
 		print ("FB logged out!");
 	}
 

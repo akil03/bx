@@ -212,6 +212,18 @@ public class GUIManager : MonoBehaviour
 		NotificationTxt.text = log;
 
 	}
+	public void ShowTutorialLog(string log, float ticks){
+		NotificationTxt.transform.parent.parent.gameObject.SetActive (true);
+		NotificationTxt.text = log;
+		StartCoroutine (HideTutorialLogRoutine (ticks));
+	}
+
+	IEnumerator HideTutorialLogRoutine(float ticks){
+		Time.timeScale = 0;
+		yield return new WaitForSecondsRealtime (ticks);
+		Time.timeScale = 1;
+		HideTutorialLog ();
+	}
 
 	public void HideTutorialLog(){
 		NotificationTxt.transform.parent.parent.gameObject.SetActive (false);

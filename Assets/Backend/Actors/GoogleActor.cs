@@ -21,7 +21,7 @@ public class GoogleActor : MonoBehaviour
 			
 	}
 
-	public void Login(bool status=false)
+	public void Login(bool status)
 	{
 		Action<bool> logInCallBack = (Action<bool>)((loggedIn)=> {
 			if(loggedIn)

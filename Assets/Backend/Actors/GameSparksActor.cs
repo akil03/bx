@@ -23,12 +23,10 @@ public class GameSparksActor : MonoBehaviour
 
 	void Start()
 	{
-//		#if UNITY_EDITOR
-//		email.value = "akil.hotshot@gmail.com";
-//		#else
-//		email.value = "kannan.jan21@gmail.com";
-//		#endif
-//		Login();
+		#if UNITY_EDITOR
+		email.value = "akil.hotshot@gmail.com";
+		Login ();
+		#endif
 	}
 
 	public void Login()
@@ -37,7 +35,12 @@ public class GameSparksActor : MonoBehaviour
 		{			
 			if (AR.HasErrors) 
 			{
+				if(AR.JSONString.Contains ("UNRECOGNISED"))
 				loginFailed.Fire();
+				else
+				{
+					ReloadScene ();		
+				}	
 				print("Game Sparks login failed!!");
 			}
 			else
@@ -56,6 +59,11 @@ public class GameSparksActor : MonoBehaviour
 		GS.Disconnect ();
 		logoutSuccess.Fire ();
 		print("Game Sparks logged out!!");
+		ReloadScene ();
+	}
+
+	void ReloadScene()
+	{
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 

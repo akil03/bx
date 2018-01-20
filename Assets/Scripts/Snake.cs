@@ -474,7 +474,12 @@ public class Snake : MonoBehaviour
 				//currentHP = 0;
 				haveToDie = true;
 				ReasonDeath = name + " decided to hit the wall !!";
-				GUIManager.instance.ShowLog (name + " decided to hit the wall !!",3);
+
+				if(!PlayerPrefs.HasKey ("TutorialComplete")&&!isBot)
+					GUIManager.instance.ShowTutorialLog ("Do not hit the wall !!",3);
+				else
+					GUIManager.instance.ShowLog (name + " decided to hit the wall !!",3);
+
 			}
 
 			if (currentHP == 0) {
@@ -670,10 +675,19 @@ public class Snake : MonoBehaviour
 	{
 		if (targetSnake == this) {
 			ReasonDeath = name + " got confused and hit his own trail !!";
-			GUIManager.instance.ShowLog (name + " got confused and hit his own trail !!",3);
+
+			if(!PlayerPrefs.HasKey ("TutorialComplete")&&!isBot)
+				GUIManager.instance.ShowTutorialLog ("Do not hit your own trail !!",3);
+			else
+				GUIManager.instance.ShowLog (name + " got confused and hit his own trail !!",3);
+
+
 		} else {
 			targetSnake.ReasonDeath = name + " ended " + targetSnake.name + "'s trail game !!";
-			GUIManager.instance.ShowLog (name + " ended " + targetSnake.name + "'s trail game !!",3);
+			if(!PlayerPrefs.HasKey ("TutorialComplete")&&!isBot)
+				GUIManager.instance.ShowTutorialLog ("Nice hit, Keep going !!",3);
+			else
+				GUIManager.instance.ShowLog (name + " ended " + targetSnake.name + "'s trail game !!",3);
 		}
 
 		if (!isBot)

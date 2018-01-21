@@ -59,6 +59,8 @@ public class GameOverGUI : MonoBehaviour {
 
 
 		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+			GameSparkRequests req = new GameSparkRequests ();
+			req.Request ("AddGold", "amt", "50",UpdateAccountDetails);
 			MMR [0].text = "+25";
 			MMR [1].text = "-25";
 		} else {
@@ -67,6 +69,12 @@ public class GameOverGUI : MonoBehaviour {
 		}
 		//print ("Win");
 	}
+
+	public void UpdateAccountDetails(string response){
+		//print (response);
+		AccountDetails.instance.Get ();
+	}
+
 
 	public void OnLose(){
 		Result.text = "You lose !!";

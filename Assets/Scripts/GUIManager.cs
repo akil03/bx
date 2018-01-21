@@ -30,6 +30,7 @@ public class GUIManager : MonoBehaviour
 
 	public Text mmrTxt,playerID_TXT;
 	public InputField playerNameTxt;
+	public Text Gold, Gems, XP;
 	public int currentPage;
     void Awake()
     {
@@ -86,6 +87,10 @@ public class GUIManager : MonoBehaviour
 			ShowTutorialLog ("Congratulations !! You've successfully completed the tutorial !!");
 			inGameGUI.GetComponent <UIElement> ().Hide (false);
 		//	Invoke ("ReloadScene", 3);
+			GameSparkRequests req = new GameSparkRequests ();
+			req.Request ("AddGold", "amt", "50",UpdateAccountDetails);
+
+
 			Invoke ("FinishTut", 3);
 			return;
 		}
@@ -95,6 +100,11 @@ public class GUIManager : MonoBehaviour
         gameOverGUI.gameObject.SetActive(true);
 		gameOverGUI.GetComponent <UIElement> ().Show (false);
     }
+
+	public void UpdateAccountDetails(string response){
+		//print (response);
+		AccountDetails.instance.Get ();
+	}
 
 	void FinishTut(){
 		ObliusGameManager.instance.CloseTutorial ();

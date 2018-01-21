@@ -39,6 +39,7 @@ public class ReservedCurrency6
 public class AccountDetailsScriptData
 {
 	public string PING;
+	public string MMR;
 }
 [Serializable]
 public class VirtualGoods

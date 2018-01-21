@@ -26194,7 +26194,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 185482066}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99989176
+  m_Size: 0.9825152
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -38415,6 +38415,7 @@ MonoBehaviour:
     requestId: 
     scriptData:
       PING: 
+      MMR: 
     userId: 
 --- !u!4 &586113690
 Transform:
@@ -54697,7 +54698,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.067455254}
+  m_AnchoredPosition: {x: 0, y: 0.28538406}
   m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &861252940
@@ -116202,6 +116203,9 @@ MonoBehaviour:
   mmrTxt: {fileID: 1879325103}
   playerID_TXT: {fileID: 1966062642}
   playerNameTxt: {fileID: 1858166077}
+  Gold: {fileID: 176517264}
+  Gems: {fileID: 156057518}
+  XP: {fileID: 2131100402}
   currentPage: 0
   NotificationTxt: {fileID: 37024375}
 --- !u!114 &2048568405

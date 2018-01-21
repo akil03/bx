@@ -24,7 +24,8 @@ public class GameSparksActor : MonoBehaviour
 	void Start()
 	{
 		#if UNITY_EDITOR
-		email.value = "kannan.jan21@gmail.com";
+		//email.value = "kannan.jan21@gmail.com";
+		email.value = "akil.hotshot@gmail.com";
 		Login ();
 		#endif
 	}

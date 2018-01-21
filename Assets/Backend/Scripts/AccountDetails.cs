@@ -26,6 +26,10 @@ public class AccountDetails : MonoBehaviour {
 				print ("Getting account details success!");
 				accountDetails = JsonUtility.FromJson<AccountDetailsData>(response.JSONString);
 				GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
+				GUIManager.instance.mmrTxt.text = accountDetails.scriptData.MMR;
+				GUIManager.instance.Gold.text=accountDetails.currency1.ToString ();
+				GUIManager.instance.Gems.text=accountDetails.currency2.ToString ();
+				//GUIManager.instance.Gold=accountDetails.currency1;
 			}
 			print (response.JSONString);
 		});

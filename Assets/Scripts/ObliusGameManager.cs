@@ -81,6 +81,10 @@ public class ObliusGameManager : MonoBehaviour
 //			return;
 //		}
 
+
+
+
+
 		ResetGame ();
 		ScoreHandler.instance.incrementNumberOfGames ();
 		GUIManager.instance.ShowInGameGUI ();
@@ -135,7 +139,7 @@ public class ObliusGameManager : MonoBehaviour
 		ResetGame ();
 		//SnakesSpawner.instance.SpawnPlayer ();
 
-		GUIManager.instance.mainMenuGUI.GetComponent <UIElement> ().Hide (false);
+		//GUIManager.instance.mainMenuGUI.GetComponent <UIElement> ().Hide (false);
 		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
 		SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive (false);
 		gameState = GameState.game;
@@ -231,6 +235,7 @@ public class ObliusGameManager : MonoBehaviour
 		GUIManager.instance.BG.SetActive (true);
 		SnakesSpawner.instance.KillAllSnakes ();
 		GroundSpawner.instance.ClearGround ();
+		GUIManager.instance.HideTutorialLog ();
 		GUIManager.instance.inGameGUI.TimerText.transform.parent.gameObject.SetActive (true);
 		GUIManager.instance.inGameGUI.PlayerPanel [0].gameObject.SetActive (true);
 		GUIManager.instance.inGameGUI.PlayerPanel [1].gameObject.SetActive (true);
@@ -258,6 +263,13 @@ public class ObliusGameManager : MonoBehaviour
 
 	public void ShowFindingMatchScreen()
 	{
+		if (Regeneration.instance.LifeAmount < 5) {
+			Regeneration.instance.UseLife ();
+			return;
+		}
+		Regeneration.instance.UseLife ();
+
+
 		if (!PhotonNetwork.connected) {
 			GUIManager.instance.ShowLog ("Connecting to server. Please wait!");
 			return;

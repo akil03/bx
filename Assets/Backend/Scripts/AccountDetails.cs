@@ -9,6 +9,7 @@ public class AccountDetails : MonoBehaviour {
 
 	public static AccountDetails instance;
 
+	public bool firstLoad;
 	void Start()
 	{
 		instance = this;
@@ -27,9 +28,18 @@ public class AccountDetails : MonoBehaviour {
 				accountDetails = JsonUtility.FromJson<AccountDetailsData>(response.JSONString);
 				GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
 				GUIManager.instance.mmrTxt.text = accountDetails.scriptData.MMR;
-				GUIManager.instance.Gold.text=accountDetails.currency1.ToString ();
-				GUIManager.instance.Gems.text=accountDetails.currency2.ToString ();
-				//GUIManager.instance.Gold=accountDetails.currency1;
+				if(!firstLoad){
+					GUIManager.instance.Gold.text=accountDetails.currency1.ToString ();
+					GUIManager.instance.Gems.text=accountDetails.currency2.ToString ();
+					//GUIManager.instance.Gold=accountDetails.currency1;
+					firstLoad=true;
+				}
+				else{
+					if(GUIManager.instance.Gold.text!=accountDetails.currency1.ToString ())
+						GUIManager.instance.AddCoins (int.Parse (accountDetails.currency1.ToString ())-int.Parse (GUIManager.instance.Gold.text));
+					GUIManager.instance.Gems.text=accountDetails.currency2.ToString ();
+				}
+
 			}
 			print (response.JSONString);
 		});

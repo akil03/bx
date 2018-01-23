@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Name: BattleXonix
   m_EditorClassIdentifier: 
   data:
+  - Add Friend
   - ChallengeWait
   - ChallengeWindow
   - Check Internet
   - Customisation
+  - Energy Meter
   - Finding Match
   - GameOverHUD
   - InGameHUD
@@ -27,4 +29,3 @@ MonoBehaviour:
   - SignInWindow
   - Store
   - Upgrade
-  - Add Friend

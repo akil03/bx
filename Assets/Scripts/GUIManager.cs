@@ -3,7 +3,7 @@ using System.Collections;
 using DoozyUI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using DG.Tweening;
 
 public class GUIManager : MonoBehaviour
 {
@@ -30,6 +30,9 @@ public class GUIManager : MonoBehaviour
 
 	public Text mmrTxt,playerID_TXT;
 	public InputField playerNameTxt;
+
+	public Sprite goldImg,gemImg,xpImg;
+	public GameObject collectingObject;
 	public Text Gold, Gems, XP;
 	public int currentPage;
     void Awake()
@@ -86,12 +89,12 @@ public class GUIManager : MonoBehaviour
 			PlayerPrefs.SetInt ("TutorialComplete", 1);
 			ShowTutorialLog ("Congratulations !! You've successfully completed the tutorial !!");
 			inGameGUI.GetComponent <UIElement> ().Hide (false);
-		//	Invoke ("ReloadScene", 3);
+			Invoke ("ReloadScene", 3);
 			GameSparkRequests req = new GameSparkRequests ();
 			req.Request ("AddGold", "amt", "50",UpdateAccountDetails);
 
 
-			Invoke ("FinishTut", 3);
+		//	Invoke ("FinishTut", 3);
 			return;
 		}
 
@@ -104,6 +107,12 @@ public class GUIManager : MonoBehaviour
 	public void UpdateAccountDetails(string response){
 		//print (response);
 		AccountDetails.instance.Get ();
+	}
+
+
+	public void WatchAd(){
+
+
 	}
 
 	void FinishTut(){
@@ -153,8 +162,9 @@ public class GUIManager : MonoBehaviour
     public void ShowMainMenuGUI()
     {
         ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
-        mainMenuGUI.gameObject.SetActive(true);
-		mainMenuGUI.GetComponent <UIElement> ().Show (false);
+       // mainMenuGUI.gameObject.SetActive(true);
+		//mainMenuGUI.GetComponent <UIElement> ().Show (false);
+		OpenPage (3);
 
 		SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive (true);
 		BG.SetActive (true);
@@ -165,16 +175,34 @@ public class GUIManager : MonoBehaviour
 	public void OpenPage(int pageNo){
 //		if (currentPage == pageNo)
 //			return;
-		HideAllPages ();
 
-		Pages [pageNo - 1].gameObject.SetActive (true);
-		Pages [pageNo-1].Show (false);
+
+//		HideAllPages ();
+//
+//		Pages [pageNo - 1].gameObject.SetActive (true);
+//		Pages [pageNo-1].Show (false);
+
 		currentPage = pageNo;
+
+		if (pageNo < 6) {
+			Pages [0].transform.parent.gameObject.SetActive (true);
+			Pages [0].transform.parent.GetComponent <RectTransform> ().DOLocalMoveX ((-3 + pageNo) * -1500, 0.3f, false);
+			Pages [pageNo - 1].gameObject.SetActive (true);
+			Pages [pageNo - 1].Show (false);
+		} else {
+			Pages [0].transform.parent.gameObject.SetActive (false);
+			Pages [5].gameObject.SetActive (true);
+			Pages [5].Show (false);
+		}
 	}
 
 	public void HideAllPages()
 	{
 
+		Pages [0].transform.parent.gameObject.SetActive (false);
+		Pages [5].Hide (false);
+
+		return;
 		foreach (UIElement page in Pages)
 			page.Hide (false);
 	}
@@ -261,5 +289,42 @@ public class GUIManager : MonoBehaviour
 
 	void EnableLog(){
 		isLogShown = false;
+	}
+
+
+	public void AddCoins(int amt){
+
+		StartCoroutine (AddCollectingObject (amt,Gold,goldImg));
+
+	}
+
+	IEnumerator AddCollectingObject(int count,Text txtObj,Sprite img){
+		while (!txtObj.transform.parent.gameObject.activeInHierarchy)
+			yield return null;
+
+
+		for (int i = 0; i < 20; i++) {
+			GameObject GO = Instantiate (collectingObject, txtObj.transform.parent);
+			GO.transform.position = new Vector3 (-80, -60, 20);
+			GO.GetComponent <Image> ().sprite = img;
+			GO.transform.DOMove (txtObj.transform.position, 0.5f, false).OnComplete (() => {
+				txtObj.text = (int.Parse (txtObj.text) + 1).ToString ();
+				txtObj.transform.parent.GetChild (0).DOScale (new Vector3 (1.15f, 1.15f, 1.15f), 0.1f).OnComplete (() => {
+					txtObj.transform.parent.GetChild (0).DOScale (Vector3.one, 0.1f);
+				});
+				Destroy (GO);
+			});
+
+			yield return new WaitForSeconds (0.5f/20.0f );
+		}
+		txtObj.text = (int.Parse (txtObj.text) + count-30).ToString ();
+	}
+
+	public void AddGems(){
+
+	}
+
+	public void AddXP(){
+
 	}
 }

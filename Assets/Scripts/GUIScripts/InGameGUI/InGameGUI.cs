@@ -108,6 +108,16 @@ public class InGameGUI : MonoBehaviour
     }
 
 
+
+//	public void InstantiateTakeGUIObject(Vector3 pos){
+//		GameObject newObj = (GameObject)Instantiate (CollectedObject);
+//		newObj.transform.SetParent(transform,false);
+//		CollectedObject CO = newObj.GetComponent<CollectedObject> ();
+//		CO.rect.position = Camera.main.ScreenToWorldPoint (0,Screen.height,0);	
+//	}
+
+
+
 	public void InstantiateTakeGUIDiamond(Vector3 pos){
 		GameObject newObj = (GameObject)Instantiate (takenGUIDiamond);
 		newObj.transform.SetParent(transform,false);

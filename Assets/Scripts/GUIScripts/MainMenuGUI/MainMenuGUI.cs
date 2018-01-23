@@ -55,6 +55,11 @@ public class MainMenuGUI : MonoBehaviour
 
     public void OnPlayButtonClick()
     {
+		if (Regeneration.instance.LifeAmount < 5) {
+			Regeneration.instance.UseLife ();
+			return;
+		}
+		Regeneration.instance.UseLife ();
 
         SoundsManager.instance.PlayMenuButtonSound();
 

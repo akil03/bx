@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using DoozyUI;
 using GameSparks.Api.Requests;
-
+using DG.Tweening;
 
 #if UNITY_MOBILE
 using UnityEngine.Advertisements;
@@ -24,11 +24,18 @@ public class GameOverGUI : MonoBehaviour {
 	public Text[] PlayerNames,MMR;
 	public Text Result,Reason;
 
+	public GameObject RewardWindow;
+
 	// Use this for initialization
 	void Start () {
 	
 	}
-	
+
+	void OnEnable(){
+		RewardWindow.GetComponent <RectTransform> ().localPosition = new Vector3(0,-190);
+	}
+
+
 	// Update is called once per frame
 	void Update () {
 
@@ -57,10 +64,14 @@ public class GameOverGUI : MonoBehaviour {
 		PlayerImage [1].sprite = InGameGUI.instance.PlayerPanel [1].Shape.sprite;
 		PlayerImage [1].color = InGameGUI.instance.PlayerPanel [1].Shape.color;
 
+		GameSparkRequests req = new GameSparkRequests ();
+		req.Request ("AddGold", "amt", "50",UpdateAccountDetails);
+
+		Invoke ("ShowRewards", 1f);
 
 		if (PhotonManagerAdvanced.instance.IsInGame ()) {
-			GameSparkRequests req = new GameSparkRequests ();
-			req.Request ("AddGold", "amt", "50",UpdateAccountDetails);
+			
+			//RewardWindow.transform.DOMove (
 			MMR [0].text = "+25";
 			MMR [1].text = "-25";
 		} else {
@@ -68,6 +79,11 @@ public class GameOverGUI : MonoBehaviour {
 			MMR [1].text = "0";
 		}
 		//print ("Win");
+	}
+
+	void ShowRewards(){
+		
+		RewardWindow.GetComponent <RectTransform> ().DOLocalMoveY (-367, 0.5f, false);
 	}
 
 	public void UpdateAccountDetails(string response){
@@ -86,6 +102,8 @@ public class GameOverGUI : MonoBehaviour {
 
 		PlayerImage [1].sprite = InGameGUI.instance.PlayerPanel [1].Shape.sprite;
 		PlayerImage [1].color = InGameGUI.instance.PlayerPanel [1].Shape.color;
+
+
 
 		if (PhotonManagerAdvanced.instance.IsInGame ()) {
 			MMR [0].text = "-25";

@@ -263,11 +263,11 @@ public class ObliusGameManager : MonoBehaviour
 
 	public void ShowFindingMatchScreen()
 	{
-		if (Regeneration.instance.LifeAmount < 5) {
-			Regeneration.instance.UseLife ();
-			return;
-		}
-		Regeneration.instance.UseLife ();
+//		if (Regeneration.instance.LifeAmount < 5) {
+//			Regeneration.instance.UseLife ();
+//			return;
+//		}
+//		Regeneration.instance.UseLife ();
 
 
 		if (!PhotonNetwork.connected) {
@@ -298,7 +298,8 @@ public class ObliusGameManager : MonoBehaviour
 		if (PhotonManagerAdvanced.instance.serverStatus == ConnectionStatus.connected) {
 			GUIManager.instance.OpenPage (6);
 			GUIManager.instance.FillBar.GetComponent<FillTween> ().Fill ();
-			yield return PhotonManagerAdvanced.instance._JoinRandomRoom (JoinRandomRoomSuccess, JoinRandomRoomFailed);
+//			yield return PhotonManagerAdvanced.instance._JoinRandomRoom (JoinRandomRoomSuccess, JoinRandomRoomFailed);
+			StartCoroutine(PhotonManagerAdvanced.instance._CreateRoom());
 		}
 //		}
 //		else
@@ -310,12 +311,12 @@ public class ObliusGameManager : MonoBehaviour
 
 	void JoinRandomRoomFailed()
 	{
-		if (PhotonManagerAdvanced.instance.serverStatus == ConnectionStatus.connected)
-			StartCoroutine (PhotonManagerAdvanced.instance._CreateRoom (failed: CreateRoomFailed, playersFilled: CreateRoomSuccess, noPlayers: CreateRoomFailed));
-		else {
-			GUIManager.instance.OpenPage (3);
-
-		}
+//		if (PhotonManagerAdvanced.instance.serverStatus == ConnectionStatus.connected)
+//			StartCoroutine (PhotonManagerAdvanced.instance._CreateRoom (failed: CreateRoomFailed, playersFilled: CreateRoomSuccess, noPlayers: CreateRoomFailed));
+//		else {
+//			GUIManager.instance.OpenPage (3);
+//
+//		}
 	}
 
 	void JoinRandomRoomSuccess()
@@ -356,7 +357,7 @@ public class ObliusGameManager : MonoBehaviour
 		}
 		else
 		{
-			if (GUIManager.instance.Pages [6].isActiveAndEnabled)
+			if (GUIManager.instance.Pages [5].isActiveAndEnabled)
 				GUIManager.instance.OpenPage (3);
 		}
 		

@@ -225,7 +225,7 @@ public class PhotonPingManager
 		}
         regionAddress = ResolveHost(regionAddress);
 
-        Debug.Log("Ping Debug - PhotonHandler.PingImplementation: " + PhotonHandler.PingImplementation + " ping.GetType():" + ping.GetType() + " regionAddress:" + regionAddress);
+//        Debug.Log("Ping Debug - PhotonHandler.PingImplementation: " + PhotonHandler.PingImplementation + " ping.GetType():" + ping.GetType() + " regionAddress:" + regionAddress);
         for (int i = 0; i < Attempts; i++)
         {
             bool overtime = false;

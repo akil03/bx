@@ -50,7 +50,7 @@ public class InternetChecker : MonoBehaviour {
 
 				GUIManager.instance.OpenConnectionPopup ();
 				PhotonManagerAdvanced.instance.serverStatus = ConnectionStatus.disconnected;
-				PhotonManagerAdvanced.instance.roomStatus = ConnectionStatus.disconnected;
+				PhotonManagerAdvanced.instance.roomStatus= ConnectionStatus.disconnected;
 //				ServerText.text = "Server status: " + PhotonManagerAdvanced.instance.serverStatus.ToString ();
 //				RoomText.text = "Room status: " + PhotonManagerAdvanced.instance.roomStatus.ToString ();
 //				GUIManager.instance.OpenPage (3);

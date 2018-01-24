@@ -5,6 +5,7 @@ using GameSparks.Api.Requests;
 using DoozyUI;
 using GameSparks.Api.Messages;
 using GameSparks.Core;
+using System.Linq;
 
 public class PhotonManagerAdvanced : MonoBehaviour 
 {
@@ -13,11 +14,13 @@ public class PhotonManagerAdvanced : MonoBehaviour
 	public bool connectToMasterOnStart;
 	public ConnectionStatus serverStatus;
 	public ConnectionStatus roomStatus;
+	public ConnectionStatus lobbyStatus;
 	public int maxplayers;
 	public string ping;
 	public bool delete;
 	public string selectedServer;
-	bool joining;
+	public TypedLobby matchmakingLobby;
+	public List<PhotonPlayer> players;
 
 	void OnEnable()
 	{
@@ -29,11 +32,6 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	void OnDisable()
 	{
-//		if (EventManager.instance != null) {
-//			EventManager.instance.withdrawChallenge -= RebootConnection;
-//			EventManager.instance.declinedChallenge -= RebootConnection;
-////			EventManager.instance.challengeStarted -= ChallengeAccepted;
-//		}
 		if (delete)
 			PlayerPrefs.DeleteAll ();
 	}
@@ -108,24 +106,52 @@ public class PhotonManagerAdvanced : MonoBehaviour
 	{
 		serverStatus = ConnectionStatus.connecting;
 		PhotonNetwork.ConnectUsingSettings (Application.version);
-		while (serverStatus == ConnectionStatus.connecting)
-			yield return null;
+		int i = 0;
+		while (serverStatus == ConnectionStatus.connecting && i < 5) 
+		{
+			yield return new WaitForSeconds(1);
+			i++;
+		}
 		if (serverStatus == ConnectionStatus.connected) {
 			print ("Connected to server!!!");
 			if(success!=null)
 				success ();
 		}
-		else if(serverStatus == ConnectionStatus.failed || serverStatus == ConnectionStatus.disconnected)
+		else if(serverStatus == ConnectionStatus.failed || serverStatus == ConnectionStatus.disconnected || serverStatus == ConnectionStatus.connecting)
 		{
 			print("Failed to connect to server!!!");
+			serverStatus = ConnectionStatus.disconnected;
 			if(failed!=null)
-			failed();
+			failed();			
 		}
+	}
+
+	void Update()
+	{
+//		if (PhotonNetwork.insideLobby) 
+//		{
+//			print ("No of available rooms is "+PhotonNetwork.GetRoomList().Length);
+//			print (PhotonNetwork.countOfPlayersOnMaster);
+//		}
 	}
 
 	void OnConnectedToMaster()
 	{	
 		serverStatus = ConnectionStatus.connected;
+		if (matchmakingPhase) 
+		{
+			if (isServer) 
+			{	
+				print ("create room");
+				PhotonNetwork.CreateRoom (null);	
+			}
+			else
+			{
+				print ("join room");
+				PhotonNetwork.JoinRandomRoom ();
+			}
+			matchmakingPhase = false;
+		}
 	}
 
 	void OnDisconnectedFromPhoton()
@@ -133,87 +159,102 @@ public class PhotonManagerAdvanced : MonoBehaviour
 		print ("disconnected manager");
 		serverStatus = ConnectionStatus.disconnected;
 		PowerUpManager.instance.dontSpawn = true;
-
-//		if (ChallegeWaitGUI.instance.isBusy || ChallengeWindowGUI.isChallenged)
-//			return;
-		
-//		if (!InternetChecker.instance.reconnect&&!ChallengeWindowGUI.isChallenged&&!ChallegeWaitGUI.instance.isBusy) 
-//		{
-//			print ("creating server");
-//			PhotonNetwork.ConnectUsingSettings (Application.version);
-//		}
 	}
 
 	void OnConnectionFail(DisconnectCause cause)
 	{
 		serverStatus = ConnectionStatus.failed;
-//		GUIManager.instance.OpenPage (3);
-//		print (cause.ToString());
+		roomStatus = ConnectionStatus.failed;
 	}
 
-	public IEnumerator _CreateRoom(ParameterlessDelegate success=null,ParameterlessDelegate failed=null,ParameterlessDelegate playersFilled=null,ParameterlessDelegate noPlayers=null)
+	IEnumerator CloseFindingMatchScren()
 	{
-		int k = 0;
-		while (serverStatus != ConnectionStatus.connected && k < 5){
-			yield return new WaitForSeconds (1);
-			k++;
-		}
-		if (serverStatus != ConnectionStatus.connected) 
+		roomStatus = ConnectionStatus.disconnected;
+		GUIManager.instance.OpenPage (3);
+		yield break;
+	}
+
+	public IEnumerator _CreateRoom()
+	{
+		if (!PhotonNetwork.connected) 
 		{
-			GUIManager.instance.OpenPage (3);
-			serverStatus = ConnectionStatus.disconnected;
+			GUIManager.instance.ShowLog ("Not connected to multiplayer server");
 			yield break;
 		}
-		else
-		if (roomStatus == ConnectionStatus.connected || roomStatus == ConnectionStatus.connecting) {
-			roomStatus = ConnectionStatus.disconnected;
-			GUIManager.instance.OpenPage (3);
-			yield break;
-		}
-		if (PhotonNetwork.connectedAndReady)
-			PhotonNetwork.CreateRoom (null, new RoomOptions (){ MaxPlayers = (byte)maxplayers }, null);
-		else
+		matchmakingPhase = true;
+		PhotonNetwork.JoinOrCreateRoom ("matchmaking",null,null);
+	}
+
+	public bool matchmakingPhase;
+
+	void OnJoinedRoom()
+	{
+		if (matchmakingPhase) 
 		{
-			roomStatus = ConnectionStatus.disconnected;
-			GUIManager.instance.OpenPage (3);
-			yield break;
+			if (PhotonNetwork.room.PlayerCount >= 2)
+			{
+				print ("Begin a game!");
+				if (PhotonNetwork.player.ID % 2 != 0) 
+				{
+					isServer = true;
+				}
+				else
+				{
+					isServer = false;
+				}
+				PhotonNetwork.LeaveRoom ();
+				return;
+			}
+			else
+			{
+				print ("Added to queue!");
+				return;
+			}
 		}
-		roomStatus = ConnectionStatus.connecting;
-		int j = 0;
-		while (roomStatus == ConnectionStatus.connecting && j < 5) {
-			yield return new WaitForSeconds (1);
-			j++;
-		}
-			if (roomStatus == ConnectionStatus.connected) {
-			print ("Created room!!!");
-			if(success!=null)
-				success ();
-		}
-		else if(roomStatus == ConnectionStatus.failed || roomStatus == ConnectionStatus.disconnected || roomStatus == ConnectionStatus.connecting)
+		print ("Joined room");
+		roomStatus = ConnectionStatus.connected;
+		new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 1).Send((response)=> {});
+		ObliusGameManager.instance._ShowFindingMatchScreen (PhotonNetwork.player.ID);
+		GSUpdateMMR.instance.loading.Hide (false);
+		print ("Max players reached!");
+		isServer = false;	
+		if(PhotonNetwork.room.PlayerCount == maxplayers)
+		PhotonNetwork.room.IsVisible = false;
+	}
+
+	void OnPhotonPlayerConnected(PhotonPlayer player)
+	{
+		if (PhotonNetwork.player.ID != player.ID) 
 		{
-			roomStatus = ConnectionStatus.failed;
-			print("Failed to create a room!!!");
-			if(failed!=null)
-				failed();
+			if (matchmakingPhase) 
+			{
+				if (PhotonNetwork.room.PlayerCount >= 2)
+				{
+					print ("Begin a game!");
+					if (PhotonNetwork.player.ID % 2 != 0) 
+					{
+						isServer = true;
+					}
+					else
+					{
+						isServer = false;
+					}
+					PhotonNetwork.LeaveRoom ();
+					return;
+				}
+				else
+				{
+					print ("Added to queue!");
+					return;
+				}
+			}	
 		}
-		int i=0;
-		while (PhotonNetwork.room.PlayerCount < maxplayers && i<5) 
-		{
-			yield return new WaitForSeconds (1);
-			i++;
-		}
-		if (PhotonNetwork.room.PlayerCount != maxplayers) {
-			PhotonNetwork.LeaveRoom ();
-			if (noPlayers != null)
-				noPlayers ();
-			print ("No players!!!");
-		}
-		else
-		{
-			if(playersFilled!=null)
-				playersFilled ();
-			print ("Tme to roll!!!");
-		}
+	}
+
+
+	void OnLeftLobby()
+	{
+		lobbyStatus = ConnectionStatus.disconnected;
 	}
 
 	void OnCreatedRoom()
@@ -230,34 +271,32 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	public IEnumerator _JoinRandomRoom(ParameterlessDelegate success=null,ParameterlessDelegate failed=null)
 	{
-		if (serverStatus == ConnectionStatus.disconnected) 
-		{
-			if(failed!=null)
-			failed ();
-			print ("Not connected to host!");
-		}
-		int j = 0;
-		while (serverStatus != ConnectionStatus.connected && j<5){
-			yield return new WaitForSeconds (1);
-			j++;
-		}
-		if (serverStatus != ConnectionStatus.connected)
-			yield break;
-		else
-		yield return new WaitForSeconds(0.5f);
-		if (roomStatus == ConnectionStatus.connected || roomStatus == ConnectionStatus.connecting) {
-			roomStatus = ConnectionStatus.disconnected;
-			GUIManager.instance.OpenPage (3);
-			yield break;
-		}
-		if (PhotonNetwork.connectedAndReady)
+//		if (serverStatus == ConnectionStatus.disconnected) 
+//		{
+//			if(failed!=null)
+//			failed ();
+//			print ("Not connected to host!");
+//		}
+//		int j = 0;
+//		while (serverStatus != ConnectionStatus.connected && j<5){
+//			yield return new WaitForSeconds (1);
+//			j++;
+//		}
+//		if (serverStatus != ConnectionStatus.connected)
+//			yield break;
+//		else
+//		yield return new WaitForSeconds(0.5f);
+//		if (roomStatus == ConnectionStatus.connected || roomStatus == ConnectionStatus.connecting) {
+//			CloseFindingMatchScren ();
+//		}
+//		if (PhotonNetwork.connectedAndReady)
 			PhotonNetwork.JoinRandomRoom ();
-		else 
-		{
-			roomStatus = ConnectionStatus.disconnected;
-			GUIManager.instance.OpenPage (3);
-			yield break;
-		}
+//		else 
+//		{
+//			roomStatus = ConnectionStatus.disconnected;
+//			GUIManager.instance.OpenPage (3);
+//			yield break;
+//		}
 		roomStatus = ConnectionStatus.connecting;
 		int i = 0;
 		while (roomStatus == ConnectionStatus.connecting && i<5){
@@ -277,31 +316,20 @@ public class PhotonManagerAdvanced : MonoBehaviour
 		}
 	}
 
-	void OnJoinedRoom()
-	{
-		roomStatus = ConnectionStatus.connected;
-		new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 1).Send((response)=> {});
-		if (PhotonNetwork.room.PlayerCount == maxplayers) 
-		{
-			PhotonNetwork.room.IsVisible = false;
-			GSUpdateMMR.instance.loading.Hide (false);
-			print ("Max players reached!");
-		}
-	}
+	public bool isServer;
 
-	public void OnPhotonPlayerConnected(PhotonPlayer player)
-	{
-		joining = false;
-		if (PhotonNetwork.room.PlayerCount == maxplayers) 
-		{
-			GSUpdateMMR.instance.loading.Hide (false);
-			print ("Max players reached!");
-		}
-	}
 
 	void OnPhotonRandomJoinFailed()
 	{
 		roomStatus = ConnectionStatus.failed;
+		StartCoroutine (Retry());
+		print ("failed to random join");
+	}
+
+	IEnumerator Retry()
+	{
+		yield return new WaitForSeconds(1);
+		PhotonNetwork.JoinRandomRoom();
 	}
 
 	void  JoinRandomRoomFailure()

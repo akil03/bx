@@ -1792,6 +1792,8 @@ using ExitGames.Client.Photon;
     /// Join a lobby via PhotonNetwork.JoinLobby(TypedLobby lobby).<br/>
     /// The current lobby is stored in PhotonNetwork.lobby.
     /// </remarks>
+/// 
+	[Serializable]
     public class TypedLobby
     {
         /// <summary>Name of the lobby this game gets added to. Default: null, attached to default lobby. Lobbies are unique per lobbyName plus lobbyType, so the same name can be used when several types are existing.</summary>

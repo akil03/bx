@@ -27113,8 +27113,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 185482067}
   m_HandleRect: {fileID: 185482066}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.9825793
+  m_Value: 0.9999997
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -31271,6 +31271,11 @@ Prefab:
     - target: {fileID: 4933207070615190, guid: d66eeffcb85d55e429bcaa944d801cd9, type: 2}
       propertyPath: m_RootOrder
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114697121976803338, guid: d66eeffcb85d55e429bcaa944d801cd9,
+        type: 2}
+      propertyPath: matchmakingLobby.Name
+      value: matchmaking
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d66eeffcb85d55e429bcaa944d801cd9, type: 2}
@@ -57681,7 +57686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.28720754}
+  m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &861252940
@@ -57755,6 +57760,20 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -93607,7 +93626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.009997, y: 4.4949913}
+  m_AnchoredPosition: {x: -5.0099964, y: 4.494995}
   m_SizeDelta: {x: 35.179993, y: 167.98997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1448643610
@@ -119100,6 +119119,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 1856652884340804, guid: 3735629852663bb48baad09f53a2fb67, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3735629852663bb48baad09f53a2fb67, type: 2}
   m_IsPrefabParent: 0
@@ -128413,7 +128436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -99.8}
+  m_AnchoredPosition: {x: 0, y: -99.799995}
   m_SizeDelta: {x: 500, y: 116.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112842606

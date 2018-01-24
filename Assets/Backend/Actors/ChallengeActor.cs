@@ -189,14 +189,14 @@ public class ChallengeActor : MonoBehaviour {
 
 	public void OnPhotonPlayerConnected(PhotonPlayer player)
 	{
-		if (PhotonNetwork.room.PlayerCount == 2) 
+		if (!InternetChecker.instance.reconnect && PhotonNetwork.room.PlayerCount == 2) 
 		{
 			accepted.Fire ();
 			challenge.Reset ();
 			occupied.value = false;
 			GUIManager.instance.ShowInGameGUI ();
+			print (player.ID+" has connected.");
 		}
-		print (player.ID+" has connected.");
 	}	
 
 	public void Reconnect()

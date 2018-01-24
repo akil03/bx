@@ -161,6 +161,7 @@ public class GUIManager : MonoBehaviour
 
     public void ShowMainMenuGUI()
     {
+		HideAllPages ();
         ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
        // mainMenuGUI.gameObject.SetActive(true);
 		//mainMenuGUI.GetComponent <UIElement> ().Show (false);

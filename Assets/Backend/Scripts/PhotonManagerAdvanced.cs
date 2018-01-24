@@ -93,6 +93,12 @@ public class PhotonManagerAdvanced : MonoBehaviour
 		});
 	}
 
+	public void Cancel()
+	{
+		PhotonNetwork.LeaveRoom ();
+		GUIManager.instance.ShowMainMenuGUI ();
+	}
+
 	void Success()
 	{
 		print ("woo hoo!!!");
@@ -133,6 +139,10 @@ public class PhotonManagerAdvanced : MonoBehaviour
 //			print ("No of available rooms is "+PhotonNetwork.GetRoomList().Length);
 //			print (PhotonNetwork.countOfPlayersOnMaster);
 //		}
+		if (Input.GetKeyDown (KeyCode.Escape)) 
+		{
+			Cancel ();
+		}
 	}
 
 	void OnConnectedToMaster()

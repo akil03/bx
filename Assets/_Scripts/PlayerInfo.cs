@@ -290,10 +290,10 @@ public class PlayerInfo : MonoBehaviour {
 
 	void OnApplicationFocus(bool hasFocus)
 	{
-		if (!hasFocus&&!Application.isEditor) {
-			PhotonNetwork.LeaveRoom ();
-			Application.LoadLevel (0);
-		}
+//		if (!hasFocus&&!Application.isEditor) {
+//			PhotonNetwork.LeaveRoom ();
+//			Application.LoadLevel (0);
+//		}
 	}
 
 

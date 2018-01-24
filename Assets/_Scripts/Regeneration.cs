@@ -131,11 +131,11 @@ public class Regeneration : MonoBehaviour
 
 	public void UseLife()
 	{
-		if (this.lifeAmount > 4) {
+		if (this.lifeAmount > 0) {
 			if (this.lifeAmount == this.maxLifeAmount) {
 				this.next = DateTime.Now.AddMinutes (this.minutesForNewLife);
 			}
-			this.lifeAmount-=5;
+			this.lifeAmount-=1;
 			this.lifeNumberText.text = this.lifeAmount.ToString ();
 		} else {
 			EnergyWindow.gameObject.SetActive (true);

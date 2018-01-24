@@ -21,6 +21,7 @@ public class PhotonManagerAdvanced : MonoBehaviour
 	public string selectedServer;
 	public TypedLobby matchmakingLobby;
 	public List<PhotonPlayer> players;
+	bool normal;
 
 	void OnEnable()
 	{
@@ -95,6 +96,7 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	public void Cancel()
 	{
+		normal = false;
 		PhotonNetwork.LeaveRoom ();
 		GUIManager.instance.ShowMainMenuGUI ();
 	}
@@ -192,6 +194,7 @@ public class PhotonManagerAdvanced : MonoBehaviour
 			yield break;
 		}
 		matchmakingPhase = true;
+		normal = true;
 		PhotonNetwork.JoinOrCreateRoom ("matchmaking",null,null);
 	}
 
@@ -338,6 +341,8 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	IEnumerator Retry()
 	{
+		if (!normal)
+			yield break;
 		yield return new WaitForSeconds(1);
 		PhotonNetwork.JoinRandomRoom();
 	}

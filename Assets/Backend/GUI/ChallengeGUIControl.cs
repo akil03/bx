@@ -13,12 +13,13 @@ public class ChallengeGUIControl : MonoBehaviour
 	public Text waitingText;
 	public ChallengeDataObject challenge;
 	public StringObject userId;
+	public StringObject opponentName;
 	public Text userIdText;
 	public InputField playerName;
 
 	public void ShowWaitingScreen()
 	{
-		waitingText.text = "Waiting for "+challenge.data.challenge.challenged[0].name+" to accept your challenge";
+		waitingText.text = "Waiting for "+opponentName.value+" to accept your challenge";
 		waitingScreen.gameObject.SetActive (true);
 		waitingScreen.Show (false);
 	}

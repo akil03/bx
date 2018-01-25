@@ -46,6 +46,7 @@ public class ChallengeActor : MonoBehaviour {
 				else
 				{
 					cid = response.ChallengeInstanceId;
+					print(response.JSONString);
 					created.Fire();
 					print("Create challenge success!");
 				}

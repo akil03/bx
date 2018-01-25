@@ -19,6 +19,7 @@ public class LeaderboardGUI : MonoBehaviour
 	Transform parentt;
 	public StringObject userId;
 	public StringObject opponentId;
+	public StringObject opponentName;
 	public StringObject server;
 	public EventObject challengeLoadingON;
 	ParameterlessDelegate detailsSet;
@@ -64,6 +65,7 @@ public class LeaderboardGUI : MonoBehaviour
 			return;
 		}
 		opponentId.value = id;
+		opponentName.value = playerName.text;
 		var regions = serverData.scriptData.AllData.scriptData.PING.ToRegions ();
 		List<PhotonRegion> myRegions = PhotonManagerAdvanced.instance.ping.ToRegions ();
 		List<PhotonRegion> result = new List<PhotonRegion>();

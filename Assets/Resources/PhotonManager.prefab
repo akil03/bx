@@ -83,7 +83,13 @@ MonoBehaviour:
   connectToMasterOnStart: 1
   serverStatus: 4
   roomStatus: 4
+  lobbyStatus: 0
   maxplayers: 2
   ping: 
   delete: 0
   selectedServer: 
+  matchmakingLobby:
+    Name: matchmaking
+    Type: 0
+  matchmakingPhase: 0
+  isServer: 0

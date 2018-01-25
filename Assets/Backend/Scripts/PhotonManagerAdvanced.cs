@@ -229,6 +229,7 @@ public class PhotonManagerAdvanced : MonoBehaviour
 		print ("Joined room");
 		roomStatus = ConnectionStatus.connected;
 		new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 1).Send((response)=> {});
+		if(InternetChecker.instance.reconnect)
 		ObliusGameManager.instance._ShowFindingMatchScreen (PhotonNetwork.player.ID);
 		GSUpdateMMR.instance.loading.Hide (false);
 		print ("Max players reached!");

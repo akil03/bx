@@ -96,9 +96,11 @@ public class PhotonManagerAdvanced : MonoBehaviour
 
 	public void Cancel()
 	{
-		normal = false;
-		PhotonNetwork.LeaveRoom ();
-		GUIManager.instance.ShowMainMenuGUI ();
+		if (PhotonNetwork.room.PlayerCount < maxplayers) {
+			normal = false;
+			PhotonNetwork.LeaveRoom ();
+			GUIManager.instance.ShowMainMenuGUI ();
+		}
 	}
 
 	void Success()

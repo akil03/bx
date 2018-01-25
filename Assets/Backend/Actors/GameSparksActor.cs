@@ -27,7 +27,7 @@ public class GameSparksActor : MonoBehaviour
 		//email.value = "kannan.jan21@gmail.com";
 		email.value = "akil.hotshot@gmail.com";
 		#else
-		email.value = "kannan.jan21@gmail.com";
+	//	email.value = "kannan.jan21@gmail.com";
 		#endif
 		Login ();
 

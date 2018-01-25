@@ -35,7 +35,7 @@ public class ChallengeActor : MonoBehaviour {
 		print ("creating room");
 		new CreateChallengeRequest()			
 			.SetChallengeShortCode("play")
-			.SetEndTime(DateTime.Parse(DateTime.Now.AddMinutes (2).ToString("yyyy-MM-ddTHH:mmZ")))
+			.SetEndTime(DateTime.Parse(DateTime.UtcNow.AddMinutes (2).ToString("yyyy-MM-ddTHH:mmZ")))
 			.SetChallengeMessage (server.value)
 			.SetUsersToChallenge(new List<string>(){opponentId.value})
 			.Send((response) => {

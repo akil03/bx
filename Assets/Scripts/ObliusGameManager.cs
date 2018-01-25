@@ -82,7 +82,11 @@ public class ObliusGameManager : MonoBehaviour
 //		}
 
 
-
+		if (Regeneration.instance.LifeAmount < 1) {
+			Regeneration.instance.UseLife ();
+			return;
+		}
+		Regeneration.instance.UseLife ();
 
 
 		ResetGame ();
@@ -246,6 +250,7 @@ public class ObliusGameManager : MonoBehaviour
 
 	public void _ShowFindingMatchScreen(int id)
 	{
+		Regeneration.instance.UseLife ();
 		GUIManager.instance.ShowInGameGUI ();
 		InGameGUI.instance.startTime = Time.time;
 
@@ -263,11 +268,11 @@ public class ObliusGameManager : MonoBehaviour
 
 	public void ShowFindingMatchScreen()
 	{
-//		if (Regeneration.instance.LifeAmount < 5) {
-//			Regeneration.instance.UseLife ();
-//			return;
-//		}
-//		Regeneration.instance.UseLife ();
+		if (Regeneration.instance.LifeAmount < 1) {
+			Regeneration.instance.UseLife ();
+			return;
+		}
+
 
 
 		if (!PhotonNetwork.connected) {

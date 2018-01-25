@@ -533,6 +533,7 @@ public class SnakesSpawner : MonoBehaviour
 	public Text startTimer,DisplayStart;
 	public IEnumerator StartMultiplayerGame(float startTime)
 	{
+		GUIManager.instance.matchLoading.Hide (false);
 		int temptimer;
 		while (PhotonNetwork.time < startTime) {
 			yield return null;

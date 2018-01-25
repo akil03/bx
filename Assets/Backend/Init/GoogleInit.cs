@@ -15,6 +15,6 @@ public class GoogleInit : MonoBehaviour {
 	{
 		LCGoogleLoginBridge.ChangeLoggingLevel(true);
 		LCGoogleLoginBridge.InitWithClientID (key);
-		print("Google Login Initialized");
+//		print("Google Login Initialized");
 	}
 }

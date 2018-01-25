@@ -316,7 +316,7 @@ internal class PhotonHandler : MonoBehaviour
         Region best = pingManager.BestRegion;
         PhotonHandler.BestRegionCodeInPreferences = best.Code;
 
-        Debug.Log("Found best region: '" + best.Code + "' ping: " + best.Ping + ". Calling ConnectToRegionMaster() is: " + connectToBest);
+//        Debug.Log("Found best region: '" + best.Code + "' ping: " + best.Ping + ". Calling ConnectToRegionMaster() is: " + connectToBest);
 
         if (connectToBest)
         {

@@ -22,12 +22,16 @@ public class ChallengeActor : MonoBehaviour {
 	{
 		challenge.Reset ();
 		challengeOther.Reset ();
+		challengeMode.value = false;
+		reconnect.value = true;
 	}
 
 	void OnDisable()
 	{
 		challenge.Reset ();
 		challengeOther.Reset ();
+		challengeMode.value = false;
+		reconnect.value = true;
 	}
 
 	public void Create()
@@ -67,7 +71,8 @@ public class ChallengeActor : MonoBehaviour {
 				{
 					challenge.Reset();
 					withdrawn.Fire();
-					InternetChecker.instance.reconnect = true;
+					reconnect.value = true;
+					challengeMode.value = false;
 					print ("Withdraw challenge success!");
 				}
 			});
@@ -101,7 +106,8 @@ public class ChallengeActor : MonoBehaviour {
 			{
 				challenge.Reset();
 				declined.Fire();
-				InternetChecker.instance.reconnect = true;
+				reconnect.value = true;
+				challengeMode.value = false;
 				print("Decline challenge success!");
 			}
 			print(response.JSONString);
@@ -123,19 +129,21 @@ public class ChallengeActor : MonoBehaviour {
 		});
 	}
 
+	[SerializeField]BoolObject challengeMode;
+	[SerializeField]BoolObject reconnect;
 
 	public void StartChallenge()
 	{
-		InternetChecker.instance.reconnect = false;
+		reconnect.value = false;
 		PhotonNetwork.Disconnect ();
+		challengeMode.value = true;
 	}
 
-	void OnDisconnectedFromPhoton()
+	public void DisconnectedFromPhoton()
 	{
-
-		if (!InternetChecker.instance.reconnect) 
+		if (challengeMode.value) 
 		{
-			if(challenge.data.challenge != null)
+			if(challenge.data!= null)
 			{
 				PhotonNetwork.ConnectToRegion (challenge.data.message.ToCloudRegionCode (), Application.version);
 			}
@@ -143,31 +151,30 @@ public class ChallengeActor : MonoBehaviour {
 			{
 				PhotonNetwork.ConnectToRegion (server.value.ToCloudRegionCode(), Application.version);
 			}
-		}
+		}	
 	}
 
-	public void OnConnectedToMaster()
-	{		
-
-		if (!InternetChecker.instance.reconnect)
+	public void ConnectedToMaster()
+	{
+		if (challengeMode.value)
 		{
-			if(challenge.data.challenge != null)
+			if(challenge.data!= null)
 			{
 				PhotonNetwork.JoinRoom (challenge.data.challenge.challenged[0].id);
-				print ("Connected to master!");
 			}
 			else
 			{
 				PhotonNetwork.CreateRoom (opponentId.value,new RoomOptions(){MaxPlayers = (byte)2,IsVisible = false},TypedLobby.Default);
 			}
-		}
-	}
+			print ("Connected to master!");
+		}	
+	} 
 
-	void OnJoinedRoom()
+	public void JoinedRoom()
 	{
-		if (!InternetChecker.instance.reconnect)
+		if (challengeMode.value)
 		{	
-			if(challenge.data.challenge != null)
+			if(challenge.data!= null)
 			{
 				ObliusGameManager.instance.ResetGame ();
 				SnakesSpawner.instance.CreateNetworkSnake (2);
@@ -188,17 +195,17 @@ public class ChallengeActor : MonoBehaviour {
 		}
 	}
 
-	public void OnPhotonPlayerConnected(PhotonPlayer player)
+	public void PlayerConnected()
 	{
-		if (!InternetChecker.instance.reconnect && PhotonNetwork.room.PlayerCount == 2) 
+		if (challengeMode.value && PhotonNetwork.room.PlayerCount == 2) 
 		{
 			accepted.Fire ();
 			challenge.Reset ();
 			occupied.value = false;
 			GUIManager.instance.ShowInGameGUI ();
-			print (player.ID+" has connected.");
+			print (PhotonNetwork.player.ID+" has connected.");
 		}
-	}	
+	}
 
 	public void Reconnect()
 	{

@@ -51,9 +51,9 @@ public class GameSparksActor : MonoBehaviour
 			{
 				userId.value =  AR.UserId;
 				loginSuccess.Fire();
-				print("Game Sparks login success!!");
+//				print("Game Sparks login success!!");
 			}
-			print (AR.JSONString);
+//			print (AR.JSONString);
 		});
 	}
 

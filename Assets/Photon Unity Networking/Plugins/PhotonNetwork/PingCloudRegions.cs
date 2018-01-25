@@ -131,6 +131,7 @@ public class PingHttp : PhotonPing
 
 public class PhotonPingManager
 {
+	public static string ping;
     public bool UseNative;
     public static int Attempts = 5;
     public static bool IgnoreInitialAttempt = true;
@@ -146,7 +147,7 @@ public class PhotonPingManager
             int bestRtt = Int32.MaxValue;
             foreach (Region region in PhotonNetwork.networkingPeer.AvailableRegions)
             {
-				PhotonManagerAdvanced.instance.ping += region.Code.ToString ()+"."+region.Ping+"|";	
+				ping += region.Code.ToString ()+"."+region.Ping+"|";	
 //                Debug.Log("BestRegion checks region: " + region);
                 if (region.Ping != 0 && region.Ping < bestRtt)
                 {										

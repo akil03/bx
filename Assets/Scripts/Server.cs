@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using GameSparks.Api.Requests;
+using DoozyUI;
 
 public class Server : MonoBehaviour 
 {
 	public static Server instance;
 
 	public bool isGameOver=false;
+
 	void Start()
 	{
 		instance = this;
@@ -72,11 +74,33 @@ public class Server : MonoBehaviour
 		GroundSpawner.instance.ClearGround ();
 		print ("someone died!");
 		isGameOver = true;
-		if (!InternetChecker.instance.reconnect) 
+		if (!reconnect.value) 
 		{
-			PhotonManagerAdvanced.instance.CloseUP ();
-			InternetChecker.instance.reconnect = true;
+			CloseUP ();
+			reconnect.value = true;
 		}
+	}
+
+	[SerializeField]BoolObject reconnect;
+
+	public void CloseUP()
+	{
+		challengeMode.value = false;
+		SnakesSpawner.instance.KillAllNetworkSnakes ();
+		PowerUpManager.instance.ClearPowerUps ();
+		GroundSpawner.instance.ClearGround ();
+	}
+
+	[SerializeField]BoolObject challengeMode; 
+	public void RebootConnection()
+	{
+		if (GSUpdateMMR.instance.loading.isActiveAndEnabled)
+			GSUpdateMMR.instance.loading.Hide (false);
+		CloseUP ();
+		PhotonNetwork.LeaveRoom ();
+		PhotonNetwork.Disconnect ();
+		GUIManager.instance.inGameGUI.GetComponent<UIElement> ().Hide (false);
+		reconnect.value = true;
 	}
 
 	[PunRPC]
@@ -96,10 +120,10 @@ public class Server : MonoBehaviour
 			Destroy (snake.gameObject);
 		GroundSpawner.instance.ClearGround ();
 		print ("someone died!");
-		if (!InternetChecker.instance.reconnect) 
+		if (!reconnect.value) 
 		{
-			PhotonManagerAdvanced.instance.CloseUP ();
-			InternetChecker.instance.reconnect = true;
+			CloseUP ();
+			reconnect.value = true;
 		}
 	}
 

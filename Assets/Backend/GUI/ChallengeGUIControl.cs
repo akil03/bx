@@ -40,10 +40,10 @@ public class ChallengeGUIControl : MonoBehaviour
 		waitingScreen.Hide(false);
 	}
 
+
 	public void Reconnect()
 	{
-		PhotonManagerAdvanced.instance.CloseUP ();
-		InternetChecker.instance.reconnect = true;
+		Server.instance.CloseUP ();
 		PhotonNetwork.Disconnect ();
 	}
 
@@ -63,6 +63,6 @@ public class ChallengeGUIControl : MonoBehaviour
 	{
 		userIdText.text = userId.value;
 		playerName.text = AccountDetails.instance.accountDetails.displayName;
-		print ("Player details set!");
+//		print ("Player details set!");
 	}
 }

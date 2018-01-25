@@ -12,9 +12,12 @@ public class FindingMatch : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (PhotonManagerAdvanced.instance != null) {
-			ServerText.text = "Server status: " + PhotonManagerAdvanced.instance.serverStatus.ToString ();
-			RoomText.text = "Room status: " + PhotonManagerAdvanced.instance.roomStatus.ToString ();
+		if (PhotonNetwork.connected)
+		{
+			string serverStatus = PhotonNetwork.connected ? "Connected" : "Waiting";
+			string roomStatus = PhotonNetwork.inRoom ? "Connected" : "Waiting";
+			ServerText.text = "Server status: " + serverStatus;
+			RoomText.text = "Room status: " + roomStatus;
 			if (PhotonNetwork.room != null)
 				playerCount.text = "Players not found !! Room Created, Player Count: " + PhotonNetwork.room.PlayerCount + " /2 ";
 			else

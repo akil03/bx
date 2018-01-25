@@ -1,10 +1,21 @@
 fileFormatVersion: 2
 guid: 5d74271767077514ab07345c8c6b5e04
-timeCreated: 1515685763
+timeCreated: 1516908496
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - server: {instanceID: 0}
+  - opponentId: {instanceID: 0}
+  - userId: {instanceID: 0}
+  - challenge: {instanceID: 0}
+  - challengeOther: {instanceID: 0}
+  - created: {instanceID: 0}
+  - withdrawn: {instanceID: 0}
+  - accepted: {instanceID: 0}
+  - declined: {instanceID: 0}
+  - occupied: {instanceID: 0}
+  - challengeMode: {fileID: 11400000, guid: 1ed3c2d507ce6cd42986485b46efb9fa, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

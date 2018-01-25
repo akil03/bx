@@ -69,8 +69,8 @@ public class GameOverGUI : MonoBehaviour {
 
 		Invoke ("ShowRewards", 1f);
 
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
-			
+		if (PhotonNetwork.inRoom)
+		{
 			//RewardWindow.transform.DOMove (
 			MMR [0].text = "+25";
 			MMR [1].text = "-25";
@@ -105,7 +105,8 @@ public class GameOverGUI : MonoBehaviour {
 
 
 
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+		if (PhotonNetwork.inRoom)
+		{
 			MMR [0].text = "-25";
 			MMR [1].text = "+25";
 		} else {

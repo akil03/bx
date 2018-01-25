@@ -10,7 +10,7 @@ public class Test : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
 		if (start) {
-			yield return (PhotonManagerAdvanced.instance._CreateRoom());
+			//yield return (PhotonManagerAdvanced.instance._CreateRoom());
 			print ("iiii");
 		} else
 			yield return null;

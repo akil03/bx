@@ -9,6 +9,6 @@ public class ChallengeDataObject : ScriptableObject
 
 	public void Reset()
 	{
-		data = new ChallengeData ();
+		data = null;
 	}
 }

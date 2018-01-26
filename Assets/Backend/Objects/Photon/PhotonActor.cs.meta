@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: 3d462274fd449c74ebef1b675c1ab367
+timeCreated: 1516912110
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - connectToMasterSuccess: {fileID: 11400000, guid: 1c9cc0ba0f0738042843082ed95ef34f,
+      type: 2}
+  - connectToMasterFailed: {fileID: 11400000, guid: 89501af426c70394e86c976804b0c939,
+      type: 2}
+  - roomCreated: {fileID: 11400000, guid: a7590be491435a34fabbc17710386cfa, type: 2}
+  - createRoomFailed: {fileID: 11400000, guid: 60039969c836d67479ca283e2f150b34, type: 2}
+  - joinedRoom: {fileID: 11400000, guid: a18659de91ddd8c4d8be4ee85c315935, type: 2}
+  - joinRoomFailed: {fileID: 11400000, guid: 46da8eac2e2b77c478fcc21bc287b537, type: 2}
+  - randomJoinFailed: {fileID: 11400000, guid: 43be7b9fbc8e35349927b891fe853bd9, type: 2}
+  - playerConnected: {fileID: 11400000, guid: a966ae74348e55e44bf478183027ac4b, type: 2}
+  - playerDisconnected: {fileID: 11400000, guid: d469196683e01a44da19dba042f1129a,
+      type: 2}
+  - leftRoom: {fileID: 11400000, guid: dbbd91b6da4072845bef8a2e647d61f6, type: 2}
+  - disconnectedFromPhoton: {fileID: 11400000, guid: cb422b08d67a90e4393f03664ebf3e80,
+      type: 2}
+  - reconnect: {fileID: 11400000, guid: 8c9ade5b5a1e586419853ece3cc01886, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

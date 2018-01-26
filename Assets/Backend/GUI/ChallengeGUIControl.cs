@@ -13,12 +13,13 @@ public class ChallengeGUIControl : MonoBehaviour
 	public Text waitingText;
 	public ChallengeDataObject challenge;
 	public StringObject userId;
+	public StringObject opponentName;
 	public Text userIdText;
 	public InputField playerName;
 
 	public void ShowWaitingScreen()
 	{
-		waitingText.text = "Waiting for "+challenge.data.challenge.challenged[0].name+" to accept your challenge";
+		waitingText.text = "Waiting for "+opponentName.value+" to accept your challenge";
 		waitingScreen.gameObject.SetActive (true);
 		waitingScreen.Show (false);
 	}
@@ -39,10 +40,10 @@ public class ChallengeGUIControl : MonoBehaviour
 		waitingScreen.Hide(false);
 	}
 
+
 	public void Reconnect()
 	{
-		PhotonManagerAdvanced.instance.CloseUP ();
-		InternetChecker.instance.reconnect = true;
+		Server.instance.CloseUP ();
 		PhotonNetwork.Disconnect ();
 	}
 
@@ -62,6 +63,6 @@ public class ChallengeGUIControl : MonoBehaviour
 	{
 		userIdText.text = userId.value;
 		playerName.text = AccountDetails.instance.accountDetails.displayName;
-		print ("Player details set!");
+//		print ("Player details set!");
 	}
 }

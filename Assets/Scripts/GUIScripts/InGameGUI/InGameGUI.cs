@@ -63,13 +63,15 @@ public class InGameGUI : MonoBehaviour
 	}
 
 	void UpdateTimer(){
-		if (SnakesSpawner.instance.playerSnake != null && SnakesSpawner.instance.playerSnake.isGameStarted && !gameStarted && PhotonManagerAdvanced.instance.IsInGame ()) {
+		if (SnakesSpawner.instance.playerSnake != null && SnakesSpawner.instance.playerSnake.isGameStarted && !gameStarted && (PhotonNetwork.connected && PhotonNetwork.room.PlayerCount==maxPlayers)) 
+		{
 			gameStarted = true;
 			TimeRemaining = totalGameTime;
 			PowerUpManager.instance.dontSpawn = false;
 		}
 			
-		if (gameStarted) {
+		if (gameStarted) 
+		{
 			gameStarted = true;
 			TimeRemaining = totalGameTime + startTime - Time.time;
 			if (TimeRemaining < 0) {
@@ -88,13 +90,13 @@ public class InGameGUI : MonoBehaviour
 
 			TimerText.text = Mathf.RoundToInt (TimeRemaining).ToString ();	
 		}
-		else if (!gameStarted && PhotonManagerAdvanced.instance.IsInGame ()) 
+		else if (!gameStarted && (PhotonNetwork.connected)) 
 		{
 			TimerText.text = totalGameTime.ToString ();
 			PowerUpManager.instance.dontSpawn = true;
 		}
 	}
-
+	public int maxPlayers;
     public void OnTutorialButtonClick()
     {
         SoundsManager.instance.PlayMenuButtonSound();

@@ -24,7 +24,7 @@ public class AccountDetails : MonoBehaviour {
 			}
 			else
 			{
-				print ("Getting account details success!");
+//				print ("Getting account details success!");
 				accountDetails = JsonUtility.FromJson<AccountDetailsData>(response.JSONString);
 				GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
 				GUIManager.instance.mmrTxt.text = accountDetails.scriptData.MMR;
@@ -41,7 +41,7 @@ public class AccountDetails : MonoBehaviour {
 				}
 
 			}
-			print (response.JSONString);
+//			print (response.JSONString);
 		});
 	}
 

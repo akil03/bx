@@ -19,6 +19,7 @@ public class LeaderboardGUI : MonoBehaviour
 	Transform parentt;
 	public StringObject userId;
 	public StringObject opponentId;
+	public StringObject opponentName;
 	public StringObject server;
 	public EventObject challengeLoadingON;
 	ParameterlessDelegate detailsSet;
@@ -31,7 +32,7 @@ public class LeaderboardGUI : MonoBehaviour
 		parentt = scrollParent;
 		GameSparkRequests getPlayerDetail = new GameSparkRequests ();
 		getPlayerDetail.Request ("GetPlayerDataWithID","ID",id,Callback);
-		print ("id is "+id);
+//		print ("id is "+id);
 		transform.SetParent (scrollParent);
 		transform.localRotation = Quaternion.identity;
 		transform.localScale = new Vector3 (1,1,0);
@@ -41,7 +42,7 @@ public class LeaderboardGUI : MonoBehaviour
 
 	void Callback(string str)
 	{
-		print (str);
+//		print (str);
 		leaderboardData = JsonUtility.FromJson<GSLeaderboardData> (str);
 		playerName.text = leaderboardData.scriptData.AllData.displayName;
 		mmr.text = leaderboardData.scriptData.AllData.scriptData.MMR.ToString ();
@@ -64,8 +65,9 @@ public class LeaderboardGUI : MonoBehaviour
 			return;
 		}
 		opponentId.value = id;
+		opponentName.value = playerName.text;
 		var regions = serverData.scriptData.AllData.scriptData.PING.ToRegions ();
-		List<PhotonRegion> myRegions = PhotonManagerAdvanced.instance.ping.ToRegions ();
+		List<PhotonRegion> myRegions = PhotonPingManager.ping.ToRegions ();
 		List<PhotonRegion> result = new List<PhotonRegion>();
 		for(int i=0;i<regions.Count;i++)
 		{

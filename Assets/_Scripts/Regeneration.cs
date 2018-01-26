@@ -44,7 +44,7 @@ public class Regeneration : MonoBehaviour
 		instance = this;
 		//PlayerPrefs.DeleteKey ("SaveTimer");
 		string str = PlayerPrefs.GetString("SaveTimer", null);
-		print (str);
+//		print (str);
 		if (string.IsNullOrEmpty (str) == false) 
 		{
 			string[] strs = str.Split ('?');

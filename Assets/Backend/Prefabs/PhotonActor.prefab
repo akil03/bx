@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1170194827024318}
+  m_IsPrefabParent: 1
+--- !u!1 &1170194827024318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4399636712856360}
+  - component: {fileID: 114359389822781570}
+  - component: {fileID: 114709788032366874}
+  m_Layer: 0
+  m_Name: PhotonActor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4399636712856360
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1170194827024318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.099998, y: -4.42857, z: -4.440926}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114359389822781570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1170194827024318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d462274fd449c74ebef1b675c1ab367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectOnStart: 1
+  connectToMasterSuccess: {fileID: 11400000, guid: 1c9cc0ba0f0738042843082ed95ef34f,
+    type: 2}
+  connectToMasterFailed: {fileID: 11400000, guid: 89501af426c70394e86c976804b0c939,
+    type: 2}
+  roomCreated: {fileID: 11400000, guid: a7590be491435a34fabbc17710386cfa, type: 2}
+  createRoomFailed: {fileID: 11400000, guid: 60039969c836d67479ca283e2f150b34, type: 2}
+  joinedRoom: {fileID: 11400000, guid: a18659de91ddd8c4d8be4ee85c315935, type: 2}
+  joinRoomFailed: {fileID: 11400000, guid: 46da8eac2e2b77c478fcc21bc287b537, type: 2}
+  randomJoinFailed: {fileID: 11400000, guid: 43be7b9fbc8e35349927b891fe853bd9, type: 2}
+  playerConnected: {fileID: 11400000, guid: a966ae74348e55e44bf478183027ac4b, type: 2}
+  playerDisconnected: {fileID: 11400000, guid: d469196683e01a44da19dba042f1129a, type: 2}
+  leftRoom: {fileID: 11400000, guid: dbbd91b6da4072845bef8a2e647d61f6, type: 2}
+  disconnectedFromPhoton: {fileID: 11400000, guid: cb422b08d67a90e4393f03664ebf3e80,
+    type: 2}
+  reconnect: {fileID: 11400000, guid: 8c9ade5b5a1e586419853ece3cc01886, type: 2}
+--- !u!114 &114709788032366874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1170194827024318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: cb422b08d67a90e4393f03664ebf3e80, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114359389822781570}
+        m_MethodName: Reconnect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null

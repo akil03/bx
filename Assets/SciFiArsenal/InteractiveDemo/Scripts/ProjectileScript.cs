@@ -18,7 +18,7 @@ public class ProjectileScript : MonoBehaviour
 	{
         projectileParticle = Instantiate(projectileParticle, transform.position, transform.rotation) as GameObject;
         projectileParticle.transform.parent = transform;
-		if(PhotonManagerAdvanced.instance.IsInGame())
+		if(PhotonNetwork.inRoom)
 		Launch ();
 	}
 
@@ -49,7 +49,7 @@ public class ProjectileScript : MonoBehaviour
 	void Update(){
 		if (isLaunched) {
 			if(!target){
-				if (!PhotonManagerAdvanced.instance.IsInGame ())
+				if (!PhotonNetwork.inRoom)
 					Destroy (gameObject);
 				else
 					PhotonNetwork.Destroy (gameObject);

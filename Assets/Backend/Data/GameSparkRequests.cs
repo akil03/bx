@@ -13,11 +13,11 @@ public class GameSparkRequests
 		.Send((response) => {
 				if(response.HasErrors)
 				{
-					Debug.Log ("Request failed!");
+					Debug.Log (eventKey+" request failed!");
 				}
 				else
 				{
-					Debug.Log ("Request success!");
+//					Debug.Log (eventKey+" request success!");
 				}
 				if(strDelegate!=null)
 				strDelegate(response.JSONString);

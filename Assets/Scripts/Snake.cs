@@ -147,7 +147,7 @@ public class Snake : MonoBehaviour
 	{
 		if (!isBot) 
 		{	
-			if (PhotonManagerAdvanced.instance.IsInGame ())
+			if (PhotonNetwork.inRoom)
 			{
 				if (isLocal) {
 					//NetworkMovement ();
@@ -349,15 +349,19 @@ public class Snake : MonoBehaviour
 	public void MoveToDirection (Vector3 vector)
 	{
 		
-		if (PhotonManagerAdvanced.instance.IsInGame () ) {
-			if (isLocal) {
+		if (PhotonNetwork.inRoom)
+		{
+			if (isLocal) 
+			{
 				_networkSnake.MoveDirection = vector;
 				_networkSnake.realPosition = transform.position;
 				//CheckBuggyFreeze ();
 				//_networkSnake.CurrentGridPosition = groundPieceToReach.indexInGrid;
 				_networkSnake.TrailList = ConvertPiecesToInt (tailGroundPieces);
 				_networkSnake.OwnedList = ConvertPiecesToInt (ownedGroundPieces);
-			} else {
+			}
+			else
+			{
 				
 //				if (GroundSpawner.instance.spawnedGroundPieces [_networkSnake.CurrentGridPosition] != lastSyncedPiece) {
 //					lastSyncedPiece = GroundSpawner.instance.spawnedGroundPieces [_networkSnake.CurrentGridPosition];
@@ -530,7 +534,7 @@ public class Snake : MonoBehaviour
 //			return;
 		if (pieceToCheck.collectingSnake != null) {		
 			//KillSnake (pieceToCheck.collectingSnake);
-			if(PhotonManagerAdvanced.instance.IsInGame()&&pieceToCheck.collectingSnake._networkSnake.isCollecting)
+			if(PhotonNetwork.inRoom &&pieceToCheck.collectingSnake._networkSnake.isCollecting)
 				KillSnake (pieceToCheck.collectingSnake);
 			else
 				KillSnake (pieceToCheck.collectingSnake);
@@ -596,7 +600,7 @@ public class Snake : MonoBehaviour
 			}
 		}
 
-		if (PhotonManagerAdvanced.instance.IsInGame ())
+		if (PhotonNetwork.inRoom)
 			_networkSnake.isCollecting = isCollectingNewGroundPieces;
 
 
@@ -710,7 +714,7 @@ public class Snake : MonoBehaviour
 		{
 			targetSnake.haveToDie = true;
 
-			if (PhotonManagerAdvanced.instance.IsInGame ()&&!isNetworkKill&&isLocal) {
+			if (PhotonNetwork.inRoom &&!isNetworkKill&&isLocal) {
 				PhotonView.Get (targetSnake._networkSnake.gameObject).RPC ("KillPlayer",PhotonTargets.AllViaServer);
 				targetSnake._networkSnake.shouldTransmit = false;
 				isNetworkKill = true;
@@ -783,8 +787,10 @@ public class Snake : MonoBehaviour
 
 		FindObjectOfType<CameraShake>().StartShake (DeathShakeProperties);
 
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
-			if (isLocal) {
+		if (PhotonNetwork.inRoom)
+		{
+			if (isLocal) 
+			{
 				Lives--;
 				_networkSnake.Lives = Lives;
 			}
@@ -967,7 +973,7 @@ public class Snake : MonoBehaviour
 	public bool isHeadOn;
 	void OnTriggerEnter2D(Collider2D coll){
 
-		if (PhotonManagerAdvanced.instance.IsInGame ())
+		if (PhotonNetwork.inRoom)
 		{
 			if (!isLocal)
 				return;
@@ -1000,7 +1006,7 @@ public class Snake : MonoBehaviour
 			else
 				ActivateShield ();
 			SoundsManager.instance.Play (FillSound);
-			if(!PhotonManagerAdvanced.instance.IsInGame ())				
+			if(!PhotonNetwork.inRoom)				
 				PowerUpManager.instance.RemovePowerUp (coll.gameObject);
 			else
 				PowerUpManager.instance.RemovePowerUpNetwork (coll.gameObject);
@@ -1014,7 +1020,7 @@ public class Snake : MonoBehaviour
 			else
 				UseHealth ();
 			SoundsManager.instance.Play (FillSound);
-			if(!PhotonManagerAdvanced.instance.IsInGame ())				
+			if(!PhotonNetwork.inRoom)				
 				PowerUpManager.instance.RemovePowerUp (coll.gameObject);
 			else
 				PowerUpManager.instance.RemovePowerUpNetwork (coll.gameObject);
@@ -1030,7 +1036,7 @@ public class Snake : MonoBehaviour
 			else
 				ActivateSpeed ();
 			SoundsManager.instance.Play (FillSound);
-			if(!PhotonManagerAdvanced.instance.IsInGame ())				
+			if(!PhotonNetwork.inRoom)				
 				PowerUpManager.instance.RemovePowerUp (coll.gameObject);
 			else
 				PowerUpManager.instance.RemovePowerUpNetwork (coll.gameObject);
@@ -1044,7 +1050,7 @@ public class Snake : MonoBehaviour
 			else
 				ActivateMissile ();
 			SoundsManager.instance.Play (FillSound);
-			if(!PhotonManagerAdvanced.instance.IsInGame ())				
+			if(!PhotonNetwork.inRoom)				
 				PowerUpManager.instance.RemovePowerUp (coll.gameObject);
 			else
 				PowerUpManager.instance.RemovePowerUpNetwork (coll.gameObject);
@@ -1058,7 +1064,7 @@ public class Snake : MonoBehaviour
 			else
 				ActivateBlasters ();
 			SoundsManager.instance.Play (FillSound);
-			if(!PhotonManagerAdvanced.instance.IsInGame ())				
+			if(!PhotonNetwork.inRoom)				
 				PowerUpManager.instance.RemovePowerUp (coll.gameObject);
 			else
 				PowerUpManager.instance.RemovePowerUpNetwork (coll.gameObject);
@@ -1072,7 +1078,7 @@ public class Snake : MonoBehaviour
 			else
 				FireFreeze ();
 			SoundsManager.instance.Play (FillSound);
-			if(!PhotonManagerAdvanced.instance.IsInGame ())				
+			if(!PhotonNetwork.inRoom)				
 				PowerUpManager.instance.RemovePowerUp (coll.gameObject);
 			else
 				PowerUpManager.instance.RemovePowerUpNetwork (coll.gameObject);
@@ -1086,7 +1092,7 @@ public class Snake : MonoBehaviour
 			else
 				DropMine ();
 			SoundsManager.instance.Play (FillSound);
-			if(!PhotonManagerAdvanced.instance.IsInGame ())
+			if(!PhotonNetwork.inRoom)
 				PowerUpManager.instance.RemovePowerUp (coll.gameObject);
 			else
 				PowerUpManager.instance.RemovePowerUpNetwork (coll.gameObject);
@@ -1181,7 +1187,7 @@ public class Snake : MonoBehaviour
 		snakeMeshProprietes.Shield.SetActive (true);
 		isShielded = true;
 		Invoke ("DeactivateShield", 6);
-		if (PhotonManagerAdvanced.instance.IsInGame ())
+		if (PhotonNetwork.inRoom)
 			StartCoroutine (ActivateNetworkShield());
 	}
 
@@ -1199,7 +1205,7 @@ public class Snake : MonoBehaviour
 
 	public void ActivateSpeed(){
 		GameObject go;
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+		if (PhotonNetwork.inRoom) {
 			go = PhotonNetwork.Instantiate ("Particles/" + SpeedParticle.name, snakeMeshProprietes.Mesh.transform.position, transform.rotation, new byte ());
 			go.transform.SetParent (snakeMeshProprietes.Mesh.transform);
 			speed = speed * 3.5f;
@@ -1219,13 +1225,13 @@ public class Snake : MonoBehaviour
 		speed = speed / 3.5f;
 		isSpeed = false;
 
-		if (PhotonManagerAdvanced.instance.IsInGame ())
+		if (PhotonNetwork.inRoom)
 			_networkSnake.speed = speed;
 	}
 
 	public void ActivateMissile(){
 		GameObject go;
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+		if (PhotonNetwork.inRoom) {
 			go = PhotonNetwork.Instantiate ("Particles/" + MissileParticle.name, transform.position, transform.rotation, new byte ());
 		} else {
 			go = Instantiate (MissileParticle);
@@ -1247,7 +1253,7 @@ public class Snake : MonoBehaviour
 
 	public void FireBlaster(){
 		GameObject  go;
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+		if (PhotonNetwork.inRoom) {
 			go = PhotonNetwork.Instantiate ("Particles/" + BlastersParticle.name, transform.position, transform.rotation, new byte ());
 		} else {
 			go = Instantiate (BlastersParticle);
@@ -1264,7 +1270,7 @@ public class Snake : MonoBehaviour
 
 	public void FireFreeze(){
 		GameObject go;
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+		if (PhotonNetwork.inRoom) {
 			go = PhotonNetwork.Instantiate ("Particles/" + FreezeParticle.name, transform.position, transform.rotation, new byte ());
 		} else {
 			go = Instantiate (FreezeParticle);
@@ -1287,13 +1293,13 @@ public class Snake : MonoBehaviour
 		currentHP = Mathf.FloorToInt((float)currentHP - damage);
 		currentHP = Mathf.Clamp (currentHP, 0, maxHP);
 
-		if (PhotonManagerAdvanced.instance.IsInGame ())
+		if (PhotonNetwork.inRoom)
 			_networkSnake.currentHP = currentHP;
 	}
 
 	public void UseHealth(){
 		GameObject go;
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+		if (PhotonNetwork.inRoom) {
 			go = PhotonNetwork.Instantiate ("Particles/" + RegenParticle.name, snakeMeshProprietes.Mesh.transform.position, transform.rotation, new byte ());
 	//		if(isLocal)
 				go.transform.SetParent (snakeMeshProprietes.Mesh.transform);
@@ -1301,7 +1307,7 @@ public class Snake : MonoBehaviour
 	//			go.transform
 			currentHP = maxHP;
 			_networkSnake.currentHP = currentHP;
-			if (PhotonManagerAdvanced.instance.IsInGame ())
+			if (PhotonNetwork.inRoom)
 				_networkSnake.currentHP = currentHP;
 		}
 		else {
@@ -1318,14 +1324,14 @@ public class Snake : MonoBehaviour
 
 		speed = speed / 3;
 		Invoke ("DisableFreezeHit", 3);
-		if (PhotonManagerAdvanced.instance.IsInGame ())
+		if (PhotonNetwork.inRoom)
 			_networkSnake.speed = speed;
 	}
 
 	public void DisableFreezeHit(){
 		speed = speed * 3;
 
-		if (PhotonManagerAdvanced.instance.IsInGame ())
+		if (PhotonNetwork.inRoom)
 			_networkSnake.speed = speed;
 	}
 

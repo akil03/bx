@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4933207070615190}
   - component: {fileID: 114454507778882512}
   - component: {fileID: 114841769894426660}
+  - component: {fileID: 114428983980179392}
   m_Layer: 0
   m_Name: Server
   m_TagString: Untagged
@@ -41,6 +42,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114428983980179392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1482888144768238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d9ef42dacb79c49a39430ecbd80b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 8831125c4d6fa274fa855ee1715553ae, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114454507778882512}
+        m_MethodName: RebootConnection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114454507778882512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,6 +81,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fad789cedb533d4391300360f41479a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
+  reconnect: {fileID: 11400000, guid: 8c9ade5b5a1e586419853ece3cc01886, type: 2}
+  challengeMode: {fileID: 11400000, guid: 1ed3c2d507ce6cd42986485b46efb9fa, type: 2}
 --- !u!114 &114841769894426660
 MonoBehaviour:
   m_ObjectHideFlags: 1

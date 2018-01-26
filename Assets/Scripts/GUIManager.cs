@@ -25,7 +25,7 @@ public class GUIManager : MonoBehaviour
 
 	public UIElement[] Pages;
 	public Transform FillBar;
-	public UIElement InternetCheckPage,SettingsPage;
+	public UIElement InternetCheckPage,SettingsPage,matchLoading;
 	public GameObject BG;
 
 	public Text mmrTxt,playerID_TXT;
@@ -121,8 +121,9 @@ public class GUIManager : MonoBehaviour
 
     public void HideGameOverGUI()
     {
+		matchLoading.Hide (false);
 		gameOverGUI.GetComponent <UIElement> ().Hide (false);
-		if (PhotonManagerAdvanced.instance.IsInGame ())
+		if (PhotonNetwork.inRoom)
 			PhotonNetwork.LeaveRoom ();
 
         //gameOverGUI.gameObject.SetActive(false);
@@ -217,7 +218,7 @@ public class GUIManager : MonoBehaviour
 	}
 
 	public void OpenConnectionPopup(){
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+		if (PhotonNetwork.connected) {
 			InternetCheckPage.gameObject.SetActive (true);
 			InternetCheckPage.Show (false);
 		}

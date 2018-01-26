@@ -40,7 +40,7 @@ public class LCGoogleLoginBridge : MonoBehaviour {
 					LCGoogleLoginiOS.initiateWithClientID (clientID);
 				} else {
 					if (debugLogs) {
-						Debug.Log ("LCGoogleLogin: LoginUserBasic: Unsupported platform");
+//						Debug.Log ("LCGoogleLogin: LoginUserBasic: Unsupported platform");
 					}
 				}
 			}
@@ -92,7 +92,7 @@ public class LCGoogleLoginBridge : MonoBehaviour {
 			return LCGoogleLoginiOS.userLogin (isSilent, enableServerAuth, forceCodeForeRefreshToken, strScopesArray, noOfScopes);
 		} else {
 			if (debugLogs) {
-				Debug.Log ("LCGoogleLogin: LoginUser: Unsupported platform");
+//				Debug.Log ("LCGoogleLogin: LoginUser: Unsupported platform");
 			}
 		}
 		return false;
@@ -303,7 +303,7 @@ public class LCGoogleLoginBridge : MonoBehaviour {
 			return true;
 		} else {
 			if (debugLogs) {
-				Debug.Log ("LCGoogleLogin: ChangeLoggingLevel: Unsupported platform");
+//				Debug.Log ("LCGoogleLogin: ChangeLoggingLevel: Unsupported platform");
 			}
 		}
 

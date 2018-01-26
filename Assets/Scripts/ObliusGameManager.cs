@@ -270,6 +270,7 @@ public class ObliusGameManager : MonoBehaviour
 		gameState = GameState.game;
 	}
 
+	//attached to play button
 	public void ShowFindingMatchScreen()
 	{
 		if (Regeneration.instance.LifeAmount < 1) {
@@ -293,30 +294,124 @@ public class ObliusGameManager : MonoBehaviour
 		}	
 	}
 
+	bool matchmakingPhase;
+	bool findingPhase;
+	bool normal;
 
 	IEnumerator _ShowFindingMatchScreen()
 	{
-		if (!PhotonNetwork.connected) {
+		if (!PhotonNetwork.connected) 
+		{
 			GUIManager.instance.ShowLog ("Connecting to server. Please wait!");
 			yield break;
 		}
-		if (!GS.Authenticated) {
+		if (!GS.Authenticated) 
+		{
 			GUIManager.instance.ShowLog ("Please login!");
 			yield break;
 		}
-		if (PhotonManagerAdvanced.instance.serverStatus == ConnectionStatus.connected) {
-			GUIManager.instance.OpenPage (6);
-			GUIManager.instance.FillBar.GetComponent<FillTween> ().Fill ();
-//			yield return PhotonManagerAdvanced.instance._JoinRandomRoom (JoinRandomRoomSuccess, JoinRandomRoomFailed);
-			StartCoroutine(PhotonManagerAdvanced.instance._CreateRoom());
+		GUIManager.instance.OpenPage (6);
+		GUIManager.instance.FillBar.GetComponent<FillTween> ().Fill ();
+		matchmakingPhase = true;
+		PhotonNetwork.JoinOrCreateRoom ("matchmaking",null,null);
+	}
+	bool isServer;
+	int maxplayers = 2;
+
+	public void JoinedRoom()
+	{
+		AddToMatchmakingQueue ();
+		if (matchmakingPhase)
+			return;
+		if (findingPhase) 
+		{
+			new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 1).Send((response)=> {});
+			if(reconnect.value)
+				_ShowFindingMatchScreen (PhotonNetwork.player.ID);
+			print ("Max players reached!");
+			isServer = false;
+			findingPhase = false;
 		}
-//		}
-//		else
-//		{
-//			GUIManager.instance.OpenConnectionPopup ();
-//		}
 	}
 
+	public void OnPlayerConnected()
+	{
+		AddToMatchmakingQueue ();
+		if (findingPhase) 
+		{
+			if(PhotonNetwork.room.PlayerCount == maxplayers)
+				PhotonNetwork.room.IsVisible = false;
+		}
+	}
+
+	void AddToMatchmakingQueue()
+	{
+		if (matchmakingPhase) 
+		{
+			if (PhotonNetwork.room.PlayerCount >= 2)
+			{
+				if (PhotonNetwork.player.ID % 2 != 0) 
+				{
+					isServer = true;
+				}
+				else
+				{
+					isServer = false;
+				}
+				PhotonNetwork.LeaveRoom ();
+				print ("Begin a game!");
+				findingPhase = true;
+				return;
+			}
+			else
+			{
+				print ("Added to queue!");
+				return;
+			}
+		}
+	}
+
+	public void CancelFinding()
+	{
+		if (PhotonNetwork.room.PlayerCount < 2) 
+		{
+			//normal = false;
+			PhotonNetwork.LeaveRoom ();
+			GUIManager.instance.ShowMainMenuGUI ();
+		}
+	}
+
+	void StartGameServer()
+	{
+		if (matchmakingPhase) 
+		{
+			if (isServer) 
+			{	
+				print ("create room");
+				PhotonNetwork.CreateRoom (null);	
+			}
+			else
+			{
+				print ("join room");
+				PhotonNetwork.JoinRandomRoom ();
+			}
+			matchmakingPhase = false;
+		}
+	}
+
+	public void ConnectedToMaster()
+	{
+		StartGameServer ();
+	}
+
+
+	public void RandomJoinFailed()
+	{
+		if (findingPhase) 
+		{
+			PhotonNetwork.JoinRandomRoom ();
+		}
+	}
 
 	void JoinRandomRoomFailed()
 	{
@@ -361,14 +456,14 @@ public class ObliusGameManager : MonoBehaviour
 //			PhotonNetwork.LeaveRoom ();
 //		GUIManager.instance.BG.SetActive (true);
 //		GUIManager.instance.OpenPage (3);
-		if (PhotonManagerAdvanced.instance.IsInGame ()) {
+	//	if (PhotonManagerAdvanced.instance.IsInGame ()) {
 			ForceCloseGame ();
-		}
-		else
-		{
-			if (GUIManager.instance.Pages [5].isActiveAndEnabled)
-				GUIManager.instance.OpenPage (3);
-		}
+//		}
+//		else
+//		{
+//			if (GUIManager.instance.Pages [5].isActiveAndEnabled)
+//				GUIManager.instance.OpenPage (3);
+//		}
 		
 	}
 
@@ -392,12 +487,14 @@ public class ObliusGameManager : MonoBehaviour
 		GroundSpawner.instance.ClearGround ();
 
 	
-		if (!InternetChecker.instance.reconnect) 
+		if (!reconnect.value) 
 		{
-			PhotonManagerAdvanced.instance.CloseUP ();
-			InternetChecker.instance.reconnect = true;
+			Server.instance.CloseUP ();
+			reconnect.value = true;
 		}
 	}
+
+	[SerializeField]BoolObject reconnect;
 
 	public void ResetGame (bool resetScore = true, bool resetOneMoreChance = true)
 	{

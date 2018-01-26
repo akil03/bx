@@ -285,6 +285,7 @@ MonoBehaviour:
           MMR: 0
   userId: {fileID: 11400000, guid: 61c951cbb9d50c54bbe8f341dfbb7db7, type: 2}
   opponentId: {fileID: 11400000, guid: 1f68b91cd85325e418334c6b97094ab9, type: 2}
+  opponentName: {fileID: 11400000, guid: a5c5ce1e44bfe1f40a00fd5640c1a18c, type: 2}
   server: {fileID: 11400000, guid: 408e334c55990984b84c77fef9d24cfb, type: 2}
   challengeLoadingON: {fileID: 11400000, guid: 2220d665feec74b438eab56e25468fdd, type: 2}
 --- !u!114 &114543313651734370

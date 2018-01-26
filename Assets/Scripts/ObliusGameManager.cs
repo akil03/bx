@@ -80,7 +80,7 @@ public class ObliusGameManager : MonoBehaviour
 //			StartTutorial ();
 //			return;
 //		}
-
+//
 
 		if (Regeneration.instance.LifeAmount < 1) {
 			Regeneration.instance.UseLife ();
@@ -125,11 +125,14 @@ public class ObliusGameManager : MonoBehaviour
 
 	bool tutStarted;
 	public void StartTutorial(){
-		if (PlayerPrefs.HasKey ("TutorialComplete") || tutStarted){
+		if (PlayerPrefs.HasKey ("TutorialComplete")){
 			GUIManager.instance.OpenPage (3);	
 			return;
 		}
 
+		if (tutStarted)
+			return;
+		
 		tutStarted = true;
 		StartCoroutine (TutorialList ());
 	}
@@ -148,6 +151,7 @@ public class ObliusGameManager : MonoBehaviour
 		SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive (false);
 		gameState = GameState.game;
 		GUIManager.instance.BG.SetActive (false);
+		GUIManager.instance.mainMenuGUI.transform.parent.gameObject.SetActive (false);
 		GUIManager.instance.ShowTutorialLog ("Welcome to Battle Xonix !! \nI will be your trainer today, Just follow my instructions !!",5);
 
 		yield return new WaitForSeconds (1.3f);

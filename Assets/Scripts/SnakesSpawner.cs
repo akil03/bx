@@ -31,6 +31,8 @@ public class SnakesSpawner : MonoBehaviour
 	public int selectedMeshIndex,selectedColourIndex,selectedTileIndex;
 	public GameObject tempMesh, previewMeshContainer;
 
+	public string playerName;
+	public int HealthLvl,LifeLvl,Power_RocketLvl,Power_ShotsLvl,Power_SpeedLvl,Power_HPLvl,Power_ShieldLvl;
 	void Awake ()
 	{
 		instance = this;	
@@ -802,5 +804,8 @@ public class SnakesSpawner : MonoBehaviour
 		return meshToRemove;
 	}
 
+	public class PlayerProperties{
 
+
+	}
 }

@@ -32,7 +32,10 @@ public class SnakesSpawner : MonoBehaviour
 	public GameObject tempMesh, previewMeshContainer;
 
 	public string playerName;
-	public int HealthLvl,LifeLvl,Power_RocketLvl,Power_ShotsLvl,Power_SpeedLvl,Power_HPLvl,Power_ShieldLvl;
+	public int HealthLvl,LifeLvl,SpeedLvl,Power_RocketLvl,Power_ShotsLvl,Power_SpeedLvl,Power_HPLvl,Power_ShieldLvl;
+	public int HealthValue, LifeValue, PowerRocketValue, PowerShotsValue, PowerSpeedValue, PowerHPValue, PowerShieldValue;
+	public float SpeedValue;
+
 	void Awake ()
 	{
 		instance = this;	
@@ -174,7 +177,7 @@ public class SnakesSpawner : MonoBehaviour
 			InGameGUI.instance.userSnake = newSnake;
 			InGameGUI.instance.PlayerPanel [0].SelectedSnake = newSnake;
 			InGameGUI.instance.EquipPowerup ();
-			newSnake.Lives = playerLives;
+			newSnake.Lives = LifeValue;
 			newSnake.playerID = 1;
 			spawnPointFinder.spawnPoint = GroundSpawner.instance.spawnedGroundPieces [447]; //area/2 - 3
 			playerSnake = newSnake;
@@ -182,7 +185,7 @@ public class SnakesSpawner : MonoBehaviour
 			newSnake.isBot = true;
 			InGameGUI.instance.opponentSnake = newSnake;
 			InGameGUI.instance.PlayerPanel [1].SelectedSnake = newSnake;
-			newSnake.Lives = enemyLives;
+			newSnake.Lives = LifeValue;
 			newSnake.playerID = 2;
 			enemySnake = newSnake;
 			spawnPointFinder.spawnPoint = GroundSpawner.instance.spawnedGroundPieces [422]; // area/2 - gridlength +2
@@ -190,7 +193,8 @@ public class SnakesSpawner : MonoBehaviour
 
 		SetSnakeMesh (newSnake);
 
-		newSnake.normalSpeed = 4f;
+		newSnake.normalSpeed = SpeedValue;
+		newSnake.maxHP = HealthValue;
 		newSnake.SetSpeed ();
 
 		newSnake.Initialize ();
@@ -402,8 +406,8 @@ public class SnakesSpawner : MonoBehaviour
 		InGameGUI.instance.EquipPowerup ();
 
 		newSnake.isLocal = true;
-		newSnake.Lives = 3;
-		newSnake.normalSpeed = 4;
+		newSnake.Lives = LifeValue;
+		newSnake.normalSpeed = SpeedValue;
 		StartTime = 0;
 		if(playerNo==1){
 			PhotonNetwork.Instantiate ("Server",Vector3.zero,Quaternion.identity,new byte());
@@ -432,7 +436,7 @@ public class SnakesSpawner : MonoBehaviour
 		newSnake.Initialize ();
 
 
-		NS.GetComponent<PlayerInfo> ().AssignValues (playerNo, newSnake.name, newSnake.Lives, 200, 4, selectedMeshIndex, selectedTileIndex,selectedColourIndex, newSnake, StartTime);
+		NS.GetComponent<PlayerInfo> ().AssignValues (playerNo, newSnake.name, newSnake.Lives, HealthValue,SpeedValue, selectedMeshIndex, selectedTileIndex,selectedColourIndex, newSnake, StartTime);
 
 		newSnake._networkSnake = NS.GetComponent<PlayerInfo> ();
 

@@ -14,10 +14,10 @@ public class NormaliseScroll : MonoBehaviour {
 		
 	}
 	void OnEnable(){
-		GetComponent <Scrollbar> ().value = 0.5f;
+		GetComponent <Scrollbar> ().value = 1f;
 	}
 	void OnDisable(){
-		GetComponent <Scrollbar> ().value = 0.5f;
+		GetComponent <Scrollbar> ().value = 1f;
 	}
 
 }

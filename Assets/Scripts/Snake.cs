@@ -111,7 +111,7 @@ public class Snake : MonoBehaviour
 		snakeMeshProprietes.snakeColor=spriteColor ;
 		SetName ();
 		ReasonDeath = "";
-
+		currentHP = maxHP;
 		if (PhotonNetwork.inRoom)
 		{
 			if (isLocal) {

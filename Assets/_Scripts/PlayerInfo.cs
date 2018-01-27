@@ -37,7 +37,7 @@ public class PlayerInfo : MonoBehaviour {
 		gameTime = 0.0f;	
 	}
 
-	public void AssignValues(int _playerNo,string _playerName, int _lives, int _maxhp, int _baseSpeed, int _meshtype, int _tiletype,int _colorType, Snake _player, float _starttime){
+	public void AssignValues(int _playerNo,string _playerName, int _lives, int _maxhp, float _baseSpeed, int _meshtype, int _tiletype,int _colorType, Snake _player, float _starttime){
 		PlayerNo = _playerNo;
 		PlayerName = _playerName;
 		Lives = _lives;

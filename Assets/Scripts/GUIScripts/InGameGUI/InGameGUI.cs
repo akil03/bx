@@ -169,6 +169,14 @@ public class InGameGUI : MonoBehaviour
 		}
 	}
 
+	public void SwitchPower(int selected){
+		string temp = userSnake.loadedPowers [0];
+		userSnake.loadedPowers [0] = userSnake.loadedPowers [selected];
+		userSnake.loadedPowers [selected] = temp;
+
+		EquipPowerup ();
+	}
+
 	public void OnPowerUp(){
 		userSnake.UsePower ();
 	}

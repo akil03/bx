@@ -37,6 +37,8 @@ public class ObliusGameManager : MonoBehaviour
 	void Start ()
 	{
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+		//PlayerPrefs.DeleteAll ();
+		PlayerPrefs.SetInt ("TutorialComplete", 1);
 		//StartTutorial ();
 	}
 
@@ -86,7 +88,7 @@ public class ObliusGameManager : MonoBehaviour
 			Regeneration.instance.UseLife ();
 			return;
 		}
-		Regeneration.instance.UseLife ();
+		//Regeneration.instance.UseLife ();
 
 
 		ResetGame ();
@@ -137,6 +139,9 @@ public class ObliusGameManager : MonoBehaviour
 		StartCoroutine (TutorialList ());
 	}
 	public void StartTutorialOverride(){
+		if (tutStarted)
+			return;
+		
 		tutStarted = true;
 		StartCoroutine (TutorialList ());
 	}
@@ -254,7 +259,7 @@ public class ObliusGameManager : MonoBehaviour
 
 	public void _ShowFindingMatchScreen(int id)
 	{
-		Regeneration.instance.UseLife ();
+		//Regeneration.instance.UseLife ();
 		GUIManager.instance.ShowInGameGUI ();
 		InGameGUI.instance.startTime = Time.time;
 

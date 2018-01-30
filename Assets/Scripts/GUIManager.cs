@@ -35,9 +35,20 @@ public class GUIManager : MonoBehaviour
 	public GameObject collectingObject;
 	public Text Gold, Gems, XP;
 	public int currentPage;
+
+	public Color Green, Red;
+	public Image MusicImg,SfxImg;
+	public AudioSource MusicSource,SFXSource;
+
+
     void Awake()
     {
         instance = this;
+		if (PlayerPrefs.GetInt ("MusicMute") == 1)
+			MusicBtn ();
+
+		if (PlayerPrefs.GetInt ("SFXMute") == 1)
+			SFXBtn ();
     }
 
     // Use this for initialization
@@ -55,6 +66,36 @@ public class GUIManager : MonoBehaviour
 
 
     }
+
+	public void MusicBtn(){
+		if (MusicImg.color == Red) {
+			MusicSource.volume = 1;
+			MusicImg.color = Green;
+			MusicImg.transform.parent.GetComponentInChildren <Text> ().text = "ON";
+			PlayerPrefs.SetInt ("MusicMute", 0);
+		} else {
+			MusicSource.volume = 0;
+			MusicImg.color = Red;
+			MusicImg.transform.parent.GetComponentInChildren <Text> ().text = "OFF";
+			PlayerPrefs.SetInt ("MusicMute", 1);
+		}
+
+	}
+
+	public void SFXBtn(){
+		if (SfxImg.color == Red) {
+			//MusicSource.volume = 1;
+			SfxImg.color = Green;
+			SfxImg.transform.parent.GetComponentInChildren <Text> ().text = "ON";
+			PlayerPrefs.SetInt ("SFXMute", 0);
+		} else {
+			//MusicSource.volume = 0;
+			SfxImg.color = Red;
+			SfxImg.transform.parent.GetComponentInChildren <Text> ().text = "OFF";
+			PlayerPrefs.SetInt ("SFXMute", 1);
+		}
+	}
+
 
 //	public void StopFindingGame()
 //	{

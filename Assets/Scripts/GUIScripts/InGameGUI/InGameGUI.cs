@@ -21,9 +21,14 @@ public class InGameGUI : MonoBehaviour
 	public Sprite Shield, Speed, Freeze, Health, Minishots, Heatseeker;
 	public PlayerPanelUI[] PlayerPanel;
 	public bool gameStarted;
+
+
     void Awake()
     {
         instance = this;
+
+	
+			
     }
 
     // Use this for initialization
@@ -108,6 +113,8 @@ public class InGameGUI : MonoBehaviour
         SoundsManager.instance.PlayMenuButtonSound();
         GUIManager.instance.ShowPauseGUI();
     }
+
+
 
 
 

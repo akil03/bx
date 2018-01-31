@@ -11,6 +11,10 @@ public class SnakeMeshContainer : MonoBehaviour {
 	Vector3 originalPos;
 	Vector3 originalScale;
 
+	public bool isAnimator;
+
+	public AvatarController AnimController;
+
 	void Awake(){
 		snake = GetComponentInParent<Snake> ();
 		originalPos = transform.localPosition;
@@ -20,6 +24,8 @@ public class SnakeMeshContainer : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		if (GetComponentInChildren <SnakeMeshProprietes> ().Mesh.GetComponent <AvatarController> ())
+			AnimController = GetComponentInChildren  <SnakeMeshProprietes> (true).Mesh.GetComponent <AvatarController> ();
 		
 	}
 
@@ -32,23 +38,32 @@ public class SnakeMeshContainer : MonoBehaviour {
 			return;
 		if (snake.currentMoveDirection == snake.transform.up) {
 			newRot.z = 0;
-			transform.DORotate (newRot, 0.15f, RotateMode.Fast);
+			transform.DORotate (newRot, 0.7f, RotateMode.Fast);
+//			if (AnimController)
+//				AnimController.GoSpin ();
+
 
 		}
 
 		if (snake.currentMoveDirection == -snake.transform.up) {
 			newRot.z = 180;
-			transform.DORotate (newRot, 0.15f, RotateMode.Fast);
+			transform.DORotate (newRot, 0.7f, RotateMode.Fast);
+//			if (AnimController)
+//				AnimController.GoSpin ();
 		}
 
 		if (snake.currentMoveDirection == snake.transform.right) {
 			newRot.z = -90;
-			transform.DORotate (newRot, 0.15f, RotateMode.Fast);
+			transform.DORotate (newRot, 0.7f, RotateMode.Fast);
+//			if (AnimController)
+//				AnimController.GoSpin ();
 		}
 
 		if (snake.currentMoveDirection == -snake.transform.right) {
 			newRot.z = 90;
-			transform.DORotate (newRot, 0.15f, RotateMode.Fast);
+			transform.DORotate (newRot, 0.7f, RotateMode.Fast);
+//			if (AnimController)
+//				AnimController.GoSpin ();
 		}
 
 		//transform.eulerAngles = newRot;

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5dd8ef84dbd762f4a9d64c6462cf19ff
-timeCreated: 1517290692
+guid: 8151d6b23039e7f43b4efbd38202dcc6
+timeCreated: 1517410051
 licenseType: Pro
 ModelImporter:
   serializedVersion: 21
@@ -67,27 +67,29 @@ ModelImporter:
     100118: mixamorig:Spine
     100120: mixamorig:Spine1
     100122: mixamorig:Spine2
-    100124: Teojeo_DN_Teeth
-    100126: Teojeo_Eyebrow
-    100128: Teojeo_face
-    100130: Teojeo_Grp
-    100132: Teojeo_hair
-    100134: Teojeo_L_Eyeball
-    100136: Teojeo_L_Hand
-    100138: Teojeo_L_Leg
-    100140: Teojeo_L_Shocks
-    100142: Teojeo_L_shoe
-    100144: Teojeo_Lower
-    100146: Teojeo_R_Eyeball
-    100148: Teojeo_R_Hand
-    100150: Teojeo_R_Leg
-    100152: Teojeo_R_Shocks
-    100154: Teojeo_R_shoe
-    100156: Teojeo_T_Shirt
-    100158: Teojeo_Tongue
-    100160: Teojeo_UP_Eyelash
-    100162: Teojeo_UP_Teeth
-    100164: //RootNode
+    100124: //RootNode
+    100126: Teojeo_DN_Teeth
+    100128: Teojeo_Eyebrow
+    100130: Teojeo_face
+    100132: Teojeo_Grp
+    100134: Teojeo_hair
+    100136: Teojeo_L_Eyeball
+    100138: Teojeo_L_EyeSpec
+    100140: Teojeo_L_Hand
+    100142: Teojeo_L_Leg
+    100144: Teojeo_L_Shocks
+    100146: Teojeo_L_shoe
+    100148: Teojeo_Lower
+    100150: Teojeo_R_Eyeball
+    100152: Teojeo_R_EyeSpec
+    100154: Teojeo_R_Hand
+    100156: Teojeo_R_Leg
+    100158: Teojeo_R_Shocks
+    100160: Teojeo_R_shoe
+    100162: Teojeo_T_Shirt
+    100164: Teojeo_Tongue
+    100166: Teojeo_UP_Eyelash
+    100168: Teojeo_UP_Teeth
     400000: Body_Grp
     400002: Costuime_Grp
     400004: Eyes_L_Grp
@@ -150,66 +152,73 @@ ModelImporter:
     400118: mixamorig:Spine
     400120: mixamorig:Spine1
     400122: mixamorig:Spine2
-    400124: Teojeo_DN_Teeth
-    400126: Teojeo_Eyebrow
-    400128: Teojeo_face
-    400130: Teojeo_Grp
-    400132: Teojeo_hair
-    400134: Teojeo_L_Eyeball
-    400136: Teojeo_L_Hand
-    400138: Teojeo_L_Leg
-    400140: Teojeo_L_Shocks
-    400142: Teojeo_L_shoe
-    400144: Teojeo_Lower
-    400146: Teojeo_R_Eyeball
-    400148: Teojeo_R_Hand
-    400150: Teojeo_R_Leg
-    400152: Teojeo_R_Shocks
-    400154: Teojeo_R_shoe
-    400156: Teojeo_T_Shirt
-    400158: Teojeo_Tongue
-    400160: Teojeo_UP_Eyelash
-    400162: Teojeo_UP_Teeth
-    400164: //RootNode
+    400124: //RootNode
+    400126: Teojeo_DN_Teeth
+    400128: Teojeo_Eyebrow
+    400130: Teojeo_face
+    400132: Teojeo_Grp
+    400134: Teojeo_hair
+    400136: Teojeo_L_Eyeball
+    400138: Teojeo_L_EyeSpec
+    400140: Teojeo_L_Hand
+    400142: Teojeo_L_Leg
+    400144: Teojeo_L_Shocks
+    400146: Teojeo_L_shoe
+    400148: Teojeo_Lower
+    400150: Teojeo_R_Eyeball
+    400152: Teojeo_R_EyeSpec
+    400154: Teojeo_R_Hand
+    400156: Teojeo_R_Leg
+    400158: Teojeo_R_Shocks
+    400160: Teojeo_R_shoe
+    400162: Teojeo_T_Shirt
+    400164: Teojeo_Tongue
+    400166: Teojeo_UP_Eyelash
+    400168: Teojeo_UP_Teeth
     4300000: Teojeo_hair
-    4300002: Teojeo_L_Eyeball
-    4300004: Teojeo_R_Eyeball
-    4300006: Teojeo_Eyebrow
-    4300008: Teojeo_UP_Eyelash
-    4300010: Teojeo_UP_Teeth
-    4300012: Teojeo_DN_Teeth
-    4300014: Teojeo_Tongue
-    4300016: Teojeo_face
-    4300018: Teojeo_R_shoe
-    4300020: Teojeo_L_shoe
-    4300022: Teojeo_T_Shirt
-    4300024: Teojeo_R_Shocks
-    4300026: Teojeo_L_Shocks
-    4300028: Teojeo_Lower
-    4300030: Teojeo_R_Hand
-    4300032: Teojeo_R_Leg
-    4300034: Teojeo_L_Leg
-    4300036: Teojeo_L_Hand
+    4300002: Teojeo_L_EyeSpec
+    4300004: Teojeo_L_Eyeball
+    4300006: Teojeo_R_EyeSpec
+    4300008: Teojeo_R_Eyeball
+    4300010: Teojeo_Eyebrow
+    4300012: Teojeo_UP_Eyelash
+    4300014: Teojeo_UP_Teeth
+    4300016: Teojeo_DN_Teeth
+    4300018: Teojeo_Tongue
+    4300020: Teojeo_face
+    4300022: Teojeo_R_shoe
+    4300024: Teojeo_L_shoe
+    4300026: Teojeo_T_Shirt
+    4300028: Teojeo_R_Shocks
+    4300030: Teojeo_L_Shocks
+    4300032: Teojeo_Lower
+    4300034: Teojeo_R_Hand
+    4300036: Teojeo_R_Leg
+    4300038: Teojeo_L_Leg
+    4300040: Teojeo_L_Hand
+    7400000: Spinv01
     9500000: //RootNode
     13700000: Teojeo_DN_Teeth
     13700002: Teojeo_Eyebrow
     13700004: Teojeo_face
     13700006: Teojeo_hair
     13700008: Teojeo_L_Eyeball
-    13700010: Teojeo_L_Hand
-    13700012: Teojeo_L_Leg
-    13700014: Teojeo_L_Shocks
-    13700016: Teojeo_L_shoe
-    13700018: Teojeo_Lower
-    13700020: Teojeo_R_Eyeball
-    13700022: Teojeo_R_Hand
-    13700024: Teojeo_R_Leg
-    13700026: Teojeo_R_Shocks
-    13700028: Teojeo_R_shoe
-    13700030: Teojeo_T_Shirt
-    13700032: Teojeo_Tongue
-    13700034: Teojeo_UP_Eyelash
-    13700036: Teojeo_UP_Teeth
+    13700010: Teojeo_L_EyeSpec
+    13700012: Teojeo_L_Hand
+    13700014: Teojeo_L_Leg
+    13700016: Teojeo_L_Shocks
+    13700018: Teojeo_L_shoe
+    13700020: Teojeo_Lower
+    13700022: Teojeo_R_Eyeball
+    13700024: Teojeo_R_EyeSpec
+    13700026: Teojeo_R_Hand
+    13700028: Teojeo_R_Leg
+    13700030: Teojeo_R_Shocks
+    13700032: Teojeo_R_shoe
+    13700034: Teojeo_T_Shirt
+    13700036: Teojeo_Tongue
+    13700038: Teojeo_UP_Eyelash
+    13700040: Teojeo_UP_Teeth
   materials:
     importMaterials: 1
     materialName: 0
@@ -233,7 +242,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Spinv01
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -257,7 +294,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1

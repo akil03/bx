@@ -29,6 +29,9 @@ public class SwipeHandler : MonoBehaviour {
 	public GameObject Joystick, Dpad;
 
 	float lastTap;
+
+
+
 	void Awake(){
 		instance = this;
 		lastSwipeDirection = SwipeDirection.up;

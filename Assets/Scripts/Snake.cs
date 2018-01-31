@@ -109,6 +109,12 @@ public class Snake : MonoBehaviour
 		snakeMeshProprietes.collectedPiece = collectedPieceSprite;
 		//spriteColor = snakeMeshProprietes.snakeColor;
 		snakeMeshProprietes.snakeColor=spriteColor ;
+
+		if (snakeMeshProprietes.Mesh.GetComponent <AvatarController> ()) {
+			snakeMeshContainer.AnimController = snakeMeshProprietes.Mesh.GetComponent <AvatarController> ();
+			snakeMeshContainer.AnimController.Run ();
+		}
+
 		SetName ();
 		ReasonDeath = "";
 		currentHP = maxHP;
@@ -186,18 +192,26 @@ public class Snake : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.DownArrow)){
 			SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.down;
 
+			if (snakeMeshContainer.AnimController)
+				snakeMeshContainer.AnimController.GoRight ();
 		}
 
 		if(Input.GetKeyDown(KeyCode.UpArrow)){
 			SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.up;
+			if (snakeMeshContainer.AnimController)
+				snakeMeshContainer.AnimController.GoRight ();
 		}
 
 		if(Input.GetKeyDown(KeyCode.LeftArrow)){
 			SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.left;
+			if (snakeMeshContainer.AnimController)
+				snakeMeshContainer.AnimController.GoRight ();
 		}
 
 		if(Input.GetKeyDown(KeyCode.RightArrow)){
 			SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.right;
+			if (snakeMeshContainer.AnimController)
+				snakeMeshContainer.AnimController.GoRight ();
 		}
 
 
@@ -689,6 +703,10 @@ public class Snake : MonoBehaviour
 
 		} else {
 			targetSnake.ReasonDeath = name + " ended " + targetSnake.name + "'s trail game !!";
+			if (snakeMeshContainer.AnimController)
+				snakeMeshContainer.AnimController.Kill ();
+
+
 			if (!PlayerPrefs.HasKey ("TutorialComplete")&&!isLog) {
 				isLog = true;
 

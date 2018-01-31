@@ -11,10 +11,15 @@ public class SnakeMeshProprietes : MonoBehaviour {
 
 	public Color snakeColor;
 	public GameObject Mesh, Ball, Shield;
+
+	public bool isAnimator;
 	void Awake(){
 		//collectedPiece = patterns [Random.Range (0, patterns.Length)];
 		if(Shield)
 			Shield.SetActive (false);
+
+	
+
 		enabled = false;
 	}
 

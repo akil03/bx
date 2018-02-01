@@ -40,6 +40,11 @@ public class AvatarController : MonoBehaviour {
 		_animator.Play (AnimStates.Spin);
 	}
 
+	public void DeathAnim(){
+		_animator.Play (AnimStates.Death);
+	}
+
+
 	[System.Serializable]
 	public class AnimationStates{
 		public string Idle = "Idle";

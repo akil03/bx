@@ -1188,7 +1188,10 @@ public class Snake : MonoBehaviour
 
 
 		if (isBot) {
-		return	NamesManager.instance.GetRandomName ();
+			if(ObliusGameManager.BotType==0)
+				return	NamesManager.instance.GetRandomName ();
+			else
+				return	NamesManager.instance.GetFakeName ();
 		} else {
 
 			if (GUIManager.instance.mainMenuGUI.playerNameField.text != "") {

@@ -26,7 +26,7 @@ public class ObliusGameManager : MonoBehaviour
 	public bool oneMoreChanceUsed = false;
 	public int PlayerLives, EnemyLives;
 	public UIElement googleLoginPopup;
-
+	public static int BotType;
 
 	void Awake ()
 	{
@@ -83,7 +83,7 @@ public class ObliusGameManager : MonoBehaviour
 //			return;
 //		}
 //
-
+		BotType = 0;
 		if (Regeneration.instance.LifeAmount < 1) {
 			Regeneration.instance.UseLife ();
 			return;
@@ -147,7 +147,8 @@ public class ObliusGameManager : MonoBehaviour
 	}
 
 	IEnumerator TutorialList(){
-		
+		BotType = 0;
+
 		ResetGame ();
 		//SnakesSpawner.instance.SpawnPlayer ();
 
@@ -351,6 +352,7 @@ public class ObliusGameManager : MonoBehaviour
 
 	void AddToMatchmakingQueue()
 	{
+		Invoke ("FakeBotMatch", 8);
 		if (matchmakingPhase) 
 		{
 			if (PhotonNetwork.room.PlayerCount >= 2)
@@ -376,13 +378,15 @@ public class ObliusGameManager : MonoBehaviour
 		}
 	}
 
-	public void FailSaveMatch(){
+	public void FakeBotMatch(){
 		if (PhotonNetwork.room.PlayerCount < 2) {
+			
 			PhotonNetwork.LeaveRoom ();
-
+			isGameSearchFail = true;
 		}
 
 	}
+		
 
 	public void CancelFinding()
 	{
@@ -460,6 +464,7 @@ public class ObliusGameManager : MonoBehaviour
 		if (isGameSearchFail) {
 			StartGame ();
 			isGameSearchFail = false;
+			BotType = 1;
 		}
 	}
 

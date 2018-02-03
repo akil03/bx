@@ -27,6 +27,11 @@ public class NamesManager : MonoBehaviour {
 
 	}
 
+	public string GetFakeName(){
+		int random = Random.Range (0, names.Length);
+		return names [random];
+	}
+
 
 
 

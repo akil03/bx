@@ -69,9 +69,10 @@ public class GameOverGUI : MonoBehaviour {
 
 		Invoke ("ShowRewards", 1f);
 
-		if (PhotonNetwork.inRoom)
+		if (PhotonNetwork.inRoom||ObliusGameManager.BotType==1)
 		{
 			//RewardWindow.transform.DOMove (
+			GSUpdateMMR.instance.UpdateMMR (25);
 			MMR [0].text = "+25";
 			MMR [1].text = "-25";
 		} else {
@@ -105,8 +106,9 @@ public class GameOverGUI : MonoBehaviour {
 
 
 
-		if (PhotonNetwork.inRoom)
+		if (PhotonNetwork.inRoom||ObliusGameManager.BotType==1)
 		{
+			GSUpdateMMR.instance.UpdateMMR (-25);
 			MMR [0].text = "-25";
 			MMR [1].text = "+25";
 		} else {

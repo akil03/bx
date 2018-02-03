@@ -28,10 +28,9 @@ public class Server : MonoBehaviour
 
 		if (PhotonView.Get (selected.gameObject).isMine) {
 			GUIManager.instance.gameOverGUI.OnLose ();
-			GSUpdateMMR.instance.UpdateMMR (-25);
 		} else {
 			GUIManager.instance.gameOverGUI.OnWin ();
-			GSUpdateMMR.instance.UpdateMMR (25);
+			//GSUpdateMMR.instance.UpdateMMR (25);
 		}
 		GUIManager.instance.gameOverGUI.Reason.text = reason;
 

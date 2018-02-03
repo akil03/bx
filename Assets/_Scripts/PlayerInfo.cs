@@ -187,6 +187,7 @@ public class PlayerInfo : MonoBehaviour {
 		str = str.Remove (str.Length - 1,1);
 		return str;
 	}
+		
 
 	public string ConvertListToString(List<string> list)
 	{

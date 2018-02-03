@@ -376,6 +376,14 @@ public class ObliusGameManager : MonoBehaviour
 		}
 	}
 
+	public void FailSaveMatch(){
+		if (PhotonNetwork.room.PlayerCount < 2) {
+			PhotonNetwork.LeaveRoom ();
+
+		}
+
+	}
+
 	public void CancelFinding()
 	{
 		if (PhotonNetwork.room.PlayerCount < 2) 

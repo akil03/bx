@@ -21,11 +21,11 @@ public class AvatarController : MonoBehaviour {
 
 
 	public void GoLeft(){
-	//	_animator.Play (AnimStates.TurnLeft);
+		_animator.Play (AnimStates.TurnLeft);
 	}
 
 	public void GoRight(){
-	//	_animator.Play (AnimStates.TurnRight);
+		_animator.Play (AnimStates.TurnRight);
 	}
 
 	public void Kill(){

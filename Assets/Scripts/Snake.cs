@@ -123,7 +123,6 @@ public class Snake : MonoBehaviour
 			if (isLocal) {
 				CameraHandler.instance.objectToFollow = this.gameObject;
 
-
 				if (playerID == 1) {
 					CameraHandler.instance.SetDirection (0);
 					movementDirection = 1;

@@ -14,11 +14,15 @@ public class GoogleActor : MonoBehaviour
 
 	void Start()
 	{
+		#if UNITY_IOS
+		print("");
+		#else
 		if(PlayerPrefs.GetInt(key)==0)
 		Login (false);
 		if(PlayerPrefs.GetInt(key)==1)
 		Login (true);	
-			
+		#endif
+
 	}
 
 	public void Login(bool status)

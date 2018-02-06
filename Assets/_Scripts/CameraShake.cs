@@ -8,6 +8,8 @@ public class CameraShake : MonoBehaviour {
 	IEnumerator currentShakeCoroutine;
 
 	public void StartShake(Properties properties) {
+		return;
+
 		if (currentShakeCoroutine != null) {
 			StopCoroutine (currentShakeCoroutine);
 		}

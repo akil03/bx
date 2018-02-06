@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
+using UnityEngine.SocialPlatforms;
+
 public class GameSparksActor : MonoBehaviour 
 {
 	[SerializeField]StringObject email;
@@ -29,7 +31,20 @@ public class GameSparksActor : MonoBehaviour
 		#else
 	//	email.value = "kannan.jan21@gmail.com";
 		#endif
+
+	
+		#if UNITY_IOS
+		email.value = Social.localUser.id;
+		Social.localUser.Authenticate (success => {
+		if (success)
+		Debug.Log("Success");
+		else
+		Debug.Log("Failed to authenticate");
+		});
+		#endif
+
 		Login ();
+
 
 	}
 

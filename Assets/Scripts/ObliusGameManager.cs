@@ -148,6 +148,7 @@ public class ObliusGameManager : MonoBehaviour
 
 	IEnumerator TutorialList(){
 		BotType = 0;
+		PlayerPrefs.SetInt ("TutorialComplete", 0);
 
 		ResetGame ();
 		//SnakesSpawner.instance.SpawnPlayer ();
@@ -158,7 +159,7 @@ public class ObliusGameManager : MonoBehaviour
 		gameState = GameState.game;
 		GUIManager.instance.BG.SetActive (false);
 		GUIManager.instance.mainMenuGUI.transform.parent.gameObject.SetActive (false);
-		GUIManager.instance.ShowTutorialLog ("Welcome to Battle Xonix !! \nI will be your trainer today, Just follow my instructions !!",5);
+		GUIManager.instance.ShowTutorialLog ("Welcome to Battle Xonix !! \nI will be your trainer today, Just follow my instructions !!",2);
 
 		yield return new WaitForSeconds (1.3f);
 

@@ -5,9 +5,10 @@ using UnityEngine;
 public class AvatarController : MonoBehaviour {
 	public AnimationStates AnimStates;
 	public Animator _animator;
+	public GameObject Ball,GameBall;
 	// Use this for initialization
 	void Start () {
-		
+		Idle ();
 	}
 	
 	// Update is called once per frame
@@ -15,23 +16,35 @@ public class AvatarController : MonoBehaviour {
 		
 	}
 
+	public void Idle(){
+		_animator.Play (AnimStates.Idle);
+		if (Ball)
+			Ball.SetActive (true);
+
+		GameBall.SetActive (false);
+	}
+
 	public void Run(){
 		_animator.Play (AnimStates.Run);
+		if (Ball)
+			Ball.SetActive (false);
+
+		GameBall.SetActive (true);
 	}
 
 
 	public void GoLeft(){
-		_animator.Play (AnimStates.TurnLeft);
+		//_animator.Play (AnimStates.TurnLeft);
 	}
 
 	public void GoRight(){
-		_animator.Play (AnimStates.TurnRight);
+		//_animator.Play (AnimStates.TurnRight);
 	}
 
 	public void Kill(){
 		int Rand = Random.Range (0, 50);
 	//	if(Rand<25)
-			_animator.Play (AnimStates.Kill);
+		_animator.Play (AnimStates.Spin);
 	//	else
 	//		_animator.Play (AnimStates.Spin);
 	}

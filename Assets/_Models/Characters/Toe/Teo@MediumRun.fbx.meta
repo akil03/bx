@@ -1,0 +1,200 @@
+fileFormatVersion: 2
+guid: 16d3addba13972d44b613d99ab34564f
+timeCreated: 1517902296
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Body_Grp
+    100002: Costuime_Grp
+    100004: Eyes_L_Grp
+    100006: Eyes_R_Grp
+    100008: Head_Grp
+    100010: //RootNode
+    100012: Teojeo_DN_Teeth
+    100014: Teojeo_Eyebrow
+    100016: Teojeo_face
+    100018: Teojeo_hair
+    100020: Teojeo_L_Eyeball
+    100022: Teojeo_L_EyeSpec
+    100024: Teojeo_L_Hand
+    100026: Teojeo_L_Leg
+    100028: Teojeo_L_Shocks
+    100030: Teojeo_L_shoe
+    100032: Teojeo_Lower
+    100034: Teojeo_R_Eyeball
+    100036: Teojeo_R_EyeSpec
+    100038: Teojeo_R_Hand
+    100040: Teojeo_R_Leg
+    100042: Teojeo_R_Shocks
+    100044: Teojeo_R_shoe
+    100046: Teojeo_T_Shirt
+    100048: Teojeo_Tongue
+    100050: Teojeo_UP_Eyelash
+    100052: Teojeo_UP_Teeth
+    400000: Body_Grp
+    400002: Costuime_Grp
+    400004: Eyes_L_Grp
+    400006: Eyes_R_Grp
+    400008: Head_Grp
+    400010: //RootNode
+    400012: Teojeo_DN_Teeth
+    400014: Teojeo_Eyebrow
+    400016: Teojeo_face
+    400018: Teojeo_hair
+    400020: Teojeo_L_Eyeball
+    400022: Teojeo_L_EyeSpec
+    400024: Teojeo_L_Hand
+    400026: Teojeo_L_Leg
+    400028: Teojeo_L_Shocks
+    400030: Teojeo_L_shoe
+    400032: Teojeo_Lower
+    400034: Teojeo_R_Eyeball
+    400036: Teojeo_R_EyeSpec
+    400038: Teojeo_R_Hand
+    400040: Teojeo_R_Leg
+    400042: Teojeo_R_Shocks
+    400044: Teojeo_R_shoe
+    400046: Teojeo_T_Shirt
+    400048: Teojeo_Tongue
+    400050: Teojeo_UP_Eyelash
+    400052: Teojeo_UP_Teeth
+    2300000: Teojeo_DN_Teeth
+    2300002: Teojeo_Eyebrow
+    2300004: Teojeo_face
+    2300006: Teojeo_hair
+    2300008: Teojeo_L_Eyeball
+    2300010: Teojeo_L_EyeSpec
+    2300012: Teojeo_L_Hand
+    2300014: Teojeo_L_Leg
+    2300016: Teojeo_L_Shocks
+    2300018: Teojeo_L_shoe
+    2300020: Teojeo_Lower
+    2300022: Teojeo_R_Eyeball
+    2300024: Teojeo_R_EyeSpec
+    2300026: Teojeo_R_Hand
+    2300028: Teojeo_R_Leg
+    2300030: Teojeo_R_Shocks
+    2300032: Teojeo_R_shoe
+    2300034: Teojeo_T_Shirt
+    2300036: Teojeo_Tongue
+    2300038: Teojeo_UP_Eyelash
+    2300040: Teojeo_UP_Teeth
+    3300000: Teojeo_DN_Teeth
+    3300002: Teojeo_Eyebrow
+    3300004: Teojeo_face
+    3300006: Teojeo_hair
+    3300008: Teojeo_L_Eyeball
+    3300010: Teojeo_L_EyeSpec
+    3300012: Teojeo_L_Hand
+    3300014: Teojeo_L_Leg
+    3300016: Teojeo_L_Shocks
+    3300018: Teojeo_L_shoe
+    3300020: Teojeo_Lower
+    3300022: Teojeo_R_Eyeball
+    3300024: Teojeo_R_EyeSpec
+    3300026: Teojeo_R_Hand
+    3300028: Teojeo_R_Leg
+    3300030: Teojeo_R_Shocks
+    3300032: Teojeo_R_shoe
+    3300034: Teojeo_T_Shirt
+    3300036: Teojeo_Tongue
+    3300038: Teojeo_UP_Eyelash
+    3300040: Teojeo_UP_Teeth
+    4300000: Teojeo_hair
+    4300002: Teojeo_L_EyeSpec
+    4300004: Teojeo_L_Eyeball
+    4300006: Teojeo_R_EyeSpec
+    4300008: Teojeo_R_Eyeball
+    4300010: Teojeo_Eyebrow
+    4300012: Teojeo_UP_Eyelash
+    4300014: Teojeo_UP_Teeth
+    4300016: Teojeo_DN_Teeth
+    4300018: Teojeo_Tongue
+    4300020: Teojeo_face
+    4300022: Teojeo_R_shoe
+    4300024: Teojeo_L_shoe
+    4300026: Teojeo_T_Shirt
+    4300028: Teojeo_R_Shocks
+    4300030: Teojeo_L_Shocks
+    4300032: Teojeo_Lower
+    4300034: Teojeo_R_Hand
+    4300036: Teojeo_R_Leg
+    4300038: Teojeo_L_Leg
+    4300040: Teojeo_L_Hand
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

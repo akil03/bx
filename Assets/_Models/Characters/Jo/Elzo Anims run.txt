@@ -1,0 +1,5 @@
+vvvfastrun 169-184
+fastRightturn 46.0-56.0
+fastLeftturn 22.0-31.0
+left turn  89-99
+rightturn 118-126

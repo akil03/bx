@@ -37,7 +37,7 @@ public class ObliusGameManager : MonoBehaviour
 	void Start ()
 	{
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
-		//PlayerPrefs.DeleteAll ();
+		PlayerPrefs.DeleteAll ();
 		PlayerPrefs.SetInt ("TutorialComplete", 1);
 		//StartTutorial ();
 	}
@@ -211,6 +211,7 @@ public class ObliusGameManager : MonoBehaviour
 
 		GUIManager.instance.ShowInGameGUI ();
 		GUIManager.instance.inGameGUI.PlayerPanel [1].gameObject.SetActive (false);
+		GUIManager.instance.inGameGUI.PlayerPanel [1].FillRatio.transform.parent.gameObject.SetActive (false);
 		GUIManager.instance.inGameGUI.totalGameTime = 9999;
 		GUIManager.instance.inGameGUI.PlayerPanel [0].RemainingLives.gameObject.SetActive (false);
 		GUIManager.instance.inGameGUI.TimerText.transform.parent.gameObject.SetActive (false);
@@ -227,6 +228,7 @@ public class ObliusGameManager : MonoBehaviour
 		GroundSpawner.instance.ClearGround ();
 		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (false,1));
 		GUIManager.instance.ShowInGameGUI ();
+		GUIManager.instance.inGameGUI.PlayerPanel [1].FillRatio.transform.parent.gameObject.SetActive (true);
 		yield return new WaitForSeconds (0.5f);
 		CameraHandler.instance.objectToFollow = SnakesSpawner.instance.enemySnake.gameObject;
 		SnakesSpawner.instance.enemySnake.speed = 0;

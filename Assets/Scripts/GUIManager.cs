@@ -348,24 +348,24 @@ public class GUIManager : MonoBehaviour
 
 		int temp = int.Parse (txtObj.text);
 		for (int i = 0; i < 20; i++) {
-//			GameObject GO = Instantiate (collectingObject, txtObj.transform.parent);
-//			GO.transform.position = new Vector3 (-80, -60, 20);
-//			GO.GetComponent <Image> ().sprite = img;
-//			GO.transform.DOMove (txtObj.transform.position, 0.5f, false).OnComplete (() => {
-//				txtObj.text = (int.Parse (txtObj.text) + 1).ToString ();
-//				txtObj.transform.parent.GetChild (0).DOScale (new Vector3 (1.15f, 1.15f, 1.15f), 0.1f).OnComplete (() => {
-//					txtObj.transform.parent.GetChild (0).DOScale (Vector3.one, 0.1f);
-//				});
-//				Destroy (GO);
-//			});
-//			yield return new WaitForSeconds (0.5f/20.0f );
-
-			txtObj.text = (int.Parse (txtObj.text) + count/20).ToString ();
-			txtObj.transform.parent.DOScale (new Vector3 (1.15f, 1.15f, 1.15f), 0.1f).OnComplete (() => {
-				txtObj.transform.parent.DOScale (Vector3.one, 0.1f);
+			GameObject GO = Instantiate (collectingObject, txtObj.transform.parent);
+			GO.transform.position = new Vector3 (-80, -60, 20);
+			GO.GetComponent <Image> ().sprite = img;
+			GO.transform.DOMove (txtObj.transform.position, 0.5f, false).OnComplete (() => {
+				txtObj.text = (int.Parse (txtObj.text) + 1).ToString ();
+				txtObj.transform.parent.GetChild (0).DOScale (new Vector3 (1.15f, 1.15f, 1.15f), 0.1f).OnComplete (() => {
+					txtObj.transform.parent.GetChild (0).DOScale (Vector3.one, 0.1f);
+				});
+				Destroy (GO);
 			});
+			yield return new WaitForSeconds (0.5f/20.0f );
 
-			yield return new WaitForSeconds (0.05f );
+//			txtObj.text = (int.Parse (txtObj.text) + count/20).ToString ();
+//			txtObj.transform.parent.DOScale (new Vector3 (1.15f, 1.15f, 1.15f), 0.1f).OnComplete (() => {
+//				txtObj.transform.parent.DOScale (Vector3.one, 0.1f);
+//			});
+//
+//			yield return new WaitForSeconds (0.05f );
 		}
 		txtObj.text = (temp + count).ToString ();
 	}

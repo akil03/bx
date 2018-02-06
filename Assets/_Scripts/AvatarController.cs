@@ -7,7 +7,7 @@ public class AvatarController : MonoBehaviour {
 	public Animator _animator;
 	public GameObject Ball,GameBall;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		Idle ();
 	}
 	
@@ -25,6 +25,7 @@ public class AvatarController : MonoBehaviour {
 	}
 
 	public void Run(){
+		print ("run");
 		_animator.Play (AnimStates.Run);
 		if (Ball)
 			Ball.SetActive (false);

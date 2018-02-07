@@ -21,14 +21,15 @@ public class FacebookActor : MonoBehaviour
 		fbFriends.Reset ();
 	}
 
-	public void Login()
-	{	
-		if (!FB.IsLoggedIn)
-			FB.LogInWithReadPermissions (new List<string> () { "public_profile", "email", "user_friends" }, LoginCallback);
-		else
+	public void CanLogin()
+	{
+		if (PlayerPrefs.GetInt (key) == 1)
 			fbLoginSuccess.Fire ();
-//		else
-//			LoginCallback ();
+	}
+
+	public void Login()
+	{
+		FB.LogInWithReadPermissions (new List<string> () { "public_profile", "email", "user_friends" }, LoginCallback);
 	}
 
 	void LoginCallback(ILoginResult result)
@@ -48,6 +49,7 @@ public class FacebookActor : MonoBehaviour
 	{
 		FB.LogOut ();
 		fbLogout.Fire ();
+		fbFriends.Reset ();
 		PlayerPrefs.SetInt (key,0);
 		print ("FB logged out!");
 	}

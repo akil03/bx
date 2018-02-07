@@ -69,6 +69,11 @@ public class GameSparksActor : MonoBehaviour
 		GS.Reset ();
 		GS.Disconnect ();
 		logoutSuccess.Fire ();
+		leaderboardData.Reset ();
+		fbFriends.Reset ();
+		email.Reset ();
+		userId.Reset ();
+		userName.Reset ();
 		print("Game Sparks logged out!!");
 	}
 

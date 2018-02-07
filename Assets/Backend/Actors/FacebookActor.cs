@@ -11,15 +11,24 @@ public class FacebookActor : MonoBehaviour
 	[SerializeField]FbFriendsObject fbFriends;
 	string key="fbLoggedIn";
 
-	public void Login(bool check)
+	void OnEnable()
+	{
+		fbFriends.Reset ();
+	}
+
+	void OnDisable()
+	{
+		fbFriends.Reset ();
+	}
+
+	public void Login()
 	{	
-		if (check) 
-		{
-			if(PlayerPrefs.GetInt (key)==1)	
-				FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" },LoginCallback);		
-		}
+		if (!FB.IsLoggedIn)
+			FB.LogInWithReadPermissions (new List<string> () { "public_profile", "email", "user_friends" }, LoginCallback);
 		else
-			FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" },LoginCallback);
+			fbLoginSuccess.Fire ();
+//		else
+//			LoginCallback ();
 	}
 
 	void LoginCallback(ILoginResult result)

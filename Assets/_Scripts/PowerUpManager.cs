@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class PowerUpManager : MonoBehaviour {
 
 	public static PowerUpManager instance;
@@ -16,8 +16,10 @@ public class PowerUpManager : MonoBehaviour {
 	public void StartSpawn () {
 		ClearPowerUps ();
 		NetworkClear ();
-		SpawnRunePowerup ();
-		Invoke ("StartSpawnTimer",5);
+		//SpawnRunePowerup ();
+		CancelInvoke ();
+		ClearPowerUpsLocal ();
+		Invoke ("SpawnPowerupLocal",5);
 	}
 
 	public void StartNetworkPower(){
@@ -53,6 +55,45 @@ public class PowerUpManager : MonoBehaviour {
 //		spawnedPowerups.Add (Go);
 //		Invoke ("SpawnPowerup",Random.Range (minInterval,maxInterval));
 //	}
+
+
+	public void SpawnPowerupLocal(){
+		int Rand;
+
+		Rand = Random.Range (0, Powerups.Length);
+		GameObject Go;
+		Go = Instantiate (Powerups [Rand], transform);
+		Go.transform.localPosition = new Vector3 (-4, 0, 0);
+		spawnedPowerups.Add (Go);
+
+		Rand = Random.Range (0, Powerups.Length);
+		Go = Instantiate (Powerups [Rand], transform);
+		Go.transform.localPosition = new Vector3 (4, 0, 0);
+
+		spawnedPowerups.Add (Go);
+
+		Invoke ("SpawnPowerupLocal", 20);
+		Invoke ("ClearPowerUpsLocal", 15);
+	}
+
+	public void ClearPowerUpsLocal(){
+		if (spawnedPowerups.Count<1)
+			return;
+
+
+		foreach (GameObject GO in spawnedPowerups.ToArray()) {
+			try {
+				spawnedPowerups.Remove (GO);
+				GO.transform.DOScale (Vector3.zero,0.4f).OnComplete (()=>{
+					Destroy (GO);
+				});
+
+			} catch {
+				print ("stupid bug");
+			}
+		}
+	}
+
 
 
 	public void SpawnRunePowerup(){

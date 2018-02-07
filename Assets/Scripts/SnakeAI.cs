@@ -65,9 +65,14 @@ public class SnakeAI : MonoBehaviour
 		}
 		catch{
 			print ("bug");
+			isGoingToKillEnemySnake = false;
+			targetEnemySnakeToKill = null;
+			targetEnemySnakeTailGroundPiece = null;
+			movesBeforeReturninToOwnedPieces = 0;
+
 			snake.haveToDie = true;
-			snake.ReasonDeath = snake.name + " decided to kill himself";
-			GUIManager.instance.ShowLog (snake.name + " decided to kill himself");
+			//snake.ReasonDeath = snake.name + " decided to kill himself";
+			//GUIManager.instance.ShowLog (snake.name + " decided to kill himself");
 		}
 
 

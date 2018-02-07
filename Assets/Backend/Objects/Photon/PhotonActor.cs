@@ -32,6 +32,7 @@ public class PhotonActor : MonoBehaviour
 	void OnConnectedToMaster()
 	{
 		connectToMasterSuccess.Fire ();
+		SavePing ();
 	}
 
 	void OnConnectionFail(DisconnectCause cause)
@@ -77,6 +78,12 @@ public class PhotonActor : MonoBehaviour
 	void OnLeftRoom()
 	{
 		leftRoom.Fire ();
+	}
+
+	void SavePing()
+	{
+		GameSparkRequests request = new GameSparkRequests ();
+		request.Request ("SetPlayerPing", "PING", PhotonPingManager.ping,Print);
 	}
 
 	public void Print(string str)

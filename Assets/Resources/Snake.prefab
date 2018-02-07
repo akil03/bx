@@ -377,6 +377,7 @@ MonoBehaviour:
   Mesh: {fileID: 0}
   Ball: {fileID: 0}
   Shield: {fileID: 0}
+  isAnimator: 0
 --- !u!114 &114246764952717460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -462,6 +463,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeMesh: {fileID: 1538930370312572, guid: 4eb7b79cf9e4d6444afa360931f78bcd, type: 2}
+  isAnimator: 0
+  AnimController: {fileID: 0}
 --- !u!114 &114580800233846492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -486,7 +489,7 @@ MonoBehaviour:
   targetEnemySnakeToKill: {fileID: 0}
   targetEnemySnakeTailGroundPiece: {fileID: 0}
   onlyKillEnemyIfPlayer: 0
-  useImprovedIA: 0
+  useImprovedIA: 1
 --- !u!114 &114655402151378890
 MonoBehaviour:
   m_ObjectHideFlags: 1

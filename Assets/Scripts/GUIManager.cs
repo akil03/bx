@@ -25,7 +25,7 @@ public class GUIManager : MonoBehaviour
 
 	public UIElement[] Pages;
 	public Transform FillBar;
-	public UIElement InternetCheckPage,SettingsPage,matchLoading;
+	public UIElement InternetCheckPage,SettingsPage,matchLoading,PlayerStats;
 	public GameObject BG;
 
 	public Text mmrTxt,playerID_TXT;
@@ -271,6 +271,8 @@ public class GUIManager : MonoBehaviour
 		SettingsPage.gameObject.SetActive (true);
 		SettingsPage.Show (false);
 	}
+		
+
 
 	public void HideSettings(){
 		SettingsPage.Hide (false);

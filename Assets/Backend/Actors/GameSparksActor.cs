@@ -33,15 +33,7 @@ public class GameSparksActor : MonoBehaviour
 		#endif
 
 	
-		#if UNITY_IOS
-		email.value = Social.localUser.id;
-		Social.localUser.Authenticate (success => {
-		if (success)
-		Debug.Log("Success");
-		else
-		Debug.Log("Failed to authenticate");
-		});
-		#endif
+
 
 		Login ();
 

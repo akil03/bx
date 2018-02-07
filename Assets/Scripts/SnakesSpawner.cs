@@ -45,7 +45,7 @@ public class SnakesSpawner : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		selectedMeshIndex = Random.Range (0, usableSnakeMeshes.Count);
+		//selectedMeshIndex = Random.Range (0, usableSnakeMeshes.Count);
 		ShowPreview ();
 		//LoadUsableMeshesFromResources ();
 		//snakeMeshAssignedToPlayer = GetMeshUsedByPlayer ();

@@ -10,6 +10,16 @@ public class LeaderboardActor : MonoBehaviour
 	public LeaderboardObject leaderboardData;
 	public List<LeaderboardGUI> players;
 
+	void OnEnable()
+	{
+		leaderboardData.Reset ();
+	}
+
+	void OnDisable()
+	{
+		leaderboardData.Reset ();
+	}
+
 	public void Create()
 	{
 		foreach (var friend in leaderboardData.value.scriptData.AllData.scriptData.FriendsList) 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using GameSparks.Core;
-
+using UnityEngine.SocialPlatforms;
 public class GoogleActor : MonoBehaviour 
 {
 	[SerializeField]EventObject googleLoginSuccess;
@@ -14,8 +14,20 @@ public class GoogleActor : MonoBehaviour
 
 	void Start()
 	{
+		userName.Reset ();
+		email.Reset ();
 		#if UNITY_IOS
-		print("");
+		Social.localUser.Authenticate (success => {
+			if (success)
+			{
+				email.value = Social.localUser.id;
+				userName.value = Social.localUser.userName;
+				googleLoginSuccess.Fire();
+			}
+			else
+				Debug.Log("Failed to authenticate");
+		});
+
 		#else
 		if(PlayerPrefs.GetInt(key)==0)
 		Login (false);

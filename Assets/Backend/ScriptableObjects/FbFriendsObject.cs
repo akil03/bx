@@ -6,4 +6,10 @@ using UnityEngine;
 public class FbFriendsObject : ScriptableObject
 {
 	public FBFriendsData value;
+
+
+	public void Reset()
+	{
+		value = new FBFriendsData ();
+	}
 }

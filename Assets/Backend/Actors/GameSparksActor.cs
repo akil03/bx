@@ -26,18 +26,10 @@ public class GameSparksActor : MonoBehaviour
 	void Start()
 	{
 		#if UNITY_EDITOR
-		//email.value = "kannan.jan21@gmail.com";
-		email.value = "akil.hotshot@gmail.com";
-		#else
-	//	email.value = "kannan.jan21@gmail.com";
+//		email.value = "akil.hotshot@gmail.com";
+		email.value = "kannan.jan21@gmail.com";
 		#endif
-
-	
-
-
 		Login ();
-
-
 	}
 
 	public void Login()
@@ -52,7 +44,7 @@ public class GameSparksActor : MonoBehaviour
 				{
 					ReloadScene ();		
 				}	
-				print("Game Sparks login failed!!");
+					print(AR.Errors.JSON);
 			}
 			else
 			{
@@ -118,13 +110,12 @@ public class GameSparksActor : MonoBehaviour
 		{
 			GameSparkRequests getIdRequest = new GameSparkRequests ();
 			getIdRequest.Request ("GetGSFromFB","FBID",f.id,AddFBFriendCallback);
-			print (f.name+"'s get gs id from fb request is sent!");
 		}			
 	}
 
 	void AddFBFriendCallback(string str)
 	{
-		print (str);
+		//print (str);
 		AddFriendData _addFriendData = JsonUtility.FromJson<AddFriendData> (str);
 		if (_addFriendData.scriptData.findQueryResult.Count > 0) {
 			GameSparkRequests addFriendRequest = new GameSparkRequests ();
@@ -133,7 +124,7 @@ public class GameSparksActor : MonoBehaviour
 		else
 		{
 			friendsAdded.Add (false);
-			print (str);
+			//print (str);
 		}
 	}
 

@@ -36,9 +36,10 @@ public class FacebookActor : MonoBehaviour
 	{
 		if (string.IsNullOrEmpty (result.Error)) 
 		{
-			print (result.RawResult);
 			if (!result.RawResult.Contains ("cancelled")) 
 			{
+				GameSparkRequests request = new GameSparkRequests ();
+				request.Request ("LinkFBID","FBID",AccessToken.CurrentAccessToken.UserId,Print);
 				fbLoginSuccess.Fire ();
 				PlayerPrefs.SetInt (key,1);
 			}
@@ -63,5 +64,10 @@ public class FacebookActor : MonoBehaviour
 	{
 		fbFriends.value = JsonUtility.FromJson<FBFriendsData> (result.RawResult);
 		gotFBFriends.Fire ();
+	}
+
+	void Print(string str)
+	{
+		print (str);
 	}
 }

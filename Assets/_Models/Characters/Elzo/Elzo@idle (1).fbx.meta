@@ -1,0 +1,258 @@
+fileFormatVersion: 2
+guid: 277c6839d2d1dff4494d37f974b626a7
+timeCreated: 1518105201
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Elzorig:Head
+    100004: Elzorig:HeadTop_End
+    100006: Elzorig:Hips
+    100008: Elzorig:LeftArm
+    100010: Elzorig:LeftFoot
+    100012: Elzorig:LeftForeArm
+    100014: Elzorig:LeftHand
+    100016: Elzorig:LeftHandIndex1
+    100018: Elzorig:LeftHandIndex2
+    100020: Elzorig:LeftHandIndex3
+    100022: Elzorig:LeftHandIndex4
+    100024: Elzorig:LeftHandMiddle1
+    100026: Elzorig:LeftHandMiddle2
+    100028: Elzorig:LeftHandMiddle3
+    100030: Elzorig:LeftHandMiddle4
+    100032: Elzorig:LeftHandRing1
+    100034: Elzorig:LeftHandRing2
+    100036: Elzorig:LeftHandRing3
+    100038: Elzorig:LeftHandRing4
+    100040: Elzorig:LeftHandThumb1
+    100042: Elzorig:LeftHandThumb2
+    100044: Elzorig:LeftHandThumb3
+    100046: Elzorig:LeftHandThumb4
+    100048: Elzorig:LeftLeg
+    100050: Elzorig:LeftShoulder
+    100052: Elzorig:LeftToe_End
+    100054: Elzorig:LeftToeBase
+    100056: Elzorig:LeftUpLeg
+    100058: Elzorig:Neck
+    100060: Elzorig:RightArm
+    100062: Elzorig:RightFoot
+    100064: Elzorig:RightForeArm
+    100066: Elzorig:RightHand
+    100068: Elzorig:RightHandIndex1
+    100070: Elzorig:RightHandIndex2
+    100072: Elzorig:RightHandIndex3
+    100074: Elzorig:RightHandIndex4
+    100076: Elzorig:RightHandMiddle1
+    100078: Elzorig:RightHandMiddle2
+    100080: Elzorig:RightHandMiddle3
+    100082: Elzorig:RightHandMiddle4
+    100084: Elzorig:RightHandRing1
+    100086: Elzorig:RightHandRing2
+    100088: Elzorig:RightHandRing3
+    100090: Elzorig:RightHandRing4
+    100092: Elzorig:RightHandThumb1
+    100094: Elzorig:RightHandThumb2
+    100096: Elzorig:RightHandThumb3
+    100098: Elzorig:RightHandThumb4
+    100100: Elzorig:RightLeg
+    100102: Elzorig:RightShoulder
+    100104: Elzorig:RightToe_End
+    100106: Elzorig:RightToeBase
+    100108: Elzorig:RightUpLeg
+    100110: Elzorig:Spine
+    100112: Elzorig:Spine1
+    100114: Elzorig:Spine2
+    400000: //RootNode
+    400002: Elzorig:Head
+    400004: Elzorig:HeadTop_End
+    400006: Elzorig:Hips
+    400008: Elzorig:LeftArm
+    400010: Elzorig:LeftFoot
+    400012: Elzorig:LeftForeArm
+    400014: Elzorig:LeftHand
+    400016: Elzorig:LeftHandIndex1
+    400018: Elzorig:LeftHandIndex2
+    400020: Elzorig:LeftHandIndex3
+    400022: Elzorig:LeftHandIndex4
+    400024: Elzorig:LeftHandMiddle1
+    400026: Elzorig:LeftHandMiddle2
+    400028: Elzorig:LeftHandMiddle3
+    400030: Elzorig:LeftHandMiddle4
+    400032: Elzorig:LeftHandRing1
+    400034: Elzorig:LeftHandRing2
+    400036: Elzorig:LeftHandRing3
+    400038: Elzorig:LeftHandRing4
+    400040: Elzorig:LeftHandThumb1
+    400042: Elzorig:LeftHandThumb2
+    400044: Elzorig:LeftHandThumb3
+    400046: Elzorig:LeftHandThumb4
+    400048: Elzorig:LeftLeg
+    400050: Elzorig:LeftShoulder
+    400052: Elzorig:LeftToe_End
+    400054: Elzorig:LeftToeBase
+    400056: Elzorig:LeftUpLeg
+    400058: Elzorig:Neck
+    400060: Elzorig:RightArm
+    400062: Elzorig:RightFoot
+    400064: Elzorig:RightForeArm
+    400066: Elzorig:RightHand
+    400068: Elzorig:RightHandIndex1
+    400070: Elzorig:RightHandIndex2
+    400072: Elzorig:RightHandIndex3
+    400074: Elzorig:RightHandIndex4
+    400076: Elzorig:RightHandMiddle1
+    400078: Elzorig:RightHandMiddle2
+    400080: Elzorig:RightHandMiddle3
+    400082: Elzorig:RightHandMiddle4
+    400084: Elzorig:RightHandRing1
+    400086: Elzorig:RightHandRing2
+    400088: Elzorig:RightHandRing3
+    400090: Elzorig:RightHandRing4
+    400092: Elzorig:RightHandThumb1
+    400094: Elzorig:RightHandThumb2
+    400096: Elzorig:RightHandThumb3
+    400098: Elzorig:RightHandThumb4
+    400100: Elzorig:RightLeg
+    400102: Elzorig:RightShoulder
+    400104: Elzorig:RightToe_End
+    400106: Elzorig:RightToeBase
+    400108: Elzorig:RightUpLeg
+    400110: Elzorig:Spine
+    400112: Elzorig:Spine1
+    400114: Elzorig:Spine2
+    7400000: idle dribble
+    7400002: Kill dance
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle dribble
+      takeName: Take 001
+      firstFrame: 388
+      lastFrame: 670
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Kill dance
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 258
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: a5529ff3422b1a943917fa808f418689,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

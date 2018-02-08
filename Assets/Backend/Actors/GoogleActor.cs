@@ -14,8 +14,8 @@ public class GoogleActor : MonoBehaviour
 
 	void Start()
 	{
-		userName.Reset ();
-		email.Reset ();
+		//userName.Reset ();
+		//email.Reset ();
 		#if UNITY_IOS
 		Social.localUser.Authenticate (success => {
 			if (success)

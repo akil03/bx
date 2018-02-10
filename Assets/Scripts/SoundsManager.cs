@@ -58,7 +58,8 @@ public class SoundsManager : MonoBehaviour
 
     public void Play(AudioClip clip)
     {
-        StartCoroutine(PlayAndDestroySource(clip));
+		if (PlayerPrefs.GetInt ("SFXMute") == 0)
+        	StartCoroutine(PlayAndDestroySource(clip));
     }
 
     public AudioSource CreateTempSource(AudioSource audioSource)

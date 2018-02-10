@@ -45,7 +45,7 @@ public class InGameGUI : MonoBehaviour
 		//UpdateHighScoreText();
 		UpdateTimer ();
 	
-		if (PhotonNetwork.GetPing () > 160)
+		if (PhotonNetwork.GetPing () > 300)
 			NetworkUI.SetActive (true);
 		else
 			NetworkUI.SetActive (false);

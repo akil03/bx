@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54560481894660660}
   - component: {fileID: 114399251246359422}
   - component: {fileID: 114575345076087964}
+  - component: {fileID: 114653536102193090}
   m_Layer: 0
   m_Name: BlasterObject
   m_TagString: Untagged
@@ -149,6 +150,17 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114653536102193090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563654463357326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a7e33196a257349806deb8b2e387ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135713048302967076
 SphereCollider:
   m_ObjectHideFlags: 1

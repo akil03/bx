@@ -177,7 +177,10 @@ public class SnakesSpawner : MonoBehaviour
 			InGameGUI.instance.userSnake = newSnake;
 			InGameGUI.instance.PlayerPanel [0].SelectedSnake = newSnake;
 			InGameGUI.instance.EquipPowerup ();
-			newSnake.Lives = LifeValue;
+			if (PlayerPrefs.GetInt ("TutorialComplete")!=1)
+				newSnake.Lives = playerLives;
+			else
+				newSnake.Lives = LifeValue;					
 			newSnake.playerID = 1;
 			spawnPointFinder.spawnPoint = GroundSpawner.instance.spawnedGroundPieces [447]; //area/2 - 3
 			playerSnake = newSnake;
@@ -185,7 +188,10 @@ public class SnakesSpawner : MonoBehaviour
 			newSnake.isBot = true;
 			InGameGUI.instance.opponentSnake = newSnake;
 			InGameGUI.instance.PlayerPanel [1].SelectedSnake = newSnake;
-			newSnake.Lives = LifeValue;
+			if (PlayerPrefs.GetInt ("TutorialComplete")!=1)
+				newSnake.Lives = 3;
+			else
+				newSnake.Lives = LifeValue;
 			newSnake.playerID = 2;
 			enemySnake = newSnake;
 			spawnPointFinder.spawnPoint = GroundSpawner.instance.spawnedGroundPieces [422]; // area/2 - gridlength +2

@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 198049046528702816}
   - component: {fileID: 199125244922450572}
   - component: {fileID: 82545913633669548}
+  - component: {fileID: 114530433571028954}
   m_Layer: 0
   m_Name: IceExplosion
   m_TagString: Untagged
@@ -215,6 +216,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114530433571028954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947005226628306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a7e33196a257349806deb8b2e387ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198049046528702816
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -229,6 +241,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
+  useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -3459,6 +3472,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
+  useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -6689,6 +6703,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
+  useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -9925,6 +9940,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
+  useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0

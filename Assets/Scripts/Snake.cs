@@ -706,18 +706,20 @@ public class Snake : MonoBehaviour
 				snakeMeshContainer.AnimController.Kill ();
 
 
-			if (!PlayerPrefs.HasKey ("TutorialComplete")&&!isLog) {
+			if (!PlayerPrefs.HasKey ("TutorialComplete") && !isLog) {
 				isLog = true;
 
-				if(!isBot)
+				if (!isBot)
 					GUIManager.instance.ShowTutorialLog ("Nicely done !!", 2);
 				else
 					GUIManager.instance.ShowTutorialLog ("Try completing shorter trails to play safe!!", 2);
 				
 				Invoke ("EnableLog", 2);
+			} else {
+				if(!targetSnake.isShielded)
+					GUIManager.instance.ShowLog (name + " ended " + targetSnake.name + "'s trail game !!", 3);
+
 			}
-			else
-				GUIManager.instance.ShowLog (name + " ended " + targetSnake.name + "'s trail game !!",3);
 		}
 
 		if (!isBot)

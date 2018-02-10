@@ -17,12 +17,15 @@ public class GoogleActor : MonoBehaviour
 		//userName.Reset ();
 		//email.Reset ();
 		#if UNITY_IOS
+		email.value = Social.localUser.id;
+		userName.value = Social.localUser.userName;
+		googleLoginSuccess.Fire();
 		Social.localUser.Authenticate (success => {
 			if (success)
 			{
-				email.value = Social.localUser.id;
-				userName.value = Social.localUser.userName;
-				googleLoginSuccess.Fire();
+				//email.value = Social.localUser.id;
+				//userName.value = Social.localUser.userName;
+				//googleLoginSuccess.Fire();
 			}
 			else
 				Debug.Log("Failed to authenticate");

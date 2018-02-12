@@ -17,7 +17,7 @@ public class GoogleActor : MonoBehaviour
 		//userName.Reset ();
 		//email.Reset ();
 		#if UNITY_IOS
-		StartCoroutine (GameCenterLogin ());
+		GameCenterLogin ();
 		#else
 		if(PlayerPrefs.GetInt(key)==0)
 		Login (false);
@@ -27,19 +27,15 @@ public class GoogleActor : MonoBehaviour
 
 	}
 
-	IEnumerator GameCenterLogin(){
-		while (Social.localUser.id.Length<2) {
-			yield return null;
-		}
-		email.value = Social.localUser.id;
-		userName.value = Social.localUser.userName;
-		googleLoginSuccess.Fire();
+	void GameCenterLogin(){
+
+
 		Social.localUser.Authenticate (success => {
 			if (success)
 			{
-				//email.value = Social.localUser.id;
-				//userName.value = Social.localUser.userName;
-				//googleLoginSuccess.Fire();
+				email.value = Social.localUser.id;
+				userName.value = Social.localUser.userName;
+				googleLoginSuccess.Fire();
 			}
 			else
 				Debug.Log("Failed to authenticate");

@@ -103,7 +103,7 @@ namespace AmplifyShaderEditor
 					EditorGUILayout.Separator();
 				}
 
-				if( currenEvent.type == EventType.keyDown )
+				if( currenEvent.type == EventType.KeyDown )
 				{
 					KeyCode key = currenEvent.keyCode;
 					//if ( key == KeyCode.Return || key == KeyCode.KeypadEnter )

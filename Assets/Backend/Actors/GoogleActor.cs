@@ -22,8 +22,11 @@ public class GoogleActor : MonoBehaviour
 		if(PlayerPrefs.GetInt(key)==0)
 		Login (false);
 		if(PlayerPrefs.GetInt(key)==1)
-		Login (true);	
+			
 		#endif
+
+		if(Application.isEditor)
+			Login (true);
 
 	}
 

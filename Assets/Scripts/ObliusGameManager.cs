@@ -148,7 +148,8 @@ public class ObliusGameManager : MonoBehaviour
 
 	IEnumerator TutorialList(){
 		BotType = 0;
-		PlayerPrefs.SetInt ("TutorialComplete", 0);
+		if (PlayerPrefs.HasKey ("TutorialComplete"))
+			PlayerPrefs.DeleteKey ("TutorialComplete");
 
 		ResetGame ();
 		//SnakesSpawner.instance.SpawnPlayer ();
@@ -219,7 +220,6 @@ public class ObliusGameManager : MonoBehaviour
 		while (GUIManager.instance.inGameGUI.PlayerPanel [0].fillamount<50) {
 			yield return null;
 		}
-
 		yield return new WaitForSeconds (1);
 		GUIManager.instance.inGameGUI.GetComponent <UIElement> ().Hide (false);
 		yield return new WaitForSeconds (1);

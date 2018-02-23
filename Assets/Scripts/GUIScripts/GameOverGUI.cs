@@ -210,8 +210,10 @@ public class GameOverGUI : MonoBehaviour {
 	IEnumerator WaitforRematch(){
 		SnakesSpawner.instance.playerNetworkSnake.isWantRematch = 2;
 		if (SnakesSpawner.instance.enemyNetworkSnake) {
-			while (SnakesSpawner.instance.enemyNetworkSnake.isWantRematch == 0)
+			while (SnakesSpawner.instance.enemyNetworkSnake.isWantRematch == 0) {
 				yield return null;
+
+			}
 			if (SnakesSpawner.instance.enemyNetworkSnake.isWantRematch == 2) {
 				ObliusGameManager.instance.StartRematch ();
 				gameObject.SetActive (false);
@@ -220,7 +222,10 @@ public class GameOverGUI : MonoBehaviour {
 				RematchText.text = "Opponent left the match";
 		} else {
 			RematchText.text = "Opponent left the match";
+			print ("bug");
 		}
+		yield return null;
+		print ("wait over");
 	}
 
 

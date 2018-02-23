@@ -559,6 +559,10 @@ public class SnakesSpawner : MonoBehaviour
 		}
 		InGameGUI.instance.startTime = Time.time;
 		DisplayStart.text = "GO !!";
+
+		playerNetworkSnake.isWantRematch = 0;
+		enemyNetworkSnake.isWantRematch = 0;
+
 		if(PhotonNetwork.isMasterClient)
 			PowerUpManager.instance.StartNetworkPower();
 

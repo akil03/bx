@@ -106,7 +106,8 @@ public class GUIManager : MonoBehaviour
 	public void ShowInGameGUI()
 	{
 		HideAllPages ();
-		Regeneration.instance.UseLife ();
+		if(!ObliusGameManager.isFriendlyBattle)
+			Regeneration.instance.UseLife ();
 		inGameGUI.gameObject.SetActive(true);
 		inGameGUI.GetComponent <UIElement> ().Show (false);
 		int Rand = Random.Range (0, bgColours.Length);

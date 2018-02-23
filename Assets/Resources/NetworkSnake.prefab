@@ -103,5 +103,8 @@ MonoBehaviour:
   speed: 0
   currentHP: 0
   shouldTransmit: 1
+  isCollecting: 0
+  isWantRematch: 2
   trailListJson: 
   ownedListJson: 
+  didDieRecently: 0

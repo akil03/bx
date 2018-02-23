@@ -24,7 +24,9 @@ public class GameOverGUI : MonoBehaviour {
 	public Text[] PlayerNames,MMR;
 	public Text Result,Reason;
 
-	public GameObject RewardWindow;
+	public GameObject RewardWindow,RematchButton;
+
+	public Text RematchText;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +34,11 @@ public class GameOverGUI : MonoBehaviour {
 	}
 
 	void OnEnable(){
+		if (ObliusGameManager.isFriendlyBattle)
+			RematchButton.SetActive (true);
+		else
+			RematchButton.SetActive (false);
+		
 		RewardWindow.GetComponent <RectTransform> ().localPosition = new Vector3(0,-190);
 	}
 
@@ -47,7 +54,6 @@ public class GameOverGUI : MonoBehaviour {
         diamondText.text = "" + ScoreHandler.instance.specialPoints;
 
 	}
-
 
 
 
@@ -187,11 +193,36 @@ public class GameOverGUI : MonoBehaviour {
 
     public void OnPlayButtonClick()
     {
+		if(PhotonNetwork.inRoom)
+			PhotonNetwork.LeaveRoom ();
+		
 		GUIManager.instance.ShowMainMenuGUI ();			
 		SnakesSpawner.instance.KillAllSnakes ();
 		new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 0).Send((response)=> {});
 		Deactivate ();
 	}
+
+	public void WantRematch(){
+		RematchText.text = "Waiting for opponent !";
+		StartCoroutine (WaitforRematch ());
+	}
+
+	IEnumerator WaitforRematch(){
+		SnakesSpawner.instance.playerNetworkSnake.isWantRematch = 2;
+		if (SnakesSpawner.instance.enemyNetworkSnake) {
+			while (SnakesSpawner.instance.enemyNetworkSnake.isWantRematch == 0)
+				yield return null;
+			if (SnakesSpawner.instance.enemyNetworkSnake.isWantRematch == 2) {
+				ObliusGameManager.instance.StartRematch ();
+				gameObject.SetActive (false);
+			}
+			else
+				RematchText.text = "Opponent left the match";
+		} else {
+			RematchText.text = "Opponent left the match";
+		}
+	}
+
 
     public void Deactivate()
     {

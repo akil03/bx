@@ -65,7 +65,7 @@ public class Server : MonoBehaviour
 
 
 		GUIManager.instance.ShowGameOverGUI ();
-		PhotonNetwork.LeaveRoom ();
+		//PhotonNetwork.LeaveRoom ();
 		SnakesSpawner.instance.KillAllNetworkSnakes ();
 		Snake[] snakes = GameObject.FindObjectsOfType<Snake> ();
 		foreach (var snake in snakes)

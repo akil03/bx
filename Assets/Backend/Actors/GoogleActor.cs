@@ -17,16 +17,25 @@ public class GoogleActor : MonoBehaviour
 		//userName.Reset ();
 		//email.Reset ();
 		#if UNITY_IOS
+		//GameCenterLogin ();
+
+		if (PlayerPrefs.HasKey ("GameCenterID")) {
+		email.value = PlayerPrefs.GetString ("GameCenterID");
+		googleLoginSuccess.Fire();
+		}
+		else
 		GameCenterLogin ();
+
+
 		#else
 		if(PlayerPrefs.GetInt(key)==0)
 		Login (false);
-		if(PlayerPrefs.GetInt(key)==1)
-			
+		if (PlayerPrefs.GetInt (key) == 1)
+			print("Do nothing");
 		#endif
 
-		if(Application.isEditor)
-			Login (true);
+	
+		
 
 	}
 
@@ -36,6 +45,7 @@ public class GoogleActor : MonoBehaviour
 		Social.localUser.Authenticate (success => {
 			if (success)
 			{
+				PlayerPrefs.SetString ("GameCenterID",Social.localUser.id);
 				email.value = Social.localUser.id;
 				userName.value = Social.localUser.userName;
 				googleLoginSuccess.Fire();

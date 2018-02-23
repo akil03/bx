@@ -830,12 +830,12 @@ public class Snake : MonoBehaviour
 					piece.RemoveCollectingSnake (this);
 				}
 
-
-				Destroy (_networkSnake.gameObject);
-				PhotonNetwork.LeaveRoom ();
-				SnakesSpawner.instance.GetNotifiedNetworkDeath (this);
-				DestroyImmediate (gameObject);
-				
+				if (!ObliusGameManager.isFriendlyBattle) {
+					Destroy (_networkSnake.gameObject);
+					PhotonNetwork.LeaveRoom ();
+					SnakesSpawner.instance.GetNotifiedNetworkDeath (this);
+					DestroyImmediate (gameObject);
+				}
 				yield break;
 			} 
 			else {

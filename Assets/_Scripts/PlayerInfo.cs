@@ -26,6 +26,7 @@ public class PlayerInfo : MonoBehaviour {
 	public int currentHP;
 	public bool shouldTransmit;
 	public bool isCollecting;
+	public int isWantRematch;
 	// Use this for initialization
 	void Awake(){
 		realPosition = Vector3.zero;
@@ -72,6 +73,8 @@ public class PlayerInfo : MonoBehaviour {
 			stream.Serialize (ref currentHP);
 			stream.Serialize (ref shouldTransmit);
 			stream.Serialize (ref isCollecting);
+			stream.Serialize (ref isWantRematch);
+
 			//stream.Serialize (ref Player);
 
 			if (!synced) {
@@ -98,6 +101,8 @@ public class PlayerInfo : MonoBehaviour {
 			stream.Serialize (ref currentHP);
 			stream.Serialize (ref shouldTransmit);
 			stream.Serialize (ref isCollecting);
+			stream.Serialize (ref isWantRematch);
+
 			//stream.Serialize (ref Player);
 
 			if (Player&&shouldTransmit) {

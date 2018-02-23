@@ -27,7 +27,7 @@ public class ObliusGameManager : MonoBehaviour
 	public int PlayerLives, EnemyLives;
 	public UIElement googleLoginPopup;
 	public static int BotType;
-
+	public static bool isFriendlyBattle;
 	void Awake ()
 	{
 		Application.targetFrameRate = 60;
@@ -355,7 +355,7 @@ public class ObliusGameManager : MonoBehaviour
 
 	void AddToMatchmakingQueue()
 	{
-		Invoke ("FakeBotMatch", 8);
+		Invoke ("FakeBotMatch", 20);
 		if (matchmakingPhase) 
 		{
 			if (PhotonNetwork.room.PlayerCount >= 2)
@@ -453,6 +453,13 @@ public class ObliusGameManager : MonoBehaviour
 	{
 		_ShowFindingMatchScreen (PhotonNetwork.playerList.Where (a => a.IsLocal).First ().ID);
 	}
+
+
+
+	public void StartRematch(){
+		_ShowFindingMatchScreen (PhotonNetwork.playerList.Where (a => a.IsLocal).First ().ID);
+	}
+
 	bool isGameSearchFail;
 	void CreateRoomFailed()
 	{

@@ -225,6 +225,7 @@ public class GUIManager : MonoBehaviour
 //
 //		Pages [pageNo - 1].gameObject.SetActive (true);
 //		Pages [pageNo-1].Show (false);
+		ObliusGameManager.isFriendlyBattle = false;
 
 		currentPage = pageNo;
 

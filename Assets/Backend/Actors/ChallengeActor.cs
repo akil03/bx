@@ -97,6 +97,7 @@ public class ChallengeActor : MonoBehaviour {
 
 	public void Decline()
 	{
+		ObliusGameManager.isFriendlyBattle = false;
 		new DeclineChallengeRequest ().SetChallengeInstanceId (challenge.data.challenge.challengeId).Send ((response)=>{
 			if(response.HasErrors)
 			{
@@ -137,6 +138,8 @@ public class ChallengeActor : MonoBehaviour {
 		reconnect.value = false;
 		PhotonNetwork.Disconnect ();
 		challengeMode.value = true;
+		ObliusGameManager.isFriendlyBattle = true;
+
 	}
 
 	public void DisconnectedFromPhoton()

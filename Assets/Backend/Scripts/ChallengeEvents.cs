@@ -54,6 +54,7 @@ public class ChallengeEvents : MonoBehaviour
 	void ChallengeAccepted(GSMessage msg)
 	{
 		print (msg.JSONString);
+		print ("Challenge accepted !");
 		accepted.Fire ();
 		EventManager.instance.OnAcceptedChallenge (msg);
 	}

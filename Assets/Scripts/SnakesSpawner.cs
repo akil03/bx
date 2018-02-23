@@ -23,7 +23,7 @@ public class SnakesSpawner : MonoBehaviour
 	public GameObject[] PlayerMeshes;
 
 	public Snake playerSnake,enemySnake;
-
+	public PlayerInfo playerNetworkSnake, enemyNetworkSnake;
 	public int spawnedEnemiesCount;
 	public List<Snake> spawnedSnakes;
 	public int playerLives,enemyLives=3;
@@ -445,7 +445,7 @@ public class SnakesSpawner : MonoBehaviour
 		NS.GetComponent<PlayerInfo> ().AssignValues (playerNo, newSnake.name, newSnake.Lives, HealthValue,SpeedValue, selectedMeshIndex, selectedTileIndex,selectedColourIndex, newSnake, StartTime);
 
 		newSnake._networkSnake = NS.GetComponent<PlayerInfo> ();
-
+		playerNetworkSnake = newSnake._networkSnake;
 
 
 		newSnake.lastReachedGroundPiece = spawnPointFinder.spawnPoint;
@@ -623,6 +623,9 @@ public class SnakesSpawner : MonoBehaviour
 		newSnake._networkSnake = NS;
 		NS.Player = newSnake;
 		newSnake.Initialize ();
+
+
+		enemyNetworkSnake = newSnake._networkSnake;
 
 		newSnake.lastReachedGroundPiece = spawnPointFinder.spawnPoint;
 		newSnake.SetFirstOwnedGroundPieces (spawnPointFinder.spawnPoint);

@@ -27,7 +27,7 @@ public class GameOverGUI : MonoBehaviour {
 	public GameObject RewardWindow,RematchButton;
 
 	public Text RematchText;
-
+	public GameObject Fireworks, Confetti, Stars1, Stars2;
 	// Use this for initialization
 	void Start () {
 	
@@ -40,6 +40,16 @@ public class GameOverGUI : MonoBehaviour {
 			RematchButton.SetActive (false);
 		
 		RewardWindow.GetComponent <RectTransform> ().localPosition = new Vector3(0,-190);
+
+
+
+	}
+
+	void OnDisable(){
+		Fireworks.SetActive (false);
+		Confetti.SetActive (false);
+		Stars1.SetActive (false);
+		Stars2.SetActive (false);
 	}
 
 
@@ -59,6 +69,13 @@ public class GameOverGUI : MonoBehaviour {
 
 
 	public void OnWin(){
+
+		Fireworks.SetActive (true);
+		Confetti.SetActive (true);
+
+		Stars1.SetActive (true);
+
+
 		SnakesSpawner.instance.playerSnake.isBot = true;
 		Result.text = "You Win !!";
 		PlayerNames [0].text = InGameGUI.instance.PlayerPanel [0].PlayerName.text;
@@ -100,6 +117,8 @@ public class GameOverGUI : MonoBehaviour {
 
 
 	public void OnLose(){
+		Stars2.SetActive (true);
+
 		Result.text = "You lose !!";
 		PlayerNames [0].text = InGameGUI.instance.PlayerPanel [0].PlayerName.text;
 		PlayerNames [1].text = InGameGUI.instance.PlayerPanel [1].PlayerName.text;

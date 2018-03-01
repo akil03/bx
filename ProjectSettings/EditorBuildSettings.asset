@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/XonixSceneGridTest.unity
-    guid: 058472e9ec007674583527fddad357ca
+    path: Assets/_Scenes/XonixSceneGrid.unity
+    guid: b684166fb5da0d3448b4d4f9256fc7d8

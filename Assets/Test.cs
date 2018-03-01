@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Test : MonoBehaviour {
 
-	public bool start;
-	 
 
-	// Use this for initialization
-	IEnumerator Start () {
-		if (start) {
-			//yield return (PhotonManagerAdvanced.instance._CreateRoom());
-			print ("iiii");
-		} else
-			yield return null;
+	void Start(){
+		transform.SetParent (null);
+		Invoke ("test", 5);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	void test(){
+
+		transform.parent = null;
+
 	}
 
 

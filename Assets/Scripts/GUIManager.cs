@@ -322,12 +322,27 @@ public class GUIManager : MonoBehaviour
 	IEnumerator HideTutorialLogRoutine(float delay,float ticks){
 
 		isLogShown = true;
+		StartCoroutine (InstantHideLog (delay,ticks));
 		yield return new WaitForSeconds (delay);
 		Time.timeScale = 0;
 		yield return new WaitForSecondsRealtime (ticks);
 		Time.timeScale = 1;
 		HideTutorialLog ();
-	
+		StopCoroutine (InstantHideLog (delay,ticks));
+	}
+
+	IEnumerator InstantHideLog(float delay,float ticks){
+		int i = 0;
+		while (i == 0) {
+			yield return null;
+			if (Input.GetKeyDown (KeyCode.Mouse0)) {
+				i = 1;
+				Time.timeScale = 1;
+				HideTutorialLog ();
+				StopCoroutine (HideTutorialLogRoutine (delay,ticks));
+			}
+		}
+
 	}
 
 	public void HideTutorialLog(){

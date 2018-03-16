@@ -22,6 +22,8 @@ public class Regeneration : MonoBehaviour
 
 	public int maxLifeAmount = 10;
 	private int lifeAmount = 0;
+	public int tempLife;
+
 	public int LifeAmount { get { return this.lifeAmount; } }
 	private DateTime previous;
 	private DateTime fullLife;
@@ -31,6 +33,8 @@ public class Regeneration : MonoBehaviour
 	private int secondsForUI;
 	public UIElement EnergyWindow;
 	public event EventHandler<RegenerationEventArg> RaiseNewLife;
+
+	public GameObject EnergyParticle;
 
 	public static Regeneration instance;
 	protected void OnNewLife(RegenerationEventArg arg){
@@ -84,6 +88,9 @@ public class Regeneration : MonoBehaviour
 
 		}
 		this.lifeNumberText.text = this.lifeAmount.ToString ();
+
+
+		tempLife = lifeAmount;
 	}
 	private void Update()
 	{
@@ -114,7 +121,7 @@ public class Regeneration : MonoBehaviour
 		timerText.text = ts.Minutes.ToString () + ":" + ts.Seconds.ToString ("00") ;
 
 	}
-
+	
 	void UpdateLifeBar(){
 		
 		for (int i = 0; i < 10; i++) {
@@ -122,10 +129,28 @@ public class Regeneration : MonoBehaviour
 				EnergyBars [i].GetComponent <Image> ().enabled = true;
 				EnergyBars2 [i].GetComponent <Image> ().enabled = true;
 			} else {
-				EnergyBars [i].GetComponent <Image> ().enabled = false;
-				EnergyBars2 [i].GetComponent <Image> ().enabled = false;
+				//if (tempLife != lifeAmount) {
+					EnergyBars [i].GetComponent <Image> ().enabled = false;
+					EnergyBars2 [i].GetComponent <Image> ().enabled = false;
+					//print ("lifeanim");
+					//Invoke ("LifeLoseParticle", 3);
+			//	}
 			}
 
+		}
+
+	}
+
+	public void LifeLoseAnim(){
+		Invoke ("LifeLoseParticle", 0.15f);
+	}
+
+	void LifeLoseParticle(){
+		CancelInvoke ();
+		print("anim");
+		if (tempLife != lifeAmount) {
+			Instantiate (EnergyParticle, EnergyBars [lifeAmount].transform);
+			tempLife = lifeAmount;
 		}
 	}
 

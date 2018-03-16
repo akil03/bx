@@ -154,6 +154,8 @@ public class ObliusGameManager : MonoBehaviour
 		ResetGame ();
 		//SnakesSpawner.instance.SpawnPlayer ();
 
+		PowerUpManager.instance.ClearPowerUps ();
+
 		//GUIManager.instance.mainMenuGUI.GetComponent <UIElement> ().Hide (false);
 		StartCoroutine (SnakesSpawner.instance.SpawnNewSnake (true,999));
 		SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive (false);

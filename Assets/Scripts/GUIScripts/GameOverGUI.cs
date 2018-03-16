@@ -50,6 +50,9 @@ public class GameOverGUI : MonoBehaviour {
 		Confetti.SetActive (false);
 		Stars1.SetActive (false);
 		Stars2.SetActive (false);
+
+
+		Regeneration.instance.LifeLoseAnim ();
 	}
 
 

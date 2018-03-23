@@ -48,4 +48,6 @@ MonoBehaviour:
   - Destroy
   - ClearTrail
   - CheckKill
+  - MakeFill
+  - MakeTrail
   DisableAutoOpenWizard: 1

@@ -45,7 +45,8 @@ public class ObliusGameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
+		if (PhotonNetwork.connected)
+			print(PhotonNetwork.GetPing().ToString());
 	}
 
 	public IEnumerator GameOverCoroutine (float delay)

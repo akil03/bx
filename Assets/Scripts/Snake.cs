@@ -165,10 +165,12 @@ public class Snake : MonoBehaviour
 
 						lerpTime = Vector3.Distance (transform.position, _networkSnake.realPosition) / speed;
 					
-						lerpTime = Mathf.Clamp (lerpTime, 0, 1);
+						lerpTime = (1 - Mathf.Clamp (lerpTime, 0, 1))/3.5f;
+
+                        print(lerpTime);
 
 						if(lerpTime>0)
-							transform.position = Vector3.Lerp (transform.position, _networkSnake.realPosition,lerpTime);
+							transform.position = Vector3.Lerp (transform.position, _networkSnake.realPosition,Time.time);
 						//transform.DOMove(_networkSnake.realPosition,Time.deltaTime/speed,false).SetEase(Ease.Linear);
 						//iTween.MoveUpdate (gameObject, _networkSnake.realPosition, Time.deltaTime/(speed));
 
@@ -382,8 +384,8 @@ public class Snake : MonoBehaviour
 //
 //				}
 
-				SyncTrail ();
-				SyncFill ();
+				//SyncTrail ();
+				//SyncFill ();
 				//_networkSnake.MoveDirection = vector;
 				//_networkSnake.realPosition = transform.position;
 				return;
@@ -540,7 +542,7 @@ public class Snake : MonoBehaviour
 		}
 	}
 
-	bool isFill;
+	public bool isFill;
 	public void CheckReachedGroundPiece (GroundPiece pieceToCheck)
 	{
 //		if (pieceToCheck == null)
@@ -559,12 +561,25 @@ public class Snake : MonoBehaviour
 				isCollectingNewGroundPieces = true;
 
 				AI.Reset ();
-			} 
-			pieceToCheck.SetCollectingSnake (this);
+			}
+
+			if (PhotonNetwork.inRoom && isLocal)
+			{
+				PhotonView.Get(_networkSnake.gameObject).RPC("MakeTrail",  PhotonTargets.AllViaServer, pieceToCheck.indexInGrid);
+			}
+			else
+				pieceToCheck.SetCollectingSnake (this);
 
 		} else {
 
 			if (isCollectingNewGroundPieces) {
+
+				if (PhotonNetwork.inRoom && isLocal)
+				{
+					PhotonView.Get(_networkSnake.gameObject).RPC("MakeFill", PhotonTargets.AllViaServer);
+					return;
+				}
+
 
 				List<GroundPiece> newOwnedGroundPieces = new List<GroundPiece> ();
 

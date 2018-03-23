@@ -30,7 +30,6 @@ public class PlayerInfo : MonoBehaviour {
 	// Use this for initialization
 	void Awake(){
 		realPosition = Vector3.zero;
-
 	}
 
 
@@ -256,8 +255,77 @@ public class PlayerInfo : MonoBehaviour {
 	public void KillPlayer(){
 		
 		StartCoroutine (Player.Die ());
-		//GameOver ();
+		
 	}
+
+	[PunRPC]
+	public void MakeTrail(int index)
+	{
+
+		GroundSpawner.instance.spawnedGroundPieces[index].SetCollectingSnake(Player);
+
+	}
+
+	[PunRPC]
+	public void MakeFill()
+	{
+
+		//GroundSpawner.instance.spawnedGroundPieces[index].SetSnakeOwner(Player);
+
+
+
+		List<GroundPiece> newOwnedGroundPieces = new List<GroundPiece>();
+
+		foreach (GroundPiece groundPiece in Player.tailGroundPieces)
+		{
+			newOwnedGroundPieces.Add(groundPiece);
+			groundPiece.SetSnakeOwner(Player);
+			Player.isFill = true;
+		}
+
+		GroundPiece[] groundPiecesToCheck = Poly.GetGroundPiecesToCheck(Player);
+
+		foreach (GroundPiece piece in groundPiecesToCheck)
+		{
+			piece.tempHasToBeChecked = true;
+
+			if (piece.snakeOwener != Player)
+			{
+				piece.ownerIDForCheck = 1;
+			}
+			else
+			{
+				piece.ownerIDForCheck = 0;
+			}
+		}
+
+		Poly.FloodFill(groundPiecesToCheck[0], 1, 2);
+
+		foreach (GroundPiece piece in groundPiecesToCheck)
+		{
+
+			if (piece.ownerIDForCheck == 1)
+			{
+				newOwnedGroundPieces.Add(piece);
+				piece.SetSnakeOwner(Player);
+				Player.isFill = true;
+			}
+
+			piece.tempHasToBeChecked = false;
+		}
+
+		foreach (GroundPiece piece in newOwnedGroundPieces)
+		{
+			piece.pieceWhenCollected.sr.color = Player.spriteColor;
+			piece.ShowCollectedPiece(Player.collectedPieceSprite);
+		}
+
+
+		Player.isCollectingNewGroundPieces = false;
+		Player.tailGroundPieces = new List<GroundPiece>();
+
+	}
+
 
 
 	[PunRPC]

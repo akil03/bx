@@ -126,9 +126,6 @@ public class GameSparksRTUnity : MonoBehaviour, IRTSessionListener {
 				.SetPort(port)
 				.SetConnectToken(accessToken)
 				.SetListener(this)
-	#if UNITY_XBOXONE && !UNITY_EDITOR
-				.UseOnlyWebSockets(true)
-	#endif
 				.Build();
 #endif		
 	}

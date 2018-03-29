@@ -1,73 +1,83 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Facebook.Unity;
+using UnityEngine;
 
-public class FacebookActor : MonoBehaviour 
+public class FacebookActor : MonoBehaviour
 {
-	[SerializeField]EventObject fbLoginSuccess;
-	[SerializeField]EventObject fbLogout;
-	[SerializeField]EventObject gotFBFriends;
-	[SerializeField]FbFriendsObject fbFriends;
-	string key="fbLoggedIn";
+    [SerializeField] EventObject fbLoginSuccess;
+    [SerializeField] EventObject fbLogout;
+    [SerializeField] EventObject gotFBFriends;
+    [SerializeField] FbFriendsObject fbFriends;
+    string key = "fbLoggedIn";
 
-	void OnEnable()
-	{
-		fbFriends.Reset ();
-	}
+    void OnEnable()
+    {
+        FB.Init();
+        fbFriends.Reset();
+        StartCoroutine(OnInitialized());
+    }
 
-	void OnDisable()
-	{
-		fbFriends.Reset ();
-	}
 
-	public void CanLogin()
-	{
-		if (PlayerPrefs.GetInt (key) == 1)
-			fbLoginSuccess.Fire ();
-	}
+    IEnumerator OnInitialized()
+    {
+        while (!FB.IsInitialized)
+            yield return null;
+        CanLogin();
+    }
 
-	public void Login()
-	{
-		FB.LogInWithReadPermissions (new List<string> () { "public_profile", "email", "user_friends" }, LoginCallback);
-	}
+    void OnDisable()
+    {
+        fbFriends.Reset();
+    }
 
-	void LoginCallback(ILoginResult result)
-	{
-		if (string.IsNullOrEmpty (result.Error)) 
-		{
-			if (!result.RawResult.Contains ("cancelled")) 
-			{
-				GameSparkRequests request = new GameSparkRequests ();
-				request.Request ("LinkFBID","FBID",AccessToken.CurrentAccessToken.UserId,Print);
-				fbLoginSuccess.Fire ();
-				PlayerPrefs.SetInt (key,1);
-			}
-		}
-	}
+    public void CanLogin()
+    {
+        if (PlayerPrefs.GetInt(key) == 1 && !FB.IsLoggedIn)
+            Login();
+    }
 
-	public void Logout()
-	{
-		FB.LogOut ();
-		fbLogout.Fire ();
-		fbFriends.Reset ();
-		PlayerPrefs.SetInt (key,0);
-		print ("FB logged out!");
-	}
+    public void Login()
+    {
+        FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" }, LoginCallback);
+    }
 
-	public void GetFriends()
-	{
-		FB.API ("me/friends",HttpMethod.GET,GetFriendsCallback);
-	}
+    void LoginCallback(ILoginResult result)
+    {
+        if (string.IsNullOrEmpty(result.Error))
+        {
+            if (!result.RawResult.Contains("cancelled"))
+            {
+                GameSparkRequests request = new GameSparkRequests();
+                request.Request("LinkFBID", "FBID", AccessToken.CurrentAccessToken.UserId, Print);
+                fbLoginSuccess.Fire();
+                PlayerPrefs.SetInt(key, 1);
+            }
+        }
+    }
 
-	void GetFriendsCallback(IGraphResult result)
-	{
-		fbFriends.value = JsonUtility.FromJson<FBFriendsData> (result.RawResult);
-		gotFBFriends.Fire ();
-	}
+    public void Logout()
+    {
+        FB.LogOut();
+        fbLogout.Fire();
+        fbFriends.Reset();
+        PlayerPrefs.SetInt(key, 0);
+        print("FB logged out!");
+    }
 
-	void Print(string str)
-	{
-		print (str);
-	}
+    public void GetFriends()
+    {
+        FB.API("me/friends", HttpMethod.GET, GetFriendsCallback);
+    }
+
+    void GetFriendsCallback(IGraphResult result)
+    {
+        fbFriends.value = JsonUtility.FromJson<FBFriendsData>(result.RawResult);
+        gotFBFriends.Fire();
+    }
+
+    void Print(string str)
+    {
+        print(str);
+    }
 }

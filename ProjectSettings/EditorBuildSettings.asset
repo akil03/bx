@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/XonixSceneGrid.unity
     guid: b684166fb5da0d3448b4d4f9256fc7d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Facebook test scene.unity
     guid: 9b0a3d06ee2dcbb4b8794e7a3ccbf54f
   - enabled: 0

@@ -29,9 +29,9 @@ public class GoogleActor : MonoBehaviour
 
 		#else
 		if(PlayerPrefs.GetInt(key)==0)
-		Login (false);
-		if (PlayerPrefs.GetInt (key) == 1)
-			print("Do nothing");
+			Login (false);
+		if (PlayerPrefs.GetInt(key) == 1)
+			Login(true);
 		#endif
 
 	

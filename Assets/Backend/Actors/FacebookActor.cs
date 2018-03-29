@@ -35,6 +35,9 @@ public class FacebookActor : MonoBehaviour
     {
         if (PlayerPrefs.GetInt(key) == 1 && !FB.IsLoggedIn)
             Login();
+
+        if (FB.IsLoggedIn)
+            fbLoginSuccess.Fire();
     }
 
     public void Login()

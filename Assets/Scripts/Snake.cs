@@ -157,20 +157,21 @@ public class Snake : MonoBehaviour
 				if (isLocal) {
 					//NetworkMovement ();
 					Movement ();
-				}
+                    MoveToDirection(InputDirection);
+                }
 				else
 				{
 					if (_networkSnake) {
 						MoveToDirection (_networkSnake.MoveDirection);
 
-						lerpTime = Vector3.Distance (transform.position, _networkSnake.realPosition) / speed;
+						//lerpTime = Vector3.Distance (transform.position, _networkSnake.realPosition) / speed;
 					
-						lerpTime = (1 - Mathf.Clamp (lerpTime, 0, 1))/3.5f;
+						//lerpTime = (1 - Mathf.Clamp (lerpTime, 0, 1))/3.5f;
 
-                        print(lerpTime);
+      //                  print(lerpTime);
 
-						if(lerpTime>0)
-							transform.position = Vector3.Lerp (transform.position, _networkSnake.realPosition,Time.time);
+						//if(lerpTime>0)
+							transform.position = Vector3.Lerp (transform.position, _networkSnake.realPosition,0.25f);
 						//transform.DOMove(_networkSnake.realPosition,Time.deltaTime/speed,false).SetEase(Ease.Linear);
 						//iTween.MoveUpdate (gameObject, _networkSnake.realPosition, Time.deltaTime/(speed));
 
@@ -179,7 +180,7 @@ public class Snake : MonoBehaviour
 						//transform.position = _networkSnake.realPosition;
 					}
 				}
-				MoveToDirection (InputDirection);
+				
 			} 
 			else
 				Movement ();

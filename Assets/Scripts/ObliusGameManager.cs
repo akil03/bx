@@ -26,7 +26,7 @@ public class ObliusGameManager : MonoBehaviour
     public int PlayerLives, EnemyLives;
     public UIElement googleLoginPopup;
     public static int BotType;
-    public static bool isFriendlyBattle;
+    public static bool isFriendlyBattle,isOnlineBattle;
     void Awake()
     {
         Application.targetFrameRate = 60;
@@ -74,6 +74,23 @@ public class ObliusGameManager : MonoBehaviour
         InGameGUI.instance.gameStarted = false;
         new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 0).Send((response) => { });
     }
+
+
+    public void PlayAgain()
+    {
+        if (isOnlineBattle)
+        {
+            GUIManager.instance.gameOverGUI.OnPlayButtonClick();
+            Invoke("ShowFindingMatchScreen", 1.5f);
+        }
+        else
+        {
+            GUIManager.instance.gameOverGUI.OnPlayButtonClick();
+            Invoke("StartGame", 1.5f);
+        }
+    }
+
+
 
     public void StartGame()
     {
@@ -315,6 +332,8 @@ public class ObliusGameManager : MonoBehaviour
             googleLoginPopup.Show(false);
             GUIManager.instance.ShowLog("Please login!");
         }
+
+        isOnlineBattle = true;
     }
 
     bool matchmakingPhase;
@@ -344,6 +363,7 @@ public class ObliusGameManager : MonoBehaviour
     public void JoinedRoom()
     {
         AddToMatchmakingQueue();
+       
         if (matchmakingPhase)
             return;
         if (findingPhase)
@@ -368,8 +388,10 @@ public class ObliusGameManager : MonoBehaviour
     }
 
     void AddToMatchmakingQueue()
-    {
-        Invoke("FakeBotMatch", 20);
+    {   
+        if(!ObliusGameManager.isFriendlyBattle)
+            Invoke("FakeBotMatch", 10);
+
         if (matchmakingPhase)
         {
             if (PhotonNetwork.room.PlayerCount >= 2)

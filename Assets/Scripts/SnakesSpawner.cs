@@ -681,7 +681,7 @@ public class SnakesSpawner : MonoBehaviour
 
 		int rand = Random.Range (0, usableColors.Count);
 		snake.spriteColor = usableColors [rand];
-		usableColors.RemoveAt (rand);
+		//usableColors.RemoveAt (rand);
 
 		selectedColourIndex = rand;
 

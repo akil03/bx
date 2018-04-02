@@ -9,9 +9,22 @@ public class Server : MonoBehaviour
 
     public bool isGameOver = false;
 
+
     void Start()
     {
         instance = this;
+    }
+
+    [PunRPC]
+    public void Rematch()
+    {
+        GUIManager.instance.rematchResponse.Invoke();
+    }
+
+    [PunRPC]
+    public void LeftTheGame()
+    {
+        GUIManager.instance.leftTheMatch.Invoke();
     }
 
     [PunRPC]

@@ -524,7 +524,7 @@ public class ObliusGameManager : MonoBehaviour
         GUIManager.instance.ShowLog("Network timeout. Disconnected from server!");
         InGameGUI.instance.gameStarted = false;
         PowerUpManager.instance.StopSpawn();
-        PowerUpManager.instance.ClearPowerUps();
+        PowerUpManager.instance.NetworkClear();
         PhotonNetwork.LeaveRoom();
         SnakesSpawner.instance.KillAllNetworkSnakes();
         new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 0).Send((response) => { });

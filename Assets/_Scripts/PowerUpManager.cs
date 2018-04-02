@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 public class PowerUpManager : MonoBehaviour
@@ -17,24 +18,17 @@ public class PowerUpManager : MonoBehaviour
     public void StartSpawn()
     {
         ClearPowerUps();
-        NetworkClear();
-        Invoke("StartSpawnTimer", 5);
+        StartCoroutine(StartSpawnTimer(5));
     }
 
-    public void StartNetworkPower()
+    IEnumerator StartSpawnTimer(float time)
     {
-        ClearPowerUps();
-        NetworkClear();
-        Invoke("StartSpawnTimer", 5);
-    }
-
-    void StartSpawnTimer()
-    {
+        yield return new WaitForSeconds(time);
         dontSpawn = false;
         if (!PhotonNetwork.inRoom)
-            SpawnRunePowerup();
+            StartCoroutine(SpawnRunePowerup());
         else
-            SpawnNetworkRunePowerup();
+            StartCoroutine(SpawnNetworkRunePowerup());
     }
 
     public void StopSpawn()
@@ -43,7 +37,7 @@ public class PowerUpManager : MonoBehaviour
         this.StopAllCoroutines();
     }
 
-    public void SpawnRunePowerup()
+    public IEnumerator SpawnRunePowerup()
     {
         if (!PhotonNetwork.inRoom)
         {
@@ -59,13 +53,14 @@ public class PowerUpManager : MonoBehaviour
                 Go = Instantiate(Powerups[Rand], transform);
                 Go.transform.localPosition = new Vector3(4, 0, 0);
                 spawnedPowerups.Add(Go);
-                Invoke("SpawnRunePowerup", 20);
-                Invoke("ClearPowerUps", 15);
+                yield return new WaitForSeconds(15);
+                SoftClear();
+                StartCoroutine(StartSpawnTimer(5));
             }
         }
     }
 
-    public void SpawnNetworkRunePowerup()
+    public IEnumerator SpawnNetworkRunePowerup()
     {
         if (PhotonNetwork.inRoom && PhotonNetwork.isMasterClient)
         {
@@ -80,22 +75,30 @@ public class PowerUpManager : MonoBehaviour
                 Rand = Random.Range(0, Powerups.Length);
                 Go2 = PhotonNetwork.Instantiate("Powerups/" + Powerups[Rand].name, new Vector3(14.5f, -8, 0), Quaternion.identity, new byte());
                 spawnedPowerups.Add(Go2);
-                Invoke("SpawnNetworkRunePowerup", 20);
-                Invoke("NetworkClear", 15);
+                yield return new WaitForSeconds(15);
+                SoftClear();
+                StartCoroutine(StartSpawnTimer(5));
             }
+        }
+    }
+
+    public void SoftClear()
+    {
+        if (spawnedPowerups.Count < 1)
+            return;
+        foreach (var powerup in spawnedPowerups.ToList())
+        {
+            if (PhotonNetwork.inRoom && PhotonNetwork.isMasterClient)
+                RemovePowerUpNetwork(powerup);
+            else
+                RemovePowerUp(powerup);
         }
     }
 
     public void ClearPowerUps()
     {
-        if (spawnedPowerups.Count < 1)
-            return;
-
-
-        foreach (var powerup in spawnedPowerups.ToList())
-        {
-            RemovePowerUp(powerup);
-        }
+        StopSpawn();
+        SoftClear();
     }
 
     public void RemovePowerUp(GameObject GO)
@@ -106,21 +109,7 @@ public class PowerUpManager : MonoBehaviour
 
     public void RemovePowerUpNetwork(GameObject GO)
     {
-
         spawnedPowerups.Remove(GO);
         PhotonView.Get(GO).RPC("Destroy", PhotonTargets.MasterClient);
     }
-
-    public void NetworkClear()
-    {
-        if (!PhotonNetwork.isMasterClient)
-            return;
-        foreach (var powerup in spawnedPowerups.ToList())
-        {
-            if (spawnedPowerups.Count < 1)
-                return;
-            RemovePowerUpNetwork(powerup);
-        }
-    }
-
 }

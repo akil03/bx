@@ -26,7 +26,7 @@ public class ObliusGameManager : MonoBehaviour
     public int PlayerLives, EnemyLives;
     public UIElement googleLoginPopup;
     public static int BotType;
-    public static bool isFriendlyBattle,isOnlineBattle;
+    public static bool isFriendlyBattle, isOnlineBattle;
     void Awake()
     {
         Application.targetFrameRate = 60;
@@ -363,7 +363,7 @@ public class ObliusGameManager : MonoBehaviour
     public void JoinedRoom()
     {
         AddToMatchmakingQueue();
-       
+
         if (matchmakingPhase)
             return;
         if (findingPhase)
@@ -388,8 +388,8 @@ public class ObliusGameManager : MonoBehaviour
     }
 
     void AddToMatchmakingQueue()
-    {   
-        if(!ObliusGameManager.isFriendlyBattle)
+    {
+        if (!ObliusGameManager.isFriendlyBattle)
             Invoke("FakeBotMatch", 10);
 
         if (matchmakingPhase)
@@ -546,7 +546,7 @@ public class ObliusGameManager : MonoBehaviour
         GUIManager.instance.ShowLog("Network timeout. Disconnected from server!");
         InGameGUI.instance.gameStarted = false;
         PowerUpManager.instance.StopSpawn();
-        PowerUpManager.instance.NetworkClear();
+        PowerUpManager.instance.ClearPowerUps();
         PhotonNetwork.LeaveRoom();
         SnakesSpawner.instance.KillAllNetworkSnakes();
         new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 0).Send((response) => { });

@@ -81,12 +81,12 @@ public class ObliusGameManager : MonoBehaviour
         if (isOnlineBattle)
         {
             GUIManager.instance.gameOverGUI.OnPlayButtonClick();
-            Invoke("ShowFindingMatchScreen", 1.5f);
+            Invoke("ShowFindingMatchScreen", 0.8f);
         }
         else
         {
             GUIManager.instance.gameOverGUI.OnPlayButtonClick();
-            Invoke("StartGame", 1.5f);
+            Invoke("StartGame", 0.8f);
         }
     }
 

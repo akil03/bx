@@ -12,6 +12,8 @@ public class SnakeMeshProprietes : MonoBehaviour {
 	public Color snakeColor;
 	public GameObject Mesh, Ball, Shield;
 
+	public string meshName, meshClass;
+
 	public bool isAnimator;
 	void Awake(){
 		//collectedPiece = patterns [Random.Range (0, patterns.Length)];

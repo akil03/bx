@@ -121,21 +121,28 @@ public class SnakesSpawner : MonoBehaviour
 		tempMesh.transform.localRotation = Quaternion.identity;
 		tempMesh.transform.localScale = Vector3.one;
 
-	}
+        GUIManager.instance.meshName.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshName;
+        GUIManager.instance.meshClass.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshClass + " Class";
+    }
 
 	public void ShowPrev(){
 		if (tempMesh)
 			Destroy (tempMesh);
+
+		selectedMeshIndex--;
+		if (selectedMeshIndex < 0)
+			selectedMeshIndex = usableSnakeMeshes.Count - 1;
 
 		snakeMeshAssignedToPlayer = usableSnakeMeshes [selectedMeshIndex];
 		tempMesh = Instantiate (usableSnakeMeshes [selectedMeshIndex],previewMeshContainer.transform);
 		tempMesh.transform.localPosition = Vector3.zero;
 		tempMesh.transform.localRotation = Quaternion.identity;
 		tempMesh.transform.localScale = Vector3.one;
-		selectedMeshIndex--;
-		if (selectedMeshIndex <0 )
-			selectedMeshIndex = usableSnakeMeshes.Count-1;
-	}
+
+        GUIManager.instance.meshName.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshName;
+        GUIManager.instance.meshClass.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshClass;
+
+    }
 	
 	// Update is called once per frame
 	void Update ()

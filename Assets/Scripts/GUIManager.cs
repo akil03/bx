@@ -40,6 +40,7 @@ public class GUIManager : MonoBehaviour
 	public Image MusicImg,SfxImg;
 	public AudioSource MusicSource,SFXSource;
 
+	public Text meshName, meshClass;
 
 	void Awake()
 	{

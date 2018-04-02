@@ -166,6 +166,7 @@ public class Regeneration : MonoBehaviour
 			EnergyWindow.gameObject.SetActive (true);
 			EnergyWindow.Show (false);
 		}
+       
 	}
 
 	// If quitting the app, pausing the app or changing scene, Save data.

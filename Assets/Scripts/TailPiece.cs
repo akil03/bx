@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TailPiece : MonoBehaviour {
 
@@ -57,7 +58,12 @@ public class TailPiece : MonoBehaviour {
 	}
 
 	public void Hide(){
-		gameObject.SetActive (false);
+        transform.DOScale(Vector3.zero, 0.3f).OnComplete(() =>
+        {
+            gameObject.SetActive(false);
+            transform.localScale = Vector3.one;
+        });
+		
 	}
 
 }

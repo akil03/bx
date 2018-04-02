@@ -681,13 +681,13 @@ public class SnakesSpawner : MonoBehaviour
 
 		int rand = Random.Range (0, usableColors.Count);
 		snake.spriteColor = usableColors [rand];
-		usableColors.RemoveAt (rand);
+		//usableColors.RemoveAt (rand);
 
 		selectedColourIndex = rand;
 
 
 		rand = Random.Range (0, usableTiles.Count);
-		snake.collectedPieceSprite = tileAtlas.GetSprite (usableTiles [rand].name); 
+		snake.collectedPieceSprite = tileAtlas.GetSprite (usableTiles [6].name); 
 		//usableTiles.RemoveAt (rand);
 		selectedTileIndex = rand;
 	}
@@ -715,7 +715,7 @@ public class SnakesSpawner : MonoBehaviour
 
 
 		rand = Random.Range (0, usableTiles.Count);
-		snake.collectedPieceSprite = tileAtlas.GetSprite (usableTiles [rand].name); 
+		snake.collectedPieceSprite = tileAtlas.GetSprite (usableTiles [6].name); 
 		//usableTiles.RemoveAt (rand);
 		selectedTileIndex = rand;
 	}
@@ -748,7 +748,7 @@ public class SnakesSpawner : MonoBehaviour
 
 		rand = Random.Range (0, usableTiles.Count);
 		//snake.collectedPieceSprite = usableTiles [tileType];
-		snake.collectedPieceSprite = tileAtlas.GetSprite (usableTiles [rand].name); 
+		snake.collectedPieceSprite = tileAtlas.GetSprite (usableTiles [6].name); 
 
 	}
 

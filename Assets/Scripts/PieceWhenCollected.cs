@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PieceWhenCollected : MonoBehaviour {
 
@@ -18,7 +19,10 @@ public class PieceWhenCollected : MonoBehaviour {
 	void Start () {
 		
 	}
-	
+
+
+
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -43,14 +47,17 @@ public class PieceWhenCollected : MonoBehaviour {
 
 		sr.sprite = sprite;
 		StartCoroutine (DOShow ());
-	
+        //transform.DOPunchScale(Vector3.one, 0.5f, 10, 1);
+        transform.DOScale(Vector3.one, 0.4f);
+        //transform.DOScale(Vector3.one,0.5f).SetEase(Ease.OutElastic);
 
-	}
+    }
 
 	public void Hide(){
 		bottomBorder.SetActive (false);
 		gameObject.SetActive (false);
-	}
+        transform.localScale = Vector3.zero;
+    }
 
 
 	public IEnumerator DOShow(){

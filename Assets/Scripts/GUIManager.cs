@@ -9,15 +9,15 @@ public class GUIManager : MonoBehaviour
 {
 
 
-    public static GUIManager instance;
+	public static GUIManager instance;
 
-    public TutorialGUI tutorialGUI;
-    public PauseGUI pauseGUI;
-    public ShopGUI shopGUI;
-    public GameOverGUI gameOverGUI;
-    public MainMenuGUI mainMenuGUI;
-    public OneMoreChanceGUI oneMoreChanceGUI;
-    public InGameGUI inGameGUI;
+	public TutorialGUI tutorialGUI;
+	public PauseGUI pauseGUI;
+	public ShopGUI shopGUI;
+	public GameOverGUI gameOverGUI;
+	public MainMenuGUI mainMenuGUI;
+	public OneMoreChanceGUI oneMoreChanceGUI;
+	public InGameGUI inGameGUI;
 
 	public Color[] bgColours;
 	public SpriteRenderer Bg, Glow;
@@ -41,31 +41,31 @@ public class GUIManager : MonoBehaviour
 	public AudioSource MusicSource,SFXSource;
 
 
-    void Awake()
-    {
-        instance = this;
+	void Awake()
+	{
+		instance = this;
 		if (PlayerPrefs.GetInt ("MusicMute") == 1)
 			MusicBtn ();
 
 		if (PlayerPrefs.GetInt ("SFXMute") == 1)
 			SFXBtn ();
-    }
+	}
 
-    // Use this for initialization
-    void Start()
-    {
+	// Use this for initialization
+	void Start()
+	{
 		mmrTxt.text = PlayerPrefs.GetInt ("MMR").ToString ();
 
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 
-        
+		
 
 
-    }
+	}
 
 	public void MusicBtn(){
 		if (MusicImg.color == Red) {
@@ -125,8 +125,8 @@ public class GUIManager : MonoBehaviour
 	}
 
 
-    public void ShowGameOverGUI()
-    {
+	public void ShowGameOverGUI()
+	{
 	//	gameOverGUI.OnWin ();
 		if (!PlayerPrefs.HasKey ("TutorialComplete")) {
 			PlayerPrefs.SetInt ("TutorialComplete", 1);
@@ -143,9 +143,9 @@ public class GUIManager : MonoBehaviour
 
 
 		inGameGUI.GetComponent <UIElement> ().Hide (false);
-        gameOverGUI.gameObject.SetActive(true);
+		gameOverGUI.gameObject.SetActive(true);
 		gameOverGUI.GetComponent <UIElement> ().Show (false);
-    }
+	}
 
 	public void UpdateAccountDetails(string response){
 		//print (response);
@@ -162,58 +162,58 @@ public class GUIManager : MonoBehaviour
 		ObliusGameManager.instance.CloseTutorial ();
 	}
 
-    public void HideGameOverGUI()
-    {
+	public void HideGameOverGUI()
+	{
 		matchLoading.Hide (false);
 		gameOverGUI.GetComponent <UIElement> ().Hide (false);
 		if (PhotonNetwork.inRoom)
 			PhotonNetwork.LeaveRoom ();
 
-        //gameOverGUI.gameObject.SetActive(false);
-    }
+		//gameOverGUI.gameObject.SetActive(false);
+	}
 
 
-    public void ShowTutorialGUI()
-    {
-        tutorialGUI.Activate();
-    }
+	public void ShowTutorialGUI()
+	{
+		tutorialGUI.Activate();
+	}
 
-    public void HideTutorialGUI()
-    {
-        tutorialGUI.Deactivate();
-    }
+	public void HideTutorialGUI()
+	{
+		tutorialGUI.Deactivate();
+	}
 
-    public void ShowPauseGUI()
-    {
-        pauseGUI.Activate();
-    }
+	public void ShowPauseGUI()
+	{
+		pauseGUI.Activate();
+	}
 
-    public void ShowOneMoreChanceGUI()
-    {
-        oneMoreChanceGUI.gameObject.SetActive(true);
-    }
+	public void ShowOneMoreChanceGUI()
+	{
+		oneMoreChanceGUI.gameObject.SetActive(true);
+	}
 
-    public void HideOneMoreChanceGUI()
-    {
-        oneMoreChanceGUI.gameObject.SetActive(false);
-    }
+	public void HideOneMoreChanceGUI()
+	{
+		oneMoreChanceGUI.gameObject.SetActive(false);
+	}
 
-    public void ShowShopGUI()
-    {
-        ShopHandler.instance.Activate();
-    }
+	public void ShowShopGUI()
+	{
+		ShopHandler.instance.Activate();
+	}
 
-    public void ShowMainMenuGUI()
-    {
+	public void ShowMainMenuGUI()
+	{
 		HideAllPages ();
-        ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
-       // mainMenuGUI.gameObject.SetActive(true);
+		ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
+	   // mainMenuGUI.gameObject.SetActive(true);
 		//mainMenuGUI.GetComponent <UIElement> ().Show (false);
 		OpenPage (3);
 
 		SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive (true);
 		BG.SetActive (true);
-    }
+	}
 
 
 
@@ -227,7 +227,7 @@ public class GUIManager : MonoBehaviour
 //		Pages [pageNo - 1].gameObject.SetActive (true);
 //		Pages [pageNo-1].Show (false);
 		ObliusGameManager.isFriendlyBattle = false;
-
+		ObliusGameManager.isOnlineBattle = false;
 		currentPage = pageNo;
 
 		if (pageNo < 6) {

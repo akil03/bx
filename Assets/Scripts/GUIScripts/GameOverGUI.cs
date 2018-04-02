@@ -11,20 +11,20 @@ using UnityEngine.Advertisements;
 
 public class GameOverGUI : MonoBehaviour {
 
-    public Text scoreText;
-    public Text highScoreText;
-    public Text diamondText;
+	public Text scoreText;
+	public Text highScoreText;
+	public Text diamondText;
 
 
-    public Text coinText;
+	public Text coinText;
 
-    public Button GetCoinButton;
+	public Button GetCoinButton;
 
 	public Image[] PlayerImage;
 	public Text[] PlayerNames,MMR;
 	public Text Result,Reason;
 
-	public GameObject RewardWindow,RematchButton;
+	public GameObject RewardWindow,RematchButton,PlayAgainBtn;
 
 	public Text RematchText;
 	public GameObject Fireworks, Confetti, Stars1, Stars2;
@@ -34,10 +34,16 @@ public class GameOverGUI : MonoBehaviour {
 	}
 
 	void OnEnable(){
-		if (ObliusGameManager.isFriendlyBattle)
-			RematchButton.SetActive (true);
+		if (ObliusGameManager.isFriendlyBattle) {
+			RematchButton.SetActive(true);
+			PlayAgainBtn.SetActive(false);
+		}
 		else
-			RematchButton.SetActive (false);
+		{
+			PlayAgainBtn.SetActive(true);
+			RematchButton.SetActive(false);
+		}
+			
 		
 		RewardWindow.GetComponent <RectTransform> ().localPosition = new Vector3(0,-190);
 
@@ -64,7 +70,7 @@ public class GameOverGUI : MonoBehaviour {
 
 		scoreText.text = "" + scoreString + "%";
 		highScoreText.text = "" + highscoreString + "%";
-        diamondText.text = "" + ScoreHandler.instance.specialPoints;
+		diamondText.text = "" + ScoreHandler.instance.specialPoints;
 
 	}
 
@@ -164,57 +170,57 @@ public class GameOverGUI : MonoBehaviour {
 		//print ("Lost");
 	}
 
-    public void OnGetCoinButtonClick()
-    {
-        SoundsManager.instance.PlayMenuButtonSound();
+	public void OnGetCoinButtonClick()
+	{
+		SoundsManager.instance.PlayMenuButtonSound();
 
 		#if UNITY_MOBILE
 
-        UnityRewardAds.instance.ShowRewardedAd(HandleShowResult);
+		UnityRewardAds.instance.ShowRewardedAd(HandleShowResult);
 
 		#endif
 
-        GetCoinButton.interactable = false;
-    }
+		GetCoinButton.interactable = false;
+	}
 
-    public void OnBallShopClick()
-    {
-        SoundsManager.instance.PlayMenuButtonSound();
+	public void OnBallShopClick()
+	{
+		SoundsManager.instance.PlayMenuButtonSound();
 
-        Deactivate();
-        GUIManager.instance.ShowShopGUI();
-    }
+		Deactivate();
+		GUIManager.instance.ShowShopGUI();
+	}
 
-    public void OnRemoveAdsButtonClick()
-    {
-        SoundsManager.instance.PlayMenuButtonSound();
+	public void OnRemoveAdsButtonClick()
+	{
+		SoundsManager.instance.PlayMenuButtonSound();
 
-     //   AdRemover.instance.BuyNonConsumable();
-    }
+	 //   AdRemover.instance.BuyNonConsumable();
+	}
 
-    public void OnRestorePurchaseButtonClick()
-    {
-        SoundsManager.instance.PlayMenuButtonSound();
+	public void OnRestorePurchaseButtonClick()
+	{
+		SoundsManager.instance.PlayMenuButtonSound();
 
-      //  AdRemover.instance.RestorePurchases();
-    }
+	  //  AdRemover.instance.RestorePurchases();
+	}
 
-    public void OnLeaderboardButtonClick()
-    {
-        SoundsManager.instance.PlayMenuButtonSound();
+	public void OnLeaderboardButtonClick()
+	{
+		SoundsManager.instance.PlayMenuButtonSound();
 
-      //  Leaderboard.instance.showLeaderboard();
-    }
+	  //  Leaderboard.instance.showLeaderboard();
+	}
 
-    public void OnShareButtonClick()
-    {
-        SoundsManager.instance.PlayMenuButtonSound();
+	public void OnShareButtonClick()
+	{
+		SoundsManager.instance.PlayMenuButtonSound();
 
-        ShareManager.instance.share();
-    }
+		ShareManager.instance.share();
+	}
 
-    public void OnPlayButtonClick()
-    {
+	public void OnPlayButtonClick()
+	{
 		if(PhotonNetwork.inRoom)
 			PhotonNetwork.LeaveRoom ();
 		
@@ -251,31 +257,31 @@ public class GameOverGUI : MonoBehaviour {
 	}
 
 
-    public void Deactivate()
-    {
+	public void Deactivate()
+	{
 		gameObject.GetComponent<UIElement> ().Hide (false);
-      //  gameObject.SetActive(false);
-    }
+	  //  gameObject.SetActive(false);
+	}
 
 	#if UNITY_MOBILE
-    private void HandleShowResult(ShowResult result)
-    {
-        switch (result)
-        {
-            case ShowResult.Finished:
-                ScoreHandler.instance.increaseSpecialPoints(UnityRewardAds.instance.GetCoinsToRewardOnVideoWatched());
-                //
-                // YOUR CODE TO REWARD THE GAMER
-                // Give coins etc.
-                break;
-            case ShowResult.Skipped:
-                Debug.Log("The ad was skipped before reaching the end.");
-                break;
-            case ShowResult.Failed:
-                Debug.LogError("The ad failed to be shown.");
-                break;
-        }
-    }
+	private void HandleShowResult(ShowResult result)
+	{
+		switch (result)
+		{
+			case ShowResult.Finished:
+				ScoreHandler.instance.increaseSpecialPoints(UnityRewardAds.instance.GetCoinsToRewardOnVideoWatched());
+				//
+				// YOUR CODE TO REWARD THE GAMER
+				// Give coins etc.
+				break;
+			case ShowResult.Skipped:
+				Debug.Log("The ad was skipped before reaching the end.");
+				break;
+			case ShowResult.Failed:
+				Debug.LogError("The ad failed to be shown.");
+				break;
+		}
+	}
 	#endif
 
 

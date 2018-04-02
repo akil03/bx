@@ -50,4 +50,6 @@ MonoBehaviour:
   - CheckKill
   - MakeFill
   - MakeTrail
+  - LeftTheGame
+  - Rematch
   DisableAutoOpenWizard: 1

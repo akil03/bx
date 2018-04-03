@@ -19,16 +19,16 @@ public class GameSparksActor : MonoBehaviour
     [SerializeField] LeaderboardObject leaderboardData;
     [SerializeField] FbFriendsObject fbFriends;
     [SerializeField] List<bool> friendsAdded;
+    [SerializeField] BoolObject isOnline;
 
     void Start()
     {
-
         if (Application.isEditor)
         {
             email.value = "akil.hotshot@gmail.com";
             Login();
         }
-
+        isOnline.value = true;
     }
 
     public void Login()
@@ -170,17 +170,28 @@ public class GameSparksActor : MonoBehaviour
 
     void OnApplicationFocus(bool isFocused)
     {
-        if (!isFocused)
+        if (!Application.isEditor)
         {
-            SetOnlineStatus(1);
+            if (!isFocused)
+            {
+                SetOnlineStatus(1);
+            }
+            else
+            {
+                ChangePlayerStatus();
+            }
+        }
+    }
+
+    public void ChangePlayerStatus()
+    {
+        if (isOnline.value)
+        {
+            SetOnlineStatus(0);
         }
         else
         {
-            Snake[] snakes = GameObject.FindObjectsOfType<Snake>();
-            if (snakes.Length > 0)
-                SetOnlineStatus(1);
-            else
-                SetOnlineStatus(0);
+            SetOnlineStatus(1);
         }
     }
 }

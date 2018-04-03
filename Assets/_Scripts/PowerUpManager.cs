@@ -9,6 +9,7 @@ public class PowerUpManager : MonoBehaviour
     public List<GameObject> spawnedPowerups;
     public float minInterval, maxInterval;
     public bool dontSpawn;
+    public bool debug;
 
     void Awake()
     {
@@ -18,7 +19,22 @@ public class PowerUpManager : MonoBehaviour
     public void StartSpawn()
     {
         ClearPowerUps();
+        if (debug)
+        {
+            StartCoroutine(Counter());
+        }
         StartCoroutine(StartSpawnTimer(5));
+    }
+
+    IEnumerator Counter()
+    {
+        int i = 0;
+        while (true)
+        {
+            i++;
+            print(i);
+            yield return new WaitForSeconds(1);
+        }
     }
 
     IEnumerator StartSpawnTimer(float time)
@@ -97,6 +113,10 @@ public class PowerUpManager : MonoBehaviour
 
     public void ClearPowerUps()
     {
+        if (debug)
+        {
+            StopCoroutine(Counter());
+        }
         StopSpawn();
         SoftClear();
     }

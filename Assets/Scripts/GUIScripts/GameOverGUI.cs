@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using DoozyUI;
-using GameSparks.Api.Requests;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -242,7 +241,6 @@ public class GameOverGUI : MonoBehaviour
         if (PhotonNetwork.inRoom)
             PhotonNetwork.LeaveRoom();
         SnakesSpawner.instance.KillAllSnakes();
-        new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 0).Send((response) => { });
         Deactivate();
     }
 

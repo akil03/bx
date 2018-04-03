@@ -180,7 +180,6 @@ public class GUIManager : MonoBehaviour
         gameOverGUI.GetComponent<UIElement>().Hide(false);
         if (PhotonNetwork.inRoom)
             PhotonNetwork.LeaveRoom();
-
         //gameOverGUI.gameObject.SetActive(false);
     }
 
@@ -217,6 +216,7 @@ public class GUIManager : MonoBehaviour
 
     public void ShowMainMenuGUI()
     {
+        ObliusGameManager.instance.ChangePlayerStaus(true);
         HideAllPages();
         ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
         // mainMenuGUI.gameObject.SetActive(true);

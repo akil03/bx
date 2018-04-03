@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
 using DoozyUI;
-using GameSparks.Api.Requests;
 using GameSparks.Core;
 using UnityEngine;
 
@@ -27,6 +26,8 @@ public class ObliusGameManager : MonoBehaviour
     public UIElement googleLoginPopup;
     public static int BotType;
     public static bool isFriendlyBattle, isOnlineBattle;
+    [SerializeField] EventObject ChangeOnlineStatus;
+    [SerializeField] BoolObject isOnline;
     void Awake()
     {
         Application.targetFrameRate = 60;
@@ -48,9 +49,15 @@ public class ObliusGameManager : MonoBehaviour
         //	print(PhotonNetwork.GetPing().ToString());
     }
 
+
+    public void ChangePlayerStaus(bool status)
+    {
+        isOnline.value = status;
+        ChangeOnlineStatus.Fire();
+    }
+
     public IEnumerator GameOverCoroutine(float delay)
     {
-
         yield return new WaitForSeconds(delay);
         SoundsManager.instance.PlayGameOverSound();
         //		AdNetworks.instance.HideBanner ();
@@ -70,9 +77,8 @@ public class ObliusGameManager : MonoBehaviour
     {
 
         StartCoroutine(GameOverCoroutine(delay));
-        PowerUpManager.instance.dontSpawn = true;
+        PowerUpManager.instance.ClearPowerUps();
         InGameGUI.instance.gameStarted = false;
-        new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 0).Send((response) => { });
     }
 
 
@@ -100,6 +106,7 @@ public class ObliusGameManager : MonoBehaviour
         //			return;
         //		}
         //
+        ChangePlayerStaus(false);
         BotType = 0;
         if (Regeneration.instance.LifeAmount < 1)
         {
@@ -169,6 +176,7 @@ public class ObliusGameManager : MonoBehaviour
 
     IEnumerator TutorialList()
     {
+        ChangePlayerStaus(false);
         BotType = 0;
         if (PlayerPrefs.HasKey("TutorialComplete"))
             PlayerPrefs.DeleteKey("TutorialComplete");
@@ -286,6 +294,7 @@ public class ObliusGameManager : MonoBehaviour
         GUIManager.instance.inGameGUI.PlayerPanel[0].gameObject.SetActive(true);
         GUIManager.instance.inGameGUI.PlayerPanel[1].gameObject.SetActive(true);
         GUIManager.instance.OpenPage(3);
+        ChangePlayerStaus(true);
     }
 
 
@@ -311,6 +320,8 @@ public class ObliusGameManager : MonoBehaviour
     //attached to play button
     public void ShowFindingMatchScreen()
     {
+        ChangePlayerStaus(false);
+        isFinding = true;
         if (Regeneration.instance.LifeAmount < 1)
         {
             Regeneration.instance.UseLife();
@@ -368,7 +379,6 @@ public class ObliusGameManager : MonoBehaviour
             return;
         if (findingPhase)
         {
-            new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 1).Send((response) => { });
             if (reconnect.value)
                 _ShowFindingMatchScreen(PhotonNetwork.player.ID);
             print("Max players reached!");
@@ -384,6 +394,7 @@ public class ObliusGameManager : MonoBehaviour
         {
             if (PhotonNetwork.room.PlayerCount == maxplayers)
                 PhotonNetwork.room.IsVisible = false;
+            isFinding = false;
         }
     }
 
@@ -396,6 +407,7 @@ public class ObliusGameManager : MonoBehaviour
         {
             if (PhotonNetwork.room.PlayerCount >= 2)
             {
+                CancelInvoke("FakeBotMatch");
                 if (PhotonNetwork.player.ID % 2 != 0)
                 {
                     isServer = true;
@@ -419,9 +431,9 @@ public class ObliusGameManager : MonoBehaviour
 
     public void FakeBotMatch()
     {
-        if (PhotonNetwork.room.PlayerCount < 2)
+        if (PhotonNetwork.room == null || PhotonNetwork.room.PlayerCount < 2)
         {
-
+            isFinding = false;
             PhotonNetwork.LeaveRoom();
             isGameSearchFail = true;
         }
@@ -431,11 +443,20 @@ public class ObliusGameManager : MonoBehaviour
 
     public void CancelFinding()
     {
-        if (PhotonNetwork.room.PlayerCount < 2)
+        if (PhotonNetwork.room == null || PhotonNetwork.room.PlayerCount < 2)
         {
             //normal = false;
+            isFinding = false;
             PhotonNetwork.LeaveRoom();
             GUIManager.instance.ShowMainMenuGUI();
+        }
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus && isFinding)
+        {
+            CancelFinding();
         }
     }
 
@@ -545,11 +566,9 @@ public class ObliusGameManager : MonoBehaviour
         GUIManager.instance.gameOverGUI.Reason.text = "Network timeout. Disconnected from server!";
         GUIManager.instance.ShowLog("Network timeout. Disconnected from server!");
         InGameGUI.instance.gameStarted = false;
-        PowerUpManager.instance.StopSpawn();
         PowerUpManager.instance.ClearPowerUps();
         PhotonNetwork.LeaveRoom();
         SnakesSpawner.instance.KillAllNetworkSnakes();
-        new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 0).Send((response) => { });
         Snake[] snakes = GameObject.FindObjectsOfType<Snake>();
         foreach (var snake in snakes)
             Destroy(snake.gameObject);
@@ -564,6 +583,7 @@ public class ObliusGameManager : MonoBehaviour
     }
 
     [SerializeField] BoolObject reconnect;
+    private bool isFinding;
 
     public void ResetGame(bool resetScore = true, bool resetOneMoreChance = true)
     {

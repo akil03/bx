@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using DoozyUI;
-using GameSparks.Api.Requests;
 using UnityEngine;
 
 public class Server : MonoBehaviour
@@ -61,7 +60,6 @@ public class Server : MonoBehaviour
         }
 
         InGameGUI.instance.gameStarted = false;
-        new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", 0).Send((response) => { });
         //		foreach (var player in players) {
         //			print (PhotonView.Get(player.gameObject).viewID==id ? PhotonView.Get(player.gameObject).viewID+" lose" : PhotonView.Get(player.gameObject).viewID+" win");
         //			if(PhotonView.Get(player.gameObject).viewID==id && )

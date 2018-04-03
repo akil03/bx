@@ -604,7 +604,7 @@ public class SnakesSpawner : MonoBehaviour
         playerNetworkSnake.isWantRematch = 0;
         enemyNetworkSnake.isWantRematch = 0;
 
-        if (PhotonNetwork.isMasterClient)
+        if (PhotonNetwork.isMasterClient && !playerSnake.isBot)
             PowerUpManager.instance.StartSpawn();
 
 

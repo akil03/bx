@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1960970807731830}
+  m_IsPrefabParent: 1
+--- !u!1 &1960970807731830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4195122364160980}
+  - component: {fileID: 114814675366900658}
+  - component: {fileID: 114148826870314482}
+  m_Layer: 0
+  m_Name: SnakesSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4195122364160980
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1960970807731830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114148826870314482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1960970807731830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb9e9039996c4449995f105b343df62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  namesTextFile: {fileID: 4900000, guid: c452e871f994841af9e2124dd8cd991d, type: 3}
+  names: []
+--- !u!114 &114814675366900658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1960970807731830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2211fab415e46738ab194a138ff4a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnemiesOnGround: 1
+  randomSnakeMeshes:
+  - {fileID: 1093556612268190, guid: 07ddd4e937e8a4c39afbb6f51b70dde5, type: 2}
+  shoppableSnakeMeshes:
+  - {fileID: 1143581527209924, guid: 6dc2aa3280a89488c9dc856244134a73, type: 2}
+  usableSnakeMeshes:
+  - {fileID: 1816763643848714, guid: 342732f73e9be384bab228f1b3a409e6, type: 2}
+  - {fileID: 1853048954469688, guid: 52706437249955a4288d19cd0f7e532b, type: 2}
+  - {fileID: 1983574881965514, guid: d591af2bbee513f4e9b9c2b8b410d96f, type: 2}
+  - {fileID: 1327793765787560, guid: 34371a4756853c24aad402ca931910b4, type: 2}
+  - {fileID: 1036120561093772, guid: b468a14d60782764fa78774ef7e94323, type: 2}
+  - {fileID: 1437222429430004, guid: d07428819b2530f4a83ea0a37dd09321, type: 2}
+  - {fileID: 1428023921164570, guid: 202c71400f3f4504d9d64e2f72bfb1f8, type: 2}
+  - {fileID: 1097418019983000, guid: d4e75b9513bda4246b4776d5b2760466, type: 2}
+  usableColors:
+  - {r: 0.047685977, g: 0.9264706, b: 0.92647016, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.034482718, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.90344834, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.8896551, a: 1}
+  - {r: 1, g: 0.51724136, b: 0, a: 1}
+  - {r: 0, g: 0.46206903, b: 1, a: 1}
+  usableTiles:
+  - {fileID: 21300000, guid: 470077b3ec14a754aac470e794828942, type: 3}
+  - {fileID: 21300000, guid: ca8684770e5994e4bbe38dc9f0ef99d6, type: 3}
+  - {fileID: 21300000, guid: c7e16e96e32215f4eab48ada145e345f, type: 3}
+  - {fileID: 21300000, guid: 882cfae051d9660419d195e127868fe7, type: 3}
+  - {fileID: 21300000, guid: cc3abf504fcf60e4a96e90a0227a3083, type: 3}
+  - {fileID: 21300000, guid: 9deb84acdda771746beda018b4813c8b, type: 3}
+  - {fileID: 21300000, guid: 2cb18d5357dcbde45a586f03358d70cd, type: 3}
+  - {fileID: 21300000, guid: 67bbf77c2adc8014bb72e9c39cbe8642, type: 3}
+  tileAtlas: {fileID: 4343727234628468602, guid: d4d7f0e837b1ef4489f3683b1c545fc2,
+    type: 2}
+  snakeMeshAssignedToPlayer: {fileID: 1260114207525454, guid: da2c6dafae589bf4f95d8a5c558b641d,
+    type: 2}
+  snakeMeshAssignedToEnemy: {fileID: 1853048954469688, guid: 52706437249955a4288d19cd0f7e532b,
+    type: 2}
+  PlayerMeshes: []
+  playerSnake: {fileID: 0}
+  enemySnake: {fileID: 0}
+  playerNetworkSnake: {fileID: 0}
+  enemyNetworkSnake: {fileID: 0}
+  spawnedEnemiesCount: 0
+  spawnedSnakes: []
+  playerLives: 3
+  enemyLives: 3
+  selectedMeshIndex: 5
+  selectedColourIndex: 0
+  selectedTileIndex: 0
+  tempMesh: {fileID: 0}
+  previewMeshContainer: {fileID: 0}
+  playerName: 
+  HealthLvl: 0
+  LifeLvl: 0
+  SpeedLvl: 0
+  Power_RocketLvl: 0
+  Power_ShotsLvl: 0
+  Power_SpeedLvl: 0
+  Power_HPLvl: 0
+  Power_ShieldLvl: 0
+  HealthValue: 0
+  LifeValue: 0
+  PowerRocketValue: 0
+  PowerShotsValue: 0
+  PowerSpeedValue: 0
+  PowerHPValue: 0
+  PowerShieldValue: 0
+  SpeedValue: 0
+  startTimer: {fileID: 0}
+  DisplayStart: {fileID: 0}

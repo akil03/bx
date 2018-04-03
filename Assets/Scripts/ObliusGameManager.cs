@@ -445,7 +445,7 @@ public class ObliusGameManager : MonoBehaviour
     {
         if (PhotonNetwork.room == null || PhotonNetwork.room.PlayerCount < 2)
         {
-            //normal = false;
+            CancelInvoke("FakeBotMatch");
             isFinding = false;
             PhotonNetwork.LeaveRoom();
             GUIManager.instance.ShowMainMenuGUI();

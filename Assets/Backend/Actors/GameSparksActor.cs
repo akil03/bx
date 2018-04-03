@@ -21,7 +21,7 @@ public class GameSparksActor : MonoBehaviour
     [SerializeField] List<bool> friendsAdded;
     [SerializeField] BoolObject isOnline;
 
-    void Start()
+    void Awake()
     {
         if (Application.isEditor)
         {
@@ -165,6 +165,14 @@ public class GameSparksActor : MonoBehaviour
 
     public void SetOnlineStatus(int id)
     {
+        if (id==1)
+        {
+            isOnline.value = false;
+        }
+        else
+        {
+            isOnline.value = true;
+        }
         new LogEventRequest().SetEventKey("SetPlayerStatus").SetEventAttribute("IsInGame", id).Send((response) => { });
     }
 

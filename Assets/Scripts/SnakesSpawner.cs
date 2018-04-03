@@ -732,6 +732,19 @@ public class SnakesSpawner : MonoBehaviour
 
         int rand = Random.Range(0, usableColors.Count);
         snake.spriteColor = usableColors[rand];
+
+
+      
+
+        if (!snake.isBot )
+            rand = Random.Range(0, 4);
+        else
+            rand = Random.Range(4, 8);
+
+        snake.spriteColor = usableColors[rand];
+
+
+
         //usableColors.RemoveAt (rand);
 
         selectedColourIndex = rand;

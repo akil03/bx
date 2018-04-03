@@ -43,6 +43,10 @@ public class ChallengeGUIControl : MonoBehaviour
 
 	public void Reconnect()
 	{
+        if (Server.instance==null)
+        {
+            return;
+        }
 		Server.instance.CloseUP ();
 		PhotonNetwork.Disconnect ();
 	}

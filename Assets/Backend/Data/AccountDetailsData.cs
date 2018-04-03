@@ -68,5 +68,6 @@ public class AccountDetailsData
 	public ReservedCurrency6 reservedCurrency6;
 	public AccountDetailsScriptData scriptData;
 	public string userId;
-	public VirtualGoods virtualGoods;
+    public string userName;
+    public VirtualGoods virtualGoods;
 }

@@ -10,7 +10,8 @@ public class AccountDetails : MonoBehaviour {
 	public static AccountDetails instance;
 
 	public bool firstLoad;
-	void Start()
+
+	void Awake()
 	{
 		instance = this;
 	}
@@ -24,7 +25,9 @@ public class AccountDetails : MonoBehaviour {
 			}
 			else
 			{
-//				print ("Getting account details success!");
+                //				print ("Getting account details success!");
+
+                print(response.JSONString);
 				accountDetails = JsonUtility.FromJson<AccountDetailsData>(response.JSONString);
 				GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
 				GUIManager.instance.mmrTxt.text = accountDetails.scriptData.MMR;

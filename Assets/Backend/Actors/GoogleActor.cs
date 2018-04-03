@@ -12,7 +12,7 @@ public class GoogleActor : MonoBehaviour
 	[SerializeField]StringObject userName;
 	string key="googleLoggedIn";
 
-	void Start()
+	void Awake()
 	{
 		//userName.Reset ();
 		//email.Reset ();
@@ -39,17 +39,18 @@ public class GoogleActor : MonoBehaviour
 
 	}
 
-	void GameCenterLogin(){
-
-
-		Social.localUser.Authenticate (success => {
+	void GameCenterLogin()
+    {
+		Social.localUser.Authenticate (success => 
+        {
 			if (success)
 			{
 				PlayerPrefs.SetString ("GameCenterID",Social.localUser.id);
 				email.value = Social.localUser.id;
 				userName.value = Social.localUser.userName;
 				googleLoginSuccess.Fire();
-			}
+                GUIManager.instance.playerID_TXT.text = "User ID: " + Social.localUser.id;
+            }
 			else
 				Debug.Log("Failed to authenticate");
 		});
@@ -61,15 +62,15 @@ public class GoogleActor : MonoBehaviour
 	{
 		Action<bool> logInCallBack = (Action<bool>)((loggedIn)=> {
 			if(loggedIn)
-			{
-				email.value = LCGoogleLoginBridge.GSIEmail();
-				userName.value = LCGoogleLoginBridge.GSIUserName();
-				print("Google Login Success> " + LCGoogleLoginBridge.GSIUserName()); 
-				PlayerPrefs.SetInt (key,1);
-				googleLoginSuccess.Fire();
-			}
+            {
+                email.value = LCGoogleLoginBridge.GSIEmail();                
+                userName.value = LCGoogleLoginBridge.GSIUserName();
+                PlayerPrefs.SetInt(key, 1);
+                GUIManager.instance.playerID_TXT.text = "User ID: " + LCGoogleLoginBridge.GSIEmail();
+                googleLoginSuccess.Fire();               
+            }
 
-			else
+            else
 			{
 				print("Google Login Failed");
 				Application.Quit ();
@@ -78,7 +79,13 @@ public class GoogleActor : MonoBehaviour
 		LCGoogleLoginBridge.LoginUser (logInCallBack, status);
 	}
 
-	public void Logout()
+    private void SetUsername()
+    {
+        AccountDetails.instance.accountDetails.userName = email.value;
+        GUIManager.instance.playerID_TXT.text = "User ID: "+email.value;
+    }
+
+    public void Logout()
 	{
 		LCGoogleLoginBridge.LogoutUser ();
 		googleLogout.Fire ();

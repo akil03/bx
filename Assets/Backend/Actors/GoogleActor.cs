@@ -49,7 +49,6 @@ public class GoogleActor : MonoBehaviour
 				email.value = Social.localUser.id;
 				userName.value = Social.localUser.userName;
 				googleLoginSuccess.Fire();
-                GUIManager.instance.playerID_TXT.text = "User ID: " + Social.localUser.id;
             }
 			else
 				Debug.Log("Failed to authenticate");
@@ -66,7 +65,6 @@ public class GoogleActor : MonoBehaviour
                 email.value = LCGoogleLoginBridge.GSIEmail();                
                 userName.value = LCGoogleLoginBridge.GSIUserName();
                 PlayerPrefs.SetInt(key, 1);
-                GUIManager.instance.playerID_TXT.text = "User ID: " + LCGoogleLoginBridge.GSIEmail();
                 googleLoginSuccess.Fire();               
             }
 
@@ -78,12 +76,7 @@ public class GoogleActor : MonoBehaviour
 		});
 		LCGoogleLoginBridge.LoginUser (logInCallBack, status);
 	}
-
-    private void SetUsername()
-    {
-        AccountDetails.instance.accountDetails.userName = email.value;
-        GUIManager.instance.playerID_TXT.text = "User ID: "+email.value;
-    }
+   
 
     public void Logout()
 	{

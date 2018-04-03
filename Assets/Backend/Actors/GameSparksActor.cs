@@ -28,7 +28,10 @@ public class GameSparksActor : MonoBehaviour
             email.value = "akil.hotshot@gmail.com";
             Login();
         }
-        isOnline.value = true;
+        else
+        {
+            email.Reset();
+        }        
     }
 
     public void Login()
@@ -47,6 +50,7 @@ public class GameSparksActor : MonoBehaviour
         }
         else
         {
+            isOnline.value = true;
             userId.value = AR.UserId;
             loginSuccess.Fire();
             //				print("Game Sparks login success!!");

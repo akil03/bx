@@ -67,6 +67,5 @@ public class ChallengeGUIControl : MonoBehaviour
 	{
 		userIdText.text = userId.value;
 		playerName.text = AccountDetails.instance.accountDetails.displayName;
-//		print ("Player details set!");
 	}
 }

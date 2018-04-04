@@ -102,15 +102,20 @@ public class GameOverGUI : MonoBehaviour
         PlayerImage[1].sprite = InGameGUI.instance.PlayerPanel[1].Shape.sprite;
         PlayerImage[1].color = InGameGUI.instance.PlayerPanel[1].Shape.color;
 
-        GameSparkRequests req = new GameSparkRequests();
-        req.Request("AddGold", "amt", "50", UpdateAccountDetails);
+        //GameSparkRequests req = new GameSparkRequests();
+        //req.Request("AddGold", "amt", "50", UpdateAccountDetails);
+
+        AccountDetails.instance.Save(Gold: 50);
 
         Invoke("ShowRewards", 1f);
 
         if (PhotonNetwork.inRoom || ObliusGameManager.BotType == 1)
         {
             //RewardWindow.transform.DOMove (
-            GSUpdateMMR.instance.UpdateMMR(25);
+            //GSUpdateMMR.instance.UpdateMMR(25);
+
+            AccountDetails.instance.Save(MMR: 25);
+
             MMR[0].text = "+25";
             MMR[1].text = "-25";
         }
@@ -153,7 +158,9 @@ public class GameOverGUI : MonoBehaviour
 
         if (PhotonNetwork.inRoom || ObliusGameManager.BotType == 1)
         {
-            GSUpdateMMR.instance.UpdateMMR(-25);
+            //GSUpdateMMR.instance.UpdateMMR(-25);
+            AccountDetails.instance.Save(MMR: -25);
+
             MMR[0].text = "-25";
             MMR[1].text = "+25";
         }

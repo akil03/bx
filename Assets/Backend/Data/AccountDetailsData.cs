@@ -39,17 +39,20 @@ public class ReservedCurrency6
 public class AccountDetailsScriptData
 {
     public string PING;
-    public string MMR;
-    public string mostAreaCovered;
-    public string highestTrophies;
-    public string totalKills;
-    public string totalDeaths;
-    public string totalWins;
-    public string totalLoss;
+    public int MMR;
+    public float mostAreaCovered;
+    public int highestTrophies;
+    public int totalKills;
+    public int totalDeaths;
+    public int totalWins;
+    public int totalLoss;
     public string slot1;
     public string slot2;
     public string slot3;
     public string slot4;
+
+    public int Gold;
+    public int Gem;
 }
 [Serializable]
 public class VirtualGoods

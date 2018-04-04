@@ -24,13 +24,13 @@ public class GameSparkRequests
         });
     }
 
-    public void Request(string eventKey, Dictionary<string, string> dictionary, StringDelegate SuccessCallback, StringDelegate FailedCallback = null)
+    public void Request(string eventKey, Dictionary<string, object> dictionary, StringDelegate SuccessCallback, StringDelegate FailedCallback = null)
     {
         var req = new LogEventRequest();
         req.SetEventKey(eventKey);
         foreach (var item in dictionary)
         {
-            req.SetEventAttribute(item.Key, item.Value);
+            req.SetEventAttribute(item.Key, item.Value.ToString());
         }
         req.Send((response) =>
         {

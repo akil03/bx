@@ -41,6 +41,8 @@ public class GUIManager : MonoBehaviour
     public AudioSource MusicSource, SFXSource;
 
 
+    public GameObject GoogleCanvas, GamecenterCanvas;
+
     void Awake()
     {
         instance = this;
@@ -56,6 +58,20 @@ public class GUIManager : MonoBehaviour
     {
         mmrTxt.text = PlayerPrefs.GetInt("MMR").ToString();
 
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+
+            GamecenterCanvas.SetActive(false);
+            GoogleCanvas.SetActive(true);
+        }
+
+        else
+        {
+            GamecenterCanvas.SetActive(true);
+            GoogleCanvas.SetActive(false);
+        }
+            
     }
 
     // Update is called once per frame
@@ -398,12 +414,21 @@ public class GUIManager : MonoBehaviour
     }
 
 
+
+    public void CopyUserID()
+    {
+        UniClipboard.SetText(playerID_TXT.text);
+        UIManager.ShowNotification("Example_1_Notification_4", 1f, true, "Copied to clipboard !", NotificationSprite);
+    }
+
     public void AddCoins(int amt)
     {
 
         StartCoroutine(AddCollectingObject(amt, Gold, goldImg));
 
     }
+
+
 
     IEnumerator AddCollectingObject(int count, Text txtObj, Sprite img)
     {
@@ -418,7 +443,10 @@ public class GUIManager : MonoBehaviour
             GO.GetComponent<Image>().sprite = img;
             GO.transform.DOMove(txtObj.transform.position, 0.5f, false).OnComplete(() =>
             {
-                txtObj.text = (int.Parse(txtObj.text) + 1).ToString();
+                if(i<19)
+                    txtObj.text = (int.Parse(txtObj.text) + 1).ToString();
+                else
+                    txtObj.text = (temp + count).ToString();
                 txtObj.transform.parent.GetChild(0).DOScale(new Vector3(1.15f, 1.15f, 1.15f), 0.1f).OnComplete(() =>
                 {
                     txtObj.transform.parent.GetChild(0).DOScale(Vector3.one, 0.1f);
@@ -434,7 +462,7 @@ public class GUIManager : MonoBehaviour
             //
             //			yield return new WaitForSeconds (0.05f );
         }
-        txtObj.text = (temp + count).ToString();
+       
     }
 
     public void AddGems()

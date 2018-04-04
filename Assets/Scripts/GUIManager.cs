@@ -329,6 +329,12 @@ public class GUIManager : MonoBehaviour
     public UnityEvent leftTheMatch;
     public Text meshClass;
     public Text meshName;
+    public Text mostAreaCoveredTxt;
+    public Text highestTrophiesTxt;
+    public Text totalKillsTxt;
+    public Text totalDeathsTxt;
+    public Text totalWinsTxt;
+    public Text totalLossTxt;
 
     public void ShowTutorialLog(string log)
     {

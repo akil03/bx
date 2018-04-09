@@ -26,6 +26,9 @@ public class GameOverGUI : MonoBehaviour
 
     public GameObject RewardWindow, RematchButton, PlayAgainBtn;
 
+    public RenderTexture slot1, slot2, slot3, slot4;
+    public GameObject SlotFull, AssignedSlot;
+
     public Text RematchText;
     public GameObject Fireworks, Confetti, Stars1, Stars2;
     // Use this for initialization
@@ -61,6 +64,8 @@ public class GameOverGUI : MonoBehaviour
         Stars1.SetActive(false);
         Stars2.SetActive(false);
 
+        SlotFull.SetActive(false);
+        AssignedSlot.SetActive(false);
 
         Regeneration.instance.LifeLoseAnim();
     }
@@ -105,7 +110,10 @@ public class GameOverGUI : MonoBehaviour
         //GameSparkRequests req = new GameSparkRequests();
         //req.Request("AddGold", "amt", "50", UpdateAccountDetails);
 
-        AccountDetails.instance.Save(Gold: 50);
+       
+        GiveRewards();
+
+       
 
         Invoke("ShowRewards", 1f);
 
@@ -125,6 +133,39 @@ public class GameOverGUI : MonoBehaviour
             MMR[1].text = "0";
         }
         //print ("Win");
+    }
+
+    void GiveRewards()
+    {
+
+        AccountDetails.instance.Save(Gold: 50);
+        int slotNo = SphereSlotManager.instance.AssignSphere();
+        if (slotNo == 0)
+        {
+            SlotFull.SetActive(true);
+            AssignedSlot.SetActive(false);
+        }
+        else
+        {
+            SlotFull.SetActive(false);
+            AssignedSlot.SetActive(true);
+            switch (slotNo)
+            {
+                case 1:
+                    AssignedSlot.GetComponent<RawImage>().texture = slot1;
+                    break;
+                case 2:
+                    AssignedSlot.GetComponent<RawImage>().texture = slot2;
+                    break;
+                case 3:
+                    AssignedSlot.GetComponent<RawImage>().texture = slot3;
+                    break;
+                case 4:
+                    AssignedSlot.GetComponent<RawImage>().texture = slot4;
+                    break;
+            }
+
+        }
     }
 
     void ShowRewards()

@@ -88,8 +88,11 @@ public class AccountDetails : MonoBehaviour
         }
         else
         {
-            GUIManager.instance.Gold.text = accountDetails.scriptData.Gold.ToString();
            
+            print("first retrieve");
+            GUIManager.instance.Gold.text = accountDetails.scriptData.Gold.ToString();
+            CloudRetrieveSphere();
+
         }
         GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
         GUIManager.instance.Gems.text = accountDetails.scriptData.Gem.ToString();
@@ -101,5 +104,64 @@ public class AccountDetails : MonoBehaviour
         GUIManager.instance.totalWinsTxt.text = accountDetails.scriptData.totalWins.ToString();
         GUIManager.instance.totalLossTxt.text = accountDetails.scriptData.totalLoss.ToString();
         isLoaded = true;
+    }
+
+    void CloudRetrieveSphere()
+    {
+        string[] slot1, slot2, slot3, slot4;
+
+        if (accountDetails.scriptData.slot1.Length > 1)
+        {
+            if (accountDetails.scriptData.slot1.Contains(","))
+            {
+                slot1 = accountDetails.scriptData.slot1.Split(',');
+                SphereSlotManager.instance.slot1.sphereType = slot1[0];
+                SphereSlotManager.instance.slot1.unlockTime = slot1[1];
+            }
+            else
+                SphereSlotManager.instance.slot1.sphereType = accountDetails.scriptData.slot1;
+        }
+        SphereSlotManager.instance.slot1.SetFromCloud();
+
+
+        if (accountDetails.scriptData.slot2.Length > 1)
+        {
+            if (accountDetails.scriptData.slot2.Contains(","))
+            {
+                slot2 = accountDetails.scriptData.slot2.Split(',');
+                SphereSlotManager.instance.slot2.sphereType = slot2[0];
+                SphereSlotManager.instance.slot2.unlockTime = slot2[1];
+            }
+            else
+                SphereSlotManager.instance.slot2.sphereType = accountDetails.scriptData.slot2;
+        }
+        SphereSlotManager.instance.slot2.SetFromCloud();
+
+        if (accountDetails.scriptData.slot3.Length > 1)
+        {
+            if (accountDetails.scriptData.slot3.Contains(","))
+            {
+                slot3 = accountDetails.scriptData.slot3.Split(',');
+                SphereSlotManager.instance.slot3.sphereType = slot3[0];
+                SphereSlotManager.instance.slot3.unlockTime = slot3[1];
+            }
+            else
+                SphereSlotManager.instance.slot3.sphereType = accountDetails.scriptData.slot3;
+        }
+        SphereSlotManager.instance.slot3.SetFromCloud();
+
+        if (accountDetails.scriptData.slot4.Length > 1)
+        {
+            if (accountDetails.scriptData.slot4.Contains(","))
+            {
+                slot4 = accountDetails.scriptData.slot4.Split(',');
+                SphereSlotManager.instance.slot4.sphereType = slot4[0];
+                SphereSlotManager.instance.slot4.unlockTime = slot4[1];
+            }
+            else
+                SphereSlotManager.instance.slot4.sphereType = accountDetails.scriptData.slot4;
+        }
+        SphereSlotManager.instance.slot4.SetFromCloud();
+
     }
 }

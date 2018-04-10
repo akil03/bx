@@ -27,6 +27,11 @@ public class SphereLevitate : MonoBehaviour {
             Levitate();
     }
 
+    private void OnDisable()
+    {
+        StopAnim();
+    }
+
 
     void Anim()
     {

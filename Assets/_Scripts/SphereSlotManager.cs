@@ -19,9 +19,27 @@ public class SphereSlotManager : MonoBehaviour {
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        slot1._sphereProperties.gameObject.SetActive(true);
+        slot2._sphereProperties.gameObject.SetActive(true);
+        slot3._sphereProperties.gameObject.SetActive(true);
+        slot4._sphereProperties.gameObject.SetActive(true);
+        
+    }
+
+    private void OnDisable()
+    {
+        print("sphere nhide");
+        slot1._sphereProperties.gameObject.SetActive(false);
+        slot2._sphereProperties.gameObject.SetActive(false);
+        slot3._sphereProperties.gameObject.SetActive(false);
+        slot4._sphereProperties.gameObject.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 

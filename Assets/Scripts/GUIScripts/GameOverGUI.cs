@@ -153,15 +153,19 @@ public class GameOverGUI : MonoBehaviour
             {
                 case 1:
                     AssignedSlot.GetComponent<RawImage>().texture = slot1;
+                    SphereSlotManager.instance.slot1._sphereProperties.gameObject.SetActive(true);
                     break;
                 case 2:
                     AssignedSlot.GetComponent<RawImage>().texture = slot2;
+                    SphereSlotManager.instance.slot2._sphereProperties.gameObject.SetActive(true);
                     break;
                 case 3:
                     AssignedSlot.GetComponent<RawImage>().texture = slot3;
+                    SphereSlotManager.instance.slot3._sphereProperties.gameObject.SetActive(true);
                     break;
                 case 4:
                     AssignedSlot.GetComponent<RawImage>().texture = slot4;
+                    SphereSlotManager.instance.slot4._sphereProperties.gameObject.SetActive(true);
                     break;
             }
 

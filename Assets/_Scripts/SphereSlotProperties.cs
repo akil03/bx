@@ -319,6 +319,7 @@ public class SphereSlotProperties : MonoBehaviour {
         AccountDetails.instance.Save(Gold: gold);
         AccountDetails.instance.Save(Gem: gem);
 
+        _unlockProperties.gameObject.SetActive(true);
         _unlockProperties.OpenSphere();
 		sphereUnlock.SetActive(true);
         SphereSlotManager.instance.activeSlot = null;
@@ -355,5 +356,6 @@ public class SphereSlotProperties : MonoBehaviour {
 		glow.SetActive(false);
 		sphereUnlock.SetActive(false);
         rewardGold.transform.parent.gameObject.SetActive(false);
+        _unlockProperties.gameObject.SetActive(false);
     }
 }

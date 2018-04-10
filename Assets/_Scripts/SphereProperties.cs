@@ -1,26 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SphereProperties : MonoBehaviour {
-	public Material[] silverDark, silverLight,silverMixed,goldDark,goldLight,goldMixed, crysDark, crysLight, crysMixed;
-	public MeshRenderer[] sphereMeshes;
-	public RandomSpin top, bottom;
-	public Animator[] Holder;
+public class SphereProperties : MonoBehaviour
+{
+    public Material[] silverDark, silverLight, silverMixed, goldDark, goldLight, goldMixed, crysDark, crysLight, crysMixed;
+    public MeshRenderer[] sphereMeshes;
+    public RandomSpin top, bottom;
+    public Animator[] Holder;
 
     public GameObject SphereObject;
 
-    
-	// Use this for initialization
-	void Start () {
-        
-        
+
+    // Use this for initialization
+    void Start()
+    {
+
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
 
 
@@ -40,22 +41,22 @@ public class SphereProperties : MonoBehaviour {
 
     [ContextMenu("Idle")]
     public void Idle()
-	{
+    {
         top.Stop();
         bottom.Stop();
-        
-	}
+
+    }
     [ContextMenu("Unlock")]
     public void StartUnlock()
-	{
+    {
 
         top.Spin();
         bottom.Spin();
-	}
+    }
 
     [ContextMenu("ApplySilver")]
     public void ApplySilver()
-	{
+    {
         sphereMeshes[0].materials = silverDark;
         sphereMeshes[1].materials = silverLight;
         sphereMeshes[2].materials = silverDark;
@@ -72,8 +73,8 @@ public class SphereProperties : MonoBehaviour {
 
     [ContextMenu("ApplyGold")]
     public void ApplyGold()
-	{
-  
+    {
+
 
 
         sphereMeshes[0].materials = goldDark;
@@ -93,7 +94,7 @@ public class SphereProperties : MonoBehaviour {
     }
     [ContextMenu("ApplyCrystal")]
     public void ApplyCrystal()
-	{
+    {
         sphereMeshes[0].materials = crysDark;
         sphereMeshes[1].materials = crysLight;
         sphereMeshes[2].materials = crysDark;
@@ -109,9 +110,9 @@ public class SphereProperties : MonoBehaviour {
 
     [ContextMenu("Animate")]
     public void OpenSphere()
-	{
-		
-		Holder[0].GetComponent<Animator>().Play("OpenChest");
+    {
+
+        Holder[0].GetComponent<Animator>().Play("OpenChest");
         Holder[1].GetComponent<Animator>().Play("OpenChest");
 
     }

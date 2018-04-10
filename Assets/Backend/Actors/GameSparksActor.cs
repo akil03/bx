@@ -25,13 +25,13 @@ public class GameSparksActor : MonoBehaviour
     {
         if (Application.isEditor)
         {
-            email.value = "test5@gmail.com";
+            email.value = "akil.hotshot@gmail.com";
             Login();
         }
         else
         {
             email.Reset();
-        }        
+        }
     }
 
     public void Login()
@@ -169,7 +169,7 @@ public class GameSparksActor : MonoBehaviour
 
     public void SetOnlineStatus(int id)
     {
-        if (id==1)
+        if (id == 1)
         {
             isOnline.value = false;
         }

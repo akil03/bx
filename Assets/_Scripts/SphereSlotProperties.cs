@@ -320,8 +320,6 @@ public class SphereSlotProperties : MonoBehaviour
         rewardGold.text = gold.ToString();
         rewardGems.text = gem.ToString();
 
-        AccountDetails.instance.Save(Gold: gold, Gem: gem);
-
         _unlockProperties.gameObject.SetActive(true);
         _unlockProperties.OpenSphere();
         sphereUnlock.SetActive(true);
@@ -330,13 +328,13 @@ public class SphereSlotProperties : MonoBehaviour
         Empty();
 
         if (slotNo == 1)
-            AccountDetails.instance.Save(slot1: "1");
+            AccountDetails.instance.Save(Gold: gold, Gem: gem, slot1: "1");
         else if (slotNo == 2)
-            AccountDetails.instance.Save(slot2: "1");
+            AccountDetails.instance.Save(Gold: gold, Gem: gem, slot2: "1");
         else if (slotNo == 3)
-            AccountDetails.instance.Save(slot3: "1");
+            AccountDetails.instance.Save(Gold: gold, Gem: gem, slot3: "1");
         else if (slotNo == 4)
-            AccountDetails.instance.Save(slot4: "1");
+            AccountDetails.instance.Save(Gold: gold, Gem: gem, slot4: "1");
 
         Invoke("AssignRewards", 2.5f);
 

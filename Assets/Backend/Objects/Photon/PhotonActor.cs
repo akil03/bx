@@ -84,20 +84,8 @@ public class PhotonActor : MonoBehaviour
 
     void SavePing()
     {
-        GameSparkRequests request = new GameSparkRequests();
         AccountDetails.instance.Save(PING: PhotonPingManager.ping);
-    }
-
-    public void Print(string str)
-    {
-        if (str.Contains("PING"))
-        {
-            saved = true;
-        }
-        else
-        {
-            print(str);
-        }
+        saved = true;
     }
 
     void OnDisconnectedFromPhoton()
@@ -107,7 +95,7 @@ public class PhotonActor : MonoBehaviour
 
     public void Reconnect()
     {
-        if (reconnect)
+        if (reconnect.value)
             ConnectToMaster();
     }
 }

@@ -21,7 +21,7 @@ public class ProjectileScript : MonoBehaviour
             Launch();
         if (gameObject.GetPhotonView().photonView.instantiationData != null)
         {
-            print(((float)gameObject.GetPhotonView().instantiationData[0]).ToString());
+            print(((int)gameObject.GetPhotonView().instantiationData[0]).ToString());
         }
     }
 
@@ -112,13 +112,5 @@ public class ProjectileScript : MonoBehaviour
         Destroy(gameObject);
         //projectileParticle.Stop();
 
-    }
-
-    void OnPhotonInstantiate(PhotonMessageInfo info)
-    {
-        if (info.photonView.viewID == PhotonView.Get(this).viewID)
-        {
-
-        }
     }
 }

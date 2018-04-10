@@ -46,13 +46,14 @@ public class AccountDetailsScriptData
     public int totalDeaths;
     public int totalWins;
     public int totalLoss;
-    public string slot1="0";
-    public string slot2="0";
-    public string slot3="0";
-    public string slot4="0";
+    public string slot1 = "0";
+    public string slot2 = "0";
+    public string slot3 = "0";
+    public string slot4 = "0";
 
     public int Gold;
     public int Gem;
+    public int rocket, health, speed, freeze, lives, shield;
 }
 [Serializable]
 public class VirtualGoods

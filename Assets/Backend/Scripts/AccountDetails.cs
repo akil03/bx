@@ -37,7 +37,7 @@ public class AccountDetails : MonoBehaviour
     }
 
     [ContextMenu("Save")]
-    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0")
+    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int health = 0, int speed = 0, int freeze = 0, int lives = 0, int shield = 0)
     {
         Dictionary<string, object> pair = new Dictionary<string, object>();
         accountDetails.scriptData.Gold += Gold;
@@ -68,6 +68,18 @@ public class AccountDetails : MonoBehaviour
         pair.Add("slot3", accountDetails.scriptData.slot3);
         accountDetails.scriptData.slot4 = slot4 != "0" ? slot4 : accountDetails.scriptData.slot4;
         pair.Add("slot4", accountDetails.scriptData.slot4);
+        accountDetails.scriptData.rocket += rocket;
+        pair.Add("rocket", accountDetails.scriptData.rocket);
+        accountDetails.scriptData.health += health;
+        pair.Add("health", accountDetails.scriptData.health);
+        accountDetails.scriptData.speed += speed;
+        pair.Add("speed", accountDetails.scriptData.speed);
+        accountDetails.scriptData.freeze += freeze;
+        pair.Add("freeze", accountDetails.scriptData.freeze);
+        accountDetails.scriptData.lives += lives;
+        pair.Add("lives", accountDetails.scriptData.lives);
+        accountDetails.scriptData.shield += shield;
+        pair.Add("shield", accountDetails.scriptData.shield);
         GameSparkRequests saveRequest = new GameSparkRequests();
         saveRequest.Request("SaveDetails", pair, SaveSuccess);
     }

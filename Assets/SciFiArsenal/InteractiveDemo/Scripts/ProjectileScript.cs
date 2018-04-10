@@ -19,6 +19,10 @@ public class ProjectileScript : MonoBehaviour
         projectileParticle.transform.parent = transform;
         if (PhotonNetwork.inRoom)
             Launch();
+        if (gameObject.GetPhotonView().photonView.instantiationData != null)
+        {
+            print(((float)gameObject.GetPhotonView().instantiationData[0]).ToString());
+        }
     }
 
     public void Launch(Snake targetSnake)
@@ -114,10 +118,7 @@ public class ProjectileScript : MonoBehaviour
     {
         if (info.photonView.viewID == PhotonView.Get(this).viewID)
         {
-            if (info.photonView.instantiationData != null)
-            {
-                print(((float)info.photonView.instantiationData[0]).ToString());
-            }
+
         }
     }
 }

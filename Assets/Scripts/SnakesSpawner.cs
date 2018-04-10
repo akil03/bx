@@ -599,7 +599,11 @@ public class SnakesSpawner : MonoBehaviour
 
         }
         InGameGUI.instance.startTime = Time.time;
+        InGameGUI.instance.gameStarted = true;
+
         DisplayStart.text = "GO !!";
+
+
 
         playerNetworkSnake.isWantRematch = 0;
         enemyNetworkSnake.isWantRematch = 0;

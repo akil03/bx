@@ -17,6 +17,7 @@ public class Server : MonoBehaviour
     [PunRPC]
     public void Rematch()
     {
+        if(ObliusGameManager.isFriendlyBattle)
         GUIManager.instance.rematchResponse.Invoke();
     }
 

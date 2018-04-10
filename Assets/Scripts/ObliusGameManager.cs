@@ -517,6 +517,7 @@ public class ObliusGameManager : MonoBehaviour
 
     public void StartRematch()
     {
+        GroundSpawner.instance.ClearGround();       
         _ShowFindingMatchScreen(PhotonNetwork.playerList.Where(a => a.IsLocal).First().ID);
     }
 

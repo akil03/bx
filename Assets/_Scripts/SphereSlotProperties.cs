@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
-public class SphereSlotProperties : MonoBehaviour {
-	public GameObject sphereSlot, sphereRender, tapToOpen, openNow, sphereUnlock, glow;
-	public SphereProperties _sphereProperties,_unlockProperties;
-	public Text timer, gemCount, gemCountWindow, AdCount, timerWindow, adCountWindow, randomGold, randomGem, rewardGold, rewardGems;
-	public string sphereType,unlockTime;
+public class SphereSlotProperties : MonoBehaviour
+{
+    public GameObject sphereSlot, sphereRender, tapToOpen, openNow, sphereUnlock, glow;
+    public SphereProperties _sphereProperties, _unlockProperties;
+    public Text timer, gemCount, gemCountWindow, AdCount, timerWindow, adCountWindow, randomGold, randomGem, rewardGold, rewardGems;
+    public string sphereType, unlockTime;
     public int slotNo;
     public int silverMin, silverMax, goldMin, goldMax, crystalMin, crystalMax;
     public int silverMinGem, silverMaxGem, goldMinGem, goldMaxGem, crystalMinGem, crystalMaxGem;
@@ -18,26 +17,28 @@ public class SphereSlotProperties : MonoBehaviour {
     public RawImage popupRender;
     public RenderTexture[] slotPreviews;
     // Use this for initialization
-    void Start () {
-		Empty();
+    void Start()
+    {
+        Empty();
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (unlockTime != "")
-			CalculateTimings();
-	}
+    }
 
-	public void OnClick()
-	{
+    // Update is called once per frame
+    void Update()
+    {
+        if (unlockTime != "")
+            CalculateTimings();
+    }
+
+    public void OnClick()
+    {
 
         if (timer.text == "Open !!")
         {
             OpenSphere();
 
         }
-        else if (!SphereSlotManager.instance.activeSlot && unlockTime=="")
+        else if (!SphereSlotManager.instance.activeSlot && unlockTime == "")
         {
             StartUnlock();
         }
@@ -48,27 +49,29 @@ public class SphereSlotProperties : MonoBehaviour {
 
         return;
 
-        if (sphereType == "") {
+        if (sphereType == "")
+        {
             RandomSphere();
             return;
-		}
-		if (unlockTime == "") {
-			StartUnlock();
-			return;
-		}
+        }
+        if (unlockTime == "")
+        {
+            StartUnlock();
+            return;
+        }
         else
             OpenSphere();
 
-        
-			
-	}
 
-	public void Empty()
-	{
-		sphereSlot.SetActive(true);
-		sphereRender.SetActive(false);
-		tapToOpen.SetActive(false);
-		openNow.SetActive(false);
+
+    }
+
+    public void Empty()
+    {
+        sphereSlot.SetActive(true);
+        sphereRender.SetActive(false);
+        tapToOpen.SetActive(false);
+        openNow.SetActive(false);
 
         sphereType = "";
         unlockTime = "";
@@ -89,8 +92,8 @@ public class SphereSlotProperties : MonoBehaviour {
             SetSphere("Crystal");
     }
 
-	public void SetSphere(string sphereType)
-	{
+    public void SetSphere(string sphereType)
+    {
         switch (sphereType)
         {
             case "silver":
@@ -114,10 +117,10 @@ public class SphereSlotProperties : MonoBehaviour {
         }
 
         this.sphereType = sphereType;
-		_sphereProperties.Idle();
-		sphereRender.SetActive(true);
-		tapToOpen.SetActive(true);
-		unlockTime = "";
+        _sphereProperties.Idle();
+        sphereRender.SetActive(true);
+        tapToOpen.SetActive(true);
+        unlockTime = "";
 
         if (slotNo == 1)
             AccountDetails.instance.Save(slot1: sphereType);
@@ -128,7 +131,7 @@ public class SphereSlotProperties : MonoBehaviour {
         else if (slotNo == 4)
             AccountDetails.instance.Save(slot4: sphereType);
 
-       
+
     }
 
     public void SetFromCloud()
@@ -165,7 +168,7 @@ public class SphereSlotProperties : MonoBehaviour {
         _sphereProperties.Idle();
         sphereRender.SetActive(true);
         tapToOpen.SetActive(true);
-        
+
 
 
         if (unlockTime != "")
@@ -175,19 +178,19 @@ public class SphereSlotProperties : MonoBehaviour {
             _sphereProperties.StartUnlock();
             SphereSlotManager.instance.activeSlot = this;
         }
-       
+
 
     }
 
     public void StartUnlock()
-	{
-		tapToOpen.SetActive(false);
-		openNow.SetActive(true);
+    {
+        tapToOpen.SetActive(false);
+        openNow.SetActive(true);
 
-		_sphereProperties.StartUnlock();
-		unlockTime = DateTime.Now.ToString();
+        _sphereProperties.StartUnlock();
+        unlockTime = DateTime.Now.ToString();
 
-       SphereSlotManager.instance.activeSlot = this;
+        SphereSlotManager.instance.activeSlot = this;
 
         if (slotNo == 1)
             AccountDetails.instance.Save(slot1: sphereType + "," + unlockTime);
@@ -203,56 +206,57 @@ public class SphereSlotProperties : MonoBehaviour {
 
     }
 
-	public void CalculateTimings()
-	{
-		DateTime a = DateTime.Parse(unlockTime);
-		TimeSpan b = DateTime.Now - a;
-		float secRemaining = (int)b.TotalSeconds;
-		int targetsecs=0;
+    public void CalculateTimings()
+    {
+        DateTime a = DateTime.Parse(unlockTime);
+        TimeSpan b = DateTime.Now - a;
+        float secRemaining = (int)b.TotalSeconds;
+        int targetsecs = 0;
 
-		switch (sphereType)
-		{
-			case "silver":
-				targetsecs = 10800;
-				break;
-			case "gold":
-				targetsecs = 28800;
-				break;
-			case "Crystal":
-				targetsecs = 86400;
-				break;
-		}
+        switch (sphereType)
+        {
+            case "silver":
+                targetsecs = 10800;
+                break;
+            case "gold":
+                targetsecs = 28800;
+                break;
+            case "Crystal":
+                targetsecs = 86400;
+                break;
+        }
 
-		b = TimeSpan.FromSeconds(targetsecs-secRemaining);
+        b = TimeSpan.FromSeconds(targetsecs - secRemaining);
         secRemaining = (int)b.TotalSeconds;
 
         if (secRemaining < 1)
-		{
-			timer.text = "Open !!";
-			AdCount.text = "";
-			gemCount.text = "";
-		}            
-		else {
-			timer.text = b.Hours + " : " + b.Minutes.ToString("00") + " : " + b.Seconds.ToString("00") + " ";
+        {
+            timer.text = "Open !!";
+            AdCount.text = "";
+            gemCount.text = "";
+        }
+        else
+        {
+            timer.text = b.Hours + " : " + b.Minutes.ToString("00") + " : " + b.Seconds.ToString("00") + " ";
             timerWindow.text = b.Hours + " : " + b.Minutes.ToString("00") + " : " + b.Seconds.ToString("00") + " ";
             AdCount.text = Mathf.CeilToInt(secRemaining / 1800).ToString();
             adCountWindow.text = "Watch Ads ( " + Mathf.CeilToInt(secRemaining / 1800).ToString() + " )";
-            gemCount.text = Mathf.CeilToInt(secRemaining/60*0.69f).ToString();
-            gemCountWindow.text = Mathf.CeilToInt(secRemaining / 60 * 0.69f).ToString()+ " Gems";
+            gemCount.text = Mathf.CeilToInt(secRemaining / 60 * 0.69f).ToString();
+            gemCountWindow.text = Mathf.CeilToInt(secRemaining / 60 * 0.69f).ToString() + " Gems";
             requiredGem = Mathf.CeilToInt(secRemaining / 60 * 0.69f);
         }
-			
-		
-
-	}
-
-	public void WatchAd()
-	{
-        
 
 
-		DateTime a = DateTime.Parse(unlockTime).AddMinutes(-30);
-		unlockTime = a.ToString();
+
+    }
+
+    public void WatchAd()
+    {
+
+
+
+        DateTime a = DateTime.Parse(unlockTime).AddMinutes(-30);
+        unlockTime = a.ToString();
 
         if (slotNo == 1)
             AccountDetails.instance.Save(slot1: sphereType + "," + unlockTime);
@@ -290,58 +294,57 @@ public class SphereSlotProperties : MonoBehaviour {
 
     }
 
-	public void OpenSphere()
-	{
+    public void OpenSphere()
+    {
         int gold = 0, gem = 0;
         switch (sphereType)
-		{
-			case "silver":
-				_unlockProperties.ApplySilver();
+        {
+            case "silver":
+                _unlockProperties.ApplySilver();
                 gold = UnityEngine.Random.Range(silverMin, silverMax);
                 gem = UnityEngine.Random.Range(silverMinGem, silverMaxGem);
                 break;
-			case "gold":
-				_unlockProperties.ApplyGold();
+            case "gold":
+                _unlockProperties.ApplyGold();
                 gold = UnityEngine.Random.Range(goldMin, goldMax);
                 gem = UnityEngine.Random.Range(goldMinGem, goldMaxGem);
                 break;
-			case "Crystal":
-				_unlockProperties.ApplyCrystal();
+            case "Crystal":
+                _unlockProperties.ApplyCrystal();
                 gold = UnityEngine.Random.Range(crystalMin, crystalMax);
                 gem = UnityEngine.Random.Range(crystalMinGem, crystalMaxGem);
                 break;
-		}
+        }
 
 
         rewardGold.text = gold.ToString();
         rewardGems.text = gem.ToString();
 
-        AccountDetails.instance.Save(Gold: gold);
-        AccountDetails.instance.Save(Gem: gem);
+        AccountDetails.instance.Save(Gold: gold, Gem: gem);
 
         _unlockProperties.gameObject.SetActive(true);
         _unlockProperties.OpenSphere();
-		sphereUnlock.SetActive(true);
+        sphereUnlock.SetActive(true);
         SphereSlotManager.instance.activeSlot = null;
-		
+
         Empty();
 
         if (slotNo == 1)
-            AccountDetails.instance.Save(slot1: "0");
+            AccountDetails.instance.Save(slot1: "1");
         else if (slotNo == 2)
-            AccountDetails.instance.Save(slot2: "0");
+            AccountDetails.instance.Save(slot2: "1");
         else if (slotNo == 3)
-            AccountDetails.instance.Save(slot3: "0");
+            AccountDetails.instance.Save(slot3: "1");
         else if (slotNo == 4)
-            AccountDetails.instance.Save(slot4: "0");
+            AccountDetails.instance.Save(slot4: "1");
 
         Invoke("AssignRewards", 2.5f);
 
-	}
+    }
 
-	public void AssignRewards()
-	{
-        
+    public void AssignRewards()
+    {
+
         glow.SetActive(true);
         glow.transform.localScale = Vector3.zero;
         glow.transform.DOScale(Vector3.one * 2, 0.5f);
@@ -349,12 +352,12 @@ public class SphereSlotProperties : MonoBehaviour {
 
         Invoke("CloseMachine", 2f);
 
-	}
+    }
 
-	public void CloseMachine()
-	{
-		glow.SetActive(false);
-		sphereUnlock.SetActive(false);
+    public void CloseMachine()
+    {
+        glow.SetActive(false);
+        sphereUnlock.SetActive(false);
         rewardGold.transform.parent.gameObject.SetActive(false);
         _unlockProperties.gameObject.SetActive(false);
     }

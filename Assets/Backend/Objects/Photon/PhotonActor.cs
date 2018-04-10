@@ -85,7 +85,7 @@ public class PhotonActor : MonoBehaviour
     void SavePing()
     {
         GameSparkRequests request = new GameSparkRequests();
-        request.Request("SetPlayerPing", "PING", PhotonPingManager.ping, Print);
+        AccountDetails.instance.Save(PING: PhotonPingManager.ping);
     }
 
     public void Print(string str)

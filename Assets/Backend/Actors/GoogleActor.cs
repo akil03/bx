@@ -16,7 +16,7 @@ public class GoogleActor : MonoBehaviour
 	{
 		//userName.Reset ();
 		//email.Reset ();
-		#if UNITY_IOS
+		#if UNITY_IOS && !UNITY_EDITOR
 		//GameCenterLogin ();
 
 		if (PlayerPrefs.HasKey ("GameCenterID")) {

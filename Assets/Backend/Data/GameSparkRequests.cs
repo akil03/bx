@@ -35,7 +35,7 @@ public class GameSparkRequests
                 req.SetEventAttribute(item.Key, item.Value.ToString());
             }
             else
-            {
+            {				
                 Debug.Log(item.Key+" has null value!");
             }
         }

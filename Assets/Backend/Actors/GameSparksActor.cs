@@ -25,7 +25,7 @@ public class GameSparksActor : MonoBehaviour
     {
         if (Application.isEditor)
         {
-            email.value = "akil.hotshot@gmail.com";
+            email.value = "test5@gmail.com";
             Login();
         }
         else

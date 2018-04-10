@@ -46,10 +46,10 @@ public class AccountDetailsScriptData
     public int totalDeaths;
     public int totalWins;
     public int totalLoss;
-    public string slot1;
-    public string slot2;
-    public string slot3;
-    public string slot4;
+    public string slot1="0";
+    public string slot2="0";
+    public string slot3="0";
+    public string slot4="0";
 
     public int Gold;
     public int Gem;

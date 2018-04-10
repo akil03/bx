@@ -37,7 +37,7 @@ public class AccountDetails : MonoBehaviour
     }
 
     [ContextMenu("Save")]
-    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = null, string slot2 = null, string slot3 = null, string slot4 = null)
+    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0")
     {        
         Dictionary<string, object> pair = new Dictionary<string, object>();
         accountDetails.scriptData.Gold += Gold;
@@ -60,13 +60,13 @@ public class AccountDetails : MonoBehaviour
         pair.Add("totalWins", accountDetails.scriptData.totalWins);
         accountDetails.scriptData.totalLoss += totalLoss;
         pair.Add("totalLoss", accountDetails.scriptData.totalLoss+totalLoss);
-        accountDetails.scriptData.slot1 = string.IsNullOrEmpty(slot1) ? accountDetails.scriptData.slot1 : slot1;
+		accountDetails.scriptData.slot1 = accountDetails.scriptData.slot1=="0" ? slot1 : accountDetails.scriptData.slot1;
         pair.Add("slot1", accountDetails.scriptData.slot1);
-        accountDetails.scriptData.slot2 = string.IsNullOrEmpty(slot2) ? accountDetails.scriptData.slot2 : slot2;
+		accountDetails.scriptData.slot2 = accountDetails.scriptData.slot2=="0" ? slot2 : accountDetails.scriptData.slot2;
         pair.Add("slot2", accountDetails.scriptData.slot2);
-        accountDetails.scriptData.slot3 = string.IsNullOrEmpty(slot3) ? accountDetails.scriptData.slot3 : slot3;
+		accountDetails.scriptData.slot3 = accountDetails.scriptData.slot3=="0" ? slot3 : accountDetails.scriptData.slot3;
         pair.Add("slot3", accountDetails.scriptData.slot3);
-        accountDetails.scriptData.slot4 = string.IsNullOrEmpty(slot4) ? accountDetails.scriptData.slot4 : slot4;
+		accountDetails.scriptData.slot4 = accountDetails.scriptData.slot4=="0" ? slot4 : accountDetails.scriptData.slot4;
         pair.Add("slot4", accountDetails.scriptData.slot4);
         GameSparkRequests saveRequest = new GameSparkRequests();
         saveRequest.Request("SaveDetails", pair, SaveSuccess);

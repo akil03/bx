@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Linq;
+﻿using System.Linq;
+using UnityEngine;
 
-public class ProjectileScript : MonoBehaviour 
+public class ProjectileScript : MonoBehaviour
 {
     public GameObject impactParticle;
     public GameObject projectileParticle;
@@ -10,79 +9,82 @@ public class ProjectileScript : MonoBehaviour
     [HideInInspector]
     public Vector3 impactNormal; //Used to rotate impactparticle.
 
-	public Snake target;
-	public float speed,launchTime,damage=300.0f;
-	public bool isLaunched;
-	public bool isFreeze;
-	void Start () 
-	{
+    public Snake target;
+    public float speed, launchTime, damage = 300.0f;
+    public bool isLaunched;
+    public bool isFreeze;
+    void Start()
+    {
         projectileParticle = Instantiate(projectileParticle, transform.position, transform.rotation) as GameObject;
         projectileParticle.transform.parent = transform;
-		if(PhotonNetwork.inRoom)
-		Launch ();
-	}
+        if (PhotonNetwork.inRoom)
+            Launch();
+    }
 
-	public void Launch(Snake targetSnake){
-		target = targetSnake;
-		isLaunched = true;
-	}
+    public void Launch(Snake targetSnake)
+    {
+        target = targetSnake;
+        isLaunched = true;
+    }
 
-	public void Launch(){		
-		if (gameObject.GetComponent<PhotonView> ().isMine)
-		{
-			PlayerInfo enemy = GameObject.FindObjectsOfType<PlayerInfo> ().Where (a => !a.GetComponent<PhotonView> ().isMine).First ();
-			target = enemy.Player;
-		}
-		else
-		{
-			PlayerInfo enemy = GameObject.FindObjectsOfType<PlayerInfo> ().Where (a => a.GetComponent<PhotonView> ().isMine).First ();
-			target = enemy.Player;
-		}
-		isLaunched = true;
-		print (target.name);
-//		#if UNITY_EDITOR
-//		UnityEditor.EditorApplication.isPaused = true;
-//		#endif
-	}
+    public void Launch()
+    {
+        if (gameObject.GetComponent<PhotonView>().isMine)
+        {
+            PlayerInfo enemy = GameObject.FindObjectsOfType<PlayerInfo>().Where(a => !a.GetComponent<PhotonView>().isMine).First();
+            target = enemy.Player;
+        }
+        else
+        {
+            PlayerInfo enemy = GameObject.FindObjectsOfType<PlayerInfo>().Where(a => a.GetComponent<PhotonView>().isMine).First();
+            target = enemy.Player;
+        }
+        isLaunched = true;
+    }
 
 
-	void Update(){
-		if (isLaunched) {
-			if(!target){
-				if (!PhotonNetwork.inRoom)
-					Destroy (gameObject);
-				else
-					PhotonNetwork.Destroy (gameObject);
-				return;
-			}
-			transform.LookAt (target.transform.position);
-			transform.position = Vector3.MoveTowards (transform.position, target.transform.position, speed * Time.deltaTime);
+    void Update()
+    {
+        if (isLaunched)
+        {
+            if (!target)
+            {
+                if (!PhotonNetwork.inRoom)
+                    Destroy(gameObject);
+                else
+                    PhotonNetwork.Destroy(gameObject);
+                return;
+            }
+            transform.LookAt(target.transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
 
-			if (Vector3.Distance (target.transform.position, transform.position) < 0.5f) {
-				isLaunched = false;
-				impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal)) as GameObject;
+            if (Vector3.Distance(target.transform.position, transform.position) < 0.5f)
+            {
+                isLaunched = false;
+                impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal)) as GameObject;
 
-//				foreach (GameObject trail in trailParticles)
-//				{
-//					GameObject curTrail = transform.Find(projectileParticle.name + "/" + trail.name).gameObject;
-//					curTrail.transform.parent = null;
-//					Destroy(curTrail, 3f); 
-//				}
-//
-				target.TakeDamage (damage);
-				if (isFreeze)
-					target.EnableFreezeHit ();
+                //				foreach (GameObject trail in trailParticles)
+                //				{
+                //					GameObject curTrail = transform.Find(projectileParticle.name + "/" + trail.name).gameObject;
+                //					curTrail.transform.parent = null;
+                //					Destroy(curTrail, 3f); 
+                //				}
+                //
+                target.TakeDamage(damage);
+                if (isFreeze)
+                    target.EnableFreezeHit();
 
-				Destroy(projectileParticle, 3f);
-				Destroy(impactParticle, 5f);
-				Destroy(gameObject);
+                Destroy(projectileParticle, 3f);
+                Destroy(impactParticle, 5f);
+                Destroy(gameObject);
 
-			}
-				
-		}
-	}
+            }
 
-	void OnCollisionEnter (Collision hit) {
+        }
+    }
+
+    void OnCollisionEnter(Collision hit)
+    {
 
         //transform.DetachChildren();
         impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal)) as GameObject;
@@ -95,16 +97,27 @@ public class ProjectileScript : MonoBehaviour
 
 
         //yield WaitForSeconds (0.05);
-//        foreach (GameObject trail in trailParticles)
-//	    {
-//            GameObject curTrail = transform.Find(projectileParticle.name + "/" + trail.name).gameObject;
-//            curTrail.transform.parent = null;
-//            Destroy(curTrail, 3f); 
-//	    }
+        //        foreach (GameObject trail in trailParticles)
+        //	    {
+        //            GameObject curTrail = transform.Find(projectileParticle.name + "/" + trail.name).gameObject;
+        //            curTrail.transform.parent = null;
+        //            Destroy(curTrail, 3f); 
+        //	    }
         Destroy(projectileParticle, 3f);
         Destroy(impactParticle, 5f);
         Destroy(gameObject);
         //projectileParticle.Stop();
 
-	}
+    }
+
+    void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        if (info.photonView.viewID == PhotonView.Get(this).viewID)
+        {
+            if (info.photonView.instantiationData != null)
+            {
+                print(((float)info.photonView.instantiationData[0]).ToString());
+            }
+        }
+    }
 }

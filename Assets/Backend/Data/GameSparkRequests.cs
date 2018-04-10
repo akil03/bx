@@ -30,7 +30,14 @@ public class GameSparkRequests
         req.SetEventKey(eventKey);
         foreach (var item in dictionary)
         {
-            req.SetEventAttribute(item.Key, item.Value.ToString());
+            if (item.Value!=null)
+            {
+                req.SetEventAttribute(item.Key, item.Value.ToString());
+            }
+            else
+            {
+                Debug.Log(item.Key+" has null value!");
+            }
         }
         req.Send((response) =>
         {

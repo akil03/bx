@@ -30,14 +30,21 @@ public class AccountDetails : MonoBehaviour
                 GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
 
                 if (!isLoaded)
+                {
                     SetUI();
+                    UpgradeItem[] upgradeItems = FindObjectsOfType<UpgradeItem>();
+                    foreach (var item in upgradeItems)
+                    {
+                        item.AssignValues();
+                    }
+                }
 
             }
         });
     }
 
     [ContextMenu("Save")]
-    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int health = 0, int speed = 0, int freeze = 0, int lives = 0, int shield = 0)
+    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int minishots = 0, int heal = 0, int speed = 0, int freeze = 0, int shield = 0, int lives = 0, int health = 0, int movespeed = 0)
     {
         Dictionary<string, object> pair = new Dictionary<string, object>();
         accountDetails.scriptData.Gold += Gold;
@@ -70,16 +77,22 @@ public class AccountDetails : MonoBehaviour
         pair.Add("slot4", accountDetails.scriptData.slot4);
         accountDetails.scriptData.rocket += rocket;
         pair.Add("rocket", accountDetails.scriptData.rocket);
-        accountDetails.scriptData.health += health;
-        pair.Add("health", accountDetails.scriptData.health);
+        accountDetails.scriptData.minishots += minishots;
+        pair.Add("minishots", accountDetails.scriptData.minishots);
+        accountDetails.scriptData.heal += heal;
+        pair.Add("heal", accountDetails.scriptData.heal);
         accountDetails.scriptData.speed += speed;
         pair.Add("speed", accountDetails.scriptData.speed);
         accountDetails.scriptData.freeze += freeze;
         pair.Add("freeze", accountDetails.scriptData.freeze);
-        accountDetails.scriptData.lives += lives;
-        pair.Add("lives", accountDetails.scriptData.lives);
         accountDetails.scriptData.shield += shield;
         pair.Add("shield", accountDetails.scriptData.shield);
+        accountDetails.scriptData.lives += lives;
+        pair.Add("lives", accountDetails.scriptData.lives);
+        accountDetails.scriptData.health += health;
+        pair.Add("health", accountDetails.scriptData.health);
+        accountDetails.scriptData.movespeed += movespeed;
+        pair.Add("movespeed", accountDetails.scriptData.movespeed);
         GameSparkRequests saveRequest = new GameSparkRequests();
         saveRequest.Request("SaveDetails", pair, SaveSuccess);
     }

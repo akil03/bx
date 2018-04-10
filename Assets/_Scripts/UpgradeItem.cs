@@ -13,8 +13,7 @@ public class UpgradeItem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //PlayerPrefs.DeleteKey (playerprefsTag);
-        AssignValues();
+
     }
 
     // Update is called once per frame
@@ -26,16 +25,76 @@ public class UpgradeItem : MonoBehaviour
 
     public void Buy()
     {
-
-        upgradeLevel++;
-        PlayerPrefs.SetInt(playerprefsTag, upgradeLevel);
-        UpdatePanel();
+        switch (type)
+        {
+            case UpgradeType.rocket:
+                AccountDetails.instance.Save(rocket: 1);
+                break;
+            case UpgradeType.minishots:
+                AccountDetails.instance.Save(minishots: 1);
+                break;
+            case UpgradeType.heal:
+                AccountDetails.instance.Save(heal: 1);
+                break;
+            case UpgradeType.speed:
+                AccountDetails.instance.Save(speed: 1);
+                break;
+            case UpgradeType.freeze:
+                AccountDetails.instance.Save(freeze: 1);
+                break;
+            case UpgradeType.shield:
+                AccountDetails.instance.Save(shield: 1);
+                break;
+            case UpgradeType.lives:
+                AccountDetails.instance.Save(lives: 1);
+                break;
+            case UpgradeType.health:
+                AccountDetails.instance.Save(health: 1);
+                break;
+            case UpgradeType.movespeed:
+                AccountDetails.instance.Save(movespeed: 1);
+                break;
+            default:
+                break;
+        }
+        AssignValues();
 
     }
 
     public void AssignValues()
     {
-        upgradeLevel = PlayerPrefs.GetInt(playerprefsTag);
+        switch (type)
+        {
+            case UpgradeType.rocket:
+                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.rocket;
+                break;
+            case UpgradeType.minishots:
+                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.minishots;
+                break;
+            case UpgradeType.heal:
+                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.heal;
+                break;
+            case UpgradeType.speed:
+                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.speed;
+                break;
+            case UpgradeType.freeze:
+                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.freeze;
+                break;
+            case UpgradeType.shield:
+                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.shield;
+                break;
+            case UpgradeType.lives:
+                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.lives;
+                break;
+            case UpgradeType.health:
+                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.health;
+                break;
+            case UpgradeType.movespeed:
+                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.movespeed;
+                break;
+            default:
+                break;
+        }
 
         UpdatePanel();
 
@@ -86,5 +145,5 @@ public class UpgradeItem : MonoBehaviour
 
 public enum UpgradeType
 {
-    rocket, minishots, heal, speed, freeze, lives, shield, health, movespeed
+    rocket, minishots, heal, speed, freeze, shield, lives, health, movespeed
 }

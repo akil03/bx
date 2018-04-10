@@ -53,7 +53,7 @@ public class AccountDetailsScriptData
 
     public int Gold;
     public int Gem;
-    public int rocket, health, speed, freeze, lives, shield;
+    public int rocket, minishots, heal, speed, freeze, shield, lives, health, movespeed;
 }
 [Serializable]
 public class VirtualGoods

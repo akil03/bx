@@ -10,7 +10,8 @@ public class ProjectileScript : MonoBehaviour
     public Vector3 impactNormal; //Used to rotate impactparticle.
 
     public Snake target;
-    public float speed, launchTime, damage = 300.0f;
+    public float speed, launchTime;
+    public int damage;
     public bool isLaunched;
     public bool isFreeze;
     void Start()
@@ -21,7 +22,7 @@ public class ProjectileScript : MonoBehaviour
             Launch();
         if (gameObject.GetPhotonView().photonView.instantiationData != null)
         {
-            print(((int)gameObject.GetPhotonView().instantiationData[0]).ToString());
+            damage = (int)gameObject.GetPhotonView().instantiationData[0];
         }
     }
 

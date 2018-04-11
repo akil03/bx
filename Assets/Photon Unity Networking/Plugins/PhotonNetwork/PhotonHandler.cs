@@ -194,7 +194,7 @@ internal class PhotonHandler : MonoBehaviour
 
     public static void StartFallbackSendAckThread()
     {
-	    #if !UNITY_WEBGL
+        #if !UNITY_WEBGL
         if (sendThreadShouldRun)
         {
             return;
@@ -202,14 +202,14 @@ internal class PhotonHandler : MonoBehaviour
 
         sendThreadShouldRun = true;
         SupportClassPun.StartBackgroundCalls(FallbackSendAckThread);   // thread will call this every 100ms until method returns false
-	    #endif
+        #endif
     }
 
     public static void StopFallbackSendAckThread()
     {
-	    #if !UNITY_WEBGL
+        #if !UNITY_WEBGL
         sendThreadShouldRun = false;
-	    #endif
+        #endif
     }
 
     /// <summary>A thread which runs independent from the Update() calls. Keeps connections online while loading or in background. See PhotonNetwork.BackgroundTimeout.</summary>
@@ -251,7 +251,7 @@ internal class PhotonHandler : MonoBehaviour
     {
         get
         {
-			PlayerPrefs.DeleteKey (PlayerPrefsKey);
+            PlayerPrefs.DeleteKey (PlayerPrefsKey);
             string prefsRegionCode = PlayerPrefs.GetString(PlayerPrefsKey, "");
             if (!string.IsNullOrEmpty(prefsRegionCode))
             {

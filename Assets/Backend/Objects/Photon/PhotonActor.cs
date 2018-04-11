@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PhotonActor : MonoBehaviour
 {
@@ -16,20 +19,33 @@ public class PhotonActor : MonoBehaviour
     [SerializeField] EventObject disconnectedFromPhoton;
     [SerializeField] BoolObject reconnect;
     bool saved;
+    public CloudRegionCode regionCode;
+    public List<string> list;
+    public Text text;
+    int index = 0;
 
     void Start()
     {
+        text.text = list[index];
         if (connectOnStart)
             ConnectToMaster();
     }
 
     void ConnectToMaster()
     {
-        PhotonNetwork.ConnectUsingSettings(Application.version);
+        if (regionCode == CloudRegionCode.best)
+        {
+            PhotonNetwork.ConnectToBestCloudServer(Application.version);
+        }
+        else
+        {
+            PhotonNetwork.ConnectToRegion(regionCode, Application.version);
+        }
     }
 
-    void OnConnectedToMaster()
+    void OnConnectedToPhoton()
     {
+        print(PhotonNetwork.CloudRegion);
         connectToMasterSuccess.Fire();
         if (!saved)
         {
@@ -84,12 +100,16 @@ public class PhotonActor : MonoBehaviour
 
     void SavePing()
     {
-        AccountDetails.instance.Save(PING: PhotonPingManager.ping);
+        if (AccountDetails.instance != null)
+        {
+            AccountDetails.instance.Save(PING: PhotonPingManager.ping);
+        }
         saved = true;
     }
 
     void OnDisconnectedFromPhoton()
     {
+        print("disconnected.");
         disconnectedFromPhoton.Fire();
     }
 
@@ -97,5 +117,43 @@ public class PhotonActor : MonoBehaviour
     {
         if (reconnect.value)
             ConnectToMaster();
+    }
+
+    public void Left()
+    {
+        if (index > 0)
+        {
+            index--;
+            text.text = list[index];
+            regionCode = (CloudRegionCode)index;
+            StartCoroutine(m_ChangeServer());
+        }
+    }
+
+    public void Right()
+    {
+        if (index < list.Count - 1)
+        {
+            index++;
+            text.text = list[index];
+            regionCode = (CloudRegionCode)index;
+            StartCoroutine(m_ChangeServer());
+        }
+    }
+
+    public void ChangeServer(int index)
+    {
+        regionCode = (CloudRegionCode)index;
+        StartCoroutine(m_ChangeServer());
+    }
+
+    IEnumerator m_ChangeServer()
+    {
+        PhotonNetwork.Disconnect();
+        while (!PhotonNetwork.connected)
+        {
+            yield return null;
+        }
+        ConnectToMaster();
     }
 }

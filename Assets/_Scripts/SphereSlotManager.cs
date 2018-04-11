@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class SphereSlotManager : MonoBehaviour {
+public class SphereSlotManager : MonoBehaviour
+{
     public SphereSlotProperties slot1, slot2, slot3, slot4, activeSlot;
     public GameObject OpenPopup;
     //public Text 
@@ -16,9 +14,10 @@ public class SphereSlotManager : MonoBehaviour {
         instance = this;
     }
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start()
+    {
+
+    }
 
     private void OnEnable()
     {
@@ -26,22 +25,34 @@ public class SphereSlotManager : MonoBehaviour {
         slot2._sphereProperties.gameObject.SetActive(true);
         slot3._sphereProperties.gameObject.SetActive(true);
         slot4._sphereProperties.gameObject.SetActive(true);
-        
+
     }
 
     private void OnDisable()
     {
-        print("sphere nhide");
-        slot1._sphereProperties.gameObject.SetActive(false);
-        slot2._sphereProperties.gameObject.SetActive(false);
-        slot3._sphereProperties.gameObject.SetActive(false);
-        slot4._sphereProperties.gameObject.SetActive(false);
+        if (slot1._sphereProperties != null)
+        {
+            slot1._sphereProperties.gameObject.SetActive(false);
+        }
+        if (slot2._sphereProperties != null)
+        {
+            slot2._sphereProperties.gameObject.SetActive(false);
+        }
+        if (slot3._sphereProperties != null)
+        {
+            slot3._sphereProperties.gameObject.SetActive(false);
+        }
+        if (slot4._sphereProperties != null)
+        {
+            slot4._sphereProperties.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+
+    }
 
     public int AssignSphere()
     {
@@ -96,7 +107,7 @@ public class SphereSlotManager : MonoBehaviour {
     }
 
 
-    
+
 
     void AdsCallback(ShowResult result)
     {

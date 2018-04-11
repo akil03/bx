@@ -38,7 +38,7 @@ public class SphereSlotProperties : MonoBehaviour
             OpenSphere();
 
         }
-        else if (!SphereSlotManager.instance.activeSlot && unlockTime == "")
+        else if (!SphereSlotManager.instance.activeSlot && unlockTime == "" && sphereType!="")
         {
             StartUnlock();
         }

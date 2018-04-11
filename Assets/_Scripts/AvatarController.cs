@@ -5,7 +5,7 @@ using UnityEngine;
 public class AvatarController : MonoBehaviour {
 	public AnimationStates AnimStates;
 	public Animator _animator;
-	public GameObject Ball,GameBall;
+	//public GameObject Ball,GameBall;
 	// Use this for initialization
 	void Awake () {
 		Idle ();
@@ -18,19 +18,19 @@ public class AvatarController : MonoBehaviour {
 
 	public void Idle(){
 		_animator.Play (AnimStates.Idle);
-		if (Ball)
-			Ball.SetActive (true);
+		//if (Ball)
+		//	Ball.SetActive (true);
 
-		GameBall.SetActive (false);
+		//GameBall.SetActive (false);
 	}
 
 	public void Run(){
 		print ("run");
 		_animator.Play (AnimStates.Run);
-		if (Ball)
-			Ball.SetActive (false);
+		//if (Ball)
+		//	Ball.SetActive (false);
 
-		GameBall.SetActive (true);
+		//GameBall.SetActive (true);
 	}
 
 

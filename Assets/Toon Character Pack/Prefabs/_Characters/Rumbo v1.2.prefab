@@ -1580,11 +1580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projector: {fileID: 400000}
   root: {fileID: 400026}
-  _bloodColor:
-    r: 0.5529412
-    g: 0.007843138
-    b: 0.007843138
-    a: 1
+  _bloodColor: {r: 0.5529412, g: 0.007843138, b: 0.007843138, a: 1}
   _model: {fileID: 100066}
   _bodyMesh: {fileID: 4300008, guid: e88f3d051335eea419d1f5bcf6667269, type: 3}
   _explodeHeadPS: {fileID: 19800000, guid: 8c9a961c8ce3ad24fa261648befb0c26, type: 2}

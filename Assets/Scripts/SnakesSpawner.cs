@@ -319,6 +319,7 @@ public class SnakesSpawner : MonoBehaviour
 
         newSnake.isLocal = true;
         newSnake.Lives = snake.Lives;
+        newSnake.maxHP = HealthValue;
         newSnake.normalSpeed = snake.normalSpeed;
 
         if (snake.playerID == 1)
@@ -450,6 +451,7 @@ public class SnakesSpawner : MonoBehaviour
 
         newSnake.isLocal = true;
         newSnake.Lives = LifeValue;
+        newSnake.maxHP = HealthValue;
         newSnake.normalSpeed = SpeedValue;
         StartTime = 0;
         if (playerNo == 1)

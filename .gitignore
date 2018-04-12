@@ -37,3 +37,5 @@ Assets/EasyTouchBundle/Install/PlayMakerAddOn.unitypackage.meta
 Assets/GameSparks/Plugins/x86_64/GameSparksNative.pdb.meta
 Assets/ToeJoeIdle.unitypackage.meta
 Assets/EasyTouchBundle/Install.meta
+Assets/AmplifyShaderEditor/Plugins/Editor/Utils/CustomMaterialInspector.cs
+Assets/Plugins/Quick/Editor/Utils/QUtils.cs

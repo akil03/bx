@@ -106,6 +106,11 @@ public class ObliusGameManager : MonoBehaviour
         //			return;
         //		}
         //
+        if (PhotonNetwork.inRoom)
+        {
+            print("Can't start normal game in a room!");
+            return;
+        }
         ChangePlayerStaus(false);
         BotType = 0;
         if (Regeneration.instance.LifeAmount < 1)
@@ -434,8 +439,9 @@ public class ObliusGameManager : MonoBehaviour
         if (PhotonNetwork.room == null || PhotonNetwork.room.PlayerCount < 2)
         {
             isFinding = false;
-            PhotonNetwork.LeaveRoom();
+            matchmakingPhase = false;
             isGameSearchFail = true;
+            PhotonNetwork.LeaveRoom();            
         }
 
     }
@@ -467,7 +473,7 @@ public class ObliusGameManager : MonoBehaviour
             if (isServer)
             {
                 print("create room");
-                PhotonNetwork.CreateRoom(null);
+                PhotonNetwork.CreateRoom(null,new RoomOptions { maxPlayers=2},TypedLobby.Default);
             }
             else
             {

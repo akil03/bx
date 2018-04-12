@@ -190,7 +190,7 @@ public class GameSparksActor : MonoBehaviour
             }
             else
             {
-                ChangePlayerStatus();
+                SetOnlineStatus(0);
             }
         }
     }

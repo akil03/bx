@@ -32,7 +32,6 @@ public class PowerUpManager : MonoBehaviour
         while (true)
         {
             i++;
-            print(i);
             yield return new WaitForSeconds(1);
         }
     }

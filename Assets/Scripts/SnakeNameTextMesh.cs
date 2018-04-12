@@ -37,7 +37,7 @@ public class SnakeNameTextMesh : MonoBehaviour {
 	}
 
 	public void SetText(string value){
-		value = "";
+		//value = "";
 
 		text.text = value;
 		shadow.text = value;

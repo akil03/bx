@@ -54,6 +54,7 @@ public class AccountDetails : MonoBehaviour
         accountDetails.scriptData.PING = string.IsNullOrEmpty(PING) ? accountDetails.scriptData.PING : PING;
         pair.Add("PING", accountDetails.scriptData.PING);
         accountDetails.scriptData.MMR += MMR;
+        accountDetails.scriptData.MMR = accountDetails.scriptData.MMR < 0 ? 0 : accountDetails.scriptData.MMR;
         pair.Add("MMR", accountDetails.scriptData.MMR);
         accountDetails.scriptData.mostAreaCovered = accountDetails.scriptData.mostAreaCovered < mostAreaCovered ? mostAreaCovered : accountDetails.scriptData.mostAreaCovered;
         pair.Add("mostAreaCovered", accountDetails.scriptData.mostAreaCovered);

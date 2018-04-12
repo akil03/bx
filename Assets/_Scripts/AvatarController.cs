@@ -44,10 +44,10 @@ public class AvatarController : MonoBehaviour {
 
 	public void Kill(){
 		int Rand = Random.Range (0, 50);
-	//	if(Rand<25)
+		if(Rand<25)
 		_animator.Play (AnimStates.Spin);
-	//	else
-	//		_animator.Play (AnimStates.Spin);
+		else
+		_animator.Play (AnimStates.Kill);
 	}
 
 	public void GoSpin(){

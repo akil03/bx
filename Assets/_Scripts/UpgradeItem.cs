@@ -111,7 +111,7 @@ public class UpgradeItem : MonoBehaviour
                 SnakesSpawner.instance.HealthValue = currentValue;
                 break;
             case 2:
-                SnakesSpawner.instance.SpeedValue = (float)currentValue / (float)20;
+                SnakesSpawner.instance.SpeedValue = (float)currentValue / (float)25;
                 break;
             case 3:
                 SnakesSpawner.instance.LifeValue = currentValue;

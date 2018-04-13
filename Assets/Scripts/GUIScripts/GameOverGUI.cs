@@ -287,7 +287,7 @@ public class GameOverGUI : MonoBehaviour
 
     public void OnPlayButtonClick()
     {
-        if (Server.instance != null && ObliusGameManager.isFriendlyBattle)
+        if (Server.instance != null)
             PhotonView.Get(Server.instance).RPC("LeftTheGame", PhotonTargets.Others);
         GUIManager.instance.ShowMainMenuGUI();
         if (PhotonNetwork.inRoom)

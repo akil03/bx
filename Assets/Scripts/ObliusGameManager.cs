@@ -28,6 +28,7 @@ public class ObliusGameManager : MonoBehaviour
     public static bool isFriendlyBattle, isOnlineBattle;
     [SerializeField] EventObject ChangeOnlineStatus;
     [SerializeField] BoolObject isOnline;
+    string roomId;
     void Awake()
     {
         Application.targetFrameRate = 60;
@@ -326,7 +327,6 @@ public class ObliusGameManager : MonoBehaviour
     public void ShowFindingMatchScreen()
     {
         ChangePlayerStaus(false);
-        isFinding = true;
         if (Regeneration.instance.LifeAmount < 1)
         {
             Regeneration.instance.UseLife();
@@ -350,6 +350,7 @@ public class ObliusGameManager : MonoBehaviour
         }
 
         isOnlineBattle = true;
+        isFinding = true;
     }
 
     bool matchmakingPhase;
@@ -378,6 +379,8 @@ public class ObliusGameManager : MonoBehaviour
 
     public void JoinedRoom()
     {
+        PhotonNetwork.player.NickName = PhotonNetwork.player.UserId;
+        print("current room is "+PhotonNetwork.room.Name);
         AddToMatchmakingQueue();
 
         if (matchmakingPhase)
@@ -405,21 +408,27 @@ public class ObliusGameManager : MonoBehaviour
 
     void AddToMatchmakingQueue()
     {
-        if (!ObliusGameManager.isFriendlyBattle)
-            Invoke("FakeBotMatch", 10);
-
         if (matchmakingPhase)
-        {
-            if (PhotonNetwork.room.PlayerCount >= 2)
+        {            
+            if (PhotonNetwork.room.PlayerCount >= maxplayers)
             {
                 CancelInvoke("FakeBotMatch");
-                if (PhotonNetwork.player.ID % 2 != 0)
+                if (PhotonNetwork.player.ID % maxplayers != 0)
                 {
+                    if ((PhotonNetwork.room.PlayerCount == PhotonNetwork.player.ID))
+                    {
+                        print("Last player so staying in que");
+                        Invoke("FakeBotMatch", 10);
+                        return;
+                    }
+                    roomId = PhotonNetwork.player.UserId;
                     isServer = true;
                 }
                 else
                 {
                     isServer = false;
+                    int index = PhotonNetwork.playerList.ToList().FindIndex(a => a.ID == PhotonNetwork.player.ID);
+                    roomId = PhotonNetwork.playerList[index-1].NickName;
                 }
                 PhotonNetwork.LeaveRoom();
                 print("Begin a game!");
@@ -429,6 +438,7 @@ public class ObliusGameManager : MonoBehaviour
             else
             {
                 print("Added to queue!");
+                Invoke("FakeBotMatch",10);
                 return;
             }
         }
@@ -473,12 +483,12 @@ public class ObliusGameManager : MonoBehaviour
             if (isServer)
             {
                 print("create room");
-                PhotonNetwork.CreateRoom(null,new RoomOptions { maxPlayers=2},TypedLobby.Default);
+                PhotonNetwork.CreateRoom(roomId,new RoomOptions { maxPlayers=2},TypedLobby.Default);
             }
             else
             {
                 print("join room");
-                PhotonNetwork.JoinRandomRoom();
+                PhotonNetwork.JoinRoom(roomId);
             }
             matchmakingPhase = false;
         }
@@ -490,11 +500,11 @@ public class ObliusGameManager : MonoBehaviour
     }
 
 
-    public void RandomJoinFailed()
+    public void OnPhotonJoinRoomFailed()
     {
         if (findingPhase)
         {
-            PhotonNetwork.JoinRandomRoom();
+            PhotonNetwork.JoinRoom(roomId);            
         }
     }
 

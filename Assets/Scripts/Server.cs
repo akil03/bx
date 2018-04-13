@@ -24,7 +24,8 @@ public class Server : MonoBehaviour
     [PunRPC]
     public void LeftTheGame()
     {
-        GUIManager.instance.leftTheMatch.Invoke();
+        if (ObliusGameManager.isFriendlyBattle)
+            GUIManager.instance.leftTheMatch.Invoke();
     }
 
     [PunRPC]

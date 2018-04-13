@@ -325,8 +325,7 @@ public class ObliusGameManager : MonoBehaviour
     //attached to play button
     public void ShowFindingMatchScreen()
     {
-        ChangePlayerStaus(false);
-        isFinding = true;
+        ChangePlayerStaus(false);        
         if (Regeneration.instance.LifeAmount < 1)
         {
             Regeneration.instance.UseLife();
@@ -350,6 +349,7 @@ public class ObliusGameManager : MonoBehaviour
         }
 
         isOnlineBattle = true;
+        isFinding = true;
     }
 
     bool matchmakingPhase;
@@ -378,6 +378,7 @@ public class ObliusGameManager : MonoBehaviour
 
     public void JoinedRoom()
     {
+        print("Current room is "+PhotonNetwork.room.Name);
         AddToMatchmakingQueue();
 
         if (matchmakingPhase)
@@ -386,7 +387,6 @@ public class ObliusGameManager : MonoBehaviour
         {
             if (reconnect.value)
                 _ShowFindingMatchScreen(PhotonNetwork.player.ID);
-            print("Max players reached!");
             isServer = false;
             findingPhase = false;
         }
@@ -397,23 +397,26 @@ public class ObliusGameManager : MonoBehaviour
         AddToMatchmakingQueue();
         if (findingPhase)
         {
-            if (PhotonNetwork.room.PlayerCount == maxplayers)
+            if (PhotonNetwork.room.PlayerCount == maxplayers && PhotonNetwork.isMasterClient)
+            {
+                print("Room has reached max players.");
                 PhotonNetwork.room.IsVisible = false;
+                PhotonNetwork.room.IsOpen = false;
+            }
+                
             isFinding = false;
         }
     }
 
     void AddToMatchmakingQueue()
-    {
-        if (!ObliusGameManager.isFriendlyBattle)
-            Invoke("FakeBotMatch", 10);
+    {         
 
         if (matchmakingPhase)
         {
-            if (PhotonNetwork.room.PlayerCount >= 2)
+            if (PhotonNetwork.room.PlayerCount >= maxplayers)
             {
                 CancelInvoke("FakeBotMatch");
-                if (PhotonNetwork.player.ID % 2 != 0)
+                if (PhotonNetwork.player.ID % maxplayers != 0)
                 {
                     isServer = true;
                 }
@@ -429,6 +432,7 @@ public class ObliusGameManager : MonoBehaviour
             else
             {
                 print("Added to queue!");
+                Invoke("FakeBotMatch", 10);
                 return;
             }
         }
@@ -453,6 +457,7 @@ public class ObliusGameManager : MonoBehaviour
         {
             CancelInvoke("FakeBotMatch");
             isFinding = false;
+            matchmakingPhase = false;
             PhotonNetwork.LeaveRoom();
             GUIManager.instance.ShowMainMenuGUI();
         }
@@ -486,6 +491,7 @@ public class ObliusGameManager : MonoBehaviour
 
     public void ConnectedToMaster()
     {
+        print("Connected to "+PhotonNetwork.CloudRegion+" master server.");
         StartGameServer();
     }
 

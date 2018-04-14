@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GameSparks.Api.Messages;
 using GameSparks.Api.Requests;
 using GameSparks.Core;
 using UnityEngine;
@@ -32,6 +33,22 @@ public class GameSparksActor : MonoBehaviour
         {
             email.Reset();
         }
+    }
+
+    private void Start()
+    {
+        MatchNotFoundMessage.Listener += MatchNotFound;
+        MatchFoundMessage.Listener += MatchFound;
+    }
+
+    private void MatchFound(MatchFoundMessage obj)
+    {
+        print(obj.MatchId + " has been created!");
+    }
+
+    private void MatchNotFound(MatchNotFoundMessage obj)
+    {
+        print(obj.Errors.BaseData);
     }
 
     public void Login()
@@ -205,5 +222,20 @@ public class GameSparksActor : MonoBehaviour
         {
             SetOnlineStatus(1);
         }
+    }
+
+    public void FindPlayers()
+    {
+        Debug.Log("GSM| Attempting Matchmaking...");
+        new GameSparks.Api.Requests.MatchmakingRequest()
+            .SetMatchShortCode("normal")
+            .SetSkill(0)
+            .Send((response) =>
+            {
+                if (response.HasErrors)
+                {
+                    Debug.LogError("GSM| MatchMaking Error \n" + response.Errors.JSON);
+                }
+            });
     }
 }

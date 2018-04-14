@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 [Serializable]
 public class Location
 {
@@ -59,6 +61,7 @@ public class PlayerData
     public int Gold;
     public int Gem;
     public int rocket, minishots, heal, speed, freeze, shield, lives, health, movespeed;
+    public List<string> FriendsList = new List<string>();
 }
 
 [Serializable]

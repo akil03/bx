@@ -32,6 +32,10 @@ public class AccountDetails : MonoBehaviour
                 accountDetails = JsonUtility.FromJson<AccountDetailsData>(response.JSONString);
                 GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
                 playerData = JsonUtility.FromJson<PlayerData>(accountDetails.scriptData.data);
+                if (playerData== null)
+                {
+                    playerData = new PlayerData();
+                }
 
                 if (!isLoaded)
                 {
@@ -49,11 +53,7 @@ public class AccountDetails : MonoBehaviour
 
     public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int minishots = 0, int heal = 0, int speed = 0, int freeze = 0, int shield = 0, int lives = 0, int health = 0, int movespeed = 0, string friendID=null)
     {
-        Dictionary<string, object> pair = new Dictionary<string, object>();
-        if (playerData==null)
-        {
-            return;
-        }
+        Dictionary<string, object> pair = new Dictionary<string, object>();        
         playerData.Gold += Gold;
         playerData.Gem += Gem;
         playerData.PING = string.IsNullOrEmpty(PING) ? playerData.PING : PING;
@@ -90,7 +90,9 @@ public class AccountDetails : MonoBehaviour
             }
         }
         tempId = friendID;
-        pair.Add("data", JsonUtility.ToJson(playerData));
+        string data = JsonUtility.ToJson(playerData);
+        accountDetails.scriptData.data = data;
+        pair.Add("data", data);
         GameSparkRequests saveRequest = new GameSparkRequests();
         saveRequest.Request("Save", pair, SaveSuccess);
     }

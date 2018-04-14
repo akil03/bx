@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using DoozyUI;
+using GameSparks.Api.Requests;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -71,7 +72,13 @@ public class GUIManager : MonoBehaviour
             GamecenterCanvas.SetActive(true);
             GoogleCanvas.SetActive(false);
         }
-            
+        playerNameTxt.onEndEdit.AddListener(OnPlayerNameChanged);
+    }
+
+    private void OnPlayerNameChanged(string newName)
+    {
+        AccountDetails.instance.accountDetails.displayName = newName;
+        new ChangeUserDetailsRequest().SetDisplayName(newName).Send(null);
     }
 
     // Update is called once per frame
@@ -134,7 +141,7 @@ public class GUIManager : MonoBehaviour
             Regeneration.instance.UseLife();
         inGameGUI.gameObject.SetActive(true);
         inGameGUI.GetComponent<UIElement>().Show(false);
-        int Rand = Random.Range(0, bgColours.Length);
+        int Rand = UnityEngine.Random.Range(0, bgColours.Length);
         Bg.color = bgColours[Rand];
         Glow.color = bgColours[Rand];
         BGMat.color = bgColours[Rand];
@@ -443,7 +450,7 @@ public class GUIManager : MonoBehaviour
             GO.GetComponent<Image>().sprite = img;
             GO.transform.DOMove(txtObj.transform.position, 0.5f, false).OnComplete(() =>
             {
-                if(i<19)
+                if (i < 19)
                     txtObj.text = (int.Parse(txtObj.text) + 1).ToString();
                 else
                     txtObj.text = (temp + count).ToString();
@@ -462,7 +469,7 @@ public class GUIManager : MonoBehaviour
             //
             //			yield return new WaitForSeconds (0.05f );
         }
-       
+
     }
 
     public void AddGems()

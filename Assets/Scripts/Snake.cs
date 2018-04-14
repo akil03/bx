@@ -1409,7 +1409,7 @@ public class Snake : MonoBehaviour
         if (PhotonNetwork.inRoom)
         {
             int val = 0;
-            val = 100 + (AccountDetails.instance.accountDetails.scriptData.speed * 50);
+            val = 100 + (AccountDetails.instance.playerData.speed * 50);
             go = PhotonNetwork.Instantiate("Particles/" + SpeedParticle.name, snakeMeshProprietes.Mesh.transform.position, transform.rotation, 0, new object[] { val });
             go.transform.SetParent(snakeMeshProprietes.Mesh.transform);
             speed = speed * 3.5f;
@@ -1442,7 +1442,7 @@ public class Snake : MonoBehaviour
         if (PhotonNetwork.inRoom)
         {
             int val = 0;
-            val = 100 + (AccountDetails.instance.accountDetails.scriptData.rocket * 50);
+            val = 100 + (AccountDetails.instance.playerData.rocket * 50);
             go = PhotonNetwork.Instantiate("Particles/" + MissileParticle.name, transform.position, transform.rotation, 0, new object[] { val });
         }
         else
@@ -1471,7 +1471,7 @@ public class Snake : MonoBehaviour
         if (PhotonNetwork.inRoom)
         {
             int val = 0;
-            val = 100 + (AccountDetails.instance.accountDetails.scriptData.minishots * 50);
+            val = 100 + (AccountDetails.instance.playerData.minishots * 50);
             go = PhotonNetwork.Instantiate("Particles/" + BlastersParticle.name, transform.position, transform.rotation, 0, new object[] { val });
         }
         else
@@ -1494,7 +1494,7 @@ public class Snake : MonoBehaviour
         if (PhotonNetwork.inRoom)
         {
             int val = 0;
-            val = 100 + (AccountDetails.instance.accountDetails.scriptData.freeze * 50);
+            val = 100 + (AccountDetails.instance.playerData.freeze * 50);
             go = PhotonNetwork.Instantiate("Particles/" + FreezeParticle.name, transform.position, transform.rotation, 0, new object[] { val });
         }
         else
@@ -1530,7 +1530,7 @@ public class Snake : MonoBehaviour
         if (PhotonNetwork.inRoom)
         {
             int val = 0;
-            val = 100 + (AccountDetails.instance.accountDetails.scriptData.heal * 50);
+            val = 100 + (AccountDetails.instance.playerData.heal * 50);
             go = PhotonNetwork.Instantiate("Particles/" + RegenParticle.name, snakeMeshProprietes.Mesh.transform.position, transform.rotation, 0, new object[] { val });
             //		if(isLocal)
             go.transform.SetParent(snakeMeshProprietes.Mesh.transform);

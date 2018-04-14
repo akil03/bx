@@ -26,7 +26,7 @@ public class GameSparksActor : MonoBehaviour
     {
         if (Application.isEditor)
         {
-           Login();
+            Login();
         }
         else
         {

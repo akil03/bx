@@ -38,6 +38,12 @@ public class ReservedCurrency6
 [Serializable]
 public class AccountDetailsScriptData
 {
+    public string data;
+}
+
+[Serializable]
+public class PlayerData
+{
     public string PING;
     public int MMR;
     public float mostAreaCovered;
@@ -50,11 +56,11 @@ public class AccountDetailsScriptData
     public string slot2 = "0";
     public string slot3 = "0";
     public string slot4 = "0";
-
     public int Gold;
     public int Gem;
     public int rocket, minishots, heal, speed, freeze, shield, lives, health, movespeed;
 }
+
 [Serializable]
 public class VirtualGoods
 {

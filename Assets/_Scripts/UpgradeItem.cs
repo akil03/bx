@@ -66,31 +66,31 @@ public class UpgradeItem : MonoBehaviour
         switch (type)
         {
             case UpgradeType.rocket:
-                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.rocket;
+                upgradeLevel = AccountDetails.instance.playerData.rocket;
                 break;
             case UpgradeType.minishots:
-                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.minishots;
+                upgradeLevel = AccountDetails.instance.playerData.minishots;
                 break;
             case UpgradeType.heal:
-                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.heal;
+                upgradeLevel = AccountDetails.instance.playerData.heal;
                 break;
             case UpgradeType.speed:
-                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.speed;
+                upgradeLevel = AccountDetails.instance.playerData.speed;
                 break;
             case UpgradeType.freeze:
-                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.freeze;
+                upgradeLevel = AccountDetails.instance.playerData.freeze;
                 break;
             case UpgradeType.shield:
-                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.shield;
+                upgradeLevel = AccountDetails.instance.playerData.shield;
                 break;
             case UpgradeType.lives:
-                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.lives;
+                upgradeLevel = AccountDetails.instance.playerData.lives;
                 break;
             case UpgradeType.health:
-                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.health;
+                upgradeLevel = AccountDetails.instance.playerData.health;
                 break;
             case UpgradeType.movespeed:
-                upgradeLevel = AccountDetails.instance.accountDetails.scriptData.movespeed;
+                upgradeLevel = AccountDetails.instance.playerData.movespeed;
                 break;
             default:
                 break;

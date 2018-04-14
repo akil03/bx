@@ -46,11 +46,11 @@ public class LeaderboardActor : MonoBehaviour
 
     void Sort()
     {
-        players = players.OrderByDescending(a=>a.leaderboardData.scriptData.AllData.scriptData.MMR).ToList ();
-        for (int i = 0; i < players.Count; i++) 
-        {
-            players[i].transform.SetSiblingIndex (i);
-        }
+        //players = players.OrderByDescending(a=>a.leaderboardData.scriptData.AllData.scriptData.MMR).ToList ();
+        //for (int i = 0; i < players.Count; i++) 
+        //{
+        //    players[i].transform.SetSiblingIndex (i);
+        //}
     }
 
     public void ClearFriends()

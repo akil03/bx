@@ -4,10 +4,9 @@ using System;
 public class GSPlayerScriptData
 {
 	public int IsInGame;
-	public string PING;
+	public string data;
 	public string FBID;
-	public List<string> FriendsList;
-	public int MMR;
+	
 }
 [Serializable]
 public class AllData

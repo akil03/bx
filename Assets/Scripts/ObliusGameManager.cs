@@ -299,6 +299,7 @@ public class ObliusGameManager : MonoBehaviour
         ScoreHandler.instance.incrementNumberOfGames();
         SnakesSpawner.instance.CreateNetworkSnake(id);
         gameState = GameState.game;
+        isFinding = false;
     }
 
     //attached to play button
@@ -357,7 +358,10 @@ public class ObliusGameManager : MonoBehaviour
 
     public void JoinedRoom()
     {
-        _ShowFindingMatchScreen(PhotonNetwork.player.ID);
+        if (!isFriendlyBattle)
+        {
+            _ShowFindingMatchScreen(PhotonNetwork.player.ID);
+        }        
     }
 
     public void FakeBotMatch()
@@ -383,7 +387,7 @@ public class ObliusGameManager : MonoBehaviour
 
     public void StartRematch()
     {
-        GroundSpawner.instance.ClearGround();
+       // GroundSpawner.instance.ClearGround();
         _ShowFindingMatchScreen(PhotonNetwork.playerList.Where(a => a.IsLocal).First().ID);
     }
 

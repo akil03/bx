@@ -23,6 +23,7 @@ public class LeaderboardGUI : MonoBehaviour
 	public StringObject server;
 	public EventObject challengeLoadingON;
 	ParameterlessDelegate detailsSet;
+    public PlayerData data;
 
 
 	public void Set(string id,Transform scrollParent,ParameterlessDelegate callback)
@@ -42,10 +43,13 @@ public class LeaderboardGUI : MonoBehaviour
 
 	void Callback(string str)
 	{
-//		print (str);
 		leaderboardData = JsonUtility.FromJson<GSLeaderboardData> (str);
+        data = JsonUtility.FromJson<PlayerData>(leaderboardData.scriptData.AllData.scriptData.data);
 		playerName.text = leaderboardData.scriptData.AllData.displayName;
-		mmr.text = leaderboardData.scriptData.AllData.scriptData.MMR.ToString ();
+        if (data!=null)
+        {
+            mmr.text = data.MMR.ToString();
+        }		
 		StartCoroutine (LoadImage (leaderboardData.scriptData.AllData.scriptData.FBID));
 		detailsSet ();
 	}
@@ -66,7 +70,7 @@ public class LeaderboardGUI : MonoBehaviour
 		}
 		opponentId.value = id;
 		opponentName.value = playerName.text;
-		var regions = serverData.scriptData.AllData.scriptData.PING.ToRegions ();
+		var regions = data.PING.ToRegions ();
 		List<PhotonRegion> myRegions = PhotonPingManager.ping.ToRegions ();
 		List<PhotonRegion> result = new List<PhotonRegion>();
 		for(int i=0;i<regions.Count;i++)
@@ -100,7 +104,10 @@ public class LeaderboardGUI : MonoBehaviour
 				isOnline = serverData.scriptData.AllData.online;
 //				isInGame = serverData.scriptData.AllData.scriptData.IsInGame;
 				playerName.text = serverData.scriptData.AllData.displayName;
-				mmr.text = serverData.scriptData.AllData.scriptData.MMR.ToString ();
+                if (data!=null)
+                {
+                    mmr.text = data.MMR.ToString();
+                }				
 				OnlineImage.gameObject.SetActive (isOnline);
 //				leaderboardData = serverData;
 				if(serverData.scriptData.AllData.scriptData.IsInGame==1){

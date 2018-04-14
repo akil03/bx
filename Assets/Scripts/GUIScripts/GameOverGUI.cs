@@ -31,10 +31,12 @@ public class GameOverGUI : MonoBehaviour
 
     public Text RematchText;
     public GameObject Fireworks, Confetti, Stars1, Stars2;
+    public bool rematchRequested;
+    public static GameOverGUI instance;
     // Use this for initialization
     void Start()
     {
-
+        instance = this;
     }
 
     void OnEnable()
@@ -242,7 +244,7 @@ public class GameOverGUI : MonoBehaviour
 
 #if UNITY_MOBILE
 
-		UnityRewardAds.instance.ShowRewardedAd(HandleShowResult);
+        UnityRewardAds.instance.ShowRewardedAd(HandleShowResult);
 
 #endif
 
@@ -298,9 +300,19 @@ public class GameOverGUI : MonoBehaviour
 
     public void WantRematch()
     {
-        RematchText.text = "Waiting for opponent !";
-        PhotonView.Get(Server.instance).RPC("Rematch", PhotonTargets.Others);
-        StartCoroutine(WaitforRematch());
+        //  SnakesSpawner.instance.KillAllNetworkSnakes();
+        GroundSpawner.instance.ClearGround();
+        if (!rematchRequested)
+        {
+            RematchText.text = "Waiting for opponent !";
+            PhotonView.Get(Server.instance).RPC("Rematch", PhotonTargets.Others);
+            StartCoroutine(WaitforRematch());
+        }
+        else
+        {
+            rematchRequested = false;
+            StartCoroutine(WaitforRematch());
+        }
     }
 
     public void RematchStatus(string status)
@@ -343,24 +355,24 @@ public class GameOverGUI : MonoBehaviour
     }
 
 #if UNITY_MOBILE
-	private void HandleShowResult(ShowResult result)
-	{
-		switch (result)
-		{
-			case ShowResult.Finished:
-				ScoreHandler.instance.increaseSpecialPoints(UnityRewardAds.instance.GetCoinsToRewardOnVideoWatched());
-				//
-				// YOUR CODE TO REWARD THE GAMER
-				// Give coins etc.
-				break;
-			case ShowResult.Skipped:
-				Debug.Log("The ad was skipped before reaching the end.");
-				break;
-			case ShowResult.Failed:
-				Debug.LogError("The ad failed to be shown.");
-				break;
-		}
-	}
+    private void HandleShowResult(ShowResult result)
+    {
+        switch (result)
+        {
+            case ShowResult.Finished:
+                ScoreHandler.instance.increaseSpecialPoints(UnityRewardAds.instance.GetCoinsToRewardOnVideoWatched());
+                //
+                // YOUR CODE TO REWARD THE GAMER
+                // Give coins etc.
+                break;
+            case ShowResult.Skipped:
+                Debug.Log("The ad was skipped before reaching the end.");
+                break;
+            case ShowResult.Failed:
+                Debug.LogError("The ad failed to be shown.");
+                break;
+        }
+    }
 #endif
 
 

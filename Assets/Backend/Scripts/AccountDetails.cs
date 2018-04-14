@@ -6,11 +6,13 @@ public class AccountDetails : MonoBehaviour
 {
     public AccountDetailsData accountDetails;
 
-    public PlayerData playerData;
+    public PlayerData playerData = new PlayerData();
 
     public static AccountDetails instance;
 
     public bool firstLoad;
+    public LeaderboardActor leaderboardActor;
+    string tempId;
 
     void Awake()
     {
@@ -45,10 +47,13 @@ public class AccountDetails : MonoBehaviour
         });
     }
 
-    [ContextMenu("Save")]
-    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int minishots = 0, int heal = 0, int speed = 0, int freeze = 0, int shield = 0, int lives = 0, int health = 0, int movespeed = 0)
+    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int minishots = 0, int heal = 0, int speed = 0, int freeze = 0, int shield = 0, int lives = 0, int health = 0, int movespeed = 0, string friendID=null)
     {
         Dictionary<string, object> pair = new Dictionary<string, object>();
+        if (playerData==null)
+        {
+            return;
+        }
         playerData.Gold += Gold;
         playerData.Gem += Gem;
         playerData.PING = string.IsNullOrEmpty(PING) ? playerData.PING : PING;
@@ -72,7 +77,19 @@ public class AccountDetails : MonoBehaviour
         playerData.shield += shield;
         playerData.lives += lives;
         playerData.health += health;
-        playerData.movespeed += movespeed;
+        playerData.movespeed += movespeed;        
+        if (!string.IsNullOrEmpty(friendID))
+        {
+            if (!playerData.FriendsList.Contains(friendID) && (accountDetails.userId!=friendID))
+            {
+                playerData.FriendsList.Add(friendID);
+            }
+            else
+            {
+                friendID = null;
+            }
+        }
+        tempId = friendID;
         pair.Add("data", JsonUtility.ToJson(playerData));
         GameSparkRequests saveRequest = new GameSparkRequests();
         saveRequest.Request("Save", pair, SaveSuccess);
@@ -85,8 +102,13 @@ public class AccountDetails : MonoBehaviour
     }
 
     bool isLoaded;
+
     void SetUI()
     {
+        if (playerData==null)
+        {
+            return;
+        }
         if (isLoaded)
         {
             if (GUIManager.instance.Gold.text != playerData.Gold.ToString())
@@ -96,11 +118,18 @@ public class AccountDetails : MonoBehaviour
         {
 
             print("first retrieve");
-            GUIManager.instance.Gold.text = playerData.Gold.ToString();
+            
             CloudRetrieveSphere();
-
-        }
-        GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
+            GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
+            leaderboardActor.Create(accountDetails.userId);
+            isLoaded = true;            
+            foreach (var item in playerData.FriendsList)
+            {
+                leaderboardActor.Create(item);
+            }                        
+            
+        }       
+        GUIManager.instance.Gold.text = playerData.Gold.ToString();
         GUIManager.instance.Gems.text = playerData.Gem.ToString();
         GUIManager.instance.mmrTxt.text = playerData.MMR.ToString();
         GUIManager.instance.mostAreaCoveredTxt.text = playerData.mostAreaCovered + " %";
@@ -109,7 +138,10 @@ public class AccountDetails : MonoBehaviour
         GUIManager.instance.totalDeathsTxt.text = playerData.totalDeaths.ToString();
         GUIManager.instance.totalWinsTxt.text = playerData.totalWins.ToString();
         GUIManager.instance.totalLossTxt.text = playerData.totalLoss.ToString();
-        isLoaded = true;
+        if (!string.IsNullOrEmpty(tempId))
+        {
+            leaderboardActor.Create(tempId);
+        }
     }
 
     void CloudRetrieveSphere()

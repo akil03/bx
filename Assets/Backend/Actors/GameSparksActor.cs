@@ -130,8 +130,9 @@ public class GameSparksActor : MonoBehaviour
         AddFriendData _addFriendData = JsonUtility.FromJson<AddFriendData>(str);
         if (_addFriendData.scriptData.findQueryResult.Count > 0)
         {
-            GameSparkRequests addFriendRequest = new GameSparkRequests();
-            addFriendRequest.Request("AddFriend", "ID", _addFriendData.scriptData.findQueryResult[0].playerID, FriendAdded);
+            //GameSparkRequests addFriendRequest = new GameSparkRequests();
+            //addFriendRequest.Request("AddFriend", "ID", _addFriendData.scriptData.findQueryResult[0].playerID, FriendAdded);
+            AccountDetails.instance.Save(friendID: _addFriendData.scriptData.findQueryResult[0].playerID);
         }
         else
         {
@@ -162,9 +163,11 @@ public class GameSparksActor : MonoBehaviour
             GUIManager.instance.ShowLog("ID does not exist !!");
         else
         {
-            GameSparkRequests addFriendRequest = new GameSparkRequests();
-            addFriendRequest.Request("AddFriend", "ID", strSplit[17], GoogleFrndAdded);
+            //GameSparkRequests addFriendRequest = new GameSparkRequests();
+            //addFriendRequest.Request("AddFriend", "ID", strSplit[17], GoogleFrndAdded);
+            AccountDetails.instance.Save(friendID: strSplit[17]);
         }
+        
     }
 
     void GoogleFrndAdded(string str)

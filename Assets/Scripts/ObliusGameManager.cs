@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using DoozyUI;
+using GameSparks.Api.Messages;
 using GameSparks.Core;
 using UnityEngine;
 
@@ -29,25 +30,37 @@ public class ObliusGameManager : MonoBehaviour
     [SerializeField] EventObject ChangeOnlineStatus;
     [SerializeField] BoolObject isOnline;
     string roomId;
+    public GameSparksActor gameSparksActor;
+
     void Awake()
     {
         Application.targetFrameRate = 60;
         instance = this;
     }
-    // Use this for initialization
+
     void Start()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("TutorialComplete", 1);
-        //StartTutorial ();
+        MatchFoundMessage.Listener += MatchFound;
+        MatchNotFoundMessage.Listener += MatchNotFound;
+        MatchUpdatedMessage.Listener += MatchUpdated;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void MatchUpdated(MatchUpdatedMessage obj)
     {
-        //if (PhotonNetwork.connected)
-        //	print(PhotonNetwork.GetPing().ToString());
+        print("updated");
+    }
+
+    private void MatchNotFound(MatchNotFoundMessage obj)
+    {
+        FakeBotMatch();
+    }
+
+    private void MatchFound(MatchFoundMessage obj)
+    {
+        PhotonNetwork.JoinOrCreateRoom(obj.MatchId, new RoomOptions { maxPlayers = (byte)maxplayers }, TypedLobby.Default);
     }
 
 
@@ -61,16 +74,9 @@ public class ObliusGameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         SoundsManager.instance.PlayGameOverSound();
-        //		AdNetworks.instance.HideBanner ();
         gameState = GameState.gameover;
-
-        //		Leaderboard.instance.reportScore (ScoreHandler.instance.score);
         GUIManager.instance.ShowGameOverGUI();
         InGameGUI.instance.GetComponent<UIElement>().Hide(false);
-        //InGameGUI.instance.gameObject.SetActive (false);
-        //		AdNetworks.instance.ShowInterstitial ();
-
-
     }
 
 
@@ -101,12 +107,6 @@ public class ObliusGameManager : MonoBehaviour
 
     public void StartGame()
     {
-        //		PlayerPrefs.DeleteAll ();
-        //		if(!PlayerPrefs.HasKey ("TutorialComplete")){
-        //			StartTutorial ();
-        //			return;
-        //		}
-        //
         if (PhotonNetwork.inRoom)
         {
             print("Can't start normal game in a room!");
@@ -119,44 +119,21 @@ public class ObliusGameManager : MonoBehaviour
             Regeneration.instance.UseLife();
             return;
         }
-        //Regeneration.instance.UseLife ();
-
-
         ResetGame();
         ScoreHandler.instance.incrementNumberOfGames();
         GUIManager.instance.ShowInGameGUI();
         InGameGUI.instance.startTime = Time.time;
-
-        //GUIManager.instance.tutorialGUI.ShowIfNeverAppeared();
-        //		AdNetworks.instance.ShowBanner ();
-
-        //		PowerUpManager.instance.ClearPowerUps ();
         PowerUpManager.instance.StartSpawn();
-
-        //PlayerLives = 4;
-        //EnemyLives = 4;
         SnakesSpawner.instance.KillAllSnakes();
-
-        //	SnakesSpawner.instance.playerLives=3;
-        //	SnakesSpawner.instance.enemyLives=3;
-        //SnakesSpawner.instance.KillAllSnakes ();
         GroundSpawner.instance.ClearGround();
-
         SnakesSpawner.instance.SpawnPlayer();
         SnakesSpawner.instance.SpawnBot();
-
-
         SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive(false);
-
-
         gameState = GameState.game;
-
-
-
     }
 
-
     bool tutStarted;
+
     public void StartTutorial()
     {
         if (PlayerPrefs.HasKey("TutorialComplete"))
@@ -171,6 +148,7 @@ public class ObliusGameManager : MonoBehaviour
         tutStarted = true;
         StartCoroutine(TutorialList());
     }
+
     public void StartTutorialOverride()
     {
         if (tutStarted)
@@ -371,101 +349,28 @@ public class ObliusGameManager : MonoBehaviour
         }
         GUIManager.instance.OpenPage(6);
         GUIManager.instance.FillBar.GetComponent<FillTween>().Fill();
-        matchmakingPhase = true;
-        PhotonNetwork.JoinOrCreateRoom("matchmaking", null, null);
+        gameSparksActor.FindPlayers();
     }
+
     bool isServer;
     int maxplayers = 2;
 
     public void JoinedRoom()
     {
-        PhotonNetwork.player.NickName = PhotonNetwork.player.UserId;
-        print("current room is "+PhotonNetwork.room.Name);
-        AddToMatchmakingQueue();
-
-        if (matchmakingPhase)
-            return;
-        if (findingPhase)
-        {
-            if (reconnect.value)
-                _ShowFindingMatchScreen(PhotonNetwork.player.ID);
-            print("Max players reached!");
-            isServer = false;
-            findingPhase = false;
-        }
-    }
-
-    public void OnPlayerConnected()
-    {
-        AddToMatchmakingQueue();
-        if (findingPhase)
-        {
-            if (PhotonNetwork.room.PlayerCount == maxplayers)
-                PhotonNetwork.room.IsVisible = false;
-            isFinding = false;
-        }
-    }
-
-    void AddToMatchmakingQueue()
-    {
-        if (matchmakingPhase)
-        {            
-            if (PhotonNetwork.room.PlayerCount >= maxplayers)
-            {
-                CancelInvoke("FakeBotMatch");
-                if (PhotonNetwork.player.ID % maxplayers != 0)
-                {
-                    if ((PhotonNetwork.room.PlayerCount == PhotonNetwork.player.ID))
-                    {
-                        print("Last player so staying in que");
-                        Invoke("FakeBotMatch", 10);
-                        return;
-                    }
-                    roomId = PhotonNetwork.player.UserId;
-                    isServer = true;
-                }
-                else
-                {
-                    isServer = false;
-                    int index = PhotonNetwork.playerList.ToList().FindIndex(a => a.ID == PhotonNetwork.player.ID);
-                    roomId = PhotonNetwork.playerList[index-1].NickName;
-                }
-                PhotonNetwork.LeaveRoom();
-                print("Begin a game!");
-                findingPhase = true;
-                return;
-            }
-            else
-            {
-                print("Added to queue!");
-                Invoke("FakeBotMatch",10);
-                return;
-            }
-        }
+        _ShowFindingMatchScreen(PhotonNetwork.player.ID);
     }
 
     public void FakeBotMatch()
     {
-        if (PhotonNetwork.room == null || PhotonNetwork.room.PlayerCount < 2)
-        {
-            isFinding = false;
-            matchmakingPhase = false;
-            isGameSearchFail = true;
-            PhotonNetwork.LeaveRoom();            
-        }
-
+        isFinding = false;
+        BotType = 1;
+        StartGame();
     }
 
 
     public void CancelFinding()
     {
-        if (PhotonNetwork.room == null || PhotonNetwork.room.PlayerCount < 2)
-        {
-            CancelInvoke("FakeBotMatch");
-            isFinding = false;
-            PhotonNetwork.LeaveRoom();
-            GUIManager.instance.ShowMainMenuGUI();
-        }
+        GUIManager.instance.ShowMainMenuGUI();
     }
 
     private void OnApplicationFocus(bool focus)
@@ -476,84 +381,10 @@ public class ObliusGameManager : MonoBehaviour
         }
     }
 
-    void StartGameServer()
-    {
-        if (matchmakingPhase)
-        {
-            if (isServer)
-            {
-                print("create room");
-                PhotonNetwork.CreateRoom(roomId,new RoomOptions { maxPlayers=2},TypedLobby.Default);
-            }
-            else
-            {
-                print("join room");
-                PhotonNetwork.JoinRoom(roomId);
-            }
-            matchmakingPhase = false;
-        }
-    }
-
-    public void ConnectedToMaster()
-    {
-        StartGameServer();
-    }
-
-
-    public void OnPhotonJoinRoomFailed()
-    {
-        if (findingPhase)
-        {
-            PhotonNetwork.JoinRoom(roomId);            
-        }
-    }
-
-    void JoinRandomRoomFailed()
-    {
-        //		if (PhotonManagerAdvanced.instance.serverStatus == ConnectionStatus.connected)
-        //			StartCoroutine (PhotonManagerAdvanced.instance._CreateRoom (failed: CreateRoomFailed, playersFilled: CreateRoomSuccess, noPlayers: CreateRoomFailed));
-        //		else {
-        //			GUIManager.instance.OpenPage (3);
-        //
-        //		}
-    }
-
-    void JoinRandomRoomSuccess()
-    {
-        _ShowFindingMatchScreen(PhotonNetwork.playerList.Where(a => a.IsLocal).First().ID);
-    }
-
-
-    void CreateRoomSuccess()
-    {
-        _ShowFindingMatchScreen(PhotonNetwork.playerList.Where(a => a.IsLocal).First().ID);
-    }
-
-
-
     public void StartRematch()
     {
-        GroundSpawner.instance.ClearGround();       
+        GroundSpawner.instance.ClearGround();
         _ShowFindingMatchScreen(PhotonNetwork.playerList.Where(a => a.IsLocal).First().ID);
-    }
-
-    bool isGameSearchFail;
-    void CreateRoomFailed()
-    {
-        //GUIManager.instance.OpenPage (3);
-        PhotonNetwork.LeaveRoom();
-        isGameSearchFail = true;
-        //StartGame ();
-    }
-
-    void OnLeftRoom()
-    {
-        if (isGameSearchFail)
-        {
-            StartGame();
-            isGameSearchFail = false;
-            BotType = 1;
-        }
     }
 
     void OnConnectionFail(DisconnectCause cause)
@@ -601,6 +432,7 @@ public class ObliusGameManager : MonoBehaviour
 
     [SerializeField] BoolObject reconnect;
     private bool isFinding;
+
 
     public void ResetGame(bool resetScore = true, bool resetOneMoreChance = true)
     {

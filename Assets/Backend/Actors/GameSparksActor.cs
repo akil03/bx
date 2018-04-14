@@ -26,24 +26,13 @@ public class GameSparksActor : MonoBehaviour
     {
         if (Application.isEditor)
         {
-            email.value = "akil.hotshot@gmail.com";
+            email.value = "kannan.jan21@gmail.com";
             Login();
         }
         else
         {
             email.Reset();
         }
-    }
-
-    private void Start()
-    {
-        MatchNotFoundMessage.Listener += MatchNotFound;
-        MatchFoundMessage.Listener += MatchFound;
-    }
-
-    private void MatchFound(MatchFoundMessage obj)
-    {
-        print(obj.MatchId + " has been created!");
     }
 
     private void MatchNotFound(MatchNotFoundMessage obj)
@@ -226,6 +215,11 @@ public class GameSparksActor : MonoBehaviour
 
     public void FindPlayers()
     {
+        if (!GS.Authenticated)
+        {
+            print("Not logged in!");
+            return;
+        }
         Debug.Log("GSM| Attempting Matchmaking...");
         new GameSparks.Api.Requests.MatchmakingRequest()
             .SetMatchShortCode("normal")
@@ -237,5 +231,25 @@ public class GameSparksActor : MonoBehaviour
                     Debug.LogError("GSM| MatchMaking Error \n" + response.Errors.JSON);
                 }
             });
+    }
+
+    public void StopFinding()
+    {
+        if (!GS.Authenticated)
+        {
+            print("Not logged in!");
+            return;
+        }
+        new GameSparks.Api.Requests.MatchmakingRequest().SetAction("cancel").SetMatchShortCode("normal").Send((response) =>
+        {
+            if (response.HasErrors)
+            {
+                print(response.Errors.JSON);
+            }
+            else
+            {
+                ObliusGameManager.instance.CancelFinding();
+            }
+        });
     }
 }

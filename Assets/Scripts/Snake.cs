@@ -55,6 +55,8 @@ public class Snake : MonoBehaviour
     public bool isLocal;
     public string ReasonDeath;
 
+    public Camera AvatarCam;
+    public RenderTexture Avatar1, Avatar2;
     public CameraShake.Properties DeathShakeProperties;
     void Awake()
     {
@@ -109,8 +111,14 @@ public class Snake : MonoBehaviour
     bool isMultiplayerMine;
     public void Initialize()
     {
+        if (playerID == 1)
+            AvatarCam.targetTexture = Avatar1;
+        else
+            AvatarCam.targetTexture = Avatar2;
+
         snakeMeshProprietes = GetComponentInChildren<SnakeMeshProprietes>();
         snakeMeshProprietes.RandomizePattern();
+        
         //collectedPieceSprite = snakeMeshProprietes.collectedPiece;
         tailPieceSprite = snakeMeshProprietes.tailPiece;
         snakeMeshProprietes.collectedPiece = collectedPieceSprite;
@@ -162,6 +170,8 @@ public class Snake : MonoBehaviour
             movementDirection = 1;
         }
 
+
+        AvatarCam.transform.SetParent(snakeMeshContainer.transform);
     }
 
 

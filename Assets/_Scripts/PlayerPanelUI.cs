@@ -9,8 +9,10 @@ public class PlayerPanelUI : MonoBehaviour {
 	public float lerpFillSpeed,lerpHPSpeed;
 	public float fillamount,hpRatio;
 	public Snake SelectedSnake;
-
+    public RawImage AvatarTex;
 	float lerpFill,lerpHP;
+
+    public GameObject[] LivesImg;
 	// Use this for initialization
 	void Start () {
 		
@@ -32,20 +34,25 @@ public class PlayerPanelUI : MonoBehaviour {
 		lerpHP = SelectedSnake.currentHP;
 		lerpHP = 0;
 
-	}
+        if (AvatarTex && SelectedSnake.AvatarCam)
+            AvatarTex.texture = SelectedSnake.AvatarCam.targetTexture;
+
+
+    }
 
 	public void UpdateDetails(){
 		if (!SelectedSnake)
 			return;
 
-//		if(!SelectedSnake.isBot)
-//			RemainingLives.text = "Lives : " + (SelectedSnake.Lives);
-//		else
-//			RemainingLives.text = "Lives : " + (ObliusGameManager.instance.EnemyLives-1);
+        //		if(!SelectedSnake.isBot)
+        //			RemainingLives.text = "Lives : " + (SelectedSnake.Lives);
+        //		else
+        //			RemainingLives.text = "Lives : " + (ObliusGameManager.instance.EnemyLives-1);
 
-		RemainingLives.text = "Lives : " + SelectedSnake.Lives.ToString();
+        //RemainingLives.text = "Lives : " + SelectedSnake.Lives.ToString();
+        UpdateLives();
 
-		fillamount = ((float)SelectedSnake.ownedGroundPieces.Count / (900 - 60 - 28 - 28)) * 100; 
+        fillamount = ((float)SelectedSnake.ownedGroundPieces.Count / (900 - 60 - 28 - 28)) * 100; 
 
 		FillRatio.text = fillamount.ToString ("0.00") + " %";
 		HP.text = SelectedSnake.currentHP + "/" + SelectedSnake.maxHP;
@@ -56,4 +63,15 @@ public class PlayerPanelUI : MonoBehaviour {
 		FillPanel.localScale = new Vector3 (lerpFill / 100, 1, 1);
 		HealthPanel.localScale = new Vector3 (lerpHP / (float)SelectedSnake.maxHP, 1, 1);
 	}
+
+
+    void UpdateLives()
+    {
+        foreach (GameObject Go in LivesImg)
+            Go.SetActive(false);
+
+        for (int i = 0; i < SelectedSnake.Lives; i++)
+            LivesImg[i].SetActive(true);
+
+    }
 }

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
-public class ShopGUI : MonoBehaviour {
+public class ShopGUI : MonoBehaviour
+{
 
     public static ShopGUI instance;
 
@@ -20,14 +20,16 @@ public class ShopGUI : MonoBehaviour {
         instance = this;
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         unlockButton.SetActive(false);
         playButton.SetActive(false);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         selectedItemText.text = ShopHandler.instance.selectedItem.name;
         selectedItemPriceText.text = "" + ShopHandler.instance.selectedItem.price;
@@ -42,7 +44,7 @@ public class ShopGUI : MonoBehaviour {
                 bottomSpecialPointImage.enabled = false;
                 selectedItemPriceText.enabled = false;
             }
-           
+
 
             if (unlockButton.activeSelf)
             {
@@ -54,7 +56,7 @@ public class ShopGUI : MonoBehaviour {
                 playButton.SetActive(true);
             }
         }
-        else if(!ShopHandler.instance.selectedItem.unlocked)
+        else if (!ShopHandler.instance.selectedItem.unlocked)
         {
 
             if (!bottomSpecialPointImage.enabled)
@@ -75,7 +77,7 @@ public class ShopGUI : MonoBehaviour {
             }
         }
 
-	}
+    }
 
     public void OnBackButtonClick()
     {
@@ -98,8 +100,8 @@ public class ShopGUI : MonoBehaviour {
     public void onPlayButtonClick()
     {
         SoundsManager.instance.PlayMenuButtonSound();
-		Application.LoadLevel (Application.loadedLevel);
-//		GUIManager.instance.HideInGameGUI()
+        Application.LoadLevel(Application.loadedLevel);
+        //		GUIManager.instance.HideInGameGUI()
         GUIManager.instance.ShowMainMenuGUI();
         ShopHandler.instance.Deactivate();
         ShopHandler.instance.SetShopItemToUse(ShopHandler.instance.selectedItem);

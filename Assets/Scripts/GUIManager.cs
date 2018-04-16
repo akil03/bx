@@ -35,6 +35,7 @@ public class GUIManager : MonoBehaviour
     public GameObject GoogleCanvas, GamecenterCanvas;
     Sprite NotificationSprite;
     bool isLogShown;
+    public UIButton[] uIButtons;
 
     void Awake()
     {
@@ -111,6 +112,10 @@ public class GUIManager : MonoBehaviour
     public void ShowInGameGUI()
     {
         HideAllPages();
+        foreach (var item in uIButtons)
+        {
+            item.Interactable = false;
+        }
         if (!ObliusGameManager.isFriendlyBattle)
             Regeneration.instance.UseLife();
         inGameGUI.gameObject.SetActive(true);
@@ -206,6 +211,7 @@ public class GUIManager : MonoBehaviour
 
     public void ShowMainMenuGUI()
     {
+        StartCoroutine(EnableButtons());
         ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
         ObliusGameManager.instance.Reset();
         ObliusGameManager.instance.ChangePlayerStaus(true);
@@ -213,6 +219,15 @@ public class GUIManager : MonoBehaviour
         BG.SetActive(true);
         OpenPage(3);
         SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive(true);
+    }
+
+    IEnumerator EnableButtons()
+    {
+        yield return new WaitForSeconds(1);
+        foreach (var item in uIButtons)
+        {
+            item.Interactable = true;
+        }
     }
 
     public void OpenPage(int pageNo)
@@ -280,7 +295,6 @@ public class GUIManager : MonoBehaviour
 
         UIManager.ShowNotification("Example_1_Notification_4", 1f, true, log, NotificationSprite);
         isLogShown = true;
-
         Invoke("EnableLog", 1);
     }
 
@@ -288,10 +302,8 @@ public class GUIManager : MonoBehaviour
     {
         if (isLogShown)
             return;
-
         UIManager.ShowNotification("Example_1_Notification_4", time, true, log, NotificationSprite);
         isLogShown = true;
-
         Invoke("EnableLog", time);
     }
 

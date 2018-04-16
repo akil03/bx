@@ -30,7 +30,10 @@ public class ObliusGameManager : MonoBehaviour
     [SerializeField] EventObject ChangeOnlineStatus;
     [SerializeField] BoolObject isOnline;
     string roomId;
+    [SerializeField] BoolObject reconnect;
+    private bool isFinding;
     public GameSparksActor gameSparksActor;
+    int maxplayers = 2;
 
     void Awake()
     {
@@ -41,7 +44,6 @@ public class ObliusGameManager : MonoBehaviour
     void Start()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("TutorialComplete", 1);
         MatchFoundMessage.Listener += MatchFound;
         MatchNotFoundMessage.Listener += MatchNotFound;
@@ -323,10 +325,6 @@ public class ObliusGameManager : MonoBehaviour
         isFinding = true;
     }
 
-    bool matchmakingPhase;
-    bool findingPhase;
-    bool normal;
-
     IEnumerator _ShowFindingMatchScreen()
     {
         if (!PhotonNetwork.connected)
@@ -344,15 +342,21 @@ public class ObliusGameManager : MonoBehaviour
         gameSparksActor.FindPlayers();
     }
 
-    bool isServer;
-    int maxplayers = 2;
-
     public void JoinedRoom()
     {
         if (!isFriendlyBattle)
         {
-            _ShowFindingMatchScreen(PhotonNetwork.player.ID);
+            StartCoroutine(WaitForPlayers());
         }
+    }
+
+    IEnumerator WaitForPlayers()
+    {
+        while (PhotonNetwork.room.PlayerCount != PhotonNetwork.room.MaxPlayers)
+        {
+            yield return null;
+        }
+        _ShowFindingMatchScreen(PhotonNetwork.player.ID);
     }
 
     public void FakeBotMatch()
@@ -366,6 +370,7 @@ public class ObliusGameManager : MonoBehaviour
     public void CancelFinding()
     {
         GUIManager.instance.ShowMainMenuGUI();
+        isFinding = true;
     }
 
     private void OnApplicationFocus(bool focus)
@@ -406,10 +411,6 @@ public class ObliusGameManager : MonoBehaviour
             reconnect.value = true;
         }
     }
-
-    [SerializeField] BoolObject reconnect;
-    private bool isFinding;
-
 
     public void ResetGame(bool resetScore = true, bool resetOneMoreChance = true)
     {

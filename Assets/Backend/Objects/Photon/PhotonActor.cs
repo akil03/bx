@@ -25,7 +25,10 @@ public class PhotonActor : MonoBehaviour
 
     void ConnectToMaster()
     {
-        PhotonNetwork.ConnectUsingSettings(Application.version);
+        if (!ObliusGameManager.isFriendlyBattle)
+        {
+            PhotonNetwork.ConnectUsingSettings(Application.version);
+        }
     }
 
     void OnConnectedToMaster()

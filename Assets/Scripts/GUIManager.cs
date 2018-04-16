@@ -280,7 +280,6 @@ public class GUIManager : MonoBehaviour
 
         UIManager.ShowNotification("Example_1_Notification_4", 1f, true, log, NotificationSprite);
         isLogShown = true;
-
         Invoke("EnableLog", 1);
     }
 
@@ -288,10 +287,8 @@ public class GUIManager : MonoBehaviour
     {
         if (isLogShown)
             return;
-
         UIManager.ShowNotification("Example_1_Notification_4", time, true, log, NotificationSprite);
         isLogShown = true;
-
         Invoke("EnableLog", time);
     }
 

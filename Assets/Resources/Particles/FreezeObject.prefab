@@ -158,7 +158,9 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 12
   launchTime: 0
-  damage: 20
+  baseDamage: 20
+  multiplier: 10
+  damage: 0
   isLaunched: 0
   isFreeze: 1
 --- !u!135 &135831081769617070

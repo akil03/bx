@@ -7,10 +7,13 @@ public class ProjectileScript : MonoBehaviour
     public GameObject projectileParticle;
     public GameObject[] trailParticles;
     [HideInInspector]
-    public Vector3 impactNormal; //Used to rotate impactparticle.
+    public Vector3 impactNormal;
 
     public Snake target;
     public float speed, launchTime;
+    public int baseDamage;
+    public int multiplier;
+    public int level;
     public int damage;
     public bool isLaunched;
     public bool isFreeze;
@@ -19,21 +22,25 @@ public class ProjectileScript : MonoBehaviour
         projectileParticle = Instantiate(projectileParticle, transform.position, transform.rotation) as GameObject;
         projectileParticle.transform.parent = transform;
         if (PhotonNetwork.inRoom)
-            Launch();
-        if (gameObject.GetPhotonView().photonView.instantiationData != null)
         {
-            damage = (int)gameObject.GetPhotonView().instantiationData[0];
+            level = (int)gameObject.GetPhotonView().instantiationData[0];
+            Launch();
         }
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPaused = true;
+#endif
     }
 
     public void Launch(Snake targetSnake)
     {
+        damage = baseDamage + (level * multiplier);
         target = targetSnake;
         isLaunched = true;
     }
 
     public void Launch()
     {
+        damage = baseDamage + (level * multiplier);
         if (gameObject.GetComponent<PhotonView>().isMine)
         {
             PlayerInfo enemy = GameObject.FindObjectsOfType<PlayerInfo>().Where(a => !a.GetComponent<PhotonView>().isMine).First();
@@ -67,14 +74,6 @@ public class ProjectileScript : MonoBehaviour
             {
                 isLaunched = false;
                 impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal)) as GameObject;
-
-                //				foreach (GameObject trail in trailParticles)
-                //				{
-                //					GameObject curTrail = transform.Find(projectileParticle.name + "/" + trail.name).gameObject;
-                //					curTrail.transform.parent = null;
-                //					Destroy(curTrail, 3f); 
-                //				}
-                //
                 target.TakeDamage(damage);
                 if (isFreeze)
                     target.EnableFreezeHit();
@@ -90,28 +89,13 @@ public class ProjectileScript : MonoBehaviour
 
     void OnCollisionEnter(Collision hit)
     {
-
-        //transform.DetachChildren();
         impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal)) as GameObject;
-        //Debug.DrawRay(hit.contacts[0].point, hit.contacts[0].normal * 1, Color.yellow);
-
-        if (hit.gameObject.tag == "Destructible") // Projectile will destroy objects tagged as Destructible
+        if (hit.gameObject.tag == "Destructible")
         {
             Destroy(hit.gameObject);
         }
-
-
-        //yield WaitForSeconds (0.05);
-        //        foreach (GameObject trail in trailParticles)
-        //	    {
-        //            GameObject curTrail = transform.Find(projectileParticle.name + "/" + trail.name).gameObject;
-        //            curTrail.transform.parent = null;
-        //            Destroy(curTrail, 3f); 
-        //	    }
         Destroy(projectileParticle, 3f);
         Destroy(impactParticle, 5f);
         Destroy(gameObject);
-        //projectileParticle.Stop();
-
     }
 }

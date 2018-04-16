@@ -118,7 +118,7 @@ public class Snake : MonoBehaviour
 
         snakeMeshProprietes = GetComponentInChildren<SnakeMeshProprietes>();
         snakeMeshProprietes.RandomizePattern();
-        
+
         //collectedPieceSprite = snakeMeshProprietes.collectedPiece;
         tailPieceSprite = snakeMeshProprietes.tailPiece;
         snakeMeshProprietes.collectedPiece = collectedPieceSprite;
@@ -1451,18 +1451,20 @@ public class Snake : MonoBehaviour
         if (PhotonNetwork.inRoom)
         {
             int val = 0;
-            val = 100 + (AccountDetails.instance.playerData.rocket * 50);
+            val = (AccountDetails.instance.playerData.rocket);
             go = PhotonNetwork.Instantiate("Particles/" + MissileParticle.name, transform.position, transform.rotation, 0, new object[] { val });
         }
         else
         {
             go = Instantiate(MissileParticle);
             go.transform.position = transform.position;
+            ProjectileScript projectile = go.GetComponent<ProjectileScript>();
+            projectile.level = AccountDetails.instance.playerData.rocket;
 
             if (isBot)
-                go.GetComponent<ProjectileScript>().Launch(InGameGUI.instance.userSnake);
+                projectile.Launch(InGameGUI.instance.userSnake);
             else
-                go.GetComponent<ProjectileScript>().Launch(InGameGUI.instance.opponentSnake);
+                projectile.Launch(InGameGUI.instance.opponentSnake);
         }
     }
 
@@ -1480,7 +1482,7 @@ public class Snake : MonoBehaviour
         if (PhotonNetwork.inRoom)
         {
             int val = 0;
-            val = 100 + (AccountDetails.instance.playerData.minishots * 50);
+            val = (AccountDetails.instance.playerData.minishots);
             go = PhotonNetwork.Instantiate("Particles/" + BlastersParticle.name, transform.position, transform.rotation, 0, new object[] { val });
         }
         else
@@ -1488,12 +1490,13 @@ public class Snake : MonoBehaviour
             go = Instantiate(BlastersParticle);
 
             go.transform.position = transform.position;
-
+            ProjectileScript projectile = go.GetComponent<ProjectileScript>();
+            projectile.level = AccountDetails.instance.playerData.minishots;
 
             if (isBot)
-                go.GetComponent<ProjectileScript>().Launch(InGameGUI.instance.userSnake);
+                projectile.Launch(InGameGUI.instance.userSnake);
             else
-                go.GetComponent<ProjectileScript>().Launch(InGameGUI.instance.opponentSnake);
+                projectile.Launch(InGameGUI.instance.opponentSnake);
         }
     }
 
@@ -1503,18 +1506,19 @@ public class Snake : MonoBehaviour
         if (PhotonNetwork.inRoom)
         {
             int val = 0;
-            val = 100 + (AccountDetails.instance.playerData.freeze * 50);
+            val = (AccountDetails.instance.playerData.freeze);
             go = PhotonNetwork.Instantiate("Particles/" + FreezeParticle.name, transform.position, transform.rotation, 0, new object[] { val });
         }
         else
         {
             go = Instantiate(FreezeParticle);
             go.transform.position = transform.position;
-
+            ProjectileScript projectile = go.GetComponent<ProjectileScript>();
+            projectile.level = AccountDetails.instance.playerData.freeze;
             if (isBot)
-                go.GetComponent<ProjectileScript>().Launch(InGameGUI.instance.userSnake);
+                projectile.Launch(InGameGUI.instance.userSnake);
             else
-                go.GetComponent<ProjectileScript>().Launch(InGameGUI.instance.opponentSnake);
+                projectile.Launch(InGameGUI.instance.opponentSnake);
 
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using DoozyUI;
 using UnityEngine;
 
 public class Server : MonoBehaviour
@@ -17,7 +16,7 @@ public class Server : MonoBehaviour
     [PunRPC]
     public void Rematch()
     {
-        if(ObliusGameManager.isFriendlyBattle)
+        if (ObliusGameManager.isFriendlyBattle)
         {
             GameOverGUI.instance.rematchRequested = true;
             GUIManager.instance.rematchResponse.Invoke();
@@ -53,10 +52,6 @@ public class Server : MonoBehaviour
         }
         GUIManager.instance.gameOverGUI.Reason.text = reason;
 
-        if (PhotonNetwork.isMasterClient)
-        {
-            PowerUpManager.instance.ClearPowerUps();
-        }
 
         if (SnakesSpawner.instance.playerSnake.isHeadOn || SnakesSpawner.instance.enemySnake.isHeadOn)
         {
@@ -83,11 +78,9 @@ public class Server : MonoBehaviour
 
         GUIManager.instance.ShowGameOverGUI();
         //PhotonNetwork.LeaveRoom ();
-        SnakesSpawner.instance.KillAllNetworkSnakes();
         Snake[] snakes = GameObject.FindObjectsOfType<Snake>();
         foreach (var snake in snakes)
             Destroy(snake.gameObject);
-        GroundSpawner.instance.ClearGround();
         print("someone died!");
         isGameOver = true;
         if (!reconnect.value)
@@ -102,22 +95,9 @@ public class Server : MonoBehaviour
     public void CloseUP()
     {
         challengeMode.value = false;
-        SnakesSpawner.instance.KillAllNetworkSnakes();
-        PowerUpManager.instance.ClearPowerUps();
-        GroundSpawner.instance.ClearGround();
     }
 
     [SerializeField] BoolObject challengeMode;
-    public void RebootConnection()
-    {
-        if (GSUpdateMMR.instance.loading.isActiveAndEnabled)
-            GSUpdateMMR.instance.loading.Hide(false);
-        CloseUP();
-        PhotonNetwork.LeaveRoom();
-        PhotonNetwork.Disconnect();
-        GUIManager.instance.inGameGUI.GetComponent<UIElement>().Hide(false);
-        reconnect.value = true;
-    }
 
     [PunRPC]
     public void OnOpponentLeave()
@@ -130,12 +110,9 @@ public class Server : MonoBehaviour
         }
         InGameGUI.instance.gameStarted = false;
         GUIManager.instance.ShowGameOverGUI();
-        PhotonNetwork.LeaveRoom();
-        SnakesSpawner.instance.KillAllNetworkSnakes();
         Snake[] snakes = GameObject.FindObjectsOfType<Snake>();
         foreach (var snake in snakes)
             Destroy(snake.gameObject);
-        GroundSpawner.instance.ClearGround();
         print("someone died!");
         if (!reconnect.value)
         {

@@ -256,9 +256,7 @@ public class PlayerInfo : MonoBehaviour
     [PunRPC]
     public void GameOver()
     {
-        //		PowerUpManager.instance.dontSpawn = true;
-        //GUIManager.instance.gameOverGUI.OnLose ();
-        PhotonNetwork.LeaveRoom();
+        print("player info gameover rps nothing here!");
     }
 
     [PunRPC]

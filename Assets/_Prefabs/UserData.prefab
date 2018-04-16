@@ -264,10 +264,8 @@ MonoBehaviour:
         online: 0
         scriptData:
           IsInGame: 0
-          PING: 
+          data: 
           FBID: 
-          FriendsList: []
-          MMR: 0
   serverData:
     requestId: 
     scriptData:
@@ -279,15 +277,38 @@ MonoBehaviour:
         online: 0
         scriptData:
           IsInGame: 0
-          PING: 
+          data: 
           FBID: 
-          FriendsList: []
-          MMR: 0
   userId: {fileID: 11400000, guid: 61c951cbb9d50c54bbe8f341dfbb7db7, type: 2}
   opponentId: {fileID: 11400000, guid: 1f68b91cd85325e418334c6b97094ab9, type: 2}
   opponentName: {fileID: 11400000, guid: a5c5ce1e44bfe1f40a00fd5640c1a18c, type: 2}
   server: {fileID: 11400000, guid: 408e334c55990984b84c77fef9d24cfb, type: 2}
   challengeLoadingON: {fileID: 11400000, guid: 2220d665feec74b438eab56e25468fdd, type: 2}
+  data:
+    PING: 
+    MMR: 0
+    mostAreaCovered: 0
+    highestTrophies: 0
+    totalKills: 0
+    totalDeaths: 0
+    totalWins: 0
+    totalLoss: 0
+    slot1: 0
+    slot2: 0
+    slot3: 0
+    slot4: 0
+    Gold: 0
+    Gem: 0
+    rocket: 0
+    minishots: 0
+    heal: 0
+    speed: 0
+    freeze: 0
+    shield: 0
+    lives: 0
+    health: 0
+    movespeed: 0
+    FriendsList: []
 --- !u!114 &114543313651734370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,7 +341,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0000
+  m_Text: 0
 --- !u!114 &114674818691949598
 MonoBehaviour:
   m_ObjectHideFlags: 1

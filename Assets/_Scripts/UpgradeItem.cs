@@ -103,7 +103,7 @@ public class UpgradeItem : MonoBehaviour
 
     public void UpdatePanel()
     {
-
+        upgradeLevel = Mathf.Clamp(upgradeLevel, 0, 6);
         currentValue = baseValue + (upgradeLevel * UpgradeValues[0]);
         switch (ID)
         {

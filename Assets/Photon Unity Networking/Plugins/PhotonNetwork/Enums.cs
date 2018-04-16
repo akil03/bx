@@ -15,7 +15,6 @@
 
 
 using System;
-using ExitGames.Client.Photon;
 
 
 /// <summary>
@@ -418,34 +417,34 @@ public enum PhotonNetworkingMessage
     OnLobbyStatisticsUpdate,
 
 
-	/// <summary>
-	/// Called when a remote Photon Player activity changed. This will be called ONLY is PlayerTtl is greater then 0.
-	///
-	/// Use PhotonPlayer.IsInactive to check the current activity state
-	///
-	/// Example: void OnPhotonPlayerActivityChanged(PhotonPlayer otherPlayer) {...}
-	/// </summary>
-	/// <remarks>
-	/// This callback has precondition:
-	/// PlayerTtl must be greater then 0
-	/// </remarks>
-	OnPhotonPlayerActivityChanged,
+    /// <summary>
+    /// Called when a remote Photon Player activity changed. This will be called ONLY is PlayerTtl is greater then 0.
+    ///
+    /// Use PhotonPlayer.IsInactive to check the current activity state
+    ///
+    /// Example: void OnPhotonPlayerActivityChanged(PhotonPlayer otherPlayer) {...}
+    /// </summary>
+    /// <remarks>
+    /// This callback has precondition:
+    /// PlayerTtl must be greater then 0
+    /// </remarks>
+    OnPhotonPlayerActivityChanged,
 
 
-	/// <summary>
-	/// Called when a PhotonView Owner is transfered to a Player.
-	/// </summary>
-	/// <remarks>
-	/// The parameter viewAndPlayers contains:
-	///
-	/// PhotonView view = viewAndPlayers[0] as PhotonView;
-	///
-	/// PhotonPlayer newOwner = viewAndPlayers[1] as PhotonPlayer;
-	///
-	/// PhotonPlayer oldOwner = viewAndPlayers[2] as PhotonPlayer;
-	/// </remarks>
-	/// <example>void OnOwnershipTransfered(object[] viewAndPlayers) {} //</example>
-	OnOwnershipTransfered,
+    /// <summary>
+    /// Called when a PhotonView Owner is transfered to a Player.
+    /// </summary>
+    /// <remarks>
+    /// The parameter viewAndPlayers contains:
+    ///
+    /// PhotonView view = viewAndPlayers[0] as PhotonView;
+    ///
+    /// PhotonPlayer newOwner = viewAndPlayers[1] as PhotonPlayer;
+    ///
+    /// PhotonPlayer oldOwner = viewAndPlayers[2] as PhotonPlayer;
+    /// </remarks>
+    /// <example>void OnOwnershipTransfered(object[] viewAndPlayers) {} //</example>
+    OnOwnershipTransfered,
 }
 
 
@@ -534,18 +533,18 @@ public enum CloudRegionCode
 [Flags]
 public enum CloudRegionFlag
 {
-    eu =    1 << 0,
-    us =    1 << 1,
-    asia =  1 << 2,
-    jp =    1 << 3,
-    au =    1 << 4,
-    usw =   1 << 5,
-    sa =    1 << 6,
-    cae =   1 << 7,
-    kr =    1 << 8,
-    @in =   1 << 9,
-    ru =    1 << 10,
-    rue =   1 << 11
+    eu = 1 << 0,
+    us = 1 << 1,
+    asia = 1 << 2,
+    jp = 1 << 3,
+    au = 1 << 4,
+    usw = 1 << 5,
+    sa = 1 << 6,
+    cae = 1 << 7,
+    kr = 1 << 8,
+    @in = 1 << 9,
+    ru = 1 << 10,
+    rue = 1 << 11
 };
 
 

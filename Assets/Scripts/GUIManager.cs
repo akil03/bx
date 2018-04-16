@@ -8,10 +8,7 @@ using UnityEngine.UI;
 
 public class GUIManager : MonoBehaviour
 {
-
-
     public static GUIManager instance;
-
     public TutorialGUI tutorialGUI;
     public PauseGUI pauseGUI;
     public ShopGUI shopGUI;
@@ -19,30 +16,25 @@ public class GUIManager : MonoBehaviour
     public MainMenuGUI mainMenuGUI;
     public OneMoreChanceGUI oneMoreChanceGUI;
     public InGameGUI inGameGUI;
-
     public Color[] bgColours;
     public SpriteRenderer Bg, Glow;
     public Material BGMat;
-
     public UIElement[] Pages;
     public Transform FillBar;
     public UIElement InternetCheckPage, SettingsPage, matchLoading, PlayerStats;
     public GameObject BG;
-
     public Text mmrTxt, playerID_TXT;
     public InputField playerNameTxt;
-
     public Sprite goldImg, gemImg, xpImg;
     public GameObject collectingObject;
     public Text Gold, Gems, XP;
     public int currentPage;
-
     public Color Green, Red;
     public Image MusicImg, SfxImg;
     public AudioSource MusicSource, SFXSource;
-
-
     public GameObject GoogleCanvas, GamecenterCanvas;
+    Sprite NotificationSprite;
+    bool isLogShown;
 
     void Awake()
     {
@@ -81,15 +73,6 @@ public class GUIManager : MonoBehaviour
         new ChangeUserDetailsRequest().SetDisplayName(newName).Send(null);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-
-
-    }
-
     public void MusicBtn()
     {
         if (MusicImg.color == Red)
@@ -113,26 +96,17 @@ public class GUIManager : MonoBehaviour
     {
         if (SfxImg.color == Red)
         {
-            //MusicSource.volume = 1;
             SfxImg.color = Green;
             SfxImg.transform.parent.GetComponentInChildren<Text>().text = "ON";
             PlayerPrefs.SetInt("SFXMute", 0);
         }
         else
         {
-            //MusicSource.volume = 0;
             SfxImg.color = Red;
             SfxImg.transform.parent.GetComponentInChildren<Text>().text = "OFF";
             PlayerPrefs.SetInt("SFXMute", 1);
         }
     }
-
-
-    //	public void StopFindingGame()
-    //	{
-    //		PhotonManager.instance.StopFinding ();
-    //	}
-
 
     public void ShowInGameGUI()
     {
@@ -150,7 +124,6 @@ public class GUIManager : MonoBehaviour
 
     public void HideInGameGUI()
     {
-        //HideAllPages ();
         inGameGUI.gameObject.SetActive(false);
         BG.SetActive(true);
     }
@@ -158,22 +131,20 @@ public class GUIManager : MonoBehaviour
 
     public void ShowGameOverGUI()
     {
-        //	gameOverGUI.OnWin ();
+        if (Pages[2].isActiveAndEnabled)
+        {
+            return;
+        }
         if (!PlayerPrefs.HasKey("TutorialComplete"))
         {
             PlayerPrefs.SetInt("TutorialComplete", 1);
             ShowTutorialLog("Congratulations !! You've successfully completed the tutorial !!");
             inGameGUI.GetComponent<UIElement>().Hide(false);
-            Invoke("ReloadScene", 3);
+            StartCoroutine(WaitAndReloadScene());
             GameSparkRequests req = new GameSparkRequests();
             req.Request("AddGold", "amt", "50", UpdateAccountDetails);
-
-
-            //	Invoke ("FinishTut", 3);
             return;
         }
-
-
         inGameGUI.GetComponent<UIElement>().Hide(false);
         gameOverGUI.gameObject.SetActive(true);
         gameOverGUI.GetComponent<UIElement>().Show(false);
@@ -181,15 +152,14 @@ public class GUIManager : MonoBehaviour
 
     public void UpdateAccountDetails(string response)
     {
-        //print (response);
         AccountDetails.instance.Get();
     }
 
 
-    public void WatchAd()
+    public IEnumerator WaitAndReloadScene()
     {
-
-
+        yield return new WaitForSeconds(3);
+        ReloadScene();
     }
 
     void FinishTut()
@@ -201,9 +171,6 @@ public class GUIManager : MonoBehaviour
     {
         matchLoading.Hide(false);
         gameOverGUI.GetComponent<UIElement>().Hide(false);
-        if (PhotonNetwork.inRoom)
-            PhotonNetwork.LeaveRoom();
-        //gameOverGUI.gameObject.SetActive(false);
     }
 
 
@@ -239,29 +206,17 @@ public class GUIManager : MonoBehaviour
 
     public void ShowMainMenuGUI()
     {
+        ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
+        ObliusGameManager.instance.Reset();
         ObliusGameManager.instance.ChangePlayerStaus(true);
         HideAllPages();
-        ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
-        // mainMenuGUI.gameObject.SetActive(true);
-        //mainMenuGUI.GetComponent <UIElement> ().Show (false);
-        OpenPage(3);
-
-        SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive(true);
         BG.SetActive(true);
+        OpenPage(3);
+        SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive(true);
     }
-
-
 
     public void OpenPage(int pageNo)
     {
-        //		if (currentPage == pageNo)
-        //			return;
-
-
-        //		HideAllPages ();
-        //
-        //		Pages [pageNo - 1].gameObject.SetActive (true);
-        //		Pages [pageNo-1].Show (false);
         ObliusGameManager.isFriendlyBattle = false;
         ObliusGameManager.isOnlineBattle = false;
         currentPage = pageNo;
@@ -295,10 +250,7 @@ public class GUIManager : MonoBehaviour
     public void ReloadScene()
     {
         InternetCheckPage.Hide(false);
-        //		if(PhotonManagerAdvanced.instance.IsInGame())
-        PhotonNetwork.LeaveRoom();
         Application.LoadLevel(0);
-        //	SceneManager.LoadScene (0);
     }
 
     public void OpenConnectionPopup()
@@ -310,21 +262,17 @@ public class GUIManager : MonoBehaviour
         }
     }
 
-
     public void ShowSettings()
     {
         SettingsPage.gameObject.SetActive(true);
         SettingsPage.Show(false);
     }
 
-
-
     public void HideSettings()
     {
         SettingsPage.Hide(false);
     }
-    Sprite NotificationSprite;
-    bool isLogShown;
+
     public void ShowLog(string log)
     {
         if (isLogShown)
@@ -414,13 +362,10 @@ public class GUIManager : MonoBehaviour
         NotificationTxt.transform.parent.parent.gameObject.SetActive(false);
     }
 
-
     void EnableLog()
     {
         isLogShown = false;
     }
-
-
 
     public void CopyUserID()
     {
@@ -434,8 +379,6 @@ public class GUIManager : MonoBehaviour
         StartCoroutine(AddCollectingObject(amt, Gold, goldImg));
 
     }
-
-
 
     IEnumerator AddCollectingObject(int count, Text txtObj, Sprite img)
     {
@@ -461,24 +404,7 @@ public class GUIManager : MonoBehaviour
                 Destroy(GO);
             });
             yield return new WaitForSeconds(0.5f / 20.0f);
-
-            //			txtObj.text = (int.Parse (txtObj.text) + count/20).ToString ();
-            //			txtObj.transform.parent.DOScale (new Vector3 (1.15f, 1.15f, 1.15f), 0.1f).OnComplete (() => {
-            //				txtObj.transform.parent.DOScale (Vector3.one, 0.1f);
-            //			});
-            //
-            //			yield return new WaitForSeconds (0.05f );
         }
-
-    }
-
-    public void AddGems()
-    {
-
-    }
-
-    public void AddXP()
-    {
 
     }
 }

@@ -954,7 +954,6 @@ public class Snake : MonoBehaviour
                 if (!ObliusGameManager.isFriendlyBattle)
                 {
                     Destroy(_networkSnake.gameObject);
-                    PhotonNetwork.LeaveRoom();
                     SnakesSpawner.instance.GetNotifiedNetworkDeath(this);
                     DestroyImmediate(gameObject);
                 }

@@ -84,7 +84,6 @@ public class ObliusGameManager : MonoBehaviour
     {
 
         StartCoroutine(GameOverCoroutine(delay));
-        PowerUpManager.instance.ClearPowerUps();
         InGameGUI.instance.gameStarted = false;
     }
 
@@ -124,8 +123,6 @@ public class ObliusGameManager : MonoBehaviour
         GUIManager.instance.ShowInGameGUI();
         InGameGUI.instance.startTime = Time.time;
         PowerUpManager.instance.StartSpawn();
-        SnakesSpawner.instance.KillAllSnakes();
-        GroundSpawner.instance.ClearGround();
         SnakesSpawner.instance.SpawnPlayer();
         SnakesSpawner.instance.SpawnBot();
         SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive(false);
@@ -168,7 +165,6 @@ public class ObliusGameManager : MonoBehaviour
         ResetGame();
         //SnakesSpawner.instance.SpawnPlayer ();
 
-        PowerUpManager.instance.ClearPowerUps();
 
         //GUIManager.instance.mainMenuGUI.GetComponent <UIElement> ().Hide (false);
         StartCoroutine(SnakesSpawner.instance.SpawnNewSnake(true, 999));
@@ -244,9 +240,7 @@ public class ObliusGameManager : MonoBehaviour
         GUIManager.instance.inGameGUI.GetComponent<UIElement>().Hide(false);
         yield return new WaitForSeconds(1);
 
-        SnakesSpawner.instance.KillAllSnakes();
         GUIManager.instance.inGameGUI.PlayerPanel[1].gameObject.SetActive(true);
-        GroundSpawner.instance.ClearGround();
         StartCoroutine(SnakesSpawner.instance.SpawnNewSnake(false, 1));
         GUIManager.instance.ShowInGameGUI();
         GUIManager.instance.inGameGUI.PlayerPanel[1].FillRatio.transform.parent.gameObject.SetActive(true);
@@ -271,8 +265,6 @@ public class ObliusGameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         GUIManager.instance.BG.SetActive(true);
-        SnakesSpawner.instance.KillAllSnakes();
-        GroundSpawner.instance.ClearGround();
         GUIManager.instance.HideTutorialLog();
         GUIManager.instance.inGameGUI.TimerText.transform.parent.gameObject.SetActive(true);
         GUIManager.instance.inGameGUI.PlayerPanel[0].gameObject.SetActive(true);
@@ -290,7 +282,6 @@ public class ObliusGameManager : MonoBehaviour
         InGameGUI.instance.startTime = Time.time;
 
         //PowerUpManager.instance.StopSpawn ();
-        PowerUpManager.instance.ClearPowerUps();
 
 
         SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive(false);
@@ -361,7 +352,7 @@ public class ObliusGameManager : MonoBehaviour
         if (!isFriendlyBattle)
         {
             _ShowFindingMatchScreen(PhotonNetwork.player.ID);
-        }        
+        }
     }
 
     public void FakeBotMatch()
@@ -387,25 +378,13 @@ public class ObliusGameManager : MonoBehaviour
 
     public void StartRematch()
     {
-       // GroundSpawner.instance.ClearGround();
+        // GroundSpawner.instance.ClearGround();
         _ShowFindingMatchScreen(PhotonNetwork.playerList.Where(a => a.IsLocal).First().ID);
     }
 
     void OnConnectionFail(DisconnectCause cause)
     {
-        //		if(PhotonNetwork.inRoom)
-        //			PhotonNetwork.LeaveRoom ();
-        //		GUIManager.instance.BG.SetActive (true);
-        //		GUIManager.instance.OpenPage (3);
-        //	if (PhotonManagerAdvanced.instance.IsInGame ()) {
         ForceCloseGame();
-        //		}
-        //		else
-        //		{
-        //			if (GUIManager.instance.Pages [5].isActiveAndEnabled)
-        //				GUIManager.instance.OpenPage (3);
-        //		}
-
     }
 
 
@@ -418,15 +397,9 @@ public class ObliusGameManager : MonoBehaviour
         GUIManager.instance.gameOverGUI.Reason.text = "Network timeout. Disconnected from server!";
         GUIManager.instance.ShowLog("Network timeout. Disconnected from server!");
         InGameGUI.instance.gameStarted = false;
-        PowerUpManager.instance.ClearPowerUps();
-        PhotonNetwork.LeaveRoom();
-        SnakesSpawner.instance.KillAllNetworkSnakes();
         Snake[] snakes = GameObject.FindObjectsOfType<Snake>();
         foreach (var snake in snakes)
             Destroy(snake.gameObject);
-        GroundSpawner.instance.ClearGround();
-
-
         if (!reconnect.value)
         {
             Server.instance.CloseUP();
@@ -463,4 +436,16 @@ public class ObliusGameManager : MonoBehaviour
         }
     }
 
+
+    public void Reset()
+    {
+        SnakesSpawner.instance.KillAllSnakes();
+        PowerUpManager.instance.ClearPowerUps();
+        GroundSpawner.instance.ClearGround();
+        if (PhotonNetwork.inRoom)
+        {
+            SnakesSpawner.instance.KillAllNetworkSnakes();
+            PhotonNetwork.LeaveRoom();
+        }
+    }
 }

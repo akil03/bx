@@ -112,10 +112,10 @@ public class GameOverGUI : MonoBehaviour
         //GameSparkRequests req = new GameSparkRequests();
         //req.Request("AddGold", "amt", "50", UpdateAccountDetails);
 
-       
+
         GiveRewards();
 
-       
+
 
         Invoke("ShowRewards", 1f);
 
@@ -292,16 +292,12 @@ public class GameOverGUI : MonoBehaviour
         if (Server.instance != null)
             PhotonView.Get(Server.instance).RPC("LeftTheGame", PhotonTargets.Others);
         GUIManager.instance.ShowMainMenuGUI();
-        if (PhotonNetwork.inRoom)
-            PhotonNetwork.LeaveRoom();
-        SnakesSpawner.instance.KillAllSnakes();
         Deactivate();
     }
 
     public void WantRematch()
     {
         //  SnakesSpawner.instance.KillAllNetworkSnakes();
-        GroundSpawner.instance.ClearGround();
         if (!rematchRequested)
         {
             RematchText.text = "Waiting for opponent !";

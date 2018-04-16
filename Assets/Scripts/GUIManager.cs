@@ -123,7 +123,7 @@ public class GUIManager : MonoBehaviour
         int Rand = UnityEngine.Random.Range(0, bgColours.Length);
         Bg.color = bgColours[Rand];
         Glow.color = bgColours[Rand];
-        BGMat.color = bgColours[Rand];
+        //BGMat.color = bgColours[Rand];
         BG.SetActive(false);
     }
 

@@ -13,7 +13,7 @@ public class LeaderboardGUI : MonoBehaviour
     public string region;
     public Image OnlineImage;
     public bool isOnline, isInGame;
-    public GSLeaderboardData leaderboardData, serverData;
+    public GSLeaderboardData leaderboardData;
     Transform parentt;
     public StringObject userId;
     public StringObject opponentId;
@@ -107,34 +107,6 @@ public class LeaderboardGUI : MonoBehaviour
 
     public void CheckOnline()
     {
-        //new LogEventRequest().SetEventKey("GetPlayerDataWithID").SetEventAttribute("ID", leaderboardData.scriptData.AllData.id).Send((response) =>
-        //{
-        //    if (!response.HasErrors)
-        //    {
-        //        serverData = JsonUtility.FromJson<GSLeaderboardData>(response.JSONString);
-        //        isOnline = serverData.scriptData.AllData.online;
-        //        //				isInGame = serverData.scriptData.AllData.scriptData.IsInGame;
-        //        playerName.text = serverData.scriptData.AllData.displayName;
-        //        if (data != null)
-        //        {
-        //            mmr.text = data.MMR.ToString();
-        //        }
-        //        OnlineImage.gameObject.SetActive(isOnline);
-        //        //				leaderboardData = serverData;
-        //        if (serverData.scriptData.AllData.scriptData.IsInGame == 1)
-        //        {
-        //            OnlineImage.color = Color.red;
-        //            isInGame = true;
-        //        }
-        //        else
-        //        {
-        //            OnlineImage.color = Color.green;
-        //            isInGame = false;
-        //        }
-
-
-        //    }
-        //});
         GameSparkRequests getPlayerDetail = new GameSparkRequests();
         getPlayerDetail.Request("GetPlayerDataWithID", "ID", id, Callback);
     }

@@ -6,13 +6,19 @@ using UnityEngine.UI;
 
 public class LeaderboardGUI : MonoBehaviour
 {
-    public Text playerName, mmr;
-    public Image sprite, OnlineImage;
-    public string id, region;
-    public bool isInGame;
-    public GSLeaderboardData leaderboardData;
+    public Text playerName;
+    public Text mmr;
+    public Image sprite;
+    public string id;
+    public string region;
+    public Image OnlineImage;
+    public bool isOnline, isInGame;
+    public GSLeaderboardData leaderboardData, serverData;
     Transform parentt;
-    public StringObject userId, opponentId, opponentName, server;
+    public StringObject userId;
+    public StringObject opponentId;
+    public StringObject opponentName;
+    public StringObject server;
     public EventObject challengeLoadingON;
     ParameterlessDelegate detailsSet;
     public PlayerData data;
@@ -33,12 +39,12 @@ public class LeaderboardGUI : MonoBehaviour
         detailsSet = callback;
         this.id = id;
         parentt = scrollParent;
+        GameSparkRequests getPlayerDetail = new GameSparkRequests();
+        getPlayerDetail.Request("GetPlayerDataWithID", "ID", id, Callback);
         transform.SetParent(scrollParent);
         transform.localRotation = Quaternion.identity;
         transform.localScale = new Vector3(1, 1, 0);
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-        GameSparkRequests getPlayerDetail = new GameSparkRequests();
-        getPlayerDetail.Request("GetPlayerDataWithID", "ID", id, Callback);
         CheckOnline();
     }
 
@@ -50,9 +56,6 @@ public class LeaderboardGUI : MonoBehaviour
         if (data != null)
         {
             mmr.text = data.MMR.ToString();
-            OnlineImage.gameObject.SetActive(IsOnline());
-            OnlineImage.color = IsFree() ? Color.green : Color.red;
-
         }
         if (gameObject.activeSelf)
         {
@@ -63,7 +66,7 @@ public class LeaderboardGUI : MonoBehaviour
 
     public void SetOpponentID()
     {
-        if (!IsOnline() || !IsFree())
+        if (id == userId.value || !isOnline)
             return;
         if (!PhotonNetwork.connected)
         {
@@ -104,6 +107,34 @@ public class LeaderboardGUI : MonoBehaviour
 
     public void CheckOnline()
     {
+        //new LogEventRequest().SetEventKey("GetPlayerDataWithID").SetEventAttribute("ID", leaderboardData.scriptData.AllData.id).Send((response) =>
+        //{
+        //    if (!response.HasErrors)
+        //    {
+        //        serverData = JsonUtility.FromJson<GSLeaderboardData>(response.JSONString);
+        //        isOnline = serverData.scriptData.AllData.online;
+        //        //				isInGame = serverData.scriptData.AllData.scriptData.IsInGame;
+        //        playerName.text = serverData.scriptData.AllData.displayName;
+        //        if (data != null)
+        //        {
+        //            mmr.text = data.MMR.ToString();
+        //        }
+        //        OnlineImage.gameObject.SetActive(isOnline);
+        //        //				leaderboardData = serverData;
+        //        if (serverData.scriptData.AllData.scriptData.IsInGame == 1)
+        //        {
+        //            OnlineImage.color = Color.red;
+        //            isInGame = true;
+        //        }
+        //        else
+        //        {
+        //            OnlineImage.color = Color.green;
+        //            isInGame = false;
+        //        }
+
+
+        //    }
+        //});
         GameSparkRequests getPlayerDetail = new GameSparkRequests();
         getPlayerDetail.Request("GetPlayerDataWithID", "ID", id, Callback);
     }
@@ -113,15 +144,5 @@ public class LeaderboardGUI : MonoBehaviour
         CheckOnline();
         yield return new WaitForSeconds(5);
         StartCoroutine(KeepChecking());
-    }
-
-    bool IsOnline()
-    {
-        return leaderboardData.scriptData.AllData.online;
-    }
-
-    bool IsFree()
-    {
-        return (leaderboardData.scriptData.AllData.scriptData.IsInGame == 0);
     }
 }

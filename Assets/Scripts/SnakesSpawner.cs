@@ -298,45 +298,32 @@ public class SnakesSpawner : MonoBehaviour
 
     public void RespawnNetworkSnake(Snake snake)
     {
-
         SpawnPointFinder spawnPointFinder = new SpawnPointFinder();
-
-
         GameObject go = (GameObject)Resources.Load("Snake");
         go = GameObject.Instantiate(go);
-
         Snake newSnake = go.GetComponent<Snake>();
         go.transform.position = new Vector3(transform.position.x, transform.position.y, -0.75f);
-
-
         newSnake.isBot = false;
         playerSnake = newSnake;
         InGameGUI.instance.userSnake = newSnake;
         newSnake.loadedPowers = snake.loadedPowers;
-        //InGameGUI.instance.PlayerPanel [0].SelectedSnake = newSnake;
         InGameGUI.instance.EquipPowerup();
-
         newSnake.isLocal = true;
         newSnake.Lives = snake.Lives;
         newSnake.maxHP = HealthValue;
         newSnake.normalSpeed = snake.normalSpeed;
-
+        newSnake.speed = snake.normalSpeed;
         if (snake.playerID == 1)
         {
-
             spawnPointFinder.spawnPoint = GroundSpawner.instance.spawnedGroundPieces[447];
             newSnake.playerID = 1;
             newSnake.nextMoveDirection = newSnake.currentMoveDirection = transform.up;
-            //SetSnakeMeshMultiplayer (newSnake,1);//area/2 - 3
         }
         else
         {
-
             newSnake.playerID = 2;
-            spawnPointFinder.spawnPoint = GroundSpawner.instance.spawnedGroundPieces[422]; // area/2 - gridlength +2
-                                                                                           //SetSnakeMeshMultiplayer (newSnake, 2);
+            spawnPointFinder.spawnPoint = GroundSpawner.instance.spawnedGroundPieces[422];                                                                                           //SetSnakeMeshMultiplayer (newSnake, 2);
             newSnake.nextMoveDirection = newSnake.currentMoveDirection = -transform.up;
-            //startTimer.text = StartTime.ToString ();
         }
 
 

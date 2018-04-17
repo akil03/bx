@@ -26,9 +26,6 @@ public class ProjectileScript : MonoBehaviour
             level = (int)gameObject.GetPhotonView().instantiationData[0];
             Launch();
         }
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPaused = true;
-#endif
     }
 
     public void Launch(Snake targetSnake)

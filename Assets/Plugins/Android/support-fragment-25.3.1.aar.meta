@@ -1,8 +1,12 @@
 fileFormatVersion: 2
 guid: 1ce4bfcba07b65942a24482276d12722
+<<<<<<< HEAD
 labels:
 - gpsr
 timeCreated: 1523973625
+=======
+timeCreated: 1523949967
+>>>>>>> 8b8c143503a931bc4d32300ed1ffb2c00f69eeba
 licenseType: Pro
 PluginImporter:
   externalObjects: {}

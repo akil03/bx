@@ -126,7 +126,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.01
+  bundleVersion: 1.07
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -244,7 +244,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/user.keystore
+  AndroidKeystoreName: D:/ElectronicDreaming/Projects/BX_GIT/GooglePlayDebug.keystore
   AndroidKeyaliasName: battle xonix
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
@@ -568,7 +568,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: dUI_DoozyUI
     4: dUI_DoozyUI
-    7: dUI_DoozyUI;AMPLIFY_SHADER_EDITOR;EASY_MOBILE
+    7: dUI_DoozyUI;AMPLIFY_SHADER_EDITOR
   platformArchitecture: {}
   scriptingBackend:
     Android: 0

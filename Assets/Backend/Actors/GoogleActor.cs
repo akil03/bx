@@ -62,8 +62,8 @@ public class GoogleActor : MonoBehaviour
 		Action<bool> logInCallBack = (Action<bool>)((loggedIn)=> {
 			if(loggedIn)
             {
-                email.value = LCGoogleLoginBridge.GSIEmail();                
-                userName.value = LCGoogleLoginBridge.GSIUserName();
+               // email.value = LCGoogleLoginBridge.GSIEmail();                
+               // userName.value = LCGoogleLoginBridge.GSIUserName();
                 PlayerPrefs.SetInt(key, 1);
                 googleLoginSuccess.Fire();               
             }
@@ -74,13 +74,13 @@ public class GoogleActor : MonoBehaviour
 				Application.Quit ();
 			}	
 		});
-		LCGoogleLoginBridge.LoginUser (logInCallBack, status);
+		//LCGoogleLoginBridge.LoginUser (logInCallBack, status);
 	}
    
 
     public void Logout()
 	{
-		LCGoogleLoginBridge.LogoutUser ();
+		//LCGoogleLoginBridge.LogoutUser ();
 		googleLogout.Fire ();
 		PlayerPrefs.SetInt (key,0);
 	}

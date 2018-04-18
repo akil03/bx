@@ -24,14 +24,16 @@ public class GameSparksActor : MonoBehaviour
 
     void Awake()
     {
-        if (Application.isEditor)
-        {
-            Login();
-        }
-        else
-        {
-            email.Reset();
-        }
+
+        Login();
+        //if (Application.isEditor)
+        //{
+        //    Login();
+        //}
+        //else
+        //{
+        //    email.Reset();
+        //}
     }
 
     private void MatchNotFound(MatchNotFoundMessage obj)

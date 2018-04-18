@@ -43,7 +43,7 @@ public class LeaderboardGUI : MonoBehaviour
         getPlayerDetail.Request("GetPlayerDataWithID", "ID", id, Callback);
         transform.SetParent(scrollParent);
         transform.localRotation = Quaternion.identity;
-        transform.localScale = new Vector3(1, 1, 0);
+        transform.localScale = Vector3.one;
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
         CheckOnline();
     }
@@ -56,6 +56,8 @@ public class LeaderboardGUI : MonoBehaviour
         if (data != null)
         {
             mmr.text = data.MMR.ToString();
+            OnlineImage.gameObject.SetActive(IsOnline());
+            OnlineImage.color = IsFree() ? Color.green : Color.red;
         }
         if (gameObject.activeSelf)
         {
@@ -64,20 +66,22 @@ public class LeaderboardGUI : MonoBehaviour
         detailsSet();
     }
 
+    bool IsOnline()
+    {
+        return leaderboardData.scriptData.AllData.online;
+    }
+
+    bool IsFree()
+    {
+        return leaderboardData.scriptData.AllData.scriptData.IsInGame == 0;
+    }
+
     public void SetOpponentID()
     {
-        if (id == userId.value || !isOnline)
+        print(id == userId.value + "" + !IsOnline() + "" + !IsFree() + "" + !PhotonNetwork.connected);
+        ObliusGameManager.isFriendlyBattle = true;
+        if (id == userId.value || !IsOnline() || !IsFree() || !PhotonNetwork.connected)
             return;
-        if (!PhotonNetwork.connected)
-        {
-            GUIManager.instance.ShowLog("Not Connected to the server!");
-            return;
-        }
-        if (isInGame)
-        {
-            GUIManager.instance.ShowLog("Player is in a game!");
-            return;
-        }
         opponentId.value = id;
         opponentName.value = playerName.text;
         var regions = data.PING.ToRegions();

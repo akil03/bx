@@ -72,6 +72,7 @@ public class ChallengeActor : MonoBehaviour
                 }
                 else
                 {
+                    ObliusGameManager.isFriendlyBattle = false;
                     challenge.Reset();
                     withdrawn.Fire();
                     reconnect.value = true;
@@ -160,6 +161,10 @@ public class ChallengeActor : MonoBehaviour
             {
                 PhotonNetwork.ConnectToRegion(server.value.ToCloudRegionCode(), Application.version);
             }
+        }
+        else
+        {
+            challenge.data = null;
         }
     }
 

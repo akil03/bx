@@ -98,7 +98,9 @@ public class PhotonActor : MonoBehaviour
 
     public void Reconnect()
     {
-        if (reconnect.value)
+        if (!ObliusGameManager.isFriendlyBattle)
+        {
             ConnectToMaster();
+        }
     }
 }

@@ -131,6 +131,31 @@ public class ObliusGameManager : MonoBehaviour
         gameState = GameState.game;
     }
 
+    public void FakeStartGame()
+    {
+        if (PhotonNetwork.inRoom)
+        {
+            print("Can't start normal game in a room!");
+            return;
+        }
+        ChangePlayerStaus(false);
+        
+        if (Regeneration.instance.LifeAmount < 1)
+        {
+            Regeneration.instance.UseLife();
+            return;
+        }
+        ResetGame();
+        ScoreHandler.instance.incrementNumberOfGames();
+        GUIManager.instance.ShowInGameGUI();
+        InGameGUI.instance.startTime = Time.time;
+        PowerUpManager.instance.StartSpawn();
+        SnakesSpawner.instance.SpawnPlayer();
+        SnakesSpawner.instance.SpawnBot();
+        SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive(false);
+        gameState = GameState.game;
+    }
+
     bool tutStarted;
 
     public void StartTutorial()
@@ -364,7 +389,7 @@ public class ObliusGameManager : MonoBehaviour
     {
         isFinding = false;
         BotType = 1;
-        StartGame();
+        FakeStartGame();
     }
 
 

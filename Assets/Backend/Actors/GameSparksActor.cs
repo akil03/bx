@@ -53,6 +53,8 @@ public class GameSparksActor : MonoBehaviour
         {
             isOnline.value = true;
             userId.value = AR.UserId;
+            if (isNewUser)
+                AccountDetails.instance.Save(Gold: 5000);
             loginSuccess.Fire();
             //				print("Game Sparks login success!!");
         }
@@ -77,7 +79,7 @@ public class GameSparksActor : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    bool isNewUser;
     public void Register()
     {
         new RegistrationRequest()
@@ -93,6 +95,7 @@ public class GameSparksActor : MonoBehaviour
                 else
                 {
                     registrationSuccess.Fire();
+                    isNewUser = true;
                     print("Game Sparks Registration success!");
                 }
                 print(response.JSONString);

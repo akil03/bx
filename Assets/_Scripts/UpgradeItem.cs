@@ -13,7 +13,7 @@ public class UpgradeItem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        AssignValues();
     }
 
     // Update is called once per frame

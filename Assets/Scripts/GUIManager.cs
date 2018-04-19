@@ -37,6 +37,8 @@ public class GUIManager : MonoBehaviour
     bool isLogShown;
     public UIButton[] uIButtons;
 
+    public SplashLoading splashScreen;
+
     void Awake()
     {
         instance = this;

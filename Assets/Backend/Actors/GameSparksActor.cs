@@ -22,7 +22,7 @@ public class GameSparksActor : MonoBehaviour
     [SerializeField] List<bool> friendsAdded;
     [SerializeField] BoolObject isOnline;
 
-    void Awake()
+    void Start()
     {        
         if (Application.isEditor)
         {

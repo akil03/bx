@@ -15,7 +15,7 @@ public class GoogleActor : MonoBehaviour
 	[SerializeField]StringObject userName;
 	string key="googleLoggedIn";
 
-	void Awake()
+	void Start()
 	{
 
         if (!Application.isEditor)
@@ -53,6 +53,7 @@ public class GoogleActor : MonoBehaviour
 		{
 			if (success)
 			{
+                GUIManager.instance.splashScreen.Load(0.75f);
 				PlayerPrefs.SetString ("SocialID",Social.localUser.id);
 				email.value = Social.localUser.id;
 				userName.value = Social.localUser.userName;

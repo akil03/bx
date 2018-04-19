@@ -137,6 +137,7 @@ public class ObliusGameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("TutorialComplete"))
         {
+            
             GUIManager.instance.OpenPage(3);
             return;
         }
@@ -389,9 +390,34 @@ public class ObliusGameManager : MonoBehaviour
 
     void OnConnectionFail(DisconnectCause cause)
     {
-        ForceCloseGame();
+        if (Server.instance)
+            ForceCloseGame();
+    }
+    bool isPopped;
+    void OnFailedToConnectToPhoton()
+    {
+        ShowReloadPopup();
     }
 
+    void ShowReloadPopup()
+    {
+        if (isPopped)
+            return;
+
+        if (Application.isEditor)
+            print("Restart alert popped");
+
+        EasyMobile.NativeUI.AlertPopup alert = EasyMobile.NativeUI.Alert("Time out", "Disconnected from the server. Reload ");
+        if (alert != null)
+            alert.OnComplete += RestartApp;
+        
+    }
+
+    void RestartApp(int r)
+    {
+        isPopped = true;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
 
     void ForceCloseGame()
     {
@@ -410,6 +436,7 @@ public class ObliusGameManager : MonoBehaviour
             Server.instance.CloseUP();
             reconnect.value = true;
         }
+        Invoke("ShowReloadPopup", 2);
     }
 
     public void ResetGame(bool resetScore = true, bool resetOneMoreChance = true)

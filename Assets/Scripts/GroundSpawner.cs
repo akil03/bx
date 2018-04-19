@@ -23,10 +23,7 @@ public class GroundSpawner : MonoBehaviour
 	void Awake ()
 	{
 		instance = this;
-		InitializeRows ();
-		InitializeColumns ();
-		spawnedGroundPieces = new List<GroundPiece> ();
-		CreateGround ();
+		
 	}
 
 	// Use this for initialization

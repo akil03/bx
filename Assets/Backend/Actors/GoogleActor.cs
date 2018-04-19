@@ -4,6 +4,9 @@ using UnityEngine;
 using System;
 using GameSparks.Core;
 using UnityEngine.SocialPlatforms;
+using GooglePlayGames;
+using EasyMobile;
+
 public class GoogleActor : MonoBehaviour 
 {
 	[SerializeField]EventObject googleLoginSuccess;
@@ -14,42 +17,47 @@ public class GoogleActor : MonoBehaviour
 
 	void Awake()
 	{
-		//userName.Reset ();
-		//email.Reset ();
-		#if UNITY_IOS && !UNITY_EDITOR
-		//GameCenterLogin ();
 
-		if (PlayerPrefs.HasKey ("GameCenterID")) {
-		email.value = PlayerPrefs.GetString ("GameCenterID");
-		googleLoginSuccess.Fire();
-		}
-		else
-		GameCenterLogin ();
-
-
-		#else
-		if(PlayerPrefs.GetInt(key)==0)
-			Login (false);
-		if (PlayerPrefs.GetInt(key) == 1)
-			Login(true);
-		#endif
-
-	
-		
-
-	}
-
-	void GameCenterLogin()
-    {
-		Social.localUser.Authenticate (success => 
+        if (!Application.isEditor)
         {
+            if (Application.platform == RuntimePlatform.Android)
+                StartCoroutine(GooglePlayLogin());
+            else
+                SocialLogin();
+        }
+
+    }
+
+    IEnumerator GooglePlayLogin()
+    {
+        if (!GameServices.IsInitialized())
+        {
+            GameServices.Init();
+        }
+        while (!GameServices.IsInitialized())
+            yield return null;
+
+        SocialLogin();
+    }
+
+    void GameCenterLogin()
+    {
+
+
+    }
+
+
+	void SocialLogin()
+	{
+		Social.localUser.Authenticate (success => 
+		{
 			if (success)
 			{
-				PlayerPrefs.SetString ("GameCenterID",Social.localUser.id);
+				PlayerPrefs.SetString ("SocialID",Social.localUser.id);
 				email.value = Social.localUser.id;
 				userName.value = Social.localUser.userName;
 				googleLoginSuccess.Fire();
-            }
+			}
 			else
 				Debug.Log("Failed to authenticate");
 		});
@@ -61,14 +69,14 @@ public class GoogleActor : MonoBehaviour
 	{
 		Action<bool> logInCallBack = (Action<bool>)((loggedIn)=> {
 			if(loggedIn)
-            {
-               // email.value = LCGoogleLoginBridge.GSIEmail();                
-               // userName.value = LCGoogleLoginBridge.GSIUserName();
-                PlayerPrefs.SetInt(key, 1);
-                googleLoginSuccess.Fire();               
-            }
+			{
+			   // email.value = LCGoogleLoginBridge.GSIEmail();                
+			   // userName.value = LCGoogleLoginBridge.GSIUserName();
+				PlayerPrefs.SetInt(key, 1);
+				googleLoginSuccess.Fire();               
+			}
 
-            else
+			else
 			{
 				print("Google Login Failed");
 				Application.Quit ();
@@ -78,7 +86,7 @@ public class GoogleActor : MonoBehaviour
 	}
    
 
-    public void Logout()
+	public void Logout()
 	{
 		//LCGoogleLoginBridge.LogoutUser ();
 		googleLogout.Fire ();

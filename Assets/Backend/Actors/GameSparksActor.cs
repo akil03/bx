@@ -23,17 +23,11 @@ public class GameSparksActor : MonoBehaviour
     [SerializeField] BoolObject isOnline;
 
     void Awake()
-    {
-
-        Login();
-        //if (Application.isEditor)
-        //{
-        //    Login();
-        //}
-        //else
-        //{
-        //    email.Reset();
-        //}
+    {        
+        if (Application.isEditor)
+        {
+            Login();
+        }       
     }
 
     private void MatchNotFound(MatchNotFoundMessage obj)

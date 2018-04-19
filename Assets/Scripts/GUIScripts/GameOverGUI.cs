@@ -302,11 +302,13 @@ public class GameOverGUI : MonoBehaviour
         {
             RematchText.text = "Waiting for opponent !";
             PhotonView.Get(Server.instance).RPC("Rematch", PhotonTargets.Others);
+            GroundSpawner.instance.ClearGround();
             StartCoroutine(WaitforRematch());
         }
         else
         {
             rematchRequested = false;
+            GroundSpawner.instance.ClearGround();
             StartCoroutine(WaitforRematch());
         }
     }

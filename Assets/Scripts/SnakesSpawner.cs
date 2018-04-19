@@ -29,7 +29,7 @@ public class SnakesSpawner : MonoBehaviour
     public List<Snake> spawnedSnakes;
     public int playerLives, enemyLives = 3;
 
-    public int selectedMeshIndex, selectedColourIndex, selectedTileIndex;
+    public int selectedMeshIndex, selectedCharIndex, selectedColourIndex, selectedTileIndex;
     public GameObject tempMesh, previewMeshContainer;
 
     public string playerName;
@@ -37,6 +37,8 @@ public class SnakesSpawner : MonoBehaviour
     public int HealthValue, LifeValue, PowerRocketValue, PowerShotsValue, PowerSpeedValue, PowerHPValue, PowerShieldValue;
     public float SpeedValue;
 
+    public Button selectCharBtn;
+    public Text selectCharTxt;
     void Awake()
     {
         instance = this;
@@ -46,11 +48,41 @@ public class SnakesSpawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //selectedMeshIndex = Random.Range (0, usableSnakeMeshes.Count);
-        ShowPreview();
+        selectedCharIndex = Random.Range (0, usableSnakeMeshes.Count);
+
+        ShowSelectedCharacter();
         //LoadUsableMeshesFromResources ();
         //snakeMeshAssignedToPlayer = GetMeshUsedByPlayer ();
         //StartCoroutine (SpawnRoutine ());
+    }
+
+    public void ShowSelectedCharacter()
+    {
+        selectedMeshIndex = selectedCharIndex;
+        ShowPreview();
+    }
+
+    public void SelectCharacter()
+    {
+
+        selectedCharIndex = selectedMeshIndex;
+        selectCharBtn.interactable = false;
+        selectCharTxt.text = "Selected";
+    }
+
+    public void CheckSelection()
+    {
+        if(selectedCharIndex== selectedMeshIndex)
+        {
+            selectCharBtn.interactable = false;
+            selectCharTxt.text = "Selected";
+        }
+        else
+        {
+            selectCharBtn.interactable = true;
+            selectCharTxt.text = "Select";
+        }
+        
     }
 
     public void KillAllSnakes()
@@ -115,8 +147,26 @@ public class SnakesSpawner : MonoBehaviour
 
     }
 
-
     public void ShowPreview()
+    {
+        if (tempMesh)
+            Destroy(tempMesh);
+
+
+        
+        snakeMeshAssignedToPlayer = usableSnakeMeshes[selectedMeshIndex];
+        tempMesh = Instantiate(usableSnakeMeshes[selectedMeshIndex], previewMeshContainer.transform);
+        tempMesh.transform.localPosition = Vector3.zero;
+        tempMesh.transform.localRotation = Quaternion.identity;
+        tempMesh.transform.localScale = Vector3.one;
+
+        GUIManager.instance.meshName.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshName;
+        GUIManager.instance.meshClass.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshClass + " Class";
+
+        CheckSelection();
+    }
+
+    public void ShowNext()
     {
         if (tempMesh)
             Destroy(tempMesh);
@@ -132,6 +182,8 @@ public class SnakesSpawner : MonoBehaviour
 
         GUIManager.instance.meshName.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshName;
         GUIManager.instance.meshClass.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshClass + " Class";
+
+        CheckSelection();
     }
 
     public void ShowPrev()
@@ -152,6 +204,7 @@ public class SnakesSpawner : MonoBehaviour
         GUIManager.instance.meshName.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshName;
         GUIManager.instance.meshClass.text = tempMesh.GetComponent<SnakeMeshProprietes>().meshClass;
 
+        CheckSelection();
     }
 
     // Update is called once per frame

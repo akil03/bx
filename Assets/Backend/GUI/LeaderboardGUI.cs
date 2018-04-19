@@ -23,6 +23,9 @@ public class LeaderboardGUI : MonoBehaviour
     ParameterlessDelegate detailsSet;
     public PlayerData data;
 
+    public Color startColor;
+
+
     private void OnEnable()
     {
         StartCoroutine(KeepChecking());
@@ -58,6 +61,10 @@ public class LeaderboardGUI : MonoBehaviour
             mmr.text = data.MMR.ToString();
             OnlineImage.gameObject.SetActive(IsOnline());
             OnlineImage.color = IsFree() ? Color.green : Color.red;
+            //if (IsOnline())
+            //    GetComponent<Image>().color = IsFree() ? Color.green : Color.red;
+            //else
+            //    GetComponent<Image>().color = startColor;
         }
         if (gameObject.activeSelf)
         {
@@ -66,12 +73,12 @@ public class LeaderboardGUI : MonoBehaviour
         detailsSet();
     }
 
-    bool IsOnline()
+    public bool IsOnline()
     {
         return leaderboardData.scriptData.AllData.online;
     }
 
-    bool IsFree()
+    public bool IsFree()
     {
         return leaderboardData.scriptData.AllData.scriptData.IsInGame == 0;
     }
@@ -97,6 +104,13 @@ public class LeaderboardGUI : MonoBehaviour
         result = result.OrderBy(a => a.ping).ToList();
         server.value = result[0].region;
         challengeLoadingON.Fire();
+    }
+
+
+    public void OnClick()
+    {
+        ProfileSelectManager.instance.selectedProfile = this;
+        ProfileSelectManager.instance.gameObject.SetActive(true);
     }
 
     IEnumerator LoadImage(string id)

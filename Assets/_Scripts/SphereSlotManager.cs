@@ -96,6 +96,7 @@ public class SphereSlotManager : MonoBehaviour {
     {
         activeSlot.Paid();
         OpenPopup.SetActive(false);
+        activeSlot.OpenSphere();
 
     }
 

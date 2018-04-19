@@ -7,9 +7,10 @@ public class UpgradeItem : MonoBehaviour
     public List<Transform> Bars;
     public List<int> UpgradeCosts, UpgradeValues;
     public int ID, baseValue, currentValue, upgradeLevel, maxLevel;
-    public string playerprefsTag, upgradeName;
+    public string playerprefsTag, upgradeName, prefix;
     public UpgradeType type;
 
+    public UpgradeChecker CheckWindow;
     // Use this for initialization
     void Start()
     {
@@ -22,37 +23,46 @@ public class UpgradeItem : MonoBehaviour
 
     }
 
+    
+
 
     public void Buy()
+    {
+        CheckWindow.item = this;
+        CheckWindow.CheckBuy();
+        CheckWindow.gameObject.SetActive(true);
+    }
+
+    public void Purchase()
     {
         switch (type)
         {
             case UpgradeType.rocket:
-                AccountDetails.instance.Save(rocket: 1);
+                AccountDetails.instance.Save(rocket: 1,Gold:-UpgradeCosts[upgradeLevel]);
                 break;
             case UpgradeType.minishots:
-                AccountDetails.instance.Save(minishots: 1);
+                AccountDetails.instance.Save(minishots: 1, Gold: -UpgradeCosts[upgradeLevel]);
                 break;
             case UpgradeType.heal:
-                AccountDetails.instance.Save(heal: 1);
+                AccountDetails.instance.Save(heal: 1, Gold: -UpgradeCosts[upgradeLevel]);
                 break;
             case UpgradeType.speed:
-                AccountDetails.instance.Save(speed: 1);
+                AccountDetails.instance.Save(speed: 1, Gold: -UpgradeCosts[upgradeLevel]);
                 break;
             case UpgradeType.freeze:
-                AccountDetails.instance.Save(freeze: 1);
+                AccountDetails.instance.Save(freeze: 1, Gold: -UpgradeCosts[upgradeLevel]);
                 break;
             case UpgradeType.shield:
-                AccountDetails.instance.Save(shield: 1);
+                AccountDetails.instance.Save(shield: 1, Gold: -UpgradeCosts[upgradeLevel]);
                 break;
             case UpgradeType.lives:
-                AccountDetails.instance.Save(lives: 1);
+                AccountDetails.instance.Save(lives: 1, Gold: -UpgradeCosts[upgradeLevel]);
                 break;
             case UpgradeType.health:
-                AccountDetails.instance.Save(health: 1);
+                AccountDetails.instance.Save(health: 1, Gold: -UpgradeCosts[upgradeLevel]);
                 break;
             case UpgradeType.movespeed:
-                AccountDetails.instance.Save(movespeed: 1);
+                AccountDetails.instance.Save(movespeed: 1, Gold: -UpgradeCosts[upgradeLevel]);
                 break;
             default:
                 break;
@@ -135,7 +145,7 @@ public class UpgradeItem : MonoBehaviour
         }
         else
         {
-            Bars[upgradeLevel].GetComponentInChildren<Text>().text = "+" + UpgradeValues[upgradeLevel].ToString();
+            Bars[upgradeLevel].GetComponentInChildren<Text>().text = "+" + UpgradeValues[upgradeLevel].ToString() + " "+prefix;
             upgradeCost.text = UpgradeCosts[upgradeLevel].ToString();
         }
 

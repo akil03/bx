@@ -238,6 +238,9 @@ public class GUIManager : MonoBehaviour
         ObliusGameManager.isOnlineBattle = false;
         currentPage = pageNo;
 
+        if (pageNo == 3)
+            SnakesSpawner.instance.ShowSelectedCharacter();
+
         if (pageNo < 6)
         {
             Pages[0].transform.parent.gameObject.SetActive(true);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using GameSparks.Api.Messages;
 using GameSparks.Api.Requests;
@@ -24,11 +23,11 @@ public class GameSparksActor : MonoBehaviour
     [SerializeField] BoolObject isOnline;
 
     void Start()
-    {        
+    {
         if (Application.isEditor)
         {
             Login();
-        }       
+        }
     }
 
     private void MatchNotFound(MatchNotFoundMessage obj)
@@ -57,22 +56,38 @@ public class GameSparksActor : MonoBehaviour
             if (isNewUser)
                 AccountDetails.instance.Save(Gold: 2500);
             GameSparkRequests request = new GameSparkRequests();
-            request.Request("CheckVersion","version","version",Callback);
-            loginSuccess.Fire();
+            request.Request("CheckVersion", "version", "version", Callback);
         }
     });
+    }
+
+    void ShowReloadPopup()
+    {
+        if (Application.isEditor)
+            print("Restart alert popped");
+
+        EasyMobile.NativeUI.AlertPopup alert = EasyMobile.NativeUI.Alert("Update available!", "Please download the latest version.");
+        if (alert != null)
+            alert.OnComplete += RestartApp;
+
+    }
+
+    void RestartApp(int r)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     private void Callback(string str)
     {
         VersionProperty versionProperty = JsonUtility.FromJson<VersionProperty>(str);
-        if (versionProperty.scriptData.version.version!=Application.version)
+        if (versionProperty.scriptData.version.version != Application.version)
         {
-            print("Version fucked up!");
+            ShowReloadPopup();
         }
         else
         {
             print("Correct version!");
+            loginSuccess.Fire();
         }
     }
 
@@ -185,7 +200,7 @@ public class GameSparksActor : MonoBehaviour
             //addFriendRequest.Request("AddFriend", "ID", strSplit[17], GoogleFrndAdded);
             AccountDetails.instance.Save(friendID: strSplit[17]);
         }
-        
+
     }
 
     void GoogleFrndAdded(string str)

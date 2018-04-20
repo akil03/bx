@@ -56,20 +56,16 @@ public class LeaderboardGUI : MonoBehaviour
         leaderboardData = JsonUtility.FromJson<GSLeaderboardData>(str);
         data = JsonUtility.FromJson<PlayerData>(leaderboardData.scriptData.AllData.scriptData.data);
         playerName.text = leaderboardData.scriptData.AllData.displayName;
+        if (!string.IsNullOrEmpty(leaderboardData.scriptData.AllData.scriptData.FBID))
+        {
+            StartCoroutine(LoadImage(leaderboardData.scriptData.AllData.scriptData.FBID));
+        }
         if (data != null)
         {
             mmr.text = data.MMR.ToString();
             OnlineImage.gameObject.SetActive(IsOnline());
-            OnlineImage.color = IsFree() ? Color.green : Color.red;
-            //if (IsOnline())
-            //    GetComponent<Image>().color = IsFree() ? Color.green : Color.red;
-            //else
-            //    GetComponent<Image>().color = startColor;
-        }
-        if (gameObject.activeSelf)
-        {
-            StartCoroutine(LoadImage(leaderboardData.scriptData.AllData.scriptData.FBID));
-        }
+            OnlineImage.color = IsFree() ? Color.green : Color.red;         
+        }        
         detailsSet();
     }
 
@@ -110,14 +106,14 @@ public class LeaderboardGUI : MonoBehaviour
     public void OnClick()
     {
         ProfileSelectManager.instance.selectedProfile = this;
+        ProfileSelectManager.instance.AssignValues();
         ProfileSelectManager.instance.gameObject.SetActive(true);
     }
 
     IEnumerator LoadImage(string id)
-    {
-        if (string.IsNullOrEmpty(id))
-            yield break;
+    {       
         WWW www = new WWW("http://graph.facebook.com/" + id + "/picture?width=100&height=100");
+        print(www.url);
         yield return www;
         if (www.texture != null)
             sprite.sprite = Sprite.Create(www.texture, new Rect(0, 0, 100, 100), Vector2.zero);

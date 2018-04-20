@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameSparks.Api.Messages;
 using GameSparks.Api.Requests;
@@ -54,12 +55,25 @@ public class GameSparksActor : MonoBehaviour
             isOnline.value = true;
             userId.value = AR.UserId;
             if (isNewUser)
-                AccountDetails.instance.Save(Gold: 5000);
+                AccountDetails.instance.Save(Gold: 2500);
+            GameSparkRequests request = new GameSparkRequests();
+            request.Request("CheckVersion","version","version",Callback);
             loginSuccess.Fire();
-            //				print("Game Sparks login success!!");
         }
-        //			print (AR.JSONString);
     });
+    }
+
+    private void Callback(string str)
+    {
+        VersionProperty versionProperty = JsonUtility.FromJson<VersionProperty>(str);
+        if (versionProperty.scriptData.version.version!=Application.version)
+        {
+            print("Version fucked up!");
+        }
+        else
+        {
+            print("Correct version!");
+        }
     }
 
     public void Logout()
@@ -150,9 +164,14 @@ public class GameSparksActor : MonoBehaviour
 
     public void AddGoogleFriend(InputField GoogleID)
     {
-        GameSparkRequests getGSId = new GameSparkRequests();
-        getGSId.Request("GetGSFromGoogle", "GoogleID", GoogleID.text.ToLower(), GetGSIDCallback);
+        AddGoogleFriend(GoogleID.text);
         GoogleID.text = "";
+    }
+
+    public void AddGoogleFriend(string GoogleID)
+    {
+        GameSparkRequests getGSId = new GameSparkRequests();
+        getGSId.Request("GetGSFromGoogle", "GoogleID", GoogleID.ToLower(), GetGSIDCallback);
     }
 
     void GetGSIDCallback(string str)

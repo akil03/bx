@@ -386,8 +386,9 @@ public class GUIManager : MonoBehaviour
 
     public void CopyUserID()
     {
-        UniClipboard.SetText(playerID_TXT.text);
-        UIManager.ShowNotification("Example_1_Notification_4", 1f, true, "Copied to clipboard !", NotificationSprite);
+        //UniClipboard.SetText(playerID_TXT.text);
+        //UIManager.ShowNotification("Example_1_Notification_4", 1f, true, "Copied to clipboard !", NotificationSprite);
+        EasyMobile.Sharing.ShareText("https://www.battlexonix.com/"+playerID_TXT.text);
     }
 
     public void AddCoins(int amt)

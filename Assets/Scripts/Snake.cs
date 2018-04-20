@@ -58,6 +58,8 @@ public class Snake : MonoBehaviour
     public Camera AvatarCam;
     public RenderTexture Avatar1, Avatar2;
     public CameraShake.Properties DeathShakeProperties;
+
+    public float energy;
     void Awake()
     {
         AI = GetComponent<SnakeAI>();
@@ -179,6 +181,7 @@ public class Snake : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        energy = Mathf.Clamp(energy, 0, 10);
         if (!isBot)
         {
             if (PhotonNetwork.inRoom)
@@ -705,6 +708,7 @@ public class Snake : MonoBehaviour
                 {
                     piece.pieceWhenCollected.sr.color = spriteColor;
                     piece.ShowCollectedPiece(collectedPieceSprite);
+                    energy += 0.025f;
                 }
 
                 if (!isBot)
@@ -921,6 +925,7 @@ public class Snake : MonoBehaviour
     public bool isDead;
     public IEnumerator Die()
     {
+        energy += 2;
         currentHP = 0;
 
         if (isDead)

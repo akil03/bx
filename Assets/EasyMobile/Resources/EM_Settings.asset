@@ -119,4 +119,4 @@ MonoBehaviour:
   _isIAPModuleEnable: 0
   _isGameServiceModuleEnable: 1
   _isNotificationModuleEnable: 1
-  _activeModuleIndex: 2
+  _activeModuleIndex: 3

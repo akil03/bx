@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerPanelUI : MonoBehaviour {
-	public Text LevelNo, PlayerName, RemainingLives, HP, FillRatio;
-	public RectTransform FillPanel,HealthPanel;
+	public Text LevelNo, PlayerName, RemainingLives, HP, FillRatio, EnergyTxt;
+	public RectTransform FillPanel,HealthPanel,EnergyPanel;
 	public Image ColorPanel,Shape;
-	public float lerpFillSpeed,lerpHPSpeed;
+	public float lerpFillSpeed,lerpHPSpeed,lerpEnergy;
 	public float fillamount,hpRatio;
 	public Snake SelectedSnake;
     public RawImage AvatarTex;
 	float lerpFill,lerpHP;
-
+    public WeaponButton[] WB;
     public GameObject[] LivesImg;
 	// Use this for initialization
 	void Start () {
@@ -37,6 +37,11 @@ public class PlayerPanelUI : MonoBehaviour {
         if (AvatarTex && SelectedSnake.AvatarCam)
             AvatarTex.texture = SelectedSnake.AvatarCam.targetTexture;
 
+        if (WB.Length > 0)
+        {
+            foreach (WeaponButton btn in WB)
+                btn.AssignWeapon();
+        }
 
     }
 
@@ -59,10 +64,21 @@ public class PlayerPanelUI : MonoBehaviour {
 
 		lerpFill = Mathf.MoveTowards (lerpFill, fillamount, Time.deltaTime * lerpFillSpeed);
 		lerpHP = Mathf.MoveTowards (lerpHP, SelectedSnake.currentHP, Time.deltaTime * lerpHPSpeed);
+        lerpEnergy = Mathf.MoveTowards(lerpEnergy, SelectedSnake.energy, Time.deltaTime * lerpFillSpeed);
 
-		FillPanel.localScale = new Vector3 (lerpFill / 100, 1, 1);
+
+        FillPanel.localScale = new Vector3 (lerpFill / 100, 1, 1);
 		HealthPanel.localScale = new Vector3 (lerpHP / (float)SelectedSnake.maxHP, 1, 1);
-	}
+
+        if (EnergyPanel)
+        {
+            EnergyPanel.localScale = new Vector3(lerpEnergy / 10, 1, 1);
+            EnergyTxt.text = Mathf.CeilToInt(SelectedSnake.energy) + "/10";
+        }
+            
+
+
+    }
 
 
     void UpdateLives()

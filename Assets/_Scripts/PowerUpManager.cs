@@ -18,6 +18,7 @@ public class PowerUpManager : MonoBehaviour
 
     public void StartSpawn()
     {
+        return;
         ClearPowerUps();
         if (debug)
         {
@@ -54,6 +55,7 @@ public class PowerUpManager : MonoBehaviour
 
     public IEnumerator SpawnRunePowerup()
     {
+        yield break;
         if (!PhotonNetwork.inRoom)
         {
             if (!dontSpawn)
@@ -77,6 +79,7 @@ public class PowerUpManager : MonoBehaviour
 
     public IEnumerator SpawnNetworkRunePowerup()
     {
+        yield break;
         if (PhotonNetwork.inRoom && PhotonNetwork.isMasterClient)
         {
             if (!dontSpawn)

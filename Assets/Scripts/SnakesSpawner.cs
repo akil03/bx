@@ -248,7 +248,7 @@ public class SnakesSpawner : MonoBehaviour
             playerSnake = newSnake;
             InGameGUI.instance.userSnake = newSnake;
             InGameGUI.instance.PlayerPanel[0].SelectedSnake = newSnake;
-            InGameGUI.instance.EquipPowerup();
+            //InGameGUI.instance.EquipPowerup();
             if (PlayerPrefs.GetInt("TutorialComplete") != 1)
                 newSnake.Lives = playerLives;
             else
@@ -486,7 +486,7 @@ public class SnakesSpawner : MonoBehaviour
         playerSnake = newSnake;
         InGameGUI.instance.userSnake = newSnake;
         //InGameGUI.instance.PlayerPanel [0].SelectedSnake = newSnake;
-        InGameGUI.instance.EquipPowerup();
+       // InGameGUI.instance.EquipPowerup();
 
         newSnake.isLocal = true;
         newSnake.Lives = LifeValue;
@@ -691,7 +691,7 @@ public class SnakesSpawner : MonoBehaviour
 
         InGameGUI.instance.userSnake = newSnake;
         //InGameGUI.instance.PlayerPanel [0].SelectedSnake = newSnake;
-        InGameGUI.instance.EquipPowerup();
+        //InGameGUI.instance.EquipPowerup();
 
         if (playerNo == 1)
         {

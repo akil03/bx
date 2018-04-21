@@ -73,7 +73,8 @@ public class PlayerPanelUI : MonoBehaviour {
         if (EnergyPanel)
         {
             EnergyPanel.localScale = new Vector3(lerpEnergy / 10, 1, 1);
-            EnergyTxt.text = Mathf.CeilToInt(SelectedSnake.energy) + "/10";
+            EnergyTxt.text = Mathf.FloorToInt(SelectedSnake.energy).ToString();
+            //EnergyTxt.text = (SelectedSnake.energy).ToString("0.00") + "/10";
         }
             
 

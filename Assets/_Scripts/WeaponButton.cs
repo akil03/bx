@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+
 public class WeaponButton : MonoBehaviour {
 	public Image CoolDownImage,selectedWeapon;
 	public int EnergyCost,cooldownTime;
@@ -10,12 +11,20 @@ public class WeaponButton : MonoBehaviour {
 	public Sprite[] WeaponImgs;
 	public Snake SelectedSnake;
 	public Text costTxt, cdTxt;
-    System.DateTime useTime;
-    System.TimeSpan timeDiff;
-	// Use this for initialization
-	void Start () {
-		
-	}
+	System.DateTime useTime;
+	System.TimeSpan timeDiff;
+
+    public Ease easetype;
+    public Vector3 minScale, maxScale;
+    public float duration;
+
+    Sequence seq;
+    // Use this for initialization
+    void Start () {
+        seq = DOTween.Sequence();
+        //GetComponent<UIButton>().StopNormalStateAnimations();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,18 +32,26 @@ public class WeaponButton : MonoBehaviour {
 		if (!SelectedSnake)
 			return;
 		
-		if (SelectedSnake.energy < EnergyCost-1 || CoolDownImage.IsActive())
+		if (SelectedSnake.energy < EnergyCost || CoolDownImage.IsActive())
 		{
 			if (CoolDownImage.IsActive())
 			{
-                timeDiff = System.DateTime.Now-useTime;
+				timeDiff = System.DateTime.Now-useTime;
 
-                cdTxt.text = Mathf.CeilToInt(cooldownTime- (float)timeDiff.TotalSeconds).ToString()+"S";
+				cdTxt.text = Mathf.FloorToInt(cooldownTime- (float)timeDiff.TotalSeconds).ToString()+"S";
 			}
+            if (isAnimating)
+                EndAnim();
 			GetComponent<Button>().interactable = false;
-		}            
+		}
 		else
-			GetComponent<Button>().interactable = true;
+		{
+            if (!isAnimating)
+                StartAnim();
+            GetComponent<Button>().interactable = true;
+			
+		}
+			
 
 
 
@@ -95,7 +112,9 @@ public class WeaponButton : MonoBehaviour {
 
 	public void OnClick()
 	{
-		SelectedSnake.energy -= EnergyCost; 
+        EndAnim();
+
+        SelectedSnake.energy -= EnergyCost; 
 
 		switch (weaponType)
 		{
@@ -138,10 +157,33 @@ public class WeaponButton : MonoBehaviour {
 		{
 			CoolDownImage.gameObject.SetActive(false);
 		});
-        useTime = System.DateTime.Now;
+		useTime = System.DateTime.Now;
 
+	}
+
+    bool isAnimating;
+    void StartAnim()
+    {
+        isAnimating = true;
+        maxScale = new Vector3(1.05f, 1.05f, 1.05f);
+        seq.Append(
+         GetComponent<RectTransform>().DOScale(minScale, duration).SetEase(easetype).OnComplete(() =>
+         {
+             GetComponent<RectTransform>().DOScale(maxScale, duration).SetEase(easetype).OnComplete(() => {
+                 StartAnim();
+             });
+         }));
     }
 
+
+    void EndAnim()
+    {
+        isAnimating = false;
+        maxScale = minScale;
+        seq.Kill();
+        GetComponent<RectTransform>().localScale = minScale;
+        
+    }
 
 	public enum WeaponType
 	{

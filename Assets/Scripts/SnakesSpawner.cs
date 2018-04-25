@@ -344,7 +344,7 @@ public class SnakesSpawner : MonoBehaviour
         //		else
         snake.transform.localScale = Vector3.one;
 
-
+        InstantReplayManager.instance.StartRecording(snake.playerID-1);
         StartCoroutine(snake.StartMove());
 
     }

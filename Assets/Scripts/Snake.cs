@@ -118,6 +118,8 @@ public class Snake : MonoBehaviour
         else
             AvatarCam.targetTexture = Avatar2;
 
+
+        InstantReplayManager.instance.StartRecording(playerID - 1);
         snakeMeshProprietes = GetComponentInChildren<SnakeMeshProprietes>();
         snakeMeshProprietes.RandomizePattern();
 
@@ -923,6 +925,13 @@ public class Snake : MonoBehaviour
     }
 
     public bool isDead;
+
+    public void EndRecording()
+    {
+        InstantReplayManager.instance.StopRecording(playerID - 1);
+    }
+
+
     public IEnumerator Die()
     {
         energy += 2;
@@ -935,6 +944,7 @@ public class Snake : MonoBehaviour
 
         isDead = true;
 
+        Invoke("EndRecording", 0.7f);
         snakeMeshContainer.transform.DOScale(Vector3.zero, 0.4f).SetEase(Ease.Unset);
 
         FindObjectOfType<CameraShake>().StartShake(DeathShakeProperties);

@@ -6,7 +6,7 @@ public class ProfileSelectManager : MonoBehaviour {
     public static ProfileSelectManager instance;
     public LeaderboardGUI selectedProfile;
     public Image playerImage, OnlineImage;
-    public Text playerName;
+    public Text playerName,MMRTxt;
     public Button ChallengeButton;
 	// Use this for initialization
 	void Awake () {
@@ -30,6 +30,7 @@ public class ProfileSelectManager : MonoBehaviour {
     {
         playerImage.sprite = selectedProfile.sprite.sprite;
         playerName.text = selectedProfile.playerName.text;
+        MMRTxt.text = selectedProfile.mmr.text;
 
     }
 

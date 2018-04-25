@@ -7,7 +7,7 @@ public class UpgradeItem : MonoBehaviour
     public List<Transform> Bars;
     public List<int> UpgradeCosts, UpgradeValues;
     public int ID, baseValue, currentValue, upgradeLevel, maxLevel;
-    public string playerprefsTag, upgradeName, prefix;
+    public string playerprefsTag, upgradeName, prefix,description;
     public UpgradeType type;
 
     public UpgradeChecker CheckWindow;

@@ -1,7 +1,7 @@
 ﻿using GameSparks.Core;
 using System.Collections;
 using UnityEngine;
-
+using System.Runtime.InteropServices;
 public class UnityDeeplinks : MonoBehaviour
 {
 

@@ -159,6 +159,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.xonix.battlexonix
+    iOS: com.xonix.battlexonix
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 22
@@ -557,7 +558,7 @@ PlayerSettings:
   webGLUseWasm: 0
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
-    4: NO_GPGS
+    4: NO_GPGS;dUI_DoozyUI;EASY_MOBILE;EASY_MOBILE_PRO
     7: EASY_MOBILE;EASY_MOBILE_PRO;EM_GPGS;dUI_DoozyUI
   platformArchitecture: {}
   scriptingBackend: {}

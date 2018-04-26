@@ -20,10 +20,10 @@ public class GoogleActor : MonoBehaviour
 
         if (!Application.isEditor)
         {
-            if (Application.platform == RuntimePlatform.Android)
-                StartCoroutine(GooglePlayLogin());
-            else
-                SocialLogin();
+			if (Application.platform == RuntimePlatform.Android)
+				StartCoroutine (GooglePlayLogin ());
+			else
+				StartCoroutine (SocialLoginWait ());
         }
 
     }
@@ -53,8 +53,9 @@ public class GoogleActor : MonoBehaviour
 		{
 			if (success)
 			{
+					//Social.localUser.authenticated
                 GUIManager.instance.splashScreen.Load(0.75f);
-				PlayerPrefs.SetString ("SocialID",Social.localUser.id);
+				//PlayerPrefs.SetString ("SocialID",Social.localUser.id);
 				email.value = Social.localUser.id;
 				userName.value = Social.localUser.userName;
 				googleLoginSuccess.Fire();
@@ -64,6 +65,21 @@ public class GoogleActor : MonoBehaviour
 		});
 
 
+	}
+
+	IEnumerator SocialLoginWait(){
+		Social.localUser.Authenticate(success => 
+			{
+				
+			});
+		while (!Social.localUser.authenticated)
+			yield return null;
+		GUIManager.instance.splashScreen.Load(0.75f);
+
+		email.value = Social.localUser.id;
+		userName.value = Social.localUser.userName;
+		googleLoginSuccess.Fire();
+		
 	}
 
 	public void Login(bool status)

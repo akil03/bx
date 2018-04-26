@@ -114,7 +114,7 @@ public class GameOverGUI : MonoBehaviour
 
 
         GiveRewards();
-
+        AccountDetails.instance.Save(totalWins: 1);
 
 
         Invoke("ShowRewards", 1f);
@@ -202,6 +202,7 @@ public class GameOverGUI : MonoBehaviour
         PlayerImage[1].color = InGameGUI.instance.PlayerPanel[1].Shape.color;
 
 
+        AccountDetails.instance.Save(totalLoss: 1);
 
         if (PhotonNetwork.inRoom || ObliusGameManager.BotType == 1)
         {

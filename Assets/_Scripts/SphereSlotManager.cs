@@ -102,6 +102,13 @@ public class SphereSlotManager : MonoBehaviour {
 
     public void ShowRewardedVideo()
     {
+        //if (!Advertisement.IsReady())
+        //{
+        //    EasyMobile.NativeUI.AlertPopup.ShowOneButtonAlert("Advertisement", "Ads not ready !!", "Ok");
+        //    return;
+        //}
+            
+
         ShowOptions options = new ShowOptions();
         options.resultCallback = AdsCallback;
 
@@ -128,6 +135,7 @@ public class SphereSlotManager : MonoBehaviour {
         else if (result == ShowResult.Failed)
         {
             Debug.LogError("Video failed to show");
+            EasyMobile.NativeUI.AlertPopup.ShowOneButtonAlert("Advertisement", "Ads not ready !!", "Ok");
         }
     }
 

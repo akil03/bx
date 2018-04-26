@@ -105,6 +105,9 @@ public class LeaderboardGUI : MonoBehaviour
 
     public void OnClick()
     {
+        if (id == userId.value)
+            return;
+
         ProfileSelectManager.instance.selectedProfile = this;
         ProfileSelectManager.instance.AssignValues();
         ProfileSelectManager.instance.gameObject.SetActive(true);

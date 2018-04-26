@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using DoozyUI;
 using GameSparks.Api.Messages;
@@ -48,6 +49,15 @@ public class ObliusGameManager : MonoBehaviour
         MatchFoundMessage.Listener += MatchFound;
         MatchNotFoundMessage.Listener += MatchNotFound;
         MatchUpdatedMessage.Listener += MatchUpdated;
+        GS.GameSparksAvailable += IsGameSparksAvailable;
+    }
+
+    private void IsGameSparksAvailable(bool obj)
+    {
+        if (!obj)
+        {
+            ShowReloadPopup();
+        }
     }
 
     private void MatchUpdated(MatchUpdatedMessage obj)
@@ -108,6 +118,9 @@ public class ObliusGameManager : MonoBehaviour
 
     public void StartGame()
     {
+        if (gameState == GameState.game)
+            return;
+
         if (PhotonNetwork.inRoom)
         {
             print("Can't start normal game in a room!");
@@ -129,10 +142,14 @@ public class ObliusGameManager : MonoBehaviour
         SnakesSpawner.instance.SpawnBot();
         SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive(false);
         gameState = GameState.game;
+        
     }
 
     public void FakeStartGame()
     {
+        if (gameState == GameState.game)
+            return;
+
         if (PhotonNetwork.inRoom)
         {
             print("Can't start normal game in a room!");
@@ -387,6 +404,10 @@ public class ObliusGameManager : MonoBehaviour
 
     public void FakeBotMatch()
     {
+        if (gameState == GameState.game)
+            return;
+
+
         isFinding = false;
         BotType = 1;
         FakeStartGame();
@@ -413,12 +434,13 @@ public class ObliusGameManager : MonoBehaviour
         _ShowFindingMatchScreen(PhotonNetwork.playerList.Where(a => a.IsLocal).First().ID);
     }
 
-    void OnConnectionFail(DisconnectCause cause)
-    {
-        if (Server.instance)
-            ForceCloseGame();
-    }
+    //void OnConnectionFail(DisconnectCause cause)
+    //{
+    //    if (Server.instance)
+    //        ForceCloseGame();
+    //}
     bool isPopped;
+
     void OnFailedToConnectToPhoton()
     {
         ShowReloadPopup();

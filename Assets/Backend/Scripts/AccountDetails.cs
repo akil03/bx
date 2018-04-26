@@ -30,8 +30,9 @@ public class AccountDetails : MonoBehaviour
             else
             {
                 accountDetails = JsonUtility.FromJson<AccountDetailsData>(response.JSONString);
-                GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
+                GUIManager.instance.playerNameTxt.text = accountDetails.displayName;                
                 playerData = JsonUtility.FromJson<PlayerData>(accountDetails.scriptData.data);
+                playerData.displayName = accountDetails.displayName;
                 if (playerData== null)
                 {
                     playerData = new PlayerData();
@@ -51,7 +52,7 @@ public class AccountDetails : MonoBehaviour
         });
     }
 
-    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int highestTrophies = 0, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int minishots = 0, int heal = 0, int speed = 0, int freeze = 0, int shield = 0, int lives = 0, int health = 0, int movespeed = 0, string friendID=null)
+    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int minishots = 0, int heal = 0, int speed = 0, int freeze = 0, int shield = 0, int lives = 0, int health = 0, int movespeed = 0, string friendID=null)
     {
         Dictionary<string, object> pair = new Dictionary<string, object>();        
         playerData.Gold += Gold;
@@ -60,7 +61,7 @@ public class AccountDetails : MonoBehaviour
         playerData.MMR += MMR;
         playerData.MMR = playerData.MMR < 0 ? 0 : playerData.MMR;
         playerData.mostAreaCovered = playerData.mostAreaCovered < mostAreaCovered ? mostAreaCovered : playerData.mostAreaCovered;
-        playerData.highestTrophies = playerData.highestTrophies < highestTrophies ? highestTrophies : playerData.highestTrophies;
+        playerData.highestTrophies = playerData.highestTrophies > playerData.MMR ? playerData.highestTrophies : playerData.MMR;
         playerData.totalKills += totalKills;
         playerData.totalDeaths += totalDeaths;
         playerData.totalWins += totalWins;
@@ -140,6 +141,10 @@ public class AccountDetails : MonoBehaviour
         GUIManager.instance.totalDeathsTxt.text = playerData.totalDeaths.ToString();
         GUIManager.instance.totalWinsTxt.text = playerData.totalWins.ToString();
         GUIManager.instance.totalLossTxt.text = playerData.totalLoss.ToString();
+
+        GUIManager.instance.PlayerStats.selectedPlayer = playerData;
+        GUIManager.instance.PlayerStats.AssignPlayerData();
+
         if (!string.IsNullOrEmpty(tempId))
         {
             leaderboardActor.Create(tempId);

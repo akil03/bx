@@ -23,8 +23,11 @@ public class LeaderboardActor : MonoBehaviour
 
     public void Create(string id)
     {
-        CreatePlayerElement(id);
-        parent.GetComponent <RectTransform> ().sizeDelta = new Vector2 (0, 10+parent.childCount*200);
+        if (!players.Select(a => a.id).ToList().Contains(id))
+        {
+            CreatePlayerElement(id);
+            parent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 10 + parent.childCount * 200);
+        }
     }
 
     private void CreatePlayerElement(string friend)

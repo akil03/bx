@@ -21,7 +21,8 @@ public class GUIManager : MonoBehaviour
     public Material BGMat;
     public UIElement[] Pages;
     public Transform FillBar;
-    public UIElement InternetCheckPage, SettingsPage, matchLoading, PlayerStats;
+    public UIElement InternetCheckPage, SettingsPage, matchLoading;
+    public ProfileStatsManager PlayerStats;
     public GameObject BG;
     public Text mmrTxt, playerID_TXT;
     public InputField playerNameTxt;
@@ -237,6 +238,7 @@ public class GUIManager : MonoBehaviour
         ObliusGameManager.isFriendlyBattle = false;
         ObliusGameManager.isOnlineBattle = false;
         currentPage = pageNo;
+        ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
 
         if (pageNo == 3)
             SnakesSpawner.instance.ShowSelectedCharacter();

@@ -46,6 +46,7 @@ public class AccountDetailsScriptData
 [Serializable]
 public class PlayerData
 {
+    public string displayName;
     public string PING;
     public int MMR;
     public float mostAreaCovered;

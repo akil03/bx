@@ -821,6 +821,9 @@ public class Snake : MonoBehaviour
         }
         else
         {
+            if (playerID == 1)
+                AccountDetails.instance.Save(totalKills: 1);
+
             targetSnake.ReasonDeath = name + " ended " + targetSnake.name + "'s trail game !!";
             if (snakeMeshContainer.AnimController)
                 snakeMeshContainer.AnimController.Kill();
@@ -940,7 +943,8 @@ public class Snake : MonoBehaviour
         if (isDead)
             yield break;
 
-
+        if(playerID==1)
+            AccountDetails.instance.Save(totalDeaths: 1);
 
         isDead = true;
 

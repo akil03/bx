@@ -327,6 +327,7 @@ public class PlayerInfo : MonoBehaviour
         {
             piece.pieceWhenCollected.sr.color = Player.spriteColor;
             piece.ShowCollectedPiece(Player.collectedPieceSprite);
+            Player.energy += 0.025f;
         }
 
 

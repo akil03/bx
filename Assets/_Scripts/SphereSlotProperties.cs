@@ -206,6 +206,29 @@ public class SphereSlotProperties : MonoBehaviour
 
     }
 
+
+    public void SetNotificationTime()
+    {
+        if (Application.isEditor)
+            return;
+
+        int targetsecs = 0;
+        switch (sphereType)
+        {
+            case "silver":
+                targetsecs = 10800;
+                break;
+            case "gold":
+                targetsecs = 28800;
+                break;
+            case "Crystal":
+                targetsecs = 86400;
+                break;
+        }
+
+        NotificationManager.instance.Chestunlocked(slotNo.ToString(), sphereType, targetsecs);
+    }
+
     public void CalculateTimings()
     {
         DateTime a = DateTime.Parse(unlockTime);

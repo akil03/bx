@@ -57,7 +57,10 @@ public class PlayerPanelUI : MonoBehaviour {
         //RemainingLives.text = "Lives : " + SelectedSnake.Lives.ToString();
         UpdateLives();
 
-        fillamount = ((float)SelectedSnake.ownedGroundPieces.Count / (900 - 60 - 28 - 28)) * 100; 
+        fillamount = ((float)SelectedSnake.ownedGroundPieces.Count / (900 - 60 - 28 - 28)) * 100;
+
+        //if(SelectedSnake.playerID==1)
+        //    AccountDetails.instance.Save(mostAreaCovered:fillamount);
 
 		FillRatio.text = fillamount.ToString ("0.00") + " %";
 		HP.text = SelectedSnake.currentHP + "/" + SelectedSnake.maxHP;

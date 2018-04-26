@@ -25,6 +25,13 @@ public class NotificationManager : MonoBehaviour
     public int repeatDelaySeconds = 25;
     public NotificationRepeat repeatType = NotificationRepeat.EveryMinute;
 
+
+    public static NotificationManager instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         bool autoInit = EM_Settings.Notifications.IsAutoInit;

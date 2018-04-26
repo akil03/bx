@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DoozyUI;
 public class ProfileSelectManager : MonoBehaviour {
     public static ProfileSelectManager instance;
     public LeaderboardGUI selectedProfile;
@@ -32,6 +33,15 @@ public class ProfileSelectManager : MonoBehaviour {
         playerName.text = selectedProfile.playerName.text;
         MMRTxt.text = selectedProfile.mmr.text;
 
+    }
+
+    public void OnShowSelectedProfile()
+    {
+        GUIManager.instance.PlayerStats.selectedPlayer = selectedProfile.data;
+        GUIManager.instance.PlayerStats.AssignPlayerData();
+        GUIManager.instance.PlayerStats.gameObject.SetActive(true);
+        GUIManager.instance.PlayerStats.GetComponent<UIElement>().Show(false);
+        gameObject.SetActive(false);
     }
 
     public void OnFriendlyBattle()

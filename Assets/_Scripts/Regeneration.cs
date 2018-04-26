@@ -180,6 +180,11 @@ public class Regeneration : MonoBehaviour
             }
             this.lifeAmount -= 1;
             this.lifeNumberText.text = this.lifeAmount.ToString();
+
+            TimeSpan ts = this.next.Subtract(DateTime.Now);
+           
+            if(!Application.isEditor)
+                NotificationManager.instance.LifeFull((int)ts.TotalSeconds + (minutesForNewLife * 60 * (9 - lifeAmount)));
         }
         else
         {
@@ -229,6 +234,11 @@ public class Regeneration : MonoBehaviour
 
     public void ShowRewardedVideo()
     {
+        if (!Advertisement.IsReady())
+        {
+            
+           // return;
+        }
         ShowOptions options = new ShowOptions();
         options.resultCallback = AdsCallback;
 
@@ -250,7 +260,7 @@ public class Regeneration : MonoBehaviour
         else if (result == ShowResult.Failed)
         {
             Debug.LogError("Video failed to show");
-            lifeAmount = maxLifeAmount;
+            EasyMobile.NativeUI.AlertPopup.ShowOneButtonAlert("Advertisement", "Ads not ready !!", "Ok");
         }
     }
 

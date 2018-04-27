@@ -31,13 +31,12 @@ public class AccountDetails : MonoBehaviour
             {
                 accountDetails = JsonUtility.FromJson<AccountDetailsData>(response.JSONString);
                 GUIManager.instance.playerNameTxt.text = accountDetails.displayName;                
-                playerData = JsonUtility.FromJson<PlayerData>(accountDetails.scriptData.data);
-                playerData.displayName = accountDetails.displayName;
+                playerData = JsonUtility.FromJson<PlayerData>(accountDetails.scriptData.data);                
                 if (playerData== null)
                 {
                     playerData = new PlayerData();
                 }
-
+                playerData.displayName = accountDetails.displayName;
                 if (!isLoaded)
                 {
                     SetUI();

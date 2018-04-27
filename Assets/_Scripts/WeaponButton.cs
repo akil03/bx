@@ -11,14 +11,21 @@ public class WeaponButton : MonoBehaviour {
 	public Sprite[] WeaponImgs;
 	public Snake SelectedSnake;
 	public Text costTxt, cdTxt;
-	System.DateTime useTime;
-	System.TimeSpan timeDiff;
+	float useTime;
+	float timeDiff;
 
     public Ease easetype;
     public Vector3 minScale, maxScale;
     public float duration;
 
     Sequence seq;
+
+    private void OnEnable()
+    {
+        //weaponType
+    }
+
+
     // Use this for initialization
     void Start () {
         seq = DOTween.Sequence();
@@ -36,9 +43,9 @@ public class WeaponButton : MonoBehaviour {
 		{
 			if (CoolDownImage.IsActive())
 			{
-				timeDiff = System.DateTime.Now-useTime;
+				timeDiff = Time.time-useTime;
 
-				cdTxt.text = Mathf.FloorToInt(cooldownTime- (float)timeDiff.TotalSeconds).ToString()+"S";
+				cdTxt.text = Mathf.FloorToInt(cooldownTime- timeDiff).ToString()+"S";
 			}
             if (isAnimating)
                 EndAnim();
@@ -65,44 +72,44 @@ public class WeaponButton : MonoBehaviour {
 
 			case "Speed":
 				selectedWeapon.sprite = GUIManager.instance.inGameGUI.Speed;
-				EnergyCost = 4;
-				cooldownTime = 10;
+				//EnergyCost = 4;
+				//cooldownTime = 10;
 				break;
 
 			case "Shield":
 				selectedWeapon.sprite = GUIManager.instance.inGameGUI.Shield;
-				EnergyCost = 3;
-				cooldownTime = 10;
+				//EnergyCost = 3;
+				//cooldownTime = 10;
 				break;
 
 			case "Health":
 				selectedWeapon.sprite = GUIManager.instance.inGameGUI.Health;
-				EnergyCost = 3;
-				cooldownTime = 10;
+				//EnergyCost = 3;
+				//cooldownTime = 10;
 				break;
 
 			case "Heatseeker":
 				selectedWeapon.sprite = GUIManager.instance.inGameGUI.Heatseeker;
-				EnergyCost = 9;
-				cooldownTime = 30;
+				//EnergyCost = 9;
+				//cooldownTime = 30;
 				break;
 
 			case "3Shots":
 				selectedWeapon.sprite = GUIManager.instance.inGameGUI.Minishots;
-				EnergyCost = 5;
-				cooldownTime = 20;
+				//EnergyCost = 5;
+				//cooldownTime = 20;
 				break;
 
 			case "Freeze":
 				selectedWeapon.sprite = GUIManager.instance.inGameGUI.Freeze;
-				EnergyCost = 3;
-				cooldownTime = 10;
+				//EnergyCost = 3;
+				//cooldownTime = 10;
 				break;
 
 			case "Mine":
 				selectedWeapon.sprite = GUIManager.instance.inGameGUI.Freeze;
-				EnergyCost = 3;
-				cooldownTime = 10;
+				//EnergyCost = 3;
+				//cooldownTime = 10;
 				break;
 
 
@@ -157,7 +164,7 @@ public class WeaponButton : MonoBehaviour {
 		{
 			CoolDownImage.gameObject.SetActive(false);
 		});
-		useTime = System.DateTime.Now;
+		useTime = Time.time;
 
 	}
 

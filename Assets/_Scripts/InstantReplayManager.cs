@@ -46,6 +46,7 @@ public class InstantReplayManager : MonoBehaviour {
     public void StartRecording(int playerID)
     {
         // Dispose the old clip
+        return;
 
         if (recordedClip1 != null)
             recordedClip1.Dispose();
@@ -70,8 +71,8 @@ public class InstantReplayManager : MonoBehaviour {
 
     public void StopRecording(int playerID)
     {
+        return;
 
-      
 
 
         if (playerID == 0)

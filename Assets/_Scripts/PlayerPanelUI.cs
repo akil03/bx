@@ -39,8 +39,22 @@ public class PlayerPanelUI : MonoBehaviour {
 
         if (WB.Length > 0)
         {
-            foreach (WeaponButton btn in WB)
-                btn.AssignWeapon();
+            //foreach (WeaponButton btn in WB)
+            //    btn.AssignWeapon();
+
+            for (int i = 0; i < WeaponsManager.instance.SelectedWeapons.Count; i++)
+            {
+                WB[i].weaponType = WeaponsManager.instance.SelectedWeapons[i].Name;
+                WB[i].EnergyCost = int.Parse(WeaponsManager.instance.SelectedWeapons[i].Cost);
+                WB[i].cooldownTime = int.Parse(WeaponsManager.instance.SelectedWeapons[i].CooldownTime);
+                WB[i].AssignWeapon();
+            }
+
+            //for(int i = 0; i < 3; i++)
+            //{
+            //    WB[i].weaponType = WeaponsManager.instance.SelectedWeapons[i];  
+            //    WB[i].AssignWeapon();
+            //}
         }
 
     }

@@ -242,7 +242,7 @@ public class GameSparksActor : MonoBehaviour
             else
             {
                 SetOnlineStatus(0);
-                Application.LoadLevel(0);
+                //Application.LoadLevel(1);
             }
         }
     }

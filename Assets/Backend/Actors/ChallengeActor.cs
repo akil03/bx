@@ -18,7 +18,7 @@ public class ChallengeActor : MonoBehaviour
     public BoolObject occupied;
     string cid;
     [SerializeField] GameObject homePage;
-
+    
     void Start()
     {
         challenge.Reset();
@@ -228,6 +228,13 @@ public class ChallengeActor : MonoBehaviour
 
     public void CanAcceptChallenge()
     {
+        if (ObliusGameManager.instance.isFinding)
+        {
+            Decline();
+            return;
+        }
+            
+
         if (occupied.value)
             DeclineOther();
     }

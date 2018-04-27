@@ -31,7 +31,7 @@ public class PhotonActor : MonoBehaviour
         }
     }
 
-    void OnConnectedToMaster()
+    void OnConnectedToPhoton()
     {
         connectToMasterSuccess.Fire();
         if (!saved)

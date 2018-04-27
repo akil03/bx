@@ -223,7 +223,7 @@ public class GameSparksActor : MonoBehaviour
 
     void OnApplicationFocus(bool isFocused)
     {
-        if (!Application.isEditor)
+       // if (!Application.isEditor)
         {
             if (!isFocused)
             {
@@ -232,6 +232,7 @@ public class GameSparksActor : MonoBehaviour
             else
             {
                 SetOnlineStatus(0);
+                Application.LoadLevel(0);
             }
         }
     }

@@ -32,7 +32,7 @@ public class ObliusGameManager : MonoBehaviour
     [SerializeField] BoolObject isOnline;
     string roomId;
     [SerializeField] BoolObject reconnect;
-    private bool isFinding;
+    public bool isFinding;
     public GameSparksActor gameSparksActor;
     int maxplayers = 2;
 
@@ -341,31 +341,28 @@ public class ObliusGameManager : MonoBehaviour
     //attached to play button
     public void ShowFindingMatchScreen()
     {
-        ChangePlayerStaus(false);
-        if (Regeneration.instance.LifeAmount < 1)
+        if (!PhotonNetwork.connectedAndReady)
         {
-            Regeneration.instance.UseLife();
-            return;
-        }
-
-
-
-        if (!PhotonNetwork.connected)
-        {
-            GUIManager.instance.ShowLog("Connecting to server. Please wait!");
+            EasyMobile.NativeUI.Alert("Connection Failure", "Establishing connection to the server.. Please Wait !!");
             return;
         }
         if (GS.Authenticated)
+        {            
+            if (Regeneration.instance.LifeAmount < 1)
+            {
+                Regeneration.instance.UseLife();
+                return;
+            }
+            
+            ChangePlayerStaus(false);
             StartCoroutine(_ShowFindingMatchScreen());
+            isOnlineBattle = true;
+            isFinding = true;
+        }            
         else
         {
-            googleLoginPopup.gameObject.SetActive(true);
-            googleLoginPopup.Show(false);
-            GUIManager.instance.ShowLog("Please login!");
-        }
-
-        isOnlineBattle = true;
-        isFinding = true;
+            EasyMobile.NativeUI.Alert("Connection Failure", "Establishing connection to the server.. Please Wait !!");           
+        }        
     }
 
     IEnumerator _ShowFindingMatchScreen()

@@ -53,7 +53,13 @@ public class ChallengeGUIControl : MonoBehaviour
 
 	public void ShowChallengeScreen()
 	{
-		challengeText.text = challenge.data.challenge.challenger.name + " has invited you to a friendly battle!";
+        if (ObliusGameManager.instance.isFinding)
+        {
+            
+            return;
+        }
+
+        challengeText.text = challenge.data.challenge.challenger.name + " has invited you to a friendly battle!";
 		challengeScreen.gameObject.SetActive (true);
 		challengeScreen.Show (false);
 	}

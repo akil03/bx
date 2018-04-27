@@ -68,8 +68,10 @@ public class GameOverGUI : MonoBehaviour
 
         SlotFull.SetActive(false);
         AssignedSlot.SetActive(false);
-
-        Regeneration.instance.LifeLoseAnim();
+        if (Regeneration.instance!=null)
+        {
+            Regeneration.instance.LifeLoseAnim();
+        }        
     }
 
 

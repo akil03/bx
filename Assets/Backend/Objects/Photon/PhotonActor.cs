@@ -19,8 +19,13 @@ public class PhotonActor : MonoBehaviour
 
     void Start()
     {
-        if (connectOnStart)
+        if (connectOnStart && !PhotonNetwork.connectedAndReady)
             ConnectToMaster();
+        else if (PhotonNetwork.connectedAndReady)
+        {
+            connectToMasterSuccess.Fire();
+        }
+
     }
 
     void ConnectToMaster()

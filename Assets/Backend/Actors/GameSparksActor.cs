@@ -37,6 +37,11 @@ public class GameSparksActor : MonoBehaviour
 
     public void Login()
     {
+        if (GS.Authenticated)
+        {
+            AfterLoginSuccess();
+            return;
+        }
         new AuthenticationRequest().SetUserName(email.value).SetPassword(email.value).Send((AR) =>
     {
         if (AR.HasErrors)
@@ -51,14 +56,19 @@ public class GameSparksActor : MonoBehaviour
         }
         else
         {
-            isOnline.value = true;
             userId.value = AR.UserId;
-            if (isNewUser)
-                AccountDetails.instance.Save(Gold: 2500);
-            GameSparkRequests request = new GameSparkRequests();
-            request.Request("CheckVersion", "version", "version", Callback);
+            AfterLoginSuccess();
         }
     });
+    }
+
+    private void AfterLoginSuccess()
+    {
+        isOnline.value = true;
+        if (isNewUser)
+            AccountDetails.instance.Save(Gold: 2500);
+        GameSparkRequests request = new GameSparkRequests();
+        request.Request("CheckVersion", "version", "version", Callback);
     }
 
     void ShowReloadPopup()
@@ -223,7 +233,7 @@ public class GameSparksActor : MonoBehaviour
 
     void OnApplicationFocus(bool isFocused)
     {
-       // if (!Application.isEditor)
+        // if (!Application.isEditor)
         {
             if (!isFocused)
             {
@@ -257,6 +267,7 @@ public class GameSparksActor : MonoBehaviour
             return;
         }
         Debug.Log("GSM| Attempting Matchmaking...");
+        ObliusGameManager.instance.matchFailed = false;
         new GameSparks.Api.Requests.MatchmakingRequest()
             .SetMatchShortCode("normal")
             .SetSkill(0)

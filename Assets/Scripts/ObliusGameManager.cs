@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using DoozyUI;
 using GameSparks.Api.Messages;
@@ -35,6 +34,7 @@ public class ObliusGameManager : MonoBehaviour
     public bool isFinding;
     public GameSparksActor gameSparksActor;
     int maxplayers = 2;
+    public bool matchFailed;
 
     void Awake()
     {
@@ -50,6 +50,7 @@ public class ObliusGameManager : MonoBehaviour
         MatchNotFoundMessage.Listener += MatchNotFound;
         MatchUpdatedMessage.Listener += MatchUpdated;
         GS.GameSparksAvailable += IsGameSparksAvailable;
+        matchFailed = true;
     }
 
     private void IsGameSparksAvailable(bool obj)
@@ -67,7 +68,12 @@ public class ObliusGameManager : MonoBehaviour
 
     private void MatchNotFound(MatchNotFoundMessage obj)
     {
-        FakeBotMatch();
+        if (!matchFailed)
+        {
+            matchFailed = true;
+            print("match failed");
+            FakeBotMatch();
+        }
     }
 
     private void MatchFound(MatchFoundMessage obj)
@@ -142,7 +148,7 @@ public class ObliusGameManager : MonoBehaviour
         SnakesSpawner.instance.SpawnBot();
         SnakesSpawner.instance.previewMeshContainer.transform.parent.gameObject.SetActive(false);
         gameState = GameState.game;
-        
+
     }
 
     public void FakeStartGame()
@@ -156,7 +162,7 @@ public class ObliusGameManager : MonoBehaviour
             return;
         }
         ChangePlayerStaus(false);
-        
+
         if (Regeneration.instance.LifeAmount < 1)
         {
             Regeneration.instance.UseLife();
@@ -179,7 +185,7 @@ public class ObliusGameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("TutorialComplete"))
         {
-            
+
             GUIManager.instance.OpenPage(3);
             return;
         }
@@ -347,22 +353,22 @@ public class ObliusGameManager : MonoBehaviour
             return;
         }
         if (GS.Authenticated)
-        {            
+        {
             if (Regeneration.instance.LifeAmount < 1)
             {
                 Regeneration.instance.UseLife();
                 return;
             }
-            
+
             ChangePlayerStaus(false);
             StartCoroutine(_ShowFindingMatchScreen());
             isOnlineBattle = true;
             isFinding = true;
-        }            
+        }
         else
         {
-            EasyMobile.NativeUI.Alert("Connection Failure", "Establishing connection to the server.. Please Wait !!");           
-        }        
+            EasyMobile.NativeUI.Alert("Connection Failure", "Establishing connection to the server.. Please Wait !!");
+        }
     }
 
     IEnumerator _ShowFindingMatchScreen()
@@ -454,7 +460,7 @@ public class ObliusGameManager : MonoBehaviour
         EasyMobile.NativeUI.AlertPopup alert = EasyMobile.NativeUI.Alert("Time out", "Disconnected from the server. Reload ");
         if (alert != null)
             alert.OnComplete += RestartApp;
-        
+
     }
 
     void RestartApp(int r)

@@ -246,7 +246,7 @@ PlayerSettings:
   androidSplashScreen: {fileID: 2800000, guid: 94fe53165d526bd4eb7005aea514b74f, type: 3}
   AndroidKeystoreName: D:/ElectronicDreaming/Projects/BX_GIT/GooglePlayDebug.keystore
   AndroidKeyaliasName: battle xonix
-  AndroidTVCompatibility: 1
+  AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
@@ -564,9 +564,10 @@ PlayerSettings:
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
     4: NO_GPGS;dUI_DoozyUI;EASY_MOBILE;EASY_MOBILE_PRO
-    7: EASY_MOBILE;EASY_MOBILE_PRO;EM_GPGS;dUI_DoozyUI
+    7: EASY_MOBILE;EASY_MOBILE_PRO;EM_GPGS;dUI_DoozyUI;AMPLIFY_SHADER_EDITOR
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Android: 1
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 0
@@ -640,6 +641,7 @@ PlayerSettings:
   XboxOneSplashScreen: {fileID: 0}
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
+  XboxOneXTitleMemory: 8
   xboxOneScriptCompiler: 0
   vrEditorSettings:
     daydream:

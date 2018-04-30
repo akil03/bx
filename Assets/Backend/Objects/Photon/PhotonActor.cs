@@ -26,7 +26,6 @@ public class PhotonActor : MonoBehaviour
         {
             connectToMasterSuccess.Fire();
         }
-
     }
 
     void ConnectToMaster()

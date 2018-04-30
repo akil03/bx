@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Server : MonoBehaviour
@@ -6,11 +7,14 @@ public class Server : MonoBehaviour
     public static Server instance;
 
     public bool isGameOver = false;
+    PlayerInfo[] players;
 
 
     void Start()
     {
         instance = this;
+        players = GameObject.FindObjectsOfType<PlayerInfo>();
+        StartCoroutine(SetMaster());
     }
 
     [PunRPC]
@@ -38,7 +42,6 @@ public class Server : MonoBehaviour
             return;
         }
         PowerUpManager.instance.dontSpawn = true;
-        PlayerInfo[] players = GameObject.FindObjectsOfType<PlayerInfo>();
         var selected = players.Where(a => (PhotonView.Get(a.gameObject).viewID == id)).First();
 
         if (PhotonView.Get(selected.gameObject).isMine)
@@ -48,7 +51,6 @@ public class Server : MonoBehaviour
         else
         {
             GUIManager.instance.gameOverGUI.OnWin();
-            //GSUpdateMMR.instance.UpdateMMR (25);
         }
         GUIManager.instance.gameOverGUI.Reason.text = reason;
 
@@ -89,6 +91,18 @@ public class Server : MonoBehaviour
             reconnect.value = true;
         }
     }
+
+    IEnumerator SetMaster()
+    {
+        var best = PhotonNetwork.playerList.OrderBy(a => a.CustomProperties["ping"]).ToList()[0];
+        foreach (var item in players)
+        {
+            PhotonView.Get(item).TransferOwnership(best);
+        }
+        yield return new WaitForSeconds(5);
+        StartCoroutine(SetMaster());
+    }
+
 
     [SerializeField] BoolObject reconnect;
 

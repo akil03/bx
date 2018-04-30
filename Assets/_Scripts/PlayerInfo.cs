@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -26,12 +27,22 @@ public class PlayerInfo : MonoBehaviour
     public bool shouldTransmit;
     public bool isCollecting;
     public int isWantRematch;
-    // Use this for initialization
+
+
     void Awake()
     {
         realPosition = Vector3.zero;
+        StartCoroutine(SetPlayerPing());
     }
 
+    private IEnumerator SetPlayerPing()
+    {
+        ExitGames.Client.Photon.Hashtable table = new ExitGames.Client.Photon.Hashtable();
+        table["ping"] = PhotonNetwork.GetPing();
+        PhotonNetwork.player.SetCustomProperties(table);
+        yield return new WaitForSeconds(5);
+        StartCoroutine(SetPlayerPing());
+    }
 
     void Start()
     {

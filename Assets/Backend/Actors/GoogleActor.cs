@@ -34,7 +34,7 @@ public class GoogleActor : MonoBehaviour
             yield return null;
         if (!Social.localUser.authenticated)
         {
-            SocialLogin();
+            StartCoroutine(SocialLoginWait());
         }
         else
         {

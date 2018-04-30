@@ -64,8 +64,8 @@ public class LeaderboardGUI : MonoBehaviour
         {
             mmr.text = data.MMR.ToString();
             OnlineImage.gameObject.SetActive(IsOnline());
-            OnlineImage.color = IsFree() ? Color.green : Color.red;         
-        }        
+            OnlineImage.color = IsFree() ? Color.green : Color.red;
+        }
         detailsSet();
     }
 
@@ -114,9 +114,8 @@ public class LeaderboardGUI : MonoBehaviour
     }
 
     IEnumerator LoadImage(string id)
-    {       
+    {
         WWW www = new WWW("http://graph.facebook.com/" + id + "/picture?width=100&height=100");
-        print(www.url);
         yield return www;
         if (www.texture != null)
             sprite.sprite = Sprite.Create(www.texture, new Rect(0, 0, 100, 100), Vector2.zero);

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PhotonActor : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class PhotonActor : MonoBehaviour
         connectToMasterSuccess.Fire();
         if (!saved)
         {
-            SavePing();
+            StartCoroutine(SavePing());
         }
     }
 
@@ -90,8 +91,10 @@ public class PhotonActor : MonoBehaviour
         leftRoom.Fire();
     }
 
-    void SavePing()
+    IEnumerator SavePing()
     {
+        while (!AccountDetails.instance.firstLoad)
+            yield return null;
         AccountDetails.instance.Save(PING: PhotonPingManager.ping);
         saved = true;
     }

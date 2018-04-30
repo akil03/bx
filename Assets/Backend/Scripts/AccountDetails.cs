@@ -30,14 +30,14 @@ public class AccountDetails : MonoBehaviour
             else
             {
                 accountDetails = JsonUtility.FromJson<AccountDetailsData>(response.JSONString);
-                GUIManager.instance.playerNameTxt.text = accountDetails.displayName;                
-                playerData = JsonUtility.FromJson<PlayerData>(accountDetails.scriptData.data);                
-                if (playerData== null)
+                GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
+                playerData = JsonUtility.FromJson<PlayerData>(accountDetails.scriptData.data);
+                if (playerData == null)
                 {
                     playerData = new PlayerData();
                 }
                 playerData.displayName = accountDetails.displayName;
-                if (!isLoaded)
+                if (!firstLoad)
                 {
                     SetUI();
                     UpgradeItem[] upgradeItems = FindObjectsOfType<UpgradeItem>();
@@ -51,9 +51,9 @@ public class AccountDetails : MonoBehaviour
         });
     }
 
-    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int minishots = 0, int heal = 0, int speed = 0, int freeze = 0, int shield = 0, int lives = 0, int health = 0, int movespeed = 0, string friendID=null)
+    public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int minishots = 0, int heal = 0, int speed = 0, int freeze = 0, int shield = 0, int lives = 0, int health = 0, int movespeed = 0, string friendID = null)
     {
-        Dictionary<string, object> pair = new Dictionary<string, object>();        
+        Dictionary<string, object> pair = new Dictionary<string, object>();
         playerData.Gold += Gold;
         playerData.Gem += Gem;
         playerData.PING = string.IsNullOrEmpty(PING) ? playerData.PING : PING;
@@ -77,10 +77,10 @@ public class AccountDetails : MonoBehaviour
         playerData.shield += shield;
         playerData.lives += lives;
         playerData.health += health;
-        playerData.movespeed += movespeed;        
+        playerData.movespeed += movespeed;
         if (!string.IsNullOrEmpty(friendID))
         {
-            if (!playerData.FriendsList.Contains(friendID) && (accountDetails.userId!=friendID))
+            if (!playerData.FriendsList.Contains(friendID) && (accountDetails.userId != friendID))
             {
                 playerData.FriendsList.Add(friendID);
             }
@@ -103,15 +103,14 @@ public class AccountDetails : MonoBehaviour
         SetUI();
     }
 
-    bool isLoaded;
 
     void SetUI()
     {
-        if (playerData==null)
+        if (playerData == null)
         {
             return;
         }
-        if (isLoaded)
+        if (firstLoad)
         {
             if (GUIManager.instance.Gold.text != playerData.Gold.ToString())
                 GUIManager.instance.AddCoins(int.Parse(playerData.Gold.ToString()) - int.Parse(GUIManager.instance.Gold.text));
@@ -120,17 +119,17 @@ public class AccountDetails : MonoBehaviour
         {
 
             print("first retrieve");
-            
+
             CloudRetrieveSphere();
             GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
             leaderboardActor.Create(accountDetails.userId);
-            isLoaded = true;            
+            firstLoad = true;
             foreach (var item in playerData.FriendsList)
             {
                 leaderboardActor.Create(item);
-            }                        
-            
-        }       
+            }
+
+        }
         GUIManager.instance.Gold.text = playerData.Gold.ToString();
         GUIManager.instance.Gems.text = playerData.Gem.ToString();
         GUIManager.instance.mmrTxt.text = playerData.MMR.ToString();

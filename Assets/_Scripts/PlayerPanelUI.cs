@@ -37,16 +37,22 @@ public class PlayerPanelUI : MonoBehaviour {
         if (AvatarTex && SelectedSnake.AvatarCam)
             AvatarTex.texture = SelectedSnake.AvatarCam.targetTexture;
 
+
+        FillPanel.localScale = new Vector3(0, 1, 1);
+        HealthPanel.localScale = new Vector3(1, 1, 1);
+
         if (WB.Length > 0)
         {
-            //foreach (WeaponButton btn in WB)
-            //    btn.AssignWeapon();
+            foreach (WeaponButton btn in WB)
+                btn.gameObject.SetActive(false);
 
             for (int i = 0; i < WeaponsManager.instance.SelectedWeapons.Count; i++)
             {
+                WB[i].gameObject.SetActive(true);
                 WB[i].weaponType = WeaponsManager.instance.SelectedWeapons[i].Name;
                 WB[i].EnergyCost = int.Parse(WeaponsManager.instance.SelectedWeapons[i].Cost);
                 WB[i].cooldownTime = int.Parse(WeaponsManager.instance.SelectedWeapons[i].CooldownTime);
+                WB[i].selectedColor = WeaponsManager.instance.SelectedWeapons[i].powerColor;
                 WB[i].AssignWeapon();
             }
 

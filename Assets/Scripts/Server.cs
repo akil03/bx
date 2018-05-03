@@ -14,7 +14,7 @@ public class Server : MonoBehaviour
     {
         instance = this;
         players = GameObject.FindObjectsOfType<PlayerInfo>();
-        StartCoroutine(SetMaster());
+       // StartCoroutine(SetMaster());
     }
 
     [PunRPC]
@@ -94,12 +94,13 @@ public class Server : MonoBehaviour
 
     IEnumerator SetMaster()
     {
+        yield return new WaitForSeconds(8);
         var best = PhotonNetwork.playerList.OrderBy(a => a.CustomProperties["ping"]).ToList()[0];
         foreach (var item in players)
         {
             PhotonView.Get(item).TransferOwnership(best);
         }
-        yield return new WaitForSeconds(5);
+        
         StartCoroutine(SetMaster());
     }
 

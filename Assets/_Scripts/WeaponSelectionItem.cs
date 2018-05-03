@@ -7,6 +7,7 @@ public class WeaponSelectionItem : MonoBehaviour {
     public Image WeaponImg;
     public Text WeaponName, WeaponCost, CooldownTxt;
     public string WeaponType;
+    public GameObject EmptyTxt;
 	// Use this for initialization
 	void Start () {
 		
@@ -24,40 +25,16 @@ public class WeaponSelectionItem : MonoBehaviour {
 
     public void Assign()
     {
+        EmptyTxt.SetActive(false);
         WeaponName.text = currentWeapon.Name;
-        WeaponCost.text = "Energy Cost: "+currentWeapon.Cost;
-        //CooldownTxt.text = "Cooldown Time: " + currentWeapon.CooldownTime;
-        switch (currentWeapon.Name)
-        {
+        WeaponCost.text = ""+currentWeapon.Cost;
+        WeaponImg.color = currentWeapon.powerColor;
+        WeaponCost.transform.parent.gameObject.SetActive(true);
+        WeaponCost.transform.parent.GetComponent<Image>().color = currentWeapon.powerColor;
+        CooldownTxt.text = "Cooldown: " + currentWeapon.CooldownTime;
 
-            case "Speed":
-                WeaponImg.sprite = WeaponsManager.instance.Speed;
+        WeaponImg.sprite = WeaponsManager.instance.GetWeaponImage(currentWeapon.Name);
 
-                break;
-
-            case "Shield":
-                WeaponImg.sprite = WeaponsManager.instance.Shield;
-                break;
-
-            case "Health":
-                WeaponImg.sprite = WeaponsManager.instance.Health;
-                break;
-
-            case "Heatseeker":
-                WeaponImg.sprite = WeaponsManager.instance.Heatseeker;
-                break;
-
-            case "3Shots":
-                WeaponImg.sprite = WeaponsManager.instance.Minishots;
-                break;
-
-            case "Freeze":
-                WeaponImg.sprite = WeaponsManager.instance.Freeze;
-                break;
-
-            case "Mine":
-                WeaponImg.sprite = WeaponsManager.instance.Freeze;
-                break;
-        }
+       
     }
 }

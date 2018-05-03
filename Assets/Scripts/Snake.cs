@@ -188,6 +188,9 @@ public class Snake : MonoBehaviour
         {
             if (PhotonNetwork.inRoom)
             {
+                
+                
+
                 if (isLocal)
                 {
                     //NetworkMovement ();
@@ -198,22 +201,13 @@ public class Snake : MonoBehaviour
                 {
                     if (_networkSnake)
                     {
+                        //Movement();
+
                         MoveToDirection(_networkSnake.MoveDirection);
 
-                        //lerpTime = Vector3.Distance (transform.position, _networkSnake.realPosition) / speed;
-
-                        //lerpTime = (1 - Mathf.Clamp (lerpTime, 0, 1))/3.5f;
-
-                        //                  print(lerpTime);
-
-                        //if(lerpTime>0)
+                      
                         transform.position = Vector3.Lerp(transform.position, _networkSnake.realPosition, 0.25f);
-                        //transform.DOMove(_networkSnake.realPosition,Time.deltaTime/speed,false).SetEase(Ease.Linear);
-                        //iTween.MoveUpdate (gameObject, _networkSnake.realPosition, Time.deltaTime/(speed));
-
-                        //snakeMeshContainer.transform.localRotation = Quaternion.RotateTowards(snakeMeshContainer.transform.localRotation,_networkSnake.realRotation,5 * Time.deltaTime);
-                        //snakeMeshContainer.transform.localRotation = Quaternion.Euler(Vector3.MoveTowards (snakeMeshContainer.transform.localRotation.eulerAngles, _networkSnake.realRotation, 5 * Time.deltaTime));
-                        //transform.position = _networkSnake.realPosition;
+                        
                     }
                 }
 
@@ -225,8 +219,7 @@ public class Snake : MonoBehaviour
 
         }
     }
-
-    void Movement()
+    void GetKeyboardInput()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -256,168 +249,117 @@ public class Snake : MonoBehaviour
             if (snakeMeshContainer.AnimController)
                 snakeMeshContainer.AnimController.GoRight();
         }
-
-
+    }
+    bool isInputRecieved;
+    void GetTouchInput()
+    {
+        isInputRecieved = true;
         if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.up)
         {
             //if (nextMoveDirection != -transform.up)
             //MoveToDirection (transform.up);
+
+            if (InputDirection == transform.up)
+            {
+                isInputRecieved = false;
+                return;
+            }
+
+
             InputDirection = transform.up;
         }
 
         if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.down)
         {
-            //if (nextMoveDirection != transform.up)
-            //MoveToDirection (-transform.up);
+            if (InputDirection == -transform.up)
+            {
+                isInputRecieved = false;
+                return;
+            }
+
             InputDirection = -transform.up;
         }
 
         if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.left)
         {
-            //	if (nextMoveDirection != transform.right)
-            //MoveToDirection (-transform.right);
+            if (InputDirection == -transform.right)
+            {
+                isInputRecieved = false;
+                return;
+            }
+
             InputDirection = -transform.right;
         }
 
         if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.right)
         {
-            //	if (nextMoveDirection != -transform.right)
-            //MoveToDirection (transform.right);
+            if (InputDirection == transform.right)
+            {
+                isInputRecieved = false;
+                return;
+            }
             InputDirection = transform.right;
         }
-
-        MoveToDirection(InputDirection);
     }
+
+    void Movement()
+    {
+
+        GetKeyboardInput();
+
+        GetTouchInput();
+
+        if (isInputRecieved)
+        {
+            print("input");
+            MoveToDirection(InputDirection);
+        }
+        
+    }
+
+   
+    
 
     void NetworkMovement()
     {
+        GetKeyboardInput();
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        GetTouchInput();
+
+        if (_networkSnake.isMine())
         {
-            SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.down;
+            _networkSnake.realPosition = transform.position;
+            _networkSnake.TrailList = ConvertPiecesToInt(tailGroundPieces);
+            _networkSnake.OwnedList = ConvertPiecesToInt(ownedGroundPieces);
 
+            if(lastReachedGroundPiece)
+                _networkSnake.CurrentGridPosition = lastReachedGroundPiece.indexInGrid;
+            if(groundPieceToReach)
+                _networkSnake.TargetGridPosition = groundPieceToReach.indexInGrid;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (isInputRecieved)
         {
-            SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.up;
+            PhotonView.Get(_networkSnake.gameObject).RPC("SetMovementDirection", PhotonTargets.AllViaServer, InputDirection);
+            //if (!_networkSnake.isMine())
+            //{
+            //    transform.position = _networkSnake.realPosition;
+            //    lastReachedGroundPiece = GroundSpawner.instance.spawnedGroundPieces[_networkSnake.CurrentGridPosition];
+            //    groundPieceToReach = GroundSpawner.instance.spawnedGroundPieces[_networkSnake.TargetGridPosition];
+                SyncTrail();
+            //    SyncFill();
+                
+
+            //}
+            //else
+            //{
+            //    nextMoveDirection = InputDirection * movementDirection;
+            //}   
+                                       
         }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.left;
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.right;
-        }
-
-
-        if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.up)
-        {
-            if (InputDirection != transform.up)
-            {
-                InputDirection = transform.up;
-                _networkSnake.MoveDirection = InputDirection;
-                _networkSnake.realPosition = transform.position;
-                //_networkSnake.MoveToDirectionRPC (InputDirection, transform.position);
-                //PhotonView.Get(_networkSnake.gameObject).RPC("MoveToDirectionRPC",PhotonTargets.AllViaServer,transform.up,transform.position);
-            }
-        }
-
-        if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.down)
-        {
-            if (InputDirection != -transform.up)
-            {
-                InputDirection = -transform.up;
-                _networkSnake.MoveDirection = InputDirection;
-                _networkSnake.realPosition = transform.position;
-                //_networkSnake.MoveToDirectionRPC (InputDirection, transform.position);
-                //PhotonView.Get(_networkSnake.gameObject).RPC("MoveToDirectionRPC",PhotonTargets.AllViaServer,-transform.up,transform.position);
-            }
-
-        }
-
-        if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.left)
-        {
-            if (InputDirection != -transform.right)
-            {
-                InputDirection = -transform.right;
-                _networkSnake.MoveDirection = InputDirection;
-                _networkSnake.realPosition = transform.position;
-                //_networkSnake.MoveToDirectionRPC (InputDirection, transform.position);
-                //PhotonView.Get(_networkSnake.gameObject).RPC("MoveToDirectionRPC",PhotonTargets.AllViaServer,-transform.right,transform.position);
-            }
-
-        }
-
-        if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.right)
-        {
-            if (InputDirection != transform.right)
-            {
-                InputDirection = transform.right;
-                _networkSnake.MoveDirection = InputDirection;
-                _networkSnake.realPosition = transform.position;
-                //_networkSnake.MoveToDirectionRPC (InputDirection, transform.position);
-                //PhotonView.Get(_networkSnake.gameObject).RPC("MoveToDirectionRPC",PhotonTargets.AllViaServer,transform.right,transform.position);
-            }
-
-        }
-
-        //	MoveToDirection (InputDirection);
     }
 
-    //	void NetworkMovement(){
-    //		if (!_networkSnake)
-    //			return;
-    //
-    //		if(Input.GetKeyDown(KeyCode.DownArrow)){
-    //			SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.down;
-    //
-    //		}
-    //
-    //		if(Input.GetKeyDown(KeyCode.UpArrow)){
-    //			SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.up;
-    //		}
-    //
-    //		if(Input.GetKeyDown(KeyCode.LeftArrow)){
-    //			SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.left;
-    //		}
-    //
-    //		if(Input.GetKeyDown(KeyCode.RightArrow)){
-    //			SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.right;
-    //		}
-    //
-    //
-    //		if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.up) {
-    //			//if (nextMoveDirection != -transform.up)
-    //			PhotonView.Get(_networkSnake.gameObject).RPC("MoveToDirectionRPC",PhotonTargets.AllViaServer,transform.up,transform.position);
-    //		}
-    //
-    //		if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.down) {
-    //			//if (nextMoveDirection != transform.up)
-    //			PhotonView.Get(_networkSnake.gameObject).RPC("MoveToDirectionRPC",PhotonTargets.AllViaServer,-transform.up,transform.position);
-    //		}
-    //
-    //		if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.left) {
-    //			//	if (nextMoveDirection != transform.right)
-    //			PhotonView.Get(_networkSnake.gameObject).RPC("MoveToDirectionRPC",PhotonTargets.AllViaServer,-transform.right,transform.position);
-    //		}
-    //
-    //		if (SwipeHandler.instance.lastSwipeDirection == SwipeHandler.SwipeDirection.right) {
-    //			//	if (nextMoveDirection != -transform.right)
-    //			PhotonView.Get(_networkSnake.gameObject).RPC("MoveToDirectionRPC",PhotonTargets.AllViaServer,transform.right,transform.position);
-    //
-    //		}
-    //	}
-
-    //	public void MoveToDirection (Vector3 vector, Vector3 pos)
-    //	{
-    //		transform.position = pos;
-    //		nextMoveDirection = vector*movementDirection;
-    //
-    //	}
+    
 
     GroundPiece lastSyncedPiece;
     public void MoveToDirection(Vector3 vector)
@@ -447,7 +389,7 @@ public class Snake : MonoBehaviour
                 //SyncFill ();
                 //_networkSnake.MoveDirection = vector;
                 //_networkSnake.realPosition = transform.position;
-                return;
+                //return;
             }
             //	_networkSnake.realRotation = snakeMeshContainer.transform.localRotation;
         }
@@ -514,10 +456,18 @@ public class Snake : MonoBehaviour
         return GroundList;
     }
     int trailCount = 0;
-    void SyncTrail()
+    public void SyncTrail()
     {
         if (trailCount == _networkSnake.TrailList.Count)
             return;
+
+
+        foreach (GroundPiece GP in tailGroundPieces)
+        {
+
+            GP.RemoveCollectingSnake(this);
+
+        }
 
         tailGroundPieces = ConvertIntToPieces(_networkSnake.TrailList);
 
@@ -530,7 +480,7 @@ public class Snake : MonoBehaviour
         trailCount = _networkSnake.TrailList.Count;
     }
     int fillCount = 0;
-    void SyncFill()
+    public void SyncFill()
     {
         if (fillCount == _networkSnake.OwnedList.Count)
             return;
@@ -937,6 +887,10 @@ public class Snake : MonoBehaviour
 
     public IEnumerator Die()
     {
+
+        if (_networkSnake)
+            yield return new WaitForSeconds(0.5f);
+
         energy += 2;
         currentHP = 0;
 

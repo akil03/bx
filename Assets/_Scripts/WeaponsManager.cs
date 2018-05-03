@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 public class WeaponsManager : MonoBehaviour {
 	public List<Weapon> SelectedWeapons;
 	public List<Weapon> AvailableWeapons;
@@ -15,7 +15,7 @@ public class WeaponsManager : MonoBehaviour {
 	public GameObject AvailableWindow;
 	public Transform gridParent;
 	public GameObject weaponItem;
-	public int ActiveSlot;
+	public int ActiveSlot=1;
 	public Sprite Shield, Speed, Freeze, Health, Minishots, Heatseeker;
 
 
@@ -37,6 +37,11 @@ public class WeaponsManager : MonoBehaviour {
 	public void OpenLoadOut(int slot)
 	{
 		ActiveSlot = slot;
+        ActiveSlot = Mathf.Clamp(ActiveSlot, 1, 3);
+        transform.parent.GetComponent<RectTransform>().DOLocalMoveY(1770, 0.75f);
+
+
+        return;
 		AvailableWindow.SetActive(true);
         DestroyChild(gridParent.gameObject);
         foreach (Weapon wpn in AvailableWeapons)
@@ -53,6 +58,7 @@ public class WeaponsManager : MonoBehaviour {
 
 	public void AddWeapon(Weapon wpn)
 	{
+        
         AvailableWindow.SetActive(false);
         
 		SelectedWeapons.Add(wpn);
@@ -71,8 +77,9 @@ public class WeaponsManager : MonoBehaviour {
             WeaponSlots[ActiveSlot - 1].currentWeapon = wpn;
 			WeaponSlots[ActiveSlot - 1].Assign();
 		}
-		
-	}
+
+        transform.parent.GetComponent<RectTransform>().DOLocalMoveY(770, 0.75f);
+    }
 
 	void DestroyChild(GameObject Parent)
 	{
@@ -83,9 +90,49 @@ public class WeaponsManager : MonoBehaviour {
 
 	}
 
+    public Sprite GetWeaponImage(string weaponID)
+    {
+
+        switch (weaponID)
+        {
+
+            case "Speed":
+                return Speed;
+
+                
+
+            case "Shield":
+                return Shield;
+                
+
+            case "Health":
+                return Health;
+                
+
+            case "Heatseeker":
+                return Heatseeker;
+                
+
+            case "3Shots":
+                return Minishots;
+                
+
+            case "Freeze":
+                return Freeze;
+                
+
+            case "Mine":
+                return Freeze;
+                
+            default:
+                return Freeze;
+        }
+    }
+
 	[System.Serializable]
 	public class Weapon
 	{
 		public string Name, Cost, CooldownTime;
+        public Color powerColor;
 	}
 }

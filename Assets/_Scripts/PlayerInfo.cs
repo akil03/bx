@@ -16,7 +16,7 @@ public class PlayerInfo : MonoBehaviour
     public Text PhotonTime;
     [SerializeField]
     public List<int> TrailList, OwnedList = new List<int>();
-    public int CurrentGridPosition;
+    public int CurrentGridPosition, TargetGridPosition;
     public float GameStartTime;
     bool synced;
     public Color color;
@@ -48,6 +48,15 @@ public class PlayerInfo : MonoBehaviour
     {
         gameTime = 0.0f;
     }
+
+    public bool isMine()
+    {
+
+        return PhotonView.Get(this).isMine;
+
+    }
+
+
 
     public void AssignValues(int _playerNo, string _playerName, int _lives, int _maxhp, float _baseSpeed, int _meshtype, int _tiletype, int _colorType, Snake _player, float _starttime)
     {
@@ -127,7 +136,7 @@ public class PlayerInfo : MonoBehaviour
                 {
                     trailListJson = "";
                     TrailList.Clear();
-                    //	PhotonView.Get (gameObject).RPC("ClearTrail",PhotonTargets.Others);
+                    
                     foreach (var g in GroundSpawner.instance.spawnedGroundPieces)
                     {
                         if (g.collectingSnake == Player)
@@ -261,6 +270,19 @@ public class PlayerInfo : MonoBehaviour
             Player.transform.position = position;
             Player.MoveToDirection(direction);
         }
+    }
+
+    [PunRPC]
+    public void SetMovementDirection(Vector3 vector, Vector3 turnPosition,int currentGrid, int targetGrid, List<int> trailList, List<int> ownedList)
+    {
+        Player.nextMoveDirection = vector * Player.movementDirection;
+        Player.transform.position = turnPosition;
+        Player.lastReachedGroundPiece = GroundSpawner.instance.spawnedGroundPieces[currentGrid];
+        Player.groundPieceToReach = GroundSpawner.instance.spawnedGroundPieces[targetGrid];
+        TrailList = trailList;
+        OwnedList = ownedList;
+        Player.SyncTrail();
+        Player.SyncFill();
     }
 
 

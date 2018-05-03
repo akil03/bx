@@ -33,42 +33,90 @@ public class SnakeMeshContainer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		Vector3 newRot = Vector3.zero;;
+		Vector3 newRot = Vector3.zero;
 		if (!snake)
 			return;
-		if (snake.currentMoveDirection == snake.transform.up) {
-			newRot.z = 0;
-			transform.DORotate (newRot, 0.7f, RotateMode.Fast);
-//			if (AnimController)
-//				AnimController.GoSpin ();
 
 
-		}
+		RotateDirection(newRot);
+		return;
 
-		if (snake.currentMoveDirection == -snake.transform.up) {
-			newRot.z = 180;
-			transform.DORotate (newRot, 0.7f, RotateMode.Fast);
-//			if (AnimController)
-//				AnimController.GoSpin ();
-		}
 
-		if (snake.currentMoveDirection == snake.transform.right) {
-			newRot.z = -90;
-			transform.DORotate (newRot, 0.7f, RotateMode.Fast);
-//			if (AnimController)
-//				AnimController.GoSpin ();
-		}
 
-		if (snake.currentMoveDirection == -snake.transform.right) {
-			newRot.z = 90;
-			transform.DORotate (newRot, 0.7f, RotateMode.Fast);
-//			if (AnimController)
-//				AnimController.GoSpin ();
-		}
+        if (snake.currentMoveDirection == snake.transform.up)
+        {
+            newRot.z = 0;
+            transform.DORotate(newRot, 0.7f, RotateMode.Fast);
+            //			if (AnimController)
+            //				AnimController.GoSpin ();
 
-		//transform.eulerAngles = newRot;
 
-	}
+        }
+
+        if (snake.currentMoveDirection == -snake.transform.up)
+        {
+            newRot.z = 180;
+            transform.DORotate(newRot, 0.7f, RotateMode.Fast);
+            //			if (AnimController)
+            //				AnimController.GoSpin ();
+        }
+
+        if (snake.currentMoveDirection == snake.transform.right)
+        {
+            newRot.z = -90;
+            transform.DORotate(newRot, 0.7f, RotateMode.Fast);
+            //			if (AnimController)
+            //				AnimController.GoSpin ();
+        }
+
+        if (snake.currentMoveDirection == -snake.transform.right)
+        {
+            newRot.z = 90;
+            transform.DORotate(newRot, 0.7f, RotateMode.Fast);
+            //			if (AnimController)
+            //				AnimController.GoSpin ();
+        }
+
+        //transform.eulerAngles = newRot;
+
+    }
+
+	public void RotateDirection(Vector3 newRot)
+	{
+        if (snake.currentMoveDirection == snake.transform.up)
+        {
+            newRot.z = 0;
+            //if(snake.playerID==2)
+            //    newRot.z = 180;
+
+        }
+
+        if (snake.currentMoveDirection == -snake.transform.up)
+        {
+            newRot.z = 180;
+            //if (snake.playerID == 2)
+            //    newRot.z = 0;
+
+
+        }
+
+        if (snake.currentMoveDirection == snake.transform.right)
+        {
+            newRot.z = -90;
+            //if (snake.playerID == 2)
+            //    newRot.z = 90;
+
+        }
+
+        if (snake.currentMoveDirection == -snake.transform.right)
+        {
+            newRot.z = 90;
+            //if(snake.playerID==2)
+            //    newRot.z = 180;
+            
+        }
+        transform.DORotate(newRot, 0.7f, RotateMode.Fast);
+    }
 
 
 	public void SetSnakeMesh(GameObject mesh){

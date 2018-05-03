@@ -17,9 +17,12 @@ public class WeaponButton : MonoBehaviour {
     public Ease easetype;
     public Vector3 minScale, maxScale;
     public float duration;
-
+    public Color selectedColor;
     Sequence seq;
 
+    
+
+    public RectTransform holder;
     private void OnEnable()
     {
         //weaponType
@@ -45,7 +48,7 @@ public class WeaponButton : MonoBehaviour {
 			{
 				timeDiff = Time.time-useTime;
 
-				cdTxt.text = Mathf.FloorToInt(cooldownTime- timeDiff).ToString()+"S";
+				cdTxt.text = Mathf.FloorToInt(1+cooldownTime- timeDiff).ToString()+"S";
 			}
             if (isAnimating)
                 EndAnim();
@@ -114,6 +117,7 @@ public class WeaponButton : MonoBehaviour {
 
 
 		}
+        //selectedWeapon.color = selectedColor;
 		costTxt.text = EnergyCost.ToString();
 	}
 
@@ -169,9 +173,22 @@ public class WeaponButton : MonoBehaviour {
 	}
 
     bool isAnimating;
+
+    public float colorTransition=0.75f;
+
     void StartAnim()
     {
         isAnimating = true;
+
+
+        holder.DORotate(new Vector3(0, 0, 360), colorTransition, RotateMode.LocalAxisAdd);
+
+        selectedWeapon.DOColor(selectedColor, colorTransition);
+
+        holder.GetComponentInChildren<Image>().DOColor(selectedColor, colorTransition);
+
+        return;
+
         maxScale = new Vector3(1.05f, 1.05f, 1.05f);
         seq.Append(
          GetComponent<RectTransform>().DOScale(minScale, duration).SetEase(easetype).OnComplete(() =>
@@ -186,6 +203,14 @@ public class WeaponButton : MonoBehaviour {
     void EndAnim()
     {
         isAnimating = false;
+
+        holder.DORotate(new Vector3(0, 0, 360), colorTransition, RotateMode.LocalAxisAdd);
+
+        selectedWeapon.DOColor(Color.white, colorTransition);
+
+        holder.GetComponentInChildren<Image>().DOColor(Color.white, colorTransition);
+        return;
+
         maxScale = minScale;
         seq.Kill();
         GetComponent<RectTransform>().localScale = minScale;

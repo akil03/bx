@@ -86,7 +86,7 @@ MonoBehaviour:
       groupId: 
       name: Default
       description: 
-      importance: 0
+      importance: 1
       enableBadge: 1
       lights: 1
       lightColor: {r: 1, g: 1, b: 1, a: 1}

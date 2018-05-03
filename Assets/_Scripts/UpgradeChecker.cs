@@ -5,8 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UpgradeChecker : MonoBehaviour {
 	public UpgradeItem item;
-	public Text heading, prefix, cost, upgradeValue,descriptionTxt;
-	public Button upgradebutton;
+    public WeaponsManager.Weapon selectedweapon;
+    public Image WeaponImg;
+	public Text heading, prefix, cost, upgradeValue,descriptionTxt,energyTxt,cooldownTxt;
+	public Button upgradebutton,useBtn;
 	// Use this for initialization
 	void Start () {
 		
@@ -20,8 +22,36 @@ public class UpgradeChecker : MonoBehaviour {
 
 	public void CheckBuy()
 	{
-		heading.text = item.upgradeName+ " (Level "+(item.upgradeLevel+1)+")";
-		prefix.text = item.prefix+" : "+ item.currentValue;
+        
+
+
+        if (item.isWeapon)
+        {
+            selectedweapon = WeaponsManager.instance.AvailableWeapons.Find(i => i.Name == item.playerprefsTag);
+
+            if (selectedweapon != null)
+                useBtn.interactable = true;
+            else
+                useBtn.interactable = false;
+
+            energyTxt.text = "Energy Cost : " + item.energyCostTxt.text;
+            cooldownTxt.text = "Cooldown : " + item.cooldownTxt.text;
+
+            WeaponImg.sprite = WeaponsManager.instance.GetWeaponImage(item.playerprefsTag);
+            WeaponImg.color = selectedweapon.powerColor;
+        }
+        else
+        {
+
+
+        }
+
+
+        heading.text = item.upgradeName+ " (Level "+(item.upgradeLevel+1)+")";
+
+        
+
+        prefix.text = item.prefix+" : "+ item.currentValue;
 		upgradeValue.text = "+" + item.UpgradeValues[item.upgradeLevel].ToString();
 		cost.text = item.UpgradeCosts[item.upgradeLevel].ToString();
         string[] split = item.description.Split('\\');
@@ -39,6 +69,12 @@ public class UpgradeChecker : MonoBehaviour {
 		}
 		
 	}
+
+    public void Use()
+    {
+
+        WeaponsManager.instance.AddWeapon(selectedweapon);
+    }
 
 	public void Buy()
 	{

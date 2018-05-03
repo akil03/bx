@@ -42,7 +42,8 @@ public class FacebookActor : MonoBehaviour
 
     public void Login()
     {
-        FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" }, LoginCallback);
+        if(!Application.isEditor)
+            FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" }, LoginCallback);
     }
 
     void LoginCallback(ILoginResult result)

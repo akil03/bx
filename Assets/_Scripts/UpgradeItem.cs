@@ -3,17 +3,27 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UpgradeItem : MonoBehaviour
 {
-    public Text itemName, upgradeCost;
+    public bool isWeapon;
+    public Text itemName, upgradeCost, descriptionTxt, energyCostTxt, cooldownTxt;
     public List<Transform> Bars;
     public List<int> UpgradeCosts, UpgradeValues;
-    public int ID, baseValue, currentValue, upgradeLevel, maxLevel;
+    public int ID, baseValue, currentValue, upgradeLevel, maxLevel,cooldownTime;
     public string playerprefsTag, upgradeName, prefix,description;
     public UpgradeType type;
+    public WeaponsManager.Weapon selectedweapon;
 
     public UpgradeChecker CheckWindow;
     // Use this for initialization
     void Start()
     {
+        if (isWeapon)
+        {
+            selectedweapon = WeaponsManager.instance.AvailableWeapons.Find(i => i.Name == playerprefsTag);
+            if(selectedweapon==null)
+                selectedweapon = WeaponsManager.instance.SelectedWeapons.Find(i => i.Name == playerprefsTag);
+            cooldownTxt.text = selectedweapon.CooldownTime + " Secs";
+            energyCostTxt.text = selectedweapon.Cost;
+        }
         AssignValues();
     }
 
@@ -108,7 +118,8 @@ public class UpgradeItem : MonoBehaviour
 
         UpdatePanel();
 
-
+        
+        
     }
 
     public void UpdatePanel()
@@ -128,7 +139,12 @@ public class UpgradeItem : MonoBehaviour
                 break;
         }
 
-        itemName.text = upgradeName + "  ( " + currentValue + " )";
+        itemName.text = upgradeName;// + "  ( " + currentValue + " )";
+
+        string[] split = description.Split('\\');
+        if(descriptionTxt)
+            descriptionTxt.text = split[0];// + "\n" + split[1];
+        
 
         for (int i = 0; i < upgradeLevel; i++)
         {
@@ -145,7 +161,7 @@ public class UpgradeItem : MonoBehaviour
         }
         else
         {
-            Bars[upgradeLevel].GetComponentInChildren<Text>().text = "+" + UpgradeValues[upgradeLevel].ToString() + " "+prefix;
+           // Bars[upgradeLevel].GetComponentInChildren<Text>().text = "+" + UpgradeValues[upgradeLevel].ToString() + " "+prefix;
             upgradeCost.text = UpgradeCosts[upgradeLevel].ToString();
         }
 

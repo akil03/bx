@@ -52,4 +52,5 @@ MonoBehaviour:
   - MakeTrail
   - LeftTheGame
   - Rematch
+  - SetMovementDirection
   DisableAutoOpenWizard: 1

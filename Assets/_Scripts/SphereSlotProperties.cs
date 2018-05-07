@@ -1,27 +1,42 @@
 ﻿using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class SphereSlotProperties : MonoBehaviour
 {
     public GameObject sphereSlot, sphereRender, tapToOpen, openNow, sphereUnlock, glow;
     public SphereProperties _sphereProperties, _unlockProperties;
-    public Text timer, gemCount, gemCountWindow, AdCount, timerWindow, adCountWindow, randomGold, randomGem, rewardGold, rewardGems;
+    public Text timer, gemCount, gemCountWindow, AdCount, timerWindow, adCountWindow, cardName, cardCount, randomGold, randomGem, rewardGold, rewardGems;
     public string sphereType, unlockTime;
     public int slotNo;
     public int silverMin, silverMax, goldMin, goldMax, crystalMin, crystalMax;
     public int silverMinGem, silverMaxGem, goldMinGem, goldMaxGem, crystalMinGem, crystalMaxGem;
     public int requiredGem, requiredAds;
 
+    public RectTransform machineUI;
     public RawImage popupRender;
     public RenderTexture[] slotPreviews;
+
+    public GameObject selectedCard,goldCard,gemCard;
+    public Transform fromPosition, toPosition;
+    public SpriteRenderer cardGrid;
     // Use this for initialization
     void Start()
     {
         Empty();
 
+        if (slotNo == 1)
+        {
+            RandomSphere();
+        }
+            //Invoke("Test", 8);
+
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -316,10 +331,10 @@ public class SphereSlotProperties : MonoBehaviour
 
 
     }
-
+    int gold = 0, gem = 0;
     public void OpenSphere()
     {
-        int gold = 0, gem = 0;
+        
         switch (sphereType)
         {
             case "silver":
@@ -366,20 +381,104 @@ public class SphereSlotProperties : MonoBehaviour
     public void AssignRewards()
     {
 
+        
+
+        
+        
+
+        //selectedCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 1440, 0), 1.5f, RotateMode.LocalAxisAdd);
+
+       // AnimateRewardsa();
+
+        StartCoroutine(AnimateRewards());
+
+    }
+
+    IEnumerator AnimateRewards()
+    {
+
+        machineUI.DOLocalMoveY(400, 0.5f);
+
+        selectedCard.transform.SetParent(toPosition);
+        goldCard.transform.SetParent(toPosition);
+        gemCard.transform.SetParent(toPosition);
+
+        yield return new WaitForEndOfFrame();
+
+        selectedCard.transform.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.LocalAxisAdd);
+        selectedCard.transform.DOLocalMove(new Vector3(-2.4f, 0, 0), 1.5f);
+        selectedCard.transform.DOScale(Vector3.one*0.65f, 1.5f);
+        yield return new WaitForSeconds(0.3f);
+        goldCard.transform.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.LocalAxisAdd);
+        goldCard.transform.DOLocalMove(new Vector3(0, 0, 0), 1.5f);
+        goldCard.transform.DOScale(Vector3.one * 0.65f, 1.5f);
+        yield return new WaitForSeconds(0.3f);
+        gemCard.transform.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.LocalAxisAdd);
+        gemCard.transform.DOLocalMove(new Vector3(2.4f, 0, 0), 1.5f);
+        gemCard.transform.DOScale(Vector3.one * 0.65f, 1.5f);
+
+        yield return new WaitForSeconds(1.5f);
+
         glow.SetActive(true);
         glow.transform.localScale = Vector3.zero;
-        glow.transform.DOScale(Vector3.one * 2, 0.5f);
+        glow.transform.GetChild(0).localScale = Vector3.zero;
+        glow.transform.DOScale(Vector3.one * 3, 0.5f);
+        glow.transform.GetChild(0).DOScale(Vector3.one * 3, 0.5f);
         rewardGold.transform.parent.gameObject.SetActive(true);
+        cardGrid.DOColor(Color.blue, 1);
+        cardGrid.transform.parent.GetComponentInParent<SpriteRenderer>().DOColor(Color.blue, 1);
 
-        Invoke("CloseMachine", 2f);
+       
+        cardName.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
+        {
+            cardCount.transform.DOScale(Vector3.one, 0.5f);
+        });
+        yield return new WaitForSeconds(0.3f);
+        randomGold.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
+        {
+            rewardGold.transform.DOScale(Vector3.one, 0.5f);
+        });
+        yield return new WaitForSeconds(0.3f);
+        randomGem.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
+        {
+            rewardGems.transform.DOScale(Vector3.one, 0.5f);
+        });
 
+    }
+
+    void AnimateRewardsa()
+    {
+        machineUI.DOLocalMoveY(400, 0.5f);
+        //cardGrid
+
+
+        selectedCard.transform.DOLocalRotate(new Vector3(0, 1440, 0), 2f, RotateMode.LocalAxisAdd).OnComplete(() =>
+        {
+            
+            
+            cardGrid.DOFade(1, 1);
+            cardGrid.transform.GetChild(0).GetComponent<SpriteRenderer>().DOFade(1, 1).OnComplete(() =>
+            {
+                cardName.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
+                {
+                    cardCount.transform.DOScale(Vector3.one, 0.5f);
+                });
+            });
+            
+            Invoke("CloseMachine", 5f);
+        });
+        
+        selectedCard.transform.DOMove(toPosition.position, 2);
     }
 
     public void CloseMachine()
     {
+        machineUI.DOLocalMoveY(0, 0.05f);
         glow.SetActive(false);
         sphereUnlock.SetActive(false);
         rewardGold.transform.parent.gameObject.SetActive(false);
         _unlockProperties.gameObject.SetActive(false);
     }
+
+   
 }

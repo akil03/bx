@@ -32,7 +32,11 @@ public class UpgradeChecker : MonoBehaviour {
             if (selectedweapon != null)
                 useBtn.interactable = true;
             else
+            {
+                selectedweapon = WeaponsManager.instance.SelectedWeapons.Find(i => i.Name == item.playerprefsTag);
                 useBtn.interactable = false;
+            }
+                
 
             energyTxt.text = "Energy Cost : " + item.energyCostTxt.text;
             cooldownTxt.text = "Cooldown : " + item.cooldownTxt.text;

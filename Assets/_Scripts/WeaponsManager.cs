@@ -134,5 +134,6 @@ public class WeaponsManager : MonoBehaviour {
 	{
 		public string Name, Cost, CooldownTime;
         public Color powerColor;
+        public Sprite icon, btnIcon;
 	}
 }

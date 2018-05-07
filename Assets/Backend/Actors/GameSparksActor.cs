@@ -37,11 +37,11 @@ public class GameSparksActor : MonoBehaviour
 
     public void Login()
     {
-        if (GS.Authenticated)
-        {
-            AfterLoginSuccess();
-            return;
-        }
+        //if (GS.Authenticated)
+        //{
+        //    AfterLoginSuccess();
+        //    return;
+        //}
         new AuthenticationRequest().SetUserName(email.value).SetPassword(email.value).Send((AR) =>
     {
         if (AR.HasErrors)

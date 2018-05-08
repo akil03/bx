@@ -28,10 +28,7 @@ public class SphereSlotProperties : MonoBehaviour
     {
         Empty();
 
-        if (slotNo == 1)
-        {
-            RandomSphere();
-        }
+        
             //Invoke("Test", 8);
 
     }
@@ -400,6 +397,9 @@ public class SphereSlotProperties : MonoBehaviour
         cardGrid.sprite = randomweapon.icon;
         cardName.text = randomweapon.Name;
 
+        int rand = UnityEngine.Random.Range(1, 25);
+        cardCount.text = "x" + rand;
+
         machineUI.DOLocalMoveY(400, 0.5f);
 
         selectedCard.transform.SetParent(toPosition);
@@ -483,6 +483,35 @@ public class SphereSlotProperties : MonoBehaviour
         machineUI.DOLocalMoveY(0, 0.05f);
         glow.SetActive(false);
         sphereUnlock.SetActive(false);
+
+
+        selectedCard.transform.SetParent(fromPosition);
+        selectedCard.transform.localPosition = Vector3.zero;
+        selectedCard.transform.localScale = Vector3.zero;
+        selectedCard.transform.localRotation = Quaternion.Euler(0,0,0);
+
+        goldCard.transform.SetParent(fromPosition);
+        goldCard.transform.localPosition = Vector3.zero;
+        goldCard.transform.localScale = Vector3.zero;
+        goldCard.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+        gemCard.transform.SetParent(fromPosition);
+        gemCard.transform.localPosition = Vector3.zero;
+        gemCard.transform.localScale = Vector3.zero;
+        gemCard.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+
+        cardGrid.color = Color.white;
+        cardGrid.transform.parent.GetComponentInParent<SpriteRenderer>().color = Color.white;
+
+        cardName.transform.localScale = Vector3.zero;
+        cardCount.transform.localScale = Vector3.zero;
+        rewardGold.transform.localScale = Vector3.zero;
+        rewardGold.transform.GetChild(0).localScale = Vector3.zero;
+        rewardGems.transform.localScale = Vector3.zero;
+        rewardGems.transform.GetChild(0).localScale = Vector3.zero;
+
+
         rewardGold.transform.parent.gameObject.SetActive(false);
         _unlockProperties.gameObject.SetActive(false);
     }

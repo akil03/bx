@@ -6,8 +6,8 @@ using DG.Tweening;
 public class WeaponsManager : MonoBehaviour {
 	public List<Weapon> SelectedWeapons;
 	public List<Weapon> AvailableWeapons;
-
-	public List<WeaponSelectionItem> WeaponSlots;
+    public List<Weapon> AllWeapons;
+    public List<WeaponSelectionItem> WeaponSlots;
 	
 
 	public static WeaponsManager instance;
@@ -34,7 +34,14 @@ public class WeaponsManager : MonoBehaviour {
 		
 	}
 
-	public void OpenLoadOut(int slot)
+    [ContextMenu("CopyAvailable")]
+    public void CopyAvailable()
+    {
+        AllWeapons = AvailableWeapons;
+    }
+
+
+    public void OpenLoadOut(int slot)
 	{
 		ActiveSlot = slot;
         ActiveSlot = Mathf.Clamp(ActiveSlot, 1, 3);
@@ -127,6 +134,14 @@ public class WeaponsManager : MonoBehaviour {
             default:
                 return Freeze;
         }
+    }
+
+    public Weapon RandomWeapon()
+    {
+        Weapon randWpn;
+        int rand = Random.Range(0, 6);
+        randWpn = AllWeapons[rand];
+        return randWpn;
     }
 
 	[System.Serializable]

@@ -355,8 +355,8 @@ public class SphereSlotProperties : MonoBehaviour
         }
 
 
-        rewardGold.text = gold.ToString();
-        rewardGems.text = gem.ToString();
+        rewardGold.transform.GetChild(0).GetComponent<Text>().text = "x"+gold.ToString();
+        rewardGems.transform.GetChild(0).GetComponent<Text>().text = "x" + gem.ToString();
 
         _unlockProperties.gameObject.SetActive(true);
         _unlockProperties.OpenSphere();
@@ -396,6 +396,9 @@ public class SphereSlotProperties : MonoBehaviour
 
     IEnumerator AnimateRewards()
     {
+        WeaponsManager.Weapon randomweapon = WeaponsManager.instance.RandomWeapon();
+        cardGrid.sprite = randomweapon.icon;
+        cardName.text = randomweapon.Name;
 
         machineUI.DOLocalMoveY(400, 0.5f);
 
@@ -405,15 +408,15 @@ public class SphereSlotProperties : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        selectedCard.transform.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.LocalAxisAdd);
+        selectedCard.transform.DOLocalRotate(new Vector3(0, 360, 0), 1.5f, RotateMode.LocalAxisAdd);
         selectedCard.transform.DOLocalMove(new Vector3(-2.4f, 0, 0), 1.5f);
         selectedCard.transform.DOScale(Vector3.one*0.65f, 1.5f);
         yield return new WaitForSeconds(0.3f);
-        goldCard.transform.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.LocalAxisAdd);
+        goldCard.transform.DOLocalRotate(new Vector3(0, 360, 0), 1.5f, RotateMode.LocalAxisAdd);
         goldCard.transform.DOLocalMove(new Vector3(0, 0, 0), 1.5f);
         goldCard.transform.DOScale(Vector3.one * 0.65f, 1.5f);
         yield return new WaitForSeconds(0.3f);
-        gemCard.transform.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.LocalAxisAdd);
+        gemCard.transform.DOLocalRotate(new Vector3(0, 360, 0), 1.5f, RotateMode.LocalAxisAdd);
         gemCard.transform.DOLocalMove(new Vector3(2.4f, 0, 0), 1.5f);
         gemCard.transform.DOScale(Vector3.one * 0.65f, 1.5f);
 
@@ -425,8 +428,11 @@ public class SphereSlotProperties : MonoBehaviour
         glow.transform.DOScale(Vector3.one * 3, 0.5f);
         glow.transform.GetChild(0).DOScale(Vector3.one * 3, 0.5f);
         rewardGold.transform.parent.gameObject.SetActive(true);
-        cardGrid.DOColor(Color.blue, 1);
-        cardGrid.transform.parent.GetComponentInParent<SpriteRenderer>().DOColor(Color.blue, 1);
+
+        
+
+        cardGrid.DOColor(randomweapon.powerColor, 1);
+        cardGrid.transform.parent.GetComponentInParent<SpriteRenderer>().DOColor(randomweapon.powerColor, 1);
 
        
         cardName.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
@@ -434,16 +440,17 @@ public class SphereSlotProperties : MonoBehaviour
             cardCount.transform.DOScale(Vector3.one, 0.5f);
         });
         yield return new WaitForSeconds(0.3f);
-        randomGold.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
+        rewardGold.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
         {
-            rewardGold.transform.DOScale(Vector3.one, 0.5f);
+            rewardGold.transform.GetChild(0).DOScale(Vector3.one, 0.5f);
         });
         yield return new WaitForSeconds(0.3f);
-        randomGem.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
+        rewardGems.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
         {
-            rewardGems.transform.DOScale(Vector3.one, 0.5f);
+            rewardGems.transform.GetChild(0).DOScale(Vector3.one, 0.5f);
         });
 
+        Invoke("CloseMachine", 4f);
     }
 
     void AnimateRewardsa()

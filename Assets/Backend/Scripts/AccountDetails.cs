@@ -112,8 +112,9 @@ public class AccountDetails : MonoBehaviour
         }
         if (firstLoad)
         {
-            if (GUIManager.instance.Gold.text != playerData.Gold.ToString())
-                GUIManager.instance.AddCoins(int.Parse(playerData.Gold.ToString()) - int.Parse(GUIManager.instance.Gold.text));
+            GUIManager.instance.Gold.text = playerData.Gold.ToString();
+            //if (GUIManager.instance.Gold.text != playerData.Gold.ToString())
+            //    GUIManager.instance.AddCoins(int.Parse(playerData.Gold.ToString()) - int.Parse(GUIManager.instance.Gold.text));
         }
         else
         {

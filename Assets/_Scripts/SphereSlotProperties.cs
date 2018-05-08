@@ -28,7 +28,8 @@ public class SphereSlotProperties : MonoBehaviour
     {
         Empty();
 
-        
+        if (slotNo < 3)
+            RandomSphere();
             //Invoke("Test", 8);
 
     }

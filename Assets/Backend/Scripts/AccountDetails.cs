@@ -53,6 +53,10 @@ public class AccountDetails : MonoBehaviour
 
     public void Save(int Gold = 0, int Gem = 0, string PING = null, int MMR = 0, float mostAreaCovered = 0f, int totalKills = 0, int totalDeaths = 0, int totalWins = 0, int totalLoss = 0, string slot1 = "0", string slot2 = "0", string slot3 = "0", string slot4 = "0", int rocket = 0, int minishots = 0, int heal = 0, int speed = 0, int freeze = 0, int shield = 0, int lives = 0, int health = 0, int movespeed = 0, string friendID = null)
     {
+        if (!firstLoad)
+        {
+            return;
+        }
         Dictionary<string, object> pair = new Dictionary<string, object>();
         playerData.Gold += Gold;
         playerData.Gem += Gem;
@@ -124,7 +128,6 @@ public class AccountDetails : MonoBehaviour
             CloudRetrieveSphere();
             GUIManager.instance.playerNameTxt.text = accountDetails.displayName;
             leaderboardActor.Create(accountDetails.userId);
-            firstLoad = true;
             foreach (var item in playerData.FriendsList)
             {
                 leaderboardActor.Create(item);
@@ -148,6 +151,7 @@ public class AccountDetails : MonoBehaviour
         {
             leaderboardActor.Create(tempId);
         }
+        firstLoad = true;
     }
 
     void CloudRetrieveSphere()

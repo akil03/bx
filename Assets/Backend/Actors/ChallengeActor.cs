@@ -18,7 +18,7 @@ public class ChallengeActor : MonoBehaviour
     public BoolObject occupied;
     string cid;
     [SerializeField] GameObject homePage;
-    
+
     void Start()
     {
         challenge.Reset();
@@ -168,7 +168,7 @@ public class ChallengeActor : MonoBehaviour
         }
     }
 
-    public void ConnectedToMaster()
+    public void OnConnectedToMaster()
     {
         if (challengeMode.value)
         {
@@ -233,7 +233,7 @@ public class ChallengeActor : MonoBehaviour
             Decline();
             return;
         }
-            
+
 
         if (occupied.value)
             DeclineOther();

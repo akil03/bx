@@ -9,12 +9,12 @@ public class SphereProperties : MonoBehaviour
 
     public GameObject SphereObject;
 
-
+    public Camera _cam;
     // Use this for initialization
     void Start()
     {
 
-
+        _cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -111,7 +111,7 @@ public class SphereProperties : MonoBehaviour
     [ContextMenu("Animate")]
     public void OpenSphere()
     {
-
+        _cam.enabled = true;
         Holder[0].GetComponent<Animator>().Play("OpenChest");
         Holder[1].GetComponent<Animator>().Play("OpenChest");
 

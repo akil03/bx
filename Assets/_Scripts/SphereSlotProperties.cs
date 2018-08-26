@@ -514,6 +514,7 @@ public class SphereSlotProperties : MonoBehaviour
 
 
         rewardGold.transform.parent.gameObject.SetActive(false);
+        _unlockProperties._cam.enabled = false;
         _unlockProperties.gameObject.SetActive(false);
     }
 

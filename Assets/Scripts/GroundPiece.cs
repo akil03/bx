@@ -71,10 +71,12 @@ public class GroundPiece : MonoBehaviour
 		if (IsBoundPiece ()) {
 
 			spriteRenderer.sprite = spriteWhenIsBoundOfGround;
-			//spriteRenderer.enabled = false;
+			spriteRenderer.enabled = false;
 		}
-
-		Destroy (boxCollider);
+    //    else
+    //        spriteRenderer.enabled = true
+                ;
+        Destroy (boxCollider);
 
 		try {
 			groundPiecesAroundMe = GetGroundPiecesAroundMe (5);

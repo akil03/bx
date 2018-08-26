@@ -6,8 +6,8 @@ public class MainMenuGUI : MonoBehaviour
 
     public static MainMenuGUI instance;
 
-    public Text highscoreText;
-    public Text gamesPlayedText;
+  //  public Text highscoreText;
+ //   public Text gamesPlayedText;
     public InputField playerNameField;
 
     string originalHighScoreText;
@@ -19,9 +19,9 @@ public class MainMenuGUI : MonoBehaviour
     {
 
         instance = this;
-        originalHighScoreText = highscoreText.text;
-        originalGamesPlayedText = gamesPlayedText.text;
-        playerNameField.text = PlayerPrefs.GetString("PlayerName");
+      //  originalHighScoreText = highscoreText.text;
+      //  originalGamesPlayedText = gamesPlayedText.text;
+     //   playerNameField.text = PlayerPrefs.GetString("PlayerName");
     }
 
 
@@ -39,9 +39,9 @@ public class MainMenuGUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string highscoreString = ObliusGameManager.instance.TrimPercentage(((100 * (float)ScoreHandler.instance.highScore) / (float)GroundSpawner.instance.spawnedGroundPieces.Count).ToString());
-        highscoreText.text = originalHighScoreText + highscoreString + "%";
-        gamesPlayedText.text = originalGamesPlayedText + ScoreHandler.instance.numberOfGames;
+        //string highscoreString = ObliusGameManager.instance.TrimPercentage(((100 * (float)ScoreHandler.instance.highScore) / (float)GroundSpawner.instance.spawnedGroundPieces.Count).ToString());
+       // highscoreText.text = originalHighScoreText + highscoreString + "%";
+       // gamesPlayedText.text = originalGamesPlayedText + ScoreHandler.instance.numberOfGames;
     }
 
     public void OnShopButtonClick()

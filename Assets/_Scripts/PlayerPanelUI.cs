@@ -110,6 +110,8 @@ public class PlayerPanelUI : MonoBehaviour {
         foreach (GameObject Go in LivesImg)
             Go.SetActive(false);
 
+        Debug.Log(SelectedSnake.Lives);
+
         for (int i = 0; i < SelectedSnake.Lives; i++)
             LivesImg[i].SetActive(true);
 

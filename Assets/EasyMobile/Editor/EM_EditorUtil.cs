@@ -671,7 +671,7 @@ namespace EasyMobile.Editor
 
             foreach (var obj in roots)
             {
-                if (PrefabUtility.GetPrefabParent(obj) == prefab)
+                if (PrefabUtility.GetCorrespondingObjectFromSource(obj) == prefab)
                 {
                     var pType = PrefabUtility.GetPrefabType(obj);
                     if (pType == PrefabType.PrefabInstance || pType == PrefabType.ModelPrefabInstance)

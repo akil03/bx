@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: bfbffcfaf3f751c47b1ce84c0eb9890f
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -85,16 +85,21 @@ ModelImporter:
     7400002: Chubby 01 Walk Back 17_09
     7400004: Chubby 01 Side Step
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '17_09' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -104,14 +109,30 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '17_09':\n\tLeftLowerLeg
+      average position error 0.2 mm and maximum position error 3.1 mm at time 40:11
+      (79.9%) Frame 971\n\tRightLowerLeg average position error 0.2 mm and maximum
+      position error 3.1 mm at time 0: 0 (0.0%) Frame 0\n\tLeftUpperArm average position
+      error 24.3 mm and maximum position error 36.0 mm at time 45: 8 (89.5%) Frame
+      1088\n\tLeftLowerArm average position error 10.5 mm and maximum position error
+      18.4 mm at time 28: 4 (55.6%) Frame 676\n\tLeftHand average position error 6.3
+      mm and maximum position error 20.6 mm at time 44:22 (88.7%) Frame 1078\n\tRightUpperArm
+      average position error 24.3 mm and maximum position error 36.0 mm at time 45:
+      8 (89.5%) Frame 1088\n\tRightLowerArm average position error 9.8 mm and maximum
+      position error 17.9 mm at time 7: 7 (14.4%) Frame 175\n\tRightHand average position
+      error 5.4 mm and maximum position error 17.3 mm at time 7: 7 (14.4%) Frame 175\n\tHead
+      average position error 38.3 mm and maximum position error 59.6 mm at time 19:11
+      (38.4%) Frame 467\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Chubby 01 Walk 17_09
@@ -437,22 +458,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

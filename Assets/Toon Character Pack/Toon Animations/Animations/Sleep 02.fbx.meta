@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: da7c1f29a744451469edde8805bafc15
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Sleep 02 (111_21)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '111_21' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,32 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '111_21':\n\tLeftLowerLeg
+      average position error 0.3 mm and maximum position error 3.0 mm at time 14:21
+      (78.6%) Frame 357\n\tRightLowerLeg average position error 0.1 mm and maximum
+      position error 3.1 mm at time 0: 0 (0.0%) Frame 0\n\tLeftUpperArm average position
+      error 19.8 mm and maximum position error 45.5 mm at time 18:19 (99.3%) Frame
+      451\n\tLeftLowerArm average position error 10.4 mm and maximum position error
+      26.5 mm at time 18:22 (100.0%) Frame 454\n\tLeftHand average position error
+      7.6 mm and maximum position error 20.2 mm at time 7:18 (41.0%) Frame 186\n\tRightUpperArm
+      average position error 19.8 mm and maximum position error 45.5 mm at time 18:19
+      (99.3%) Frame 451\n\tRightLowerArm average position error 9.3 mm and maximum
+      position error 32.1 mm at time 18:21 (99.8%) Frame 453\n\tRightHand average
+      position error 8.0 mm and maximum position error 26.1 mm at time 18:22 (100.0%)
+      Frame 454\n\tHead average position error 37.7 mm and maximum position error
+      76.6 mm at time 18:19 (99.3%) Frame 451\n\tLeftFoot average orientation error
+      10.4 deg and maximum orientation error 175.1 deg at time 15: 8 (81.1%) Frame
+      368\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Sleep 02 (111_21)
@@ -223,22 +246,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

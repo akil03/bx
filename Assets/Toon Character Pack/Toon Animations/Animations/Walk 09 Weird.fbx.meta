@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 7ce814c222263ae4e94db7212c698933
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Walk 09 Weird (120_06)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '120_06' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,30 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '120_06':\n\tLeftLowerLeg
+      average position error 0.3 mm and maximum position error 3.0 mm at time 3:21
+      (32.4%) Frame 93\n\tRightLowerLeg average position error 0.3 mm and maximum
+      position error 3.1 mm at time 2:11 (20.6%) Frame 59\n\tLeftUpperArm average
+      position error 32.1 mm and maximum position error 114.2 mm at time 7:21 (65.9%)
+      Frame 189\n\tLeftLowerArm average position error 17.6 mm and maximum position
+      error 55.0 mm at time 9: 1 (75.6%) Frame 217\n\tLeftHand average position error
+      8.9 mm and maximum position error 53.1 mm at time 9: 1 (75.6%) Frame 217\n\tRightUpperArm
+      average position error 32.1 mm and maximum position error 114.2 mm at time 7:21
+      (65.9%) Frame 189\n\tRightLowerArm average position error 18.2 mm and maximum
+      position error 56.2 mm at time 6:11 (54.0%) Frame 155\n\tRightHand average position
+      error 11.8 mm and maximum position error 43.1 mm at time 6:12 (54.4%) Frame
+      156\n\tHead average position error 47.5 mm and maximum position error 118.2
+      mm at time 7:20 (65.5%) Frame 188\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Walk 09 Weird (120_06)
@@ -223,22 +244,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 14c46cbeb129d934999aa92fe09f0cc5
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -84,32 +84,55 @@ ModelImporter:
     7400000: Animal 01 Gorilla (120_02)
     7400002: Charge 01
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
+      in configuration does not match rotation in animation file:\n\t'BVH:LeftFingerBase'
+      : rotation error = 8.153264 deg\n\t'BVH:RightFingerBase' : rotation error =
+      14.090204 deg\n"
     animationImportErrors: 
-    animationImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
-      in configuration does not match rotation in animation file\nAnimal 01 Gorilla\nClip
-      '120_02' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'BVH:LowerBack'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:Spine1'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:Neck1'
+    animationImportWarnings: "\nClip '120_02' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'BVH:LowerBack' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'BVH:Spine1' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:Neck1'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '120_02':\n\tLeftLowerLeg
+      average position error 0.2 mm and maximum position error 3.0 mm at time 0: 0
+      (0.0%) Frame 0\n\tRightLowerLeg average position error 0.1 mm and maximum position
+      error 3.1 mm at time 0: 0 (0.0%) Frame 0\n\tLeftUpperArm average position error
+      53.9 mm and maximum position error 108.2 mm at time 8: 5 (69.1%) Frame 197\n\tLeftLowerArm
+      average position error 40.6 mm and maximum position error 100.6 mm at time 7:19
+      (65.6%) Frame 187\n\tLeftHand average position error 40.6 mm and maximum position
+      error 101.3 mm at time 7:19 (65.6%) Frame 187\n\tRightUpperArm average position
+      error 53.9 mm and maximum position error 108.2 mm at time 8: 5 (69.1%) Frame
+      197\n\tRightLowerArm average position error 39.9 mm and maximum position error
+      95.4 mm at time 9:15 (81.0%) Frame 231\n\tRightHand average position error 39.2
+      mm and maximum position error 96.7 mm at time 5: 0 (42.1%) Frame 120\n\tHead
+      average position error 30.1 mm and maximum position error 61.1 mm at time 8:
+      4 (68.7%) Frame 196\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Animal 01 Gorilla (120_02)
@@ -329,22 +352,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

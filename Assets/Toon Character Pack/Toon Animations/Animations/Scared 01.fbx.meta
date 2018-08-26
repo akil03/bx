@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 0c2408d3951e0064f835d0380435f7e1
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Scared 01 (79_73)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '79_73' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,30 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '79_73':\n\tLeftLowerLeg
+      average position error 0.2 mm and maximum position error 3.1 mm at time 0: 0
+      (0.0%) Frame 0\n\tRightLowerLeg average position error 1.1 mm and maximum position
+      error 3.1 mm at time 6:20 (92.1%) Frame 164\n\tLeftUpperArm average position
+      error 25.0 mm and maximum position error 41.4 mm at time 5: 1 (68.0%) Frame
+      121\n\tLeftLowerArm average position error 10.0 mm and maximum position error
+      19.8 mm at time 5:14 (75.3%) Frame 134\n\tLeftHand average position error 7.8
+      mm and maximum position error 23.3 mm at time 4:15 (62.4%) Frame 111\n\tRightUpperArm
+      average position error 25.0 mm and maximum position error 41.4 mm at time 5:
+      1 (68.0%) Frame 121\n\tRightLowerArm average position error 10.7 mm and maximum
+      position error 14.4 mm at time 1:23 (26.4%) Frame 47\n\tRightHand average position
+      error 8.2 mm and maximum position error 20.8 mm at time 5: 9 (72.5%) Frame 129\n\tHead
+      average position error 16.4 mm and maximum position error 36.1 mm at time 5:
+      2 (68.5%) Frame 122\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Scared 01 (79_73)
@@ -223,22 +244,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

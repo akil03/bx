@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 1ccac86a747c7274ea7de88bd2bb32ba
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Wheel 01 (121_02)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '121_02' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,33 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '121_02':\n\tLeftLowerLeg
+      average position error 4.5 mm and maximum position error 12.5 mm at time 3:12
+      (53.8%) Frame 84\n\tRightLowerLeg average position error 4.7 mm and maximum
+      position error 9.4 mm at time 5: 5 (80.0%) Frame 125\n\tLeftUpperArm average
+      position error 15.7 mm and maximum position error 41.3 mm at time 4: 4 (64.0%)
+      Frame 100\n\tLeftLowerArm average position error 8.8 mm and maximum position
+      error 36.7 mm at time 3: 2 (47.4%) Frame 74\n\tLeftHand average position error
+      6.6 mm and maximum position error 35.2 mm at time 3: 2 (47.4%) Frame 74\n\tRightUpperArm
+      average position error 15.7 mm and maximum position error 41.3 mm at time 4:
+      4 (64.0%) Frame 100\n\tRightLowerArm average position error 8.7 mm and maximum
+      position error 34.9 mm at time 4: 4 (64.0%) Frame 100\n\tRightHand average position
+      error 5.6 mm and maximum position error 33.9 mm at time 4: 4 (64.0%) Frame 100\n\tHead
+      average position error 43.6 mm and maximum position error 85.3 mm at time 3:13
+      (54.4%) Frame 85\n\tLeftFoot average orientation error 0.1 deg and maximum orientation
+      error 2.1 deg at time 3:12 (53.8%) Frame 84\n\tRightFoot average orientation
+      error 0.1 deg and maximum orientation error 0.6 deg at time 3:20 (58.9%) Frame
+      92\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Wheel 01 (121_02)
@@ -145,22 +169,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

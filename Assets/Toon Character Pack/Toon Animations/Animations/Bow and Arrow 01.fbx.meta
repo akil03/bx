@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 6fbdb8f0411668d43b31efc2b2613ea2
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Bow and Arrow 01 (79_86)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '79_86' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,33 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '79_86':\n\tLeftLowerLeg
+      average position error 38.3 mm and maximum position error 93.7 mm at time 2:10
+      (42.6%) Frame 58\n\tLeftFoot average position error 4.9 mm and maximum position
+      error 23.3 mm at time 2:10 (42.6%) Frame 58\n\tRightLowerLeg average position
+      error 16.4 mm and maximum position error 45.5 mm at time 3:18 (66.1%) Frame
+      90\n\tRightFoot average position error 1.3 mm and maximum position error 5.4
+      mm at time 3:18 (66.1%) Frame 90\n\tLeftUpperArm average position error 15.9
+      mm and maximum position error 36.2 mm at time 2: 8 (41.1%) Frame 56\n\tLeftLowerArm
+      average position error 8.8 mm and maximum position error 33.1 mm at time 2:10
+      (42.6%) Frame 58\n\tLeftHand average position error 5.6 mm and maximum position
+      error 33.8 mm at time 2:10 (42.6%) Frame 58\n\tRightUpperArm average position
+      error 15.9 mm and maximum position error 36.2 mm at time 2: 8 (41.1%) Frame
+      56\n\tRightLowerArm average position error 9.8 mm and maximum position error
+      33.8 mm at time 2:10 (42.6%) Frame 58\n\tRightHand average position error 9.4
+      mm and maximum position error 34.0 mm at time 2:10 (42.6%) Frame 58\n\tHead
+      average position error 20.9 mm and maximum position error 52.7 mm at time 2:
+      5 (38.9%) Frame 53\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Bow and Arrow 01 (79_86)
@@ -145,22 +169,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

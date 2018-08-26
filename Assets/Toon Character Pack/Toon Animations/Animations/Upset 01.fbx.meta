@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 122357618862fa149995ed94de1edf90
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Upset 01 (79_74)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '79_74' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,30 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '79_74':\n\tLeftLowerLeg
+      average position error 0.2 mm and maximum position error 3.1 mm at time 0: 0
+      (0.0%) Frame 0\n\tRightLowerLeg average position error 3.0 mm and maximum position
+      error 3.1 mm at time 0: 1 (0.5%) Frame 1\n\tLeftUpperArm average position error
+      21.2 mm and maximum position error 58.4 mm at time 2:15 (34.1%) Frame 63\n\tLeftLowerArm
+      average position error 10.1 mm and maximum position error 35.2 mm at time 2:18
+      (35.7%) Frame 66\n\tLeftHand average position error 7.5 mm and maximum position
+      error 41.1 mm at time 2:15 (34.1%) Frame 63\n\tRightUpperArm average position
+      error 21.2 mm and maximum position error 58.4 mm at time 2:15 (34.1%) Frame
+      63\n\tRightLowerArm average position error 10.9 mm and maximum position error
+      37.5 mm at time 2:17 (35.1%) Frame 65\n\tRightHand average position error 7.6
+      mm and maximum position error 34.4 mm at time 2:14 (33.5%) Frame 62\n\tHead
+      average position error 27.9 mm and maximum position error 82.6 mm at time 2:13
+      (33.0%) Frame 61\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Upset 01 (79_74)
@@ -145,22 +166,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

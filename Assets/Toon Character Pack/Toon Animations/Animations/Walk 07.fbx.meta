@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 9e674f21b0822bf43ab6260b12ead363
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Walk 07 (120_17)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '120_17' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,30 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '120_17':\n\tLeftLowerLeg
+      average position error 0.6 mm and maximum position error 3.1 mm at time 6: 0
+      (62.3%) Frame 144\n\tRightLowerLeg average position error 0.2 mm and maximum
+      position error 3.1 mm at time 0: 0 (0.0%) Frame 0\n\tLeftUpperArm average position
+      error 20.4 mm and maximum position error 74.9 mm at time 7:12 (77.9%) Frame
+      180\n\tLeftLowerArm average position error 11.5 mm and maximum position error
+      42.2 mm at time 7:16 (79.7%) Frame 184\n\tLeftHand average position error 7.4
+      mm and maximum position error 43.4 mm at time 7:17 (80.1%) Frame 185\n\tRightUpperArm
+      average position error 20.4 mm and maximum position error 74.9 mm at time 7:12
+      (77.9%) Frame 180\n\tRightLowerArm average position error 10.5 mm and maximum
+      position error 42.8 mm at time 7:17 (80.1%) Frame 185\n\tRightHand average position
+      error 7.8 mm and maximum position error 42.6 mm at time 7:17 (80.1%) Frame 185\n\tHead
+      average position error 43.8 mm and maximum position error 56.2 mm at time 3:16
+      (38.1%) Frame 88\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Walk 07 (120_17)
@@ -145,22 +166,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: d9c516026c74e954cbdcbb9e73c361a0
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Kick 01 (121_05)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '121_05' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,30 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '121_05':\n\tLeftLowerLeg
+      average position error 1.1 mm and maximum position error 3.5 mm at time 4: 6
+      (99.0%) Frame 102\n\tRightLowerLeg average position error 2.0 mm and maximum
+      position error 6.4 mm at time 4: 4 (97.1%) Frame 100\n\tLeftUpperArm average
+      position error 19.7 mm and maximum position error 64.3 mm at time 2:10 (56.3%)
+      Frame 58\n\tLeftLowerArm average position error 11.9 mm and maximum position
+      error 49.7 mm at time 2:12 (58.3%) Frame 60\n\tLeftHand average position error
+      9.4 mm and maximum position error 46.6 mm at time 2:12 (58.3%) Frame 60\n\tRightUpperArm
+      average position error 19.7 mm and maximum position error 64.3 mm at time 2:10
+      (56.3%) Frame 58\n\tRightLowerArm average position error 11.9 mm and maximum
+      position error 57.9 mm at time 2:10 (56.3%) Frame 58\n\tRightHand average position
+      error 7.8 mm and maximum position error 57.4 mm at time 2: 9 (55.3%) Frame 57\n\tHead
+      average position error 41.3 mm and maximum position error 60.7 mm at time 2:10
+      (56.3%) Frame 58\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Kick 01 (121_05)
@@ -223,22 +244,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

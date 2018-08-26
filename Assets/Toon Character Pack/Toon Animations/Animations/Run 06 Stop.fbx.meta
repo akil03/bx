@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 17e16fde17c82fd4684b34f1072b984f
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Run 06 Stop (127_19)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '127_19' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,30 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '127_19':\n\tLeftLowerLeg
+      average position error 0.2 mm and maximum position error 3.1 mm at time 0: 0
+      (0.0%) Frame 0\n\tRightLowerLeg average position error 0.2 mm and maximum position
+      error 3.1 mm at time 0: 0 (0.0%) Frame 0\n\tLeftUpperArm average position error
+      32.7 mm and maximum position error 67.9 mm at time 1: 4 (31.8%) Frame 28\n\tLeftLowerArm
+      average position error 12.8 mm and maximum position error 32.1 mm at time 3:16
+      (100.0%) Frame 88\n\tLeftHand average position error 9.6 mm and maximum position
+      error 35.9 mm at time 0:16 (18.2%) Frame 16\n\tRightUpperArm average position
+      error 32.7 mm and maximum position error 67.9 mm at time 1: 4 (31.8%) Frame
+      28\n\tRightLowerArm average position error 16.0 mm and maximum position error
+      42.6 mm at time 0:17 (19.3%) Frame 17\n\tRightHand average position error 10.9
+      mm and maximum position error 51.5 mm at time 1: 0 (27.3%) Frame 24\n\tHead
+      average position error 17.8 mm and maximum position error 48.0 mm at time 0:22
+      (25.0%) Frame 22\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Run 06 Stop (127_19)
@@ -223,22 +244,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

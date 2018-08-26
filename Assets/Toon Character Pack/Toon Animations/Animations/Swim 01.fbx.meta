@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: b84bf5ee011f93c438a05d1f421039bd
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,16 +83,21 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Swim 01 (126_11)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip '126_11' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -102,14 +107,30 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '126_11':\n\tLeftLowerLeg
+      average position error 0.2 mm and maximum position error 3.1 mm at time 0: 0
+      (0.0%) Frame 0\n\tRightLowerLeg average position error 0.2 mm and maximum position
+      error 3.0 mm at time 0: 0 (0.0%) Frame 0\n\tLeftUpperArm average position error
+      10.6 mm and maximum position error 30.5 mm at time 6:17 (44.0%) Frame 161\n\tLeftLowerArm
+      average position error 5.7 mm and maximum position error 14.4 mm at time 1:
+      0 (6.6%) Frame 24\n\tLeftHand average position error 3.3 mm and maximum position
+      error 14.9 mm at time 1: 1 (6.8%) Frame 25\n\tRightUpperArm average position
+      error 10.6 mm and maximum position error 30.5 mm at time 6:17 (44.0%) Frame
+      161\n\tRightLowerArm average position error 6.9 mm and maximum position error
+      26.7 mm at time 6:17 (44.0%) Frame 161\n\tRightHand average position error 5.1
+      mm and maximum position error 20.3 mm at time 11: 5 (73.5%) Frame 269\n\tHead
+      average position error 20.5 mm and maximum position error 52.8 mm at time 6:17
+      (44.0%) Frame 161\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Swim 01 (126_11)
@@ -223,22 +244,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

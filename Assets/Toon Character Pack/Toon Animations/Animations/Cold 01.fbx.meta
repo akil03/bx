@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 4da264d2a5b476142adc3f81307e9327
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,34 +83,60 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Cold 01 (79_68)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
+      in configuration does not match rotation in animation file:\n\t'BVH:LowerBack'
+      : rotation error = 0.843818 deg\n\t'BVH:Spine1' : rotation error = 1.803405
+      deg\n\t'BVH:Neck1' : rotation error = 5.754553 deg\n\t'BVH:LeftFingerBase' :
+      rotation error = 37.347054 deg\n\t'BVH:RightFingerBase' : rotation error = 27.699320
+      deg\n"
     animationImportErrors: 
-    animationImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
-      in configuration does not match rotation in animation file\nCold 01\nClip '79_68'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'BVH:LowerBack'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:Spine1'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:Neck1'
+    animationImportWarnings: "\nClip '79_68' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'BVH:LowerBack' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'BVH:Spine1' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:Neck1'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '79_68':\n\tLeftLowerLeg
+      average position error 0.3 mm and maximum position error 27.7 mm at time 0:
+      0 (0.0%) Frame 0\n\tLeftFoot average position error 0.0 mm and maximum position
+      error 1.7 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position error
+      11.1 mm and maximum position error 16.1 mm at time 9:13 (97.0%) Frame 229\n\tLeftUpperArm
+      average position error 35.7 mm and maximum position error 49.4 mm at time 7:
+      7 (74.2%) Frame 175\n\tLeftLowerArm average position error 28.0 mm and maximum
+      position error 42.0 mm at time 2:22 (29.7%) Frame 70\n\tLeftHand average position
+      error 24.2 mm and maximum position error 40.6 mm at time 3: 2 (31.4%) Frame
+      74\n\tRightUpperArm average position error 35.7 mm and maximum position error
+      49.4 mm at time 7: 7 (74.2%) Frame 175\n\tRightLowerArm average position error
+      25.2 mm and maximum position error 40.0 mm at time 7: 7 (74.2%) Frame 175\n\tRightHand
+      average position error 21.3 mm and maximum position error 38.3 mm at time 5:
+      9 (54.7%) Frame 129\n\tHead average position error 34.2 mm and maximum position
+      error 54.2 mm at time 5: 1 (51.3%) Frame 121\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Cold 01 (79_68)
@@ -146,22 +172,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 21f5b872ae3b93b4db7408aa3b167e9f
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: BVH:Head
@@ -83,33 +83,48 @@ ModelImporter:
     400076: BVH:Spine1
     7400000: Idle 03 Waiting (40_11)
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
+      in configuration does not match rotation in animation file:\n\t'BVH:LowerBack'
+      : rotation error = 0.416282 deg\n"
     animationImportErrors: 
-    animationImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
-      in configuration does not match rotation in animation file\nIdle 03 Waiting\nClip
-      '40_11' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'BVH:Spine1'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:Neck1'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
+    animationImportWarnings: "\nClip '40_11' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'BVH:Spine1' is inbetween humanoid transforms and has
+      rotation animation that will be discarded.\n\t'BVH:Neck1' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'BVH:LeftFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'BVH:RightFingerBase'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip '40_11':\n\tLeftLowerArm
+      average position error 0.5 mm and maximum position error 7.6 mm at time 0: 0
+      (0.0%) Frame 0\n\tRightLowerArm average position error 0.3 mm and maximum position
+      error 8.0 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position error
+      0.1 mm and maximum position error 1.0 mm at time 0: 0 (0.0%) Frame 0\n\tHead
+      average position error 23.8 mm and maximum position error 42.5 mm at time 29:20
+      (59.5%) Frame 716\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 2
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Idle 03 Waiting (40_11)
@@ -145,22 +160,30 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

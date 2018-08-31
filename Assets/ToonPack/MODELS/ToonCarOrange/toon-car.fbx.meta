@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: b8d4b940bc65d4e62912bf5b4df4f3a5
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: BL_wheel
+    100002: body
+    100004: BR_wheel
+    100006: breakLight_L
+    100008: breakLight_R
+    100010: bumperBack
+    100012: bumperFront
+    100014: doorHandles
+    100016: FL_wheel
+    100018: FR_wheel
+    100020: grill
+    100022: licensePlate
+    100024: mirrors
+    100026: muffler
+    100028: polySurface4
+    100030: polySurface5
+    100032: //RootNode
+    100034: wipers
+    400000: BL_wheel
+    400002: body
+    400004: BR_wheel
+    400006: breakLight_L
+    400008: breakLight_R
+    400010: bumperBack
+    400012: bumperFront
+    400014: doorHandles
+    400016: FL_wheel
+    400018: FR_wheel
+    400020: grill
+    400022: licensePlate
+    400024: mirrors
+    400026: muffler
+    400028: polySurface4
+    400030: polySurface5
+    400032: //RootNode
+    400034: wipers
+    2300000: BL_wheel
+    2300002: body
+    2300004: BR_wheel
+    2300006: breakLight_L
+    2300008: breakLight_R
+    2300010: bumperBack
+    2300012: bumperFront
+    2300014: doorHandles
+    2300016: FL_wheel
+    2300018: FR_wheel
+    2300020: grill
+    2300022: licensePlate
+    2300024: muffler
+    2300026: polySurface4
+    2300028: polySurface5
+    2300030: wipers
+    3300000: BL_wheel
+    3300002: body
+    3300004: BR_wheel
+    3300006: breakLight_L
+    3300008: breakLight_R
+    3300010: bumperBack
+    3300012: bumperFront
+    3300014: doorHandles
+    3300016: FL_wheel
+    3300018: FR_wheel
+    3300020: grill
+    3300022: licensePlate
+    3300024: muffler
+    3300026: polySurface4
+    3300028: polySurface5
+    3300030: wipers
+    4300000: bumperFront
+    4300002: grill
+    4300004: FR_wheel
+    4300006: BR_wheel
+    4300008: FL_wheel
+    4300010: wipers
+    4300012: doorHandles
+    4300014: polySurface4
+    4300016: polySurface5
+    4300018: muffler
+    4300020: breakLight_R
+    4300022: licensePlate
+    4300024: breakLight_L
+    4300026: bumperBack
+    4300028: BL_wheel
+    4300030: body
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

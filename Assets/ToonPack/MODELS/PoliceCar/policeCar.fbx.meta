@@ -1,0 +1,117 @@
+fileFormatVersion: 2
+guid: e706a197926104ed09593878126430e8
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: body
+    100002: carMuffler
+    100004: frontGrill
+    100006: leftMirror
+    100008: //RootNode
+    100010: rightMirror
+    100012: roofAntena
+    100014: topSiren
+    100016: wheel_backLeft
+    100018: wheel_backRight
+    100020: wheel_frontLeft
+    100022: wheel_frontRight
+    400000: body
+    400002: carMuffler
+    400004: frontGrill
+    400006: leftMirror
+    400008: //RootNode
+    400010: rightMirror
+    400012: roofAntena
+    400014: topSiren
+    400016: wheel_backLeft
+    400018: wheel_backRight
+    400020: wheel_frontLeft
+    400022: wheel_frontRight
+    2300000: body
+    2300002: carMuffler
+    2300004: frontGrill
+    2300006: leftMirror
+    2300008: rightMirror
+    2300010: roofAntena
+    2300012: topSiren
+    2300014: wheel_backLeft
+    2300016: wheel_backRight
+    2300018: wheel_frontLeft
+    2300020: wheel_frontRight
+    3300000: body
+    3300002: carMuffler
+    3300004: frontGrill
+    3300006: leftMirror
+    3300008: rightMirror
+    3300010: roofAntena
+    3300012: topSiren
+    3300014: wheel_backLeft
+    3300016: wheel_backRight
+    3300018: wheel_frontLeft
+    3300020: wheel_frontRight
+    4300000: body
+    4300002: wheel_backLeft
+    4300004: topSiren
+    4300006: carMuffler
+    4300008: wheel_frontLeft
+    4300010: wheel_backRight
+    4300012: wheel_frontRight
+    4300014: frontGrill
+    4300016: leftMirror
+    4300018: rightMirror
+    4300020: roofAntena
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

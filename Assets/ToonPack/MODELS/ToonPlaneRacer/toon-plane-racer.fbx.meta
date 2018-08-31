@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: b204a5263e15e49c3805e58f3f7b76fc
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: backWing
+    100002: body1
+    100004: FLWheel
+    100006: FLWheelHolder
+    100008: FRWheel
+    100010: FRWheelHolder
+    100012: mainWing
+    100014: mainWing1
+    100016: muffler
+    100018: pCylinder1
+    100020: polySurface1
+    100022: polySurface13
+    100024: polySurface15
+    100026: polySurface9
+    100028: propeller
+    100030: RWheel
+    100032: //RootNode
+    100034: wheelHolderBack
+    400000: backWing
+    400002: body1
+    400004: FLWheel
+    400006: FLWheelHolder
+    400008: FRWheel
+    400010: FRWheelHolder
+    400012: mainWing
+    400014: mainWing1
+    400016: muffler
+    400018: pCylinder1
+    400020: polySurface1
+    400022: polySurface13
+    400024: polySurface15
+    400026: polySurface9
+    400028: propeller
+    400030: RWheel
+    400032: //RootNode
+    400034: wheelHolderBack
+    2300000: backWing
+    2300002: body1
+    2300004: FLWheel
+    2300006: FLWheelHolder
+    2300008: FRWheel
+    2300010: FRWheelHolder
+    2300012: mainWing
+    2300014: mainWing1
+    2300016: muffler
+    2300018: polySurface15
+    2300020: propeller
+    2300022: RWheel
+    2300024: wheelHolderBack
+    3300000: backWing
+    3300002: body1
+    3300004: FLWheel
+    3300006: FLWheelHolder
+    3300008: FRWheel
+    3300010: FRWheelHolder
+    3300012: mainWing
+    3300014: mainWing1
+    3300016: muffler
+    3300018: polySurface15
+    3300020: propeller
+    3300022: RWheel
+    3300024: wheelHolderBack
+    4300000: mainWing
+    4300002: mainWing1
+    4300004: polySurface15
+    4300006: body1
+    4300008: muffler
+    4300010: FLWheel
+    4300012: FRWheel
+    4300014: FRWheelHolder
+    4300016: FLWheelHolder
+    4300018: RWheel
+    4300020: wheelHolderBack
+    4300022: backWing
+    4300024: propeller
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

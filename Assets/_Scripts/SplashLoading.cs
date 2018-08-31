@@ -13,8 +13,6 @@ public class SplashLoading : MonoBehaviour {
 
         if (isSplashPage)
             StartCoroutine(LoadMainMenu());
-        
-
     }
 	
 	// Update is called once per frame

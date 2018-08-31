@@ -315,8 +315,6 @@ public class SnakeAI : MonoBehaviour
 		} catch {
 			dirToExclude.Add (-transform.up);
 		}
-			
-
 		return dirToExclude;
 	}
 
@@ -399,7 +397,6 @@ public class SnakeAI : MonoBehaviour
 					if (pieceToCheck.collectingSnake == snake) {
 						break;
 					}
-
 					if (pieceToCheck.collectingSnake != snake) {
 						possibleEnemyTailGroundPieces.Add (pieceToCheck);
 						possibleDirections.Add (-transform.up);

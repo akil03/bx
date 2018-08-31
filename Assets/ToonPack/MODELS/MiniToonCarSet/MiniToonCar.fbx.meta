@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 08342f480a7594bf6a8319aba5acbc83
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Body
+    100002: leftBreakLight
+    100004: leftLight
+    100006: License
+    100008: //RootNode
+    100010: Mirrors
+    100012: MirrorsTransform
+    100014: Muffler
+    100016: polySurface108
+    100018: polySurface109
+    100020: polySurface110
+    100022: polySurface111
+    100024: rightBreakLight
+    100026: rightLight
+    100028: WheelBackLeft
+    100030: WheelBackRight
+    100032: WheelFrontLeft
+    100034: WheelFrontRight
+    400000: Body
+    400002: leftBreakLight
+    400004: leftLight
+    400006: License
+    400008: //RootNode
+    400010: Mirrors
+    400012: MirrorsTransform
+    400014: Muffler
+    400016: polySurface108
+    400018: polySurface109
+    400020: polySurface110
+    400022: polySurface111
+    400024: rightBreakLight
+    400026: rightLight
+    400028: WheelBackLeft
+    400030: WheelBackRight
+    400032: WheelFrontLeft
+    400034: WheelFrontRight
+    2300000: Body
+    2300002: leftBreakLight
+    2300004: leftLight
+    2300006: License
+    2300008: Muffler
+    2300010: polySurface110
+    2300012: polySurface111
+    2300014: rightBreakLight
+    2300016: rightLight
+    2300018: WheelBackLeft
+    2300020: WheelBackRight
+    2300022: WheelFrontLeft
+    2300024: WheelFrontRight
+    3300000: Body
+    3300002: leftBreakLight
+    3300004: leftLight
+    3300006: License
+    3300008: Muffler
+    3300010: polySurface110
+    3300012: polySurface111
+    3300014: rightBreakLight
+    3300016: rightLight
+    3300018: WheelBackLeft
+    3300020: WheelBackRight
+    3300022: WheelFrontLeft
+    3300024: WheelFrontRight
+    4300000: Body
+    4300002: WheelBackLeft
+    4300004: leftBreakLight
+    4300006: License
+    4300008: WheelFrontLeft
+    4300010: WheelBackRight
+    4300012: WheelFrontRight
+    4300014: Muffler
+    4300016: rightLight
+    4300018: leftLight
+    4300020: rightBreakLight
+    4300022: polySurface110
+    4300024: polySurface111
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

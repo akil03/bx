@@ -188,9 +188,6 @@ public class Snake : MonoBehaviour
         {
             if (PhotonNetwork.inRoom)
             {
-                
-                
-
                 if (isLocal)
                 {
                     //NetworkMovement ();
@@ -202,21 +199,13 @@ public class Snake : MonoBehaviour
                     if (_networkSnake)
                     {
                         //Movement();
-
                         MoveToDirection(_networkSnake.MoveDirection);
-
-                      
                         transform.position = Vector3.Lerp(transform.position, _networkSnake.realPosition, 0.25f);
-                        
                     }
                 }
-
             }
             else
                 Movement();
-
-
-
         }
     }
     void GetKeyboardInput()
@@ -224,7 +213,6 @@ public class Snake : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             SwipeHandler.instance.lastSwipeDirection = SwipeHandler.SwipeDirection.down;
-
             if (snakeMeshContainer.AnimController)
                 snakeMeshContainer.AnimController.GoRight();
         }
@@ -258,14 +246,11 @@ public class Snake : MonoBehaviour
         {
             //if (nextMoveDirection != -transform.up)
             //MoveToDirection (transform.up);
-
             if (InputDirection == transform.up)
             {
                 isInputRecieved = false;
                 return;
             }
-
-
             InputDirection = transform.up;
         }
 
@@ -276,7 +261,6 @@ public class Snake : MonoBehaviour
                 isInputRecieved = false;
                 return;
             }
-
             InputDirection = -transform.up;
         }
 
@@ -287,7 +271,6 @@ public class Snake : MonoBehaviour
                 isInputRecieved = false;
                 return;
             }
-
             InputDirection = -transform.right;
         }
 
@@ -304,28 +287,19 @@ public class Snake : MonoBehaviour
 
     void Movement()
     {
-
         GetKeyboardInput();
-
         GetTouchInput();
-
         if (isInputRecieved)
         {
             print("input");
             MoveToDirection(InputDirection);
         }
-        
     }
-
-   
-    
 
     void NetworkMovement()
     {
         GetKeyboardInput();
-
         GetTouchInput();
-
         if (_networkSnake.isMine())
         {
             _networkSnake.realPosition = transform.position;
@@ -348,8 +322,6 @@ public class Snake : MonoBehaviour
             //    groundPieceToReach = GroundSpawner.instance.spawnedGroundPieces[_networkSnake.TargetGridPosition];
                 SyncTrail();
             //    SyncFill();
-                
-
             //}
             //else
             //{
@@ -364,7 +336,6 @@ public class Snake : MonoBehaviour
     GroundPiece lastSyncedPiece;
     public void MoveToDirection(Vector3 vector)
     {
-
         if (PhotonNetwork.inRoom)
         {
             if (isLocal)
@@ -404,7 +375,6 @@ public class Snake : MonoBehaviour
     public bool isGameStarted;
     void CheckBuggyFreeze()
     {
-
         if (transform.position == originalPos && isDead && !isGameStarted)
             return;
 
@@ -425,8 +395,6 @@ public class Snake : MonoBehaviour
             isFrozen = true;
             SnakesSpawner.instance.RespawnSnake(this);
         }
-
-
     }
 
 
@@ -445,11 +413,9 @@ public class Snake : MonoBehaviour
     public List<GroundPiece> ConvertIntToPieces(List<int> GroundIntList)
     {
         List<GroundPiece> GroundList = new List<GroundPiece>();
-
         foreach (int i in GroundIntList)
         {
             GroundList.Add(GroundSpawner.instance.spawnedGroundPieces[i]);
-
         }
 
 
@@ -461,21 +427,16 @@ public class Snake : MonoBehaviour
         if (trailCount == _networkSnake.TrailList.Count)
             return;
 
-
         foreach (GroundPiece GP in tailGroundPieces)
         {
-
             GP.RemoveCollectingSnake(this);
-
         }
 
         tailGroundPieces = ConvertIntToPieces(_networkSnake.TrailList);
 
         foreach (GroundPiece GP in tailGroundPieces.ToList())
         {
-
             GP.SetCollectingNetworkSnake(this);
-
         }
         trailCount = _networkSnake.TrailList.Count;
     }
@@ -484,9 +445,7 @@ public class Snake : MonoBehaviour
     {
         if (fillCount == _networkSnake.OwnedList.Count)
             return;
-
         ownedGroundPieces = ConvertIntToPieces(_networkSnake.OwnedList);
-
         foreach (GroundPiece GP in ownedGroundPieces.ToList())
         {
             GP.SetNetworkSnakeOwner(this);
@@ -518,12 +477,10 @@ public class Snake : MonoBehaviour
                 //currentHP = 0;
                 haveToDie = true;
                 ReasonDeath = name + " decided to hit the wall !!";
-
                 if (!PlayerPrefs.HasKey("TutorialComplete") && !isBot)
                     GUIManager.instance.ShowTutorialLog(1, "Do not hit the wall !!", 3);
                 else
                     GUIManager.instance.ShowLog(name + " decided to hit the wall !!", 3);
-
             }
 
             if (currentHP == 0)
@@ -545,28 +502,21 @@ public class Snake : MonoBehaviour
             }
 
             groundPieceToReach = GetNewGroundPieceToReach();
-
             previousMoveDirection = currentMoveDirection;
             currentMoveDirection = nextMoveDirection;
-
             Vector3 targetPos = groundPieceToReach.transform.position;
             targetPos.z = transform.position.z;
-
             while (transform.position != targetPos)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
                 yield return new WaitForEndOfFrame();
             }
-
             CheckReachedGroundPiece(groundPieceToReach);
-
             if (isBot)
             {
                 AI.Notify(groundPieceToReach, isCollectingNewGroundPieces);
             }
-
             lastReachedGroundPiece = groundPieceToReach;
-
             yield return new WaitForEndOfFrame();
         }
     }
@@ -584,49 +534,37 @@ public class Snake : MonoBehaviour
             else
                 KillSnake(pieceToCheck.collectingSnake);
         }
-
         if (pieceToCheck.snakeOwener != this)
         {
-
             if (isCollectingNewGroundPieces == false)
             {
                 isCollectingNewGroundPieces = true;
-
                 AI.Reset();
             }
-
             if (PhotonNetwork.inRoom && isLocal)
             {
                 PhotonView.Get(_networkSnake.gameObject).RPC("MakeTrail", PhotonTargets.AllViaServer, pieceToCheck.indexInGrid);
             }
             else
                 pieceToCheck.SetCollectingSnake(this);
-
-        }
+            }
         else
         {
-
             if (isCollectingNewGroundPieces)
             {
-
                 if (PhotonNetwork.inRoom && isLocal)
                 {
                     PhotonView.Get(_networkSnake.gameObject).RPC("MakeFill", PhotonTargets.AllViaServer);
                     return;
                 }
-
-
                 List<GroundPiece> newOwnedGroundPieces = new List<GroundPiece>();
-
                 foreach (GroundPiece groundPiece in tailGroundPieces)
                 {
                     newOwnedGroundPieces.Add(groundPiece);
                     groundPiece.SetSnakeOwner(this);
                     isFill = true;
                 }
-
                 GroundPiece[] groundPiecesToCheck = Poly.GetGroundPiecesToCheck(this);
-
                 foreach (GroundPiece piece in groundPiecesToCheck)
                 {
                     piece.tempHasToBeChecked = true;
@@ -640,19 +578,16 @@ public class Snake : MonoBehaviour
                         piece.ownerIDForCheck = 0;
                     }
                 }
-
                 Poly.FloodFill(groundPiecesToCheck[0], 1, 2);
 
                 foreach (GroundPiece piece in groundPiecesToCheck)
                 {
-
                     if (piece.ownerIDForCheck == 1)
                     {
                         newOwnedGroundPieces.Add(piece);
                         piece.SetSnakeOwner(this);
                         isFill = true;
                     }
-
                     piece.tempHasToBeChecked = false;
                 }
 
@@ -687,11 +622,8 @@ public class Snake : MonoBehaviour
 
     public GroundPiece GetNewGroundPieceToReach()
     {
-
         GroundPiece piece = groundPieceToReach;
-
         //		try {
-
         if (nextMoveDirection == transform.up)
         {
             piece = lastReachedGroundPiece.column.groundPieces[lastReachedGroundPiece.indexInColumn - 1];

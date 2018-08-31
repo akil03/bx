@@ -206,7 +206,6 @@ namespace Facebook.Unity.Example
                     this.labelStyle = new GUIStyle(GUI.skin.label);
                     this.labelStyle.fontSize = this.FontSize;
                 }
-
                 return this.labelStyle;
             }
         }

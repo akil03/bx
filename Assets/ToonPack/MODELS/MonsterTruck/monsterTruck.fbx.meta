@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: 6e86e9a991d704cff8122c1730e1d84b
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Antena
+    100002: backBumper
+    100004: body1
+    100006: bumperLights
+    100008: F_axel
+    100010: FL_wheel
+    100012: FR_wheel
+    100014: guard
+    100016: //RootNode
+    100018: muffler1
+    100020: panels
+    100022: pCube17
+    100024: R_axel
+    100026: RL_wheel
+    100028: rollBars1
+    100030: RR_wheel
+    100032: tinyLightsTop
+    100034: topLight
+    400000: Antena
+    400002: backBumper
+    400004: body1
+    400006: bumperLights
+    400008: F_axel
+    400010: FL_wheel
+    400012: FR_wheel
+    400014: guard
+    400016: //RootNode
+    400018: muffler1
+    400020: panels
+    400022: pCube17
+    400024: R_axel
+    400026: RL_wheel
+    400028: rollBars1
+    400030: RR_wheel
+    400032: tinyLightsTop
+    400034: topLight
+    2300000: Antena
+    2300002: backBumper
+    2300004: body1
+    2300006: bumperLights
+    2300008: F_axel
+    2300010: FL_wheel
+    2300012: FR_wheel
+    2300014: guard
+    2300016: muffler1
+    2300018: panels
+    2300020: pCube17
+    2300022: R_axel
+    2300024: RL_wheel
+    2300026: rollBars1
+    2300028: RR_wheel
+    2300030: tinyLightsTop
+    2300032: topLight
+    3300000: Antena
+    3300002: backBumper
+    3300004: body1
+    3300006: bumperLights
+    3300008: F_axel
+    3300010: FL_wheel
+    3300012: FR_wheel
+    3300014: guard
+    3300016: muffler1
+    3300018: panels
+    3300020: pCube17
+    3300022: R_axel
+    3300024: RL_wheel
+    3300026: rollBars1
+    3300028: RR_wheel
+    3300030: tinyLightsTop
+    3300032: topLight
+    4300000: FL_wheel
+    4300002: body1
+    4300004: F_axel
+    4300006: R_axel
+    4300008: topLight
+    4300010: RL_wheel
+    4300012: FR_wheel
+    4300014: RR_wheel
+    4300016: guard
+    4300018: backBumper
+    4300020: Antena
+    4300022: pCube17
+    4300024: bumperLights
+    4300026: muffler1
+    4300028: rollBars1
+    4300030: tinyLightsTop
+    4300032: panels
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

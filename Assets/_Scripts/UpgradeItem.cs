@@ -13,6 +13,8 @@ public class UpgradeItem : MonoBehaviour
     public WeaponsManager.Weapon selectedweapon;
 
     public UpgradeChecker CheckWindow;
+
+    public bool isDebug;
     // Use this for initialization
     void Start()
     {
@@ -25,6 +27,15 @@ public class UpgradeItem : MonoBehaviour
             energyCostTxt.text = selectedweapon.Cost;
         }
         AssignValues();
+
+
+
+        if (isDebug)
+        {
+            CheckWindow.item = this;
+            CheckWindow.CheckBuy();
+            CheckWindow.Use();
+        }
     }
 
     // Update is called once per frame

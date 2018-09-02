@@ -39,7 +39,8 @@ public class AccountDetails : MonoBehaviour
                 playerData.displayName = accountDetails.displayName;
                 if (!firstLoad)
                 {
-                    SetUI();
+                    Save(Gold: 50000);
+                    SetUI();                   
                     UpgradeItem[] upgradeItems = FindObjectsOfType<UpgradeItem>();
                     foreach (var item in upgradeItems)
                     {

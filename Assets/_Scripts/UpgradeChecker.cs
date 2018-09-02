@@ -9,10 +9,12 @@ public class UpgradeChecker : MonoBehaviour {
     public Image WeaponImg;
 	public Text heading, prefix, cost, upgradeValue,descriptionTxt,energyTxt,cooldownTxt;
 	public Button upgradebutton,useBtn;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

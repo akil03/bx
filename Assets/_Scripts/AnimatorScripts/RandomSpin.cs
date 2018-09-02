@@ -25,8 +25,11 @@ public class RandomSpin : MonoBehaviour {
 		float rand = Random.Range (minSpin, MaxSpin);
 		spinTime = Random.Range (0.5f, 1.5f);
         targetRotation = new Vector3 (0, rand, 0);
-        if(isWorld)
-            targetRotation = new Vector3(90,Random.Range(minSpin, MaxSpin),Random.Range(minSpin, MaxSpin));
+        if(isWorld){
+            spinTime = Random.Range(2f, 4f);
+            targetRotation = new Vector3(90, Random.Range(minSpin, MaxSpin), Random.Range(minSpin, MaxSpin));
+        }
+           
 		transform.DOLocalRotate (targetRotation, spinTime , RotateMode.Fast).SetEase (EaseType);
 		Invoke ("Spin", spinTime + Random.Range (0.0f, 1.0f));
 	}

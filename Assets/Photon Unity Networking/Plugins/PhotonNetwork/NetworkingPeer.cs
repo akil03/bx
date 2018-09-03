@@ -243,7 +243,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
     public const string NameServerHost = "ns.exitgames.com";
 
     /// <summary>Name Server for HTTP connections to the Photon Cloud. Includes prefix and port.</summary>
-    public const string NameServerHttp = "http://ns.exitgamescloud.com:80/photon/n";
+    public const string NameServerHttp = "https://ns.exitgamescloud.com:80/photon/n";
 
     /// <summary>Name Server port per protocol (the UDP port is different than TCP, etc).</summary>
     private static readonly Dictionary<ConnectionProtocol, int> ProtocolToNameServerPort = new Dictionary<ConnectionProtocol, int>() { { ConnectionProtocol.Udp, 5058 }, { ConnectionProtocol.Tcp, 4533 }, { ConnectionProtocol.WebSocket, 9093 }, { ConnectionProtocol.WebSocketSecure, 19093 } }; //, { ConnectionProtocol.RHttp, 6063 } };

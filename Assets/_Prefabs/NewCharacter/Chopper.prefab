@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 4771141945266652}
   - component: {fileID: 33025894085889228}
   - component: {fileID: 23626781922250310}
+  - component: {fileID: 114005888666568030}
   m_Layer: 0
   m_Name: Propeller
   m_TagString: Untagged
@@ -782,7 +783,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1002240452793314}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4a468380f8d1f439681afab944539c6c, type: 2}
   m_CullingMode: 0
@@ -793,6 +794,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114005888666568030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1764770792845972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8308069047f7678498151ba15266934a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Direction: {x: 0, y: 10, z: 0}
+  speed: 20
 --- !u!114 &114600300404852002
 MonoBehaviour:
   m_ObjectHideFlags: 1

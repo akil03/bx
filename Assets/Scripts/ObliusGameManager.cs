@@ -78,7 +78,13 @@ public class ObliusGameManager : MonoBehaviour
 
     private void MatchFound(MatchFoundMessage obj)
     {
-        PhotonNetwork.JoinOrCreateRoom(obj.MatchId, new RoomOptions { maxPlayers = (byte)maxplayers }, TypedLobby.Default);
+        //RoomOptions roomOptions = new RoomOptions();
+        //roomOptions.MaxPlayers = (byte)maxplayers;
+        //roomOptions.EmptyRoomTtl = 0;
+        //PhotonNetwork.JoinOrCreateRoom(obj.MatchId, roomOptions, TypedLobby.Default);
+
+        print("Room Name: " + obj.MatchId);
+        PhotonNetwork.JoinOrCreateRoom(obj.MatchId, new RoomOptions() { MaxPlayers = (byte)2, IsVisible = false, EmptyRoomTtl = 0 }, TypedLobby.Default);
     }
 
 
@@ -398,10 +404,20 @@ public class ObliusGameManager : MonoBehaviour
 
     IEnumerator WaitForPlayers()
     {
-        while (PhotonNetwork.room.PlayerCount != PhotonNetwork.room.MaxPlayers)
+        while(PhotonNetwork.room==null)
         {
             yield return null;
         }
+        print("inside room: "+PhotonNetwork.CloudRegion.ToString());
+
+
+        while (PhotonNetwork.room.PlayerCount != PhotonNetwork.room.MaxPlayers)
+        {
+            print(PhotonNetwork.room.PlayerCount);
+            yield return null;
+        }
+
+        print("players in");
         _ShowFindingMatchScreen(PhotonNetwork.player.ID);
     }
 

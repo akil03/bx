@@ -178,7 +178,7 @@ public class ChallengeActor : MonoBehaviour
             }
             else
             {
-                PhotonNetwork.CreateRoom(opponentId.value, new RoomOptions() { MaxPlayers = (byte)2, IsVisible = false }, TypedLobby.Default);
+                PhotonNetwork.CreateRoom(opponentId.value, new RoomOptions() { MaxPlayers = (byte)2, IsVisible = false, EmptyRoomTtl=0 }, TypedLobby.Default);
             }
             print("Connected to master!");
         }

@@ -115,7 +115,7 @@ public class LeaderboardGUI : MonoBehaviour
 
     IEnumerator LoadImage(string id)
     {
-        WWW www = new WWW("http://graph.facebook.com/" + id + "/picture?width=100&height=100");
+        WWW www = new WWW("https://graph.facebook.com/" + id + "/picture?width=100&height=100");
         yield return www;
         if (www.texture != null)
             sprite.sprite = Sprite.Create(www.texture, new Rect(0, 0, 100, 100), Vector2.zero);

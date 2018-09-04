@@ -40,6 +40,7 @@ public class ObliusGameManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         instance = this;
+        PlayerPrefs.DeleteKey("PUNCloudBestRegion");
     }
 
     void Start()

@@ -339,6 +339,10 @@ public class ObliusGameManager : MonoBehaviour
         GUIManager.instance.ShowInGameGUI();
         InGameGUI.instance.startTime = Time.time;
 
+        ExitGames.Client.Photon.Hashtable playerName = new ExitGames.Client.Photon.Hashtable();
+        playerName.Add("player" + id, name);
+        PhotonNetwork.room.SetCustomProperties(playerName);
+
         //PowerUpManager.instance.StopSpawn ();
 
 

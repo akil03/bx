@@ -200,7 +200,7 @@ public class Snake : MonoBehaviour
                     {
                         //Movement();
                         MoveToDirection(_networkSnake.MoveDirection);
-                        transform.position = Vector3.Lerp(transform.position, _networkSnake.realPosition, 0.25f);
+                        transform.position = Vector3.Lerp(transform.position, _networkSnake.realPosition, speed*Time.deltaTime*3);
                     }
                 }
             }
@@ -314,7 +314,7 @@ public class Snake : MonoBehaviour
 
         if (isInputRecieved)
         {
-            PhotonView.Get(_networkSnake.gameObject).RPC("SetMovementDirection", PhotonTargets.AllViaServer, InputDirection);
+            PhotonView.Get(_networkSnake.gameObject).RPC("SetMovementDirection", PhotonTargets.All, InputDirection);
             //if (!_networkSnake.isMine())
             //{
             //    transform.position = _networkSnake.realPosition;
@@ -543,7 +543,7 @@ public class Snake : MonoBehaviour
             }
             if (PhotonNetwork.inRoom && isLocal)
             {
-                PhotonView.Get(_networkSnake.gameObject).RPC("MakeTrail", PhotonTargets.AllViaServer, pieceToCheck.indexInGrid);
+                PhotonView.Get(_networkSnake.gameObject).RPC("MakeTrail", PhotonTargets.All, pieceToCheck.indexInGrid);
             }
             else
                 pieceToCheck.SetCollectingSnake(this);
@@ -554,7 +554,7 @@ public class Snake : MonoBehaviour
             {
                 if (PhotonNetwork.inRoom && isLocal)
                 {
-                    PhotonView.Get(_networkSnake.gameObject).RPC("MakeFill", PhotonTargets.AllViaServer);
+                    PhotonView.Get(_networkSnake.gameObject).RPC("MakeFill", PhotonTargets.All);
                     return;
                 }
                 List<GroundPiece> newOwnedGroundPieces = new List<GroundPiece>();
@@ -743,7 +743,7 @@ public class Snake : MonoBehaviour
 
             if (PhotonNetwork.inRoom && !isNetworkKill && isLocal)
             {
-                PhotonView.Get(targetSnake._networkSnake.gameObject).RPC("KillPlayer", PhotonTargets.AllViaServer);
+                PhotonView.Get(targetSnake._networkSnake.gameObject).RPC("KillPlayer", PhotonTargets.All);
                 targetSnake._networkSnake.shouldTransmit = false;
                 isNetworkKill = true;
                 Invoke("EnableNetworkKill", 2);
@@ -1015,7 +1015,7 @@ public class Snake : MonoBehaviour
 
     void NetworkGameOver()
     {
-        PhotonView.Get(Server.instance.gameObject).RPC("GameOver", PhotonTargets.AllViaServer, PhotonView.Get(_networkSnake.gameObject).viewID, ReasonDeath);
+        PhotonView.Get(Server.instance.gameObject).RPC("GameOver", PhotonTargets.All, PhotonView.Get(_networkSnake.gameObject).viewID, ReasonDeath);
     }
 
 

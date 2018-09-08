@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class PlayerInfo : MonoBehaviour
 {
     public int PlayerNo, Lives, MaxHP, MeshType, TileType, ColorType;
@@ -136,7 +136,7 @@ public class PlayerInfo : MonoBehaviour
                 {
                     trailListJson = "";
                     TrailList.Clear();
-                    
+
                     foreach (var g in GroundSpawner.instance.spawnedGroundPieces)
                     {
                         if (g.collectingSnake == Player)
@@ -273,7 +273,7 @@ public class PlayerInfo : MonoBehaviour
     }
 
     [PunRPC]
-    public void SetMovementDirection(Vector3 vector, Vector3 turnPosition,int currentGrid, int targetGrid, List<int> trailList, List<int> ownedList)
+    public void SetMovementDirection(Vector3 vector, Vector3 turnPosition, int currentGrid, int targetGrid, List<int> trailList, List<int> ownedList)
     {
         Player.nextMoveDirection = vector * Player.movementDirection;
         Player.transform.position = turnPosition;
@@ -421,5 +421,9 @@ public class PlayerInfo : MonoBehaviour
     {
         PhotonNetwork.Disconnect();
     }
+
+    //void OnPhotonCustomRoomPropertiesChanged(Hashtable propertiesThatChanged){
+    //    propertiesThatChanged[]
+    //}
 
 }

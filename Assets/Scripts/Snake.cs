@@ -200,7 +200,7 @@ public class Snake : MonoBehaviour
                     {
                         //Movement();
                         MoveToDirection(_networkSnake.MoveDirection);
-                        transform.position = Vector3.Lerp(transform.position, _networkSnake.realPosition, speed*Time.deltaTime*3);
+                        transform.position = Vector3.Lerp(transform.position, _networkSnake.realPosition, 0.25f);
                     }
                 }
             }
@@ -315,6 +315,7 @@ public class Snake : MonoBehaviour
         if (isInputRecieved)
         {
             PhotonView.Get(_networkSnake.gameObject).RPC("SetMovementDirection", PhotonTargets.All, InputDirection);
+            PhotonNetwork.SendOutgoingCommands();
             //if (!_networkSnake.isMine())
             //{
             //    transform.position = _networkSnake.realPosition;
@@ -486,7 +487,7 @@ public class Snake : MonoBehaviour
             if (currentHP == 0)
             {
                 haveToDie = true;
-                ReasonDeath = name + " got hit pretty badly !!";
+               ReasonDeath = name + " got hit pretty badly !!";
                 GUIManager.instance.ShowLog(name + " got hit pretty badly !!", 3);
             }
             if (haveToDie)
@@ -544,6 +545,7 @@ public class Snake : MonoBehaviour
             if (PhotonNetwork.inRoom && isLocal)
             {
                 PhotonView.Get(_networkSnake.gameObject).RPC("MakeTrail", PhotonTargets.All, pieceToCheck.indexInGrid);
+                PhotonNetwork.SendOutgoingCommands();
             }
             else
                 pieceToCheck.SetCollectingSnake(this);
@@ -555,6 +557,7 @@ public class Snake : MonoBehaviour
                 if (PhotonNetwork.inRoom && isLocal)
                 {
                     PhotonView.Get(_networkSnake.gameObject).RPC("MakeFill", PhotonTargets.All);
+                    PhotonNetwork.SendOutgoingCommands();
                     return;
                 }
                 List<GroundPiece> newOwnedGroundPieces = new List<GroundPiece>();
@@ -744,6 +747,7 @@ public class Snake : MonoBehaviour
             if (PhotonNetwork.inRoom && !isNetworkKill && isLocal)
             {
                 PhotonView.Get(targetSnake._networkSnake.gameObject).RPC("KillPlayer", PhotonTargets.All);
+               // PhotonNetwork.SendOutgoingCommands();
                 targetSnake._networkSnake.shouldTransmit = false;
                 isNetworkKill = true;
                 Invoke("EnableNetworkKill", 2);
@@ -888,6 +892,7 @@ public class Snake : MonoBehaviour
                 }
                 //tailGroundPieces.Clear ();
                 PhotonView.Get(_networkSnake).RPC("ClearTrail", PhotonTargets.Others);
+                PhotonNetwork.SendOutgoingCommands();
                 //snakeMeshContainer.transform.DOScale (Vector3.one, 0.4f).SetEase (Ease.Unset);
                 if (isLocal)
                 {
@@ -1015,7 +1020,8 @@ public class Snake : MonoBehaviour
 
     void NetworkGameOver()
     {
-        PhotonView.Get(Server.instance.gameObject).RPC("GameOver", PhotonTargets.All, PhotonView.Get(_networkSnake.gameObject).viewID, ReasonDeath);
+        PhotonView.Get(Server.instance.gameObject).RPC("GameOver", PhotonTargets.AllViaServer, PhotonView.Get(_networkSnake.gameObject).viewID, ReasonDeath);
+        PhotonNetwork.SendOutgoingCommands();
     }
 
 

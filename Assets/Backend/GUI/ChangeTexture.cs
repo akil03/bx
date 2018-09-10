@@ -11,6 +11,7 @@ public class ChangeTexture : MonoBehaviour
 	public void ShowType1()
 	{
 		Op (button1,button2);
+        ChallengeActor.challengeState = "open";
 	}
 
 	public void ShowType2()

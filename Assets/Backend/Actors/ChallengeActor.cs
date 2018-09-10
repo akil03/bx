@@ -17,6 +17,7 @@ public class ChallengeActor : MonoBehaviour
     public EventObject declined;
     public BoolObject occupied;
     string cid;
+    public static string challengeState = "open";
     [SerializeField] GameObject homePage;
 
     void Start()
@@ -37,6 +38,7 @@ public class ChallengeActor : MonoBehaviour
 
     public void Create()
     {
+        challengeState = "busy";
         print("creating room");
         new CreateChallengeRequest()
             .SetChallengeShortCode("play")
@@ -131,6 +133,7 @@ public class ChallengeActor : MonoBehaviour
             }
             else
             {
+                occupied.value = false;
                 print("Decline challenge success!");
             }
             print(response.JSONString);
@@ -171,7 +174,8 @@ public class ChallengeActor : MonoBehaviour
     public void OnConnectedToMaster()
     {
         if (challengeMode.value)
-        {
+        {   
+            SnakesSpawner.instance.KillAllSnakes();
             if (challenge.data != null)
             {
                 PhotonNetwork.JoinRoom(challenge.data.challenge.challenged[0].id);
@@ -186,6 +190,7 @@ public class ChallengeActor : MonoBehaviour
 
     public void JoinedRoom()
     {
+        challengeState = "busy";
         if (challengeMode.value)
         {
             if (challenge.data != null)
@@ -228,20 +233,24 @@ public class ChallengeActor : MonoBehaviour
 
     public void CanAcceptChallenge()
     {
-        if (ObliusGameManager.instance.isFinding)
+        
+        if (ObliusGameManager.instance.isFinding||challengeState != "open")
         {
             Decline();
             return;
         }
 
 
-        if (occupied.value)
+        if (occupied.value){
             DeclineOther();
+        }
+            
     }
 
     public void SetOccupiedStatus(bool val)
     {
         occupied.value = val;
+
     }
 
 

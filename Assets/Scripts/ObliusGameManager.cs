@@ -409,6 +409,8 @@ public class ObliusGameManager : MonoBehaviour
 
     IEnumerator WaitForPlayers()
     {
+        SnakesSpawner.instance.KillAllSnakes();
+
         while(PhotonNetwork.room==null)
         {
             yield return null;

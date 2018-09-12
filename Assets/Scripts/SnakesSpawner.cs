@@ -96,7 +96,12 @@ public class SnakesSpawner : MonoBehaviour
         }
         catch
         {
-            print("buggy snake");
+            Snake[] temp = GameObject.FindObjectsOfType<Snake>();
+            foreach (Snake s in temp)
+            {
+                s.ForceDie();
+            }
+            spawnedSnakes.Clear();
         }
     }
 

@@ -240,8 +240,11 @@ public class GUIManager : MonoBehaviour
         currentPage = pageNo;
         ObliusGameManager.instance.gameState = ObliusGameManager.GameState.menu;
 
-        if (pageNo == 3)
+        if (pageNo == 3){
+            ChallengeActor.challengeState = "open";
             SnakesSpawner.instance.ShowSelectedCharacter();
+        }
+            
 
         if (pageNo < 6)
         {

@@ -300,7 +300,7 @@ public class PlayerInfo : MonoBehaviour
 
     }
 
-    [PunRPC]
+  //  [PunRPC]
     public void MakeTrail(int index)
     {
 
@@ -308,7 +308,10 @@ public class PlayerInfo : MonoBehaviour
 
     }
 
-    [PunRPC]
+ 
+
+
+ //   [PunRPC]
     public void MakeFill()
     {
 
@@ -426,4 +429,29 @@ public class PlayerInfo : MonoBehaviour
     //    propertiesThatChanged[]
     //}
 
+    public void UpdateTrail(int index, int playerNo)
+    {
+        Hashtable trailList = new Hashtable();
+        trailList.Add("player" + playerNo+"trail", index);
+        PhotonNetwork.room.SetCustomProperties(trailList, null, true);
+    }
+
+    public void UpdateFill(int index, int playerNo)
+    {
+        Hashtable fillList = new Hashtable();
+        fillList.Add("player" + playerNo, index);
+        PhotonNetwork.room.SetCustomProperties(fillList, null, true);
+    }
+
+    public void OnPhotonCustomRoomPropertiesChanged(Hashtable propertiesThatChanged)
+    {
+        if(propertiesThatChanged.ContainsKey("player1trail")==true){
+            
+        }
+
+        if (propertiesThatChanged.ContainsKey("player2trail") == true)
+        {
+
+        }
+    }
 }

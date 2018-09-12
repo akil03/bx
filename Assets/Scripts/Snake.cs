@@ -200,7 +200,7 @@ public class Snake : MonoBehaviour
                     {
                         //Movement();
                         MoveToDirection(_networkSnake.MoveDirection);
-                        transform.position = Vector3.Lerp(transform.position, _networkSnake.realPosition, speed*Time.deltaTime*3);
+                        transform.position = Vector3.MoveTowards(transform.position, _networkSnake.realPosition, speed/PhotonNetwork.sendRateOnSerialize);
                     }
                 }
             }

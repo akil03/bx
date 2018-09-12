@@ -796,9 +796,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: pluginIncompatible
   apiCompatibilityLevel: 2
-  cloudProjectId: 29db0e1e-147b-439a-acd8-a0c65052961b
+  cloudProjectId: b6b05671-9c94-46c8-bda6-c917bae5aae7
   projectName: Battle Xonix
-  organizationId: cboy
+  organizationId: dexto-studios
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

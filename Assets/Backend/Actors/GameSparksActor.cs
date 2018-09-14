@@ -268,6 +268,8 @@ public class GameSparksActor : MonoBehaviour
         }
         Debug.Log("GSM| Attempting Matchmaking...");
         ObliusGameManager.instance.matchFailed = false;
+        GSRequestData data = new GSRequestData();
+        data.Add("server", PhotonNetwork.CloudRegion.ToString());
         new GameSparks.Api.Requests.MatchmakingRequest()
             .SetMatchShortCode("normal")
             .SetSkill(0)

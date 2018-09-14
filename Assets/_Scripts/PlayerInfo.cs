@@ -32,6 +32,8 @@ public class PlayerInfo : MonoBehaviour
     void Awake()
     {
         realPosition = Vector3.zero;
+        PhotonNetwork.sendRate = Mathf.FloorToInt(2000.0f/PhotonNetwork.GetPing());
+        PhotonNetwork.sendRateOnSerialize = Mathf.FloorToInt(2000.0f / PhotonNetwork.GetPing());
         StartCoroutine(SetPlayerPing());
     }
 
@@ -76,6 +78,7 @@ public class PlayerInfo : MonoBehaviour
     public string ownedListJson = "";
     public bool didDieRecently;
     bool isParticleExploded;
+    float positionTiming = 0.0f;
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
 
@@ -152,12 +155,16 @@ public class PlayerInfo : MonoBehaviour
                     isParticleExploded = false;
                 }
 
-                Player.currentMoveDirection = MoveDirection;
+                //Player.currentMoveDirection = MoveDirection;
                 Player.Lives = Lives;
                 Player.isCollectingNewGroundPieces = isCollecting;
 
+                Player.MoveToDirection(MoveDirection);
+
                 TrailList = ConvertStringToIntList(trailListJson);
                 OwnedList = ConvertStringToIntList(ownedListJson);
+                Player.SyncTrail();
+                Player.SyncFill();
 
                 Player.snakeMeshProprietes.Shield.SetActive(isShielded);
                 Player.isShielded = isShielded;
@@ -428,30 +435,60 @@ public class PlayerInfo : MonoBehaviour
     //void OnPhotonCustomRoomPropertiesChanged(Hashtable propertiesThatChanged){
     //    propertiesThatChanged[]
     //}
-
-    public void UpdateTrail(int index, int playerNo)
+    bool readyToPush=true;
+    public void UpdateGrid(List<int> trailInfo,List<int> fillInfo)
     {
-        Hashtable trailList = new Hashtable();
-        trailList.Add("player" + playerNo+"trail", index);
-        PhotonNetwork.room.SetCustomProperties(trailList, null, true);
+        trailListJson = ConvertListToString(trailInfo);
+        ownedListJson = ConvertListToString(fillInfo);
+
+        StartCoroutine(PushGridToCloud());
     }
 
-    public void UpdateFill(int index, int playerNo)
-    {
-        Hashtable fillList = new Hashtable();
-        fillList.Add("player" + playerNo, index);
-        PhotonNetwork.room.SetCustomProperties(fillList, null, true);
+    IEnumerator PushGridToCloud(){
+        readyToPush = false;
+
+        Hashtable gridInfo = new Hashtable();
+        gridInfo.Add("player" + PlayerNo + "trail", trailListJson);
+        gridInfo.Add("player" + PlayerNo + "owned", ownedListJson);
+        PhotonNetwork.room.SetCustomProperties(gridInfo, null, true);
+
+        yield return new WaitForSeconds((float)PhotonNetwork.GetPing()/1000.0f);
+        readyToPush = true;
     }
 
     public void OnPhotonCustomRoomPropertiesChanged(Hashtable propertiesThatChanged)
     {
         if(propertiesThatChanged.ContainsKey("player1trail")==true){
-            
+        
+            if(PlayerNo!=1)
+            {
+                trailListJson = propertiesThatChanged["player1trail"].ToString();
+                TrailList = ConvertStringToIntList(trailListJson);
+                ownedListJson = propertiesThatChanged["player1owned"].ToString();
+                OwnedList = ConvertStringToIntList(ownedListJson);
+                Player.SyncTrail();
+                Player.SyncFill();
+                //if(TrailList.Contains(Player.lastReachedGroundPiece.indexInGrid))
+                    
+            }
+
+
         }
 
         if (propertiesThatChanged.ContainsKey("player2trail") == true)
         {
-
+            if (PlayerNo != 2)
+            {
+                trailListJson = propertiesThatChanged["player2trail"].ToString();
+                TrailList = ConvertStringToIntList(trailListJson);
+                ownedListJson = propertiesThatChanged["player2owned"].ToString();
+                OwnedList = ConvertStringToIntList(ownedListJson);
+                Player.SyncTrail();
+                Player.SyncFill();
+            }
         }
     }
+
+
+
 }

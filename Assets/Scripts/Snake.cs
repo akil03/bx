@@ -199,8 +199,10 @@ public class Snake : MonoBehaviour
                     if (_networkSnake)
                     {
                         //Movement();
-                        MoveToDirection(_networkSnake.MoveDirection);
-                        transform.position = Vector3.MoveTowards(transform.position, _networkSnake.realPosition, speed/PhotonNetwork.sendRateOnSerialize);
+                      //  MoveToDirection(_networkSnake.MoveDirection);
+                        transform.position = Vector3.Lerp(transform.position, _networkSnake.realPosition, 0.25f);
+                      //  SyncTrail();
+                     //   SyncFill();
                     }
                 }
             }
@@ -296,6 +298,8 @@ public class Snake : MonoBehaviour
         }
     }
 
+
+
     void NetworkMovement()
     {
         GetKeyboardInput();
@@ -320,7 +324,7 @@ public class Snake : MonoBehaviour
             //    transform.position = _networkSnake.realPosition;
             //    lastReachedGroundPiece = GroundSpawner.instance.spawnedGroundPieces[_networkSnake.CurrentGridPosition];
             //    groundPieceToReach = GroundSpawner.instance.spawnedGroundPieces[_networkSnake.TargetGridPosition];
-                SyncTrail();
+           //     SyncTrail();
             //    SyncFill();
             //}
             //else
@@ -344,12 +348,13 @@ public class Snake : MonoBehaviour
                 _networkSnake.realPosition = transform.position;
                 //CheckBuggyFreeze ();
                 //_networkSnake.CurrentGridPosition = groundPieceToReach.indexInGrid;
+               // _networkSnake.UpdateGrid(ConvertPiecesToInt(tailGroundPieces), ConvertPiecesToInt(ownedGroundPieces));
                 _networkSnake.TrailList = ConvertPiecesToInt(tailGroundPieces);
                 _networkSnake.OwnedList = ConvertPiecesToInt(ownedGroundPieces);
             }
             else
             {
-
+                currentMoveDirection = vector;
                 //				if (GroundSpawner.instance.spawnedGroundPieces [_networkSnake.CurrentGridPosition] != lastSyncedPiece) {
                 //					lastSyncedPiece = GroundSpawner.instance.spawnedGroundPieces [_networkSnake.CurrentGridPosition];
                 //					CheckReachedGroundPiece (lastSyncedPiece);
@@ -475,7 +480,7 @@ public class Snake : MonoBehaviour
             if (lastReachedGroundPiece.IsBoundPiece())
             {
                 //currentHP = 0;
-                haveToDie = true;
+                KillSnake(this);
                 ReasonDeath = name + " decided to hit the wall !!";
                 if (!PlayerPrefs.HasKey("TutorialComplete") && !isBot)
                     GUIManager.instance.ShowTutorialLog(1, "Do not hit the wall !!", 3);
@@ -485,7 +490,7 @@ public class Snake : MonoBehaviour
 
             if (currentHP == 0)
             {
-                haveToDie = true;
+                KillSnake(this);
                 ReasonDeath = name + " got hit pretty badly !!";
                 GUIManager.instance.ShowLog(name + " got hit pretty badly !!", 3);
             }
@@ -541,22 +546,22 @@ public class Snake : MonoBehaviour
                 isCollectingNewGroundPieces = true;
                 AI.Reset();
             }
-            if (PhotonNetwork.inRoom && isLocal)
-            {
-                PhotonView.Get(_networkSnake.gameObject).RPC("MakeTrail", PhotonTargets.All, pieceToCheck.indexInGrid);
-            }
-            else
+            //if (PhotonNetwork.inRoom && isLocal)
+            //{
+            //    PhotonView.Get(_networkSnake.gameObject).RPC("MakeTrail", PhotonTargets.All, pieceToCheck.indexInGrid);
+            //}
+            //else
                 pieceToCheck.SetCollectingSnake(this);
-            }
+        }
         else
         {
             if (isCollectingNewGroundPieces)
             {
-                if (PhotonNetwork.inRoom && isLocal)
-                {
-                    PhotonView.Get(_networkSnake.gameObject).RPC("MakeFill", PhotonTargets.All);
-                    return;
-                }
+                //if (PhotonNetwork.inRoom && isLocal)
+                //{
+                //    PhotonView.Get(_networkSnake.gameObject).RPC("MakeFill", PhotonTargets.All);
+                //    return;
+                //}
                 List<GroundPiece> newOwnedGroundPieces = new List<GroundPiece>();
                 foreach (GroundPiece groundPiece in tailGroundPieces)
                 {
@@ -820,14 +825,18 @@ public class Snake : MonoBehaviour
     public IEnumerator Die()
     {
 
-        if (_networkSnake)
-            yield return new WaitForSeconds(0.5f);
+        //if (_networkSnake)
+            //yield return new WaitForSeconds(0.5f);
+
+        if (isDead)
+            yield break;
+
+        isDead = true;
 
         energy += 2;
         currentHP = 0;
 
-        if (isDead)
-            yield break;
+
 
         if(playerID==1)
             AccountDetails.instance.Save(totalDeaths: 1);
@@ -836,15 +845,19 @@ public class Snake : MonoBehaviour
 
         Invoke("EndRecording", 0.7f);
         snakeMeshContainer.transform.DOScale(Vector3.zero, 0.4f).SetEase(Ease.Unset);
-
+        Instantiate(Explosion, transform.position, transform.rotation);
         FindObjectOfType<CameraShake>().StartShake(DeathShakeProperties);
 
         if (PhotonNetwork.inRoom)
         {
+            //GameObject go = PhotonNetwork.Instantiate("Particles/" + Explosion.name, snakeMeshProprietes.Mesh.transform.position, transform.rotation, 0);
+           // go.transform.SetParent(snakeMeshProprietes.Mesh.transform);
+
             if (isLocal)
             {
                 Lives--;
                 _networkSnake.Lives = Lives;
+
             }
             if (Lives < 1)
             {
@@ -931,7 +944,7 @@ public class Snake : MonoBehaviour
         }
 
 
-        Instantiate(Explosion, transform.position, transform.rotation);
+        //Instantiate(Explosion, transform.position, transform.rotation);
 
         GUIManager.instance.gameOverGUI.Reason.text = ReasonDeath;
 
@@ -1015,7 +1028,8 @@ public class Snake : MonoBehaviour
 
     void NetworkGameOver()
     {
-        PhotonView.Get(Server.instance.gameObject).RPC("GameOver", PhotonTargets.All, PhotonView.Get(_networkSnake.gameObject).viewID, ReasonDeath);
+        PhotonView.Get(Server.instance.gameObject).RPC("GameOver", PhotonTargets.AllViaServer, PhotonView.Get(_networkSnake.gameObject).viewID, ReasonDeath);
+        PhotonNetwork.SendOutgoingCommands();
     }
 
 

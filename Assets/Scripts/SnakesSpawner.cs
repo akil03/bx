@@ -371,6 +371,7 @@ public class SnakesSpawner : MonoBehaviour
         newSnake.maxHP = HealthValue;
         newSnake.normalSpeed = snake.normalSpeed;
         newSnake.speed = snake.normalSpeed;
+        newSnake.isDead = false;
         if (snake.playerID == 1)
         {
             spawnPointFinder.spawnPoint = GroundSpawner.instance.spawnedGroundPieces[447];
@@ -431,6 +432,7 @@ public class SnakesSpawner : MonoBehaviour
         StartCoroutine(newSnake.StartMove());
 
         snake._networkSnake.shouldTransmit = true;
+        snake._networkSnake.isDead = false;
         snake._networkSnake.currentHP = snake._networkSnake.MaxHP;
         snake._networkSnake.Player = newSnake;
 

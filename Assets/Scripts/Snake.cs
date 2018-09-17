@@ -494,8 +494,9 @@ public class Snake : MonoBehaviour
                 ReasonDeath = name + " got hit pretty badly !!";
                 GUIManager.instance.ShowLog(name + " got hit pretty badly !!", 3);
             }
-            if (haveToDie)
+            if (haveToDie&&!PhotonNetwork.inRoom)
             {
+                print("kill by local");
                 StartCoroutine(Die());
                 break;
             }
@@ -748,7 +749,8 @@ public class Snake : MonoBehaviour
 
             if (PhotonNetwork.inRoom && !isNetworkKill && isLocal)
             {
-                PhotonView.Get(targetSnake._networkSnake.gameObject).RPC("KillPlayer", PhotonTargets.All);
+                PhotonView.Get(targetSnake._networkSnake.gameObject).RPC("KillPlayer", PhotonTargets.AllViaServer);
+                PhotonNetwork.SendOutgoingCommands();
                 targetSnake._networkSnake.shouldTransmit = false;
                 isNetworkKill = true;
                 Invoke("EnableNetworkKill", 2);
@@ -833,6 +835,7 @@ public class Snake : MonoBehaviour
 
         isDead = true;
 
+
         energy += 2;
         currentHP = 0;
 
@@ -857,14 +860,15 @@ public class Snake : MonoBehaviour
             {
                 Lives--;
                 _networkSnake.Lives = Lives;
+                _networkSnake.isDead = true;
 
             }
             if (Lives < 1)
             {
 
 
-                //	Invoke ("NetworkGameOver", 1);
                 NetworkGameOver();
+
 
                 yield return StartCoroutine(FadeOutTailPieces());
                 yield return StartCoroutine(FadeOutCollectedGroundPieces());
@@ -905,6 +909,7 @@ public class Snake : MonoBehaviour
                 if (isLocal)
                 {
                     _networkSnake.shouldTransmit = false;
+
                     SnakesSpawner.instance.RespawnNetworkSnake(this);
 
                 }
@@ -1028,6 +1033,7 @@ public class Snake : MonoBehaviour
 
     void NetworkGameOver()
     {
+        print("gameover called");
         PhotonView.Get(Server.instance.gameObject).RPC("GameOver", PhotonTargets.AllViaServer, PhotonView.Get(_networkSnake.gameObject).viewID, ReasonDeath);
         PhotonNetwork.SendOutgoingCommands();
     }

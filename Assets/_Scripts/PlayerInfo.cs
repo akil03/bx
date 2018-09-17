@@ -79,6 +79,8 @@ public class PlayerInfo : MonoBehaviour
     public bool didDieRecently;
     bool isParticleExploded;
     float positionTiming = 0.0f;
+    public bool isGameOver;
+
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
 
@@ -130,6 +132,12 @@ public class PlayerInfo : MonoBehaviour
 
             //stream.Serialize (ref Player);
 
+            if(!isGameOver&&Lives==0){
+                Server.instance.GameOver(1, "");
+                isGameOver = true;
+            }
+
+
             if (Player && shouldTransmit)
             {
                 if (PlayerNo == 2)
@@ -156,7 +164,7 @@ public class PlayerInfo : MonoBehaviour
                 }
 
                 //Player.currentMoveDirection = MoveDirection;
-                Player.Lives = Lives;
+               
                 Player.isCollectingNewGroundPieces = isCollecting;
 
                 Player.MoveToDirection(MoveDirection);
@@ -174,11 +182,20 @@ public class PlayerInfo : MonoBehaviour
                 Player.currentHP = currentHP;
                 Player.snakeMeshContainer.transform.localScale = Vector3.one;
 
-                if (isDead)
-                    StartCoroutine(Player.Die());
+                //if (isDead){
+                //    print("kill by serialize");
+                //    Player.snakeMeshContainer.transform.DOScale(Vector3.zero, 0.4f).SetEase(Ease.Unset);
+                //    Instantiate(Player.Explosion, Player.transform.position, Player.transform.rotation);
+                //    //StartCoroutine(Player.Die());
+                //}
+                   
+                
                 //Player.InputDirection = MoveDirection;
                 //Player.transform.position = realPosition;
             }
+
+            if(Player)
+                Player.Lives = Lives;
 
             if (!shouldTransmit)
             {
@@ -302,10 +319,16 @@ public class PlayerInfo : MonoBehaviour
     [PunRPC]
     public void KillPlayer()
     {
-
+        print("kill by rpc");
+        Player.snakeMeshContainer.transform.DOScale(Vector3.zero, 0.4f).SetEase(Ease.Unset);
         StartCoroutine(Player.Die());
 
     }
+
+
+
+
+
 
   //  [PunRPC]
     public void MakeTrail(int index)

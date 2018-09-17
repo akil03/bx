@@ -39,8 +39,10 @@ public class Server : MonoBehaviour
     {
         if (isGameOver)
         {
+            print("Already gameover");
             return;
         }
+        print("gameover server");
         PowerUpManager.instance.dontSpawn = true;
         var selected = players.Where(a => (PhotonView.Get(a.gameObject).viewID == id)).First();
 

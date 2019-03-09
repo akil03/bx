@@ -162,7 +162,7 @@ public class Regeneration : MonoBehaviour
     void LifeLoseParticle()
     {
         CancelInvoke();
-        print("anim");
+      //  print("anim");
         if (tempLife != lifeAmount)
         {
             Instantiate(EnergyParticle, EnergyBars[lifeAmount].transform);

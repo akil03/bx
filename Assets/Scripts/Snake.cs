@@ -293,7 +293,7 @@ public class Snake : MonoBehaviour
         GetTouchInput();
         if (isInputRecieved)
         {
-            print("input");
+           // print("input");
             MoveToDirection(InputDirection);
         }
     }
